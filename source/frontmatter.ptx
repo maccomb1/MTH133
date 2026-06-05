@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This frontmatter division will contain all content before the -->
+<!-- first chapter. Fill in and comment/uncomment to see how this -->
+<!-- works. -->
+
+<frontmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="frontmatter">
+  <bibinfo>
+  
+    <!-- 
+    <author>
+      <personname>You</personname>
+      <department>Your department</department>
+      <institution>Your institution</institution>
+    </author>
+
+  -->
+        <credit>
+      <title>Contributing Authors</title>
+
+    <author>
+      <personname>Peter Magyar</personname>
+      <department>Department of Mathematics</department>
+      <institution>Michigan State University</institution>
+    </author>
+              <author>
+      <personname>Everett Meekins</personname>
+      <department>Department of Mathematics</department>
+      <institution>Michigan State University</institution>
+    </author> 
+    </credit>
+
+
+
+    <date>
+      <today />
+    </date>
+
+    <!-- 
+    <website>
+      <url href="https://pretextbook.org">My Website</url>
+    </website>
+
+    <copyright>
+      <year>2020<ndash />2024</year>
+      <holder>You</holder>
+      <shortlicense> This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit <url href="http://creativecommons.org/licenses/by-sa/4.0/" visual="creativecommons.org/licenses/by-sa/4.0"> CreativeCommons.org</url>
+      </shortlicense>
+    </copyright>
+  -->
+
+
+  </bibinfo>
+
+  <titlepage>
+    <titlepage-items/>
+  </titlepage>
+
+
+  
+  <preface >
+    <title>Students: How to Use these Notes</title>
+    
+    
+  <p>Welcome to <c>MTH 132: Calculus II</c>. These notes have been created to guide you through the course, to support your in-class learning, 
+    and to give you a resource for independent study and practice.</p>
+
+  <p><alert>Structure of the Notes</alert></p>
+  <p>The notes are divided into chapters and sections that match the topics of the course. Each section may contain:</p>
+  <ul>
+    <li><term>Definitions</term> of important concepts.</li>
+    <li><term>Theorems</term> that summarize key results.</li>
+    <li><term>Examples</term> to illustrate ideas and methods.</li>
+    <li><term>Remarks</term> and <term>alerts</term> that highlight common pitfalls or important insights.</li>
+    <li><term>Exercises</term> for you to practice and check understanding.</li>
+  </ul>
+
+  <p><alert>How to Approach Each Section</alert></p>
+  <p>Here are some suggestions for making the most of each section:</p>
+  <ul>
+    <li><em>Before class:</em> Skim the definitions, theorems, and examples. Preview the exercises.</li>
+    <li><em>During class:</em> Focus on interactive examples and problem-solving activities with your peers and instructor.</li>
+    <li><em>After class:</em> Revisit the examples, complete the exercises, and check solutions or hints when provided.</li>
+  </ul>
+
+
+  
+<p><alert>Technology and Tools</alert></p>
+<p>These notes makes use of graphs, figures, and sometimes interactive elements (such as Desmos activities). 
+  A scientific calculator or graphing tool may be helpful, especially when you are first learning new concepts. 
+  
+  That said, calculators should not replace understanding. The primary goal is to develop conceptual insight and 
+  the ability to carry out computations by hand. 
+  Be aware that calculator use may be restricted or not allowed at all on quizzes and exams, 
+  so practicing without a calculator an important part of your preparation.</p>
+
+  <p><alert>Connections to Course Materials</alert></p>
+  <p>These notes work alongside other course resources:</p>
+  <ul>
+    <li><c>D2L</c> for announcements, grades, and course structure.</li>
+    <li><c>WeBWorK</c> for online homework practice.</li>
+    <li>Recitations and weekly reviews for collaborative practice.</li>
+    <li>Quizzes and exams for formal assessment.</li>
+  </ul>
+
+  <p><alert>Study Strategies</alert></p>
+  <p>Some tips for success:</p>
+  <ul>
+    <li><url href="https://launchings.blogspot.com/2011/07/the-worst-way-to-teach.html" visual="true">Practice actively</url>: 
+      work through examples, don’t just read them.</li>
+    <li>Collaborate with classmates and discuss your reasoning.</li>
+    <li>Always show your work and leave answers in exact form when possible.</li>
+    <li>Interpret results and think about what they mean in context.</li>
+  </ul>
+
+  <p><alert>Accessibility and Flexibility</alert></p>
+  <p>These notes have been designed with accessibility in mind. Figures include alt text, and the content can be navigated easily.</p>
+
+
+<p>
+If you spot any errors or unclear explanations please let us know. 
+We welcome suggestions for improvement and corrections via the
+ <url href="https://forms.gle/YpmAhEjVguPXamtw6" visual="true">Google Feedback Form</url>.
+
+
+</p>
+
+
+  <p><alert>Final Encouragement</alert></p>
+  <p>Remember: these notes are a tool, not just a reference. Stay engaged, practice often, and combine them with the support of your instructors, TAs, and the Math Learning Center. With steady effort, you will succeed in calculus.</p>
+
+  </preface>
+
+
+    
+</frontmatter>
+

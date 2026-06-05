@@ -1,0 +1,17 @@
+<!-- GIF INSIDE OF URL
+ 
+When compiling the print document we need to make sure to comment out the GIFs, 
+and replace them with static images or descriptions otherwise the compiler will try to load them and fail.
+
+This is a list of all the GIFs used in the document, so we can easily find and comment them out when needed.
+
+sec-limit-graph
+  images/NoLimit.gif
+  
+
+
+
+
+
+
+-->
