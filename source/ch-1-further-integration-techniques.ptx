@@ -16,7 +16,7 @@
 
   <!-- include sections -->
   <xi:include href="./ch-1-further-integration-techniques/sec-1-integration-by-parts.ptx" />
-  <xi:include href="./ch-1-further-integration-techniques/sec-2-trig-integrals.ptx" />
+  <xi:include href="./ch-1-further-integration-techniques/sec-2-integration-with-trig-identities.ptx" />
   <xi:include href="./ch-1-further-integration-techniques/sec-3-trig-sub.ptx" />
   <xi:include href="./ch-1-further-integration-techniques/sec-4-partial-fractions.ptx" />
   <xi:include href="./ch-1-further-integration-techniques/sec-5-indefinite-integrals.ptx" />
