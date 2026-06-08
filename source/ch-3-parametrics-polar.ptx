@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-3-parametrics-polar" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Parametric Equations and Polar Coordinates</title>
+
+  <introduction>
+    <p> Text before the first section. </p>
+  </introduction>
+
+  <!-- include sections -->
+  <xi:include href="./ch-3-parametrics-polar/sec-1-parametric-equations.ptx" />
+  <xi:include href="./ch-3-parametrics-polar/sec-2-parametric-length.ptx" />
+  <xi:include href="./ch-3-parametrics-polar/sec-3-polar.ptx" />
+  <xi:include href="./ch-3-parametrics-polar/sec-4-polar-area.ptx" />
+  
+</chapter>

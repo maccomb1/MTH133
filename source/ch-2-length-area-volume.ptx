@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-2-length-area-volume" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Length, Area, and Volume</title>
+
+  <introduction>
+    <p> Text before the first section. </p>
+  </introduction>
+
+  <!-- include sections -->
+  <xi:include href="./ch-2-length-area-volume/sec-1-area-between-curves.ptx" />
+  <xi:include href="./ch-2-length-area-volume/sec-2-volumes.ptx" />
+  <xi:include href="./ch-2-length-area-volume/sec-3-avg-value.ptx" />
+  <xi:include href="./ch-2-length-area-volume/sec-4-arc-length.ptx" />
+
+</chapter>

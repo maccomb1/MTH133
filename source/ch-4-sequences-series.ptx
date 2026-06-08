@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-4-sequences-series" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Sequences and Series</title>
+
+  <introduction>
+    <p> Text before the first section. </p>
+  </introduction>
+
+  <!-- include sections -->
+  <xi:include href="./ch-4-sequences-series/sec-1-motivation.ptx" />
+  <xi:include href="./ch-4-sequences-series/sec-2-sequences-hierarchy-growth-ratio.ptx" />
+  <xi:include href="./ch-4-sequences-series/sec-3-convergence-nth-term.ptx" />
+  <xi:include href="./ch-4-sequences-series/sec-4-integral-test.ptx" />
+  <xi:include href="./ch-4-sequences-series/sec-5-direct-limit-comparison.ptx" />
+  <xi:include href="./ch-4-sequences-series/sec-6-ratio-test.ptx" />
+  <xi:include href="./ch-4-sequences-series/sec-7-overall-strategy-dominant-terms.ptx" />
+  <xi:include href="./ch-4-sequences-series/sec-8-power-series.ptx" />
+  <xi:include href="./ch-4-sequences-series/sec-9-representing-functions-with-power-series.ptx" />
+  <xi:include href="./ch-4-sequences-series/sec-10-taylor-maclaurin-series.ptx" />
+  <xi:include href="./ch-4-sequences-series/sec-11-applications.ptx" />
+
+</chapter>

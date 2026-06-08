@@ -12,8 +12,12 @@
     <xi:include href="./frontmatter.ptx" />
 
     <!-- Include chapters -->
+    <xi:include href="./ch-0-integration.ptx" />
     <xi:include href="./ch-1-further-integration-techniques.ptx" />
-
+    <xi:include href="./ch-2-length-area-volume.ptx" />
+    <xi:include href="./ch-3-parametrics-polar.ptx" />
+    <xi:include href="./ch-4-sequences-series.ptx" />
+    <xi:include href="./ch-5-differential-equations.ptx" />
 
     <!-- Include backmatter -->
     <xi:include href="./backmatter.ptx" />
