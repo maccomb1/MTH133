@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-1-integration-by-parts" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Integration By Parts</title>
+
+<subsection xml:id="sec-review-of-integration">
+    <title>Review of Integration</title>
+
+    <p> The definite integral gives the cumulative total of many small
+    parts, such as the slivers which add up to the area under a graph. Numerically, it is a 
+    limit of Riemann sums (insert formula) ...
+    
+    </p>
+
+</subsection>
+
+</section>

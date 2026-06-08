@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-1-further-integration-techniques" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Further Integration Techniques</title>
+
+  <introduction>
+    <p> Different text before the first section. </p>
+  </introduction>
+
+  <!-- include sections -->
+  <xi:include href="sec-1-integration-by-parts.ptx" />
+
+</chapter>
