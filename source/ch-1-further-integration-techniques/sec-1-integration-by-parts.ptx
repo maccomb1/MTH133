@@ -142,6 +142,9 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
             </p>
           </sidebyside>
         </sbsgroup>
+      </p>
+
+      <p>
         Unfortunately, the new integral <m>\int\! x^2\sin(x)\,dx</m> is harder than the original <m>\int\! x\cos(x)\,dx</m>. 
         We must make a wiser choice of <m>u,v</m>, so that the derivative <m>du</m> will be simpler than the original <m>u</m>, 
         while the antiderivative <m>v</m> will be no worse than the original <m>dv</m>.
@@ -234,11 +237,209 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
 
     <solution>
       <p>
-        
+        We should choose <m>u=x^2</m>, <m>dv=e^{-x}</m>, so that <m>du=2x\,dx</m> is simpler, but <m>v = -e^{-x}</m> is no 
+        more complicated:
       </p>
+
+      <sbsgroup widths="25% 5% 20% 5% 30%" align="center">
+        <sidebyside>
+          <p>
+            <m> \int u\,dv </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> uv </m>
+          </p>
+
+          <p>
+            <m> - </m>
+          </p>
+
+          <p>
+            <m> \int v\,du </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            <m> \int x^2\,e^{-x}\,dx </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> x^2\,(-e^{-x}) </m>
+          </p>
+
+          <p>
+            <m> - </m>
+          </p>
+
+          <p>
+            <m> \int (-e^{-x})\,2x\,dx </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            <m> </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> -x^2\,e^{-x} </m>
+          </p>
+
+          <p>
+            <m> + </m>
+          </p>
+
+          <p>
+            <m> 2\int x\,e^{-x}\,dx </m>
+          </p>
+        </sidebyside>
+      </sbsgroup>
+
+      <p>
+        Going on to Step 4, we repeat the process for the integral on the right side, 
+        this time with <m>u = x</m>, <m>dv= e^{-x}\,dx</m> and <m>du = dx</m>, <m>v = -e^{-x}</m>:
+      </p>
+
+      <sbsgroup widths="20% 5% 20% 5% 30%" align="center">
+        <sidebyside>
+          <p>
+            <m> \int u\,dv </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> uv </m>
+          </p>
+
+          <p>
+            <m> - </m>
+          </p>
+
+          <p>
+            <m> \int v\,du </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            <m> \int x\,e^{-x}\,dx </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> x\,(-e^{-x}) </m>
+          </p>
+
+          <p>
+            <m> - </m>
+          </p>
+
+          <p>
+            <m> \int (-e^{-x})\,dx </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            <m> </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> -x\,e^{-x} </m>
+          </p>
+
+          <p>
+            <m> + </m>
+          </p>
+
+          <p>
+            <m> \int e^{-x}\,dx </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            <m> </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> -x\,e^{-x} </m>
+          </p>
+
+          <p>
+            <m> + </m>
+          </p>
+
+          <p>
+            <m> (-e^{-x}) </m>
+          </p>
+        </sidebyside>
+      </sbsgroup>
+
+      <p>
+        Putting these together:
+      </p>
+
+      <sbsgroup widths="20% 5% 50%" align="center">
+        <sidebyside>
+          <p>
+            <m> \int x^2\,e^{-x}\,dx </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> -x^2\,e^{-x} + 2(-x\,e^{-x} - e^{-x}) </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> -(x^2 + 2x + 2)e^{-x} </m>
+          </p>
+        </sidebyside>
+      </sbsgroup>
     </solution>
   </example>
-  
+
   <example>
     <statement>
       <p>
@@ -262,8 +463,76 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
 
     <solution>
       <p>
-        
+       Here there does not seem to be any <m>dv</m> factor, but we can 
+       always take <m>dv=1\,dx</m>, so <m>v = x</m>: 
       </p>
+      <sbsgroup widths="25% 5% 20% 5% 30%" align="center">
+        <sidebyside>
+          <p>
+            <m> \int u\,dv </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> uv </m>
+          </p>
+
+          <p>
+            <m> - </m>
+          </p>
+
+          <p>
+            <m> \int v\,du </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            <m> \int \ln(x)\,1 dx </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> x\ln(x) </m>
+          </p>
+
+          <p>
+            <m> - </m>
+          </p>
+
+          <p>
+            <m> \int x\,\frac{1}{x}\,dx </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> x\ln(x) </m>
+          </p>
+
+          <p>
+            <m> - </m>
+          </p>
+
+          <p>
+            x
+          </p>
+        </sidebyside>
+      </sbsgroup>
     </solution>
   </example>
 
@@ -276,8 +545,162 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
 
     <solution>
       <p>
-        
+        Again we must use <m>u=\sin^{-1}(x)</m> and <m>dv = 1\,dx</m>, counting 
+        on the fact that <m>du</m> is simpler than <m>u</m>:
       </p>
+
+      <sbsgroup widths="25% 5% 20% 5% 30%" align="center">
+        <sidebyside>
+          <p>
+            <m> \int u\,dv </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> uv </m>
+          </p>
+
+          <p>
+            <m> - </m>
+          </p>
+
+          <p>
+            <m> \int v\,du </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            <m> \int \sin^{-1}(x)\,1\,dx </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> x\sin^{-1}(x) </m>
+          </p>
+          <p>
+            <m> - </m>
+          </p>
+
+          <p>
+            <m> \int x\,\frac{1}{\sqrt{1-x^2}}\,dx </m>
+          </p>
+        </sidebyside>
+      </sbsgroup>
+
+      <p>
+        Continuing Step 3, we use the substitution <m>z = 1-x^2</m> on the right-hand integral:
+      </p>
+      
+      <sbsgroup widths="25% 5% 25% 5% 25%">
+        <sidebyside>
+          <p>
+            <m> \int x\,\frac1{\sqrt{1-x^2}}\,dx </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> -\frac12 \int \frac1{\sqrt{1-x^2}}\,(-2x)\,dx\</m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> -\frac{1}{2} \int \frac{1}{\sqrt z}\, dz </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> -\sqrt{z} </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> -\sqrt{1-x^2} </m>
+          </p>
+
+          <p>
+            
+          </p>
+
+          <p>
+            
+          </p>
+        </sidebyside>
+      </sbsgroup>
+
+      <p>
+        Combining:
+      </p>
+
+
+      <sbsgroup widths="25% 5% 40%" align="center">
+        <sidebyside>
+          <p>
+            <m> \int \sin^{-1}(x)\,dx </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> x\sin^{-1}(x) - (-\sqrt{1{-}x^2}) </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> x\sin^{-1}(x) + \sqrt{1{-}x^2} </m>
+          </p>
+        </sidebyside>
+      </sbsgroup>
+
     </solution>
   </example>
 
