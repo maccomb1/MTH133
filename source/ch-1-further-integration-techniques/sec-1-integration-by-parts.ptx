@@ -9,7 +9,7 @@
     <p> The definite integral gives the cumulative total of many small
     parts, such as the slivers which add up to the area under a graph. Numerically, it is a 
     limit of Riemann sums 
-    <me>\displaystyle \int_a^b f(x) dx \ = \lim_{n \to \infty} \sum_{i=1}^n f(x_i)\ \Delta x</me>
+    <md> \int_a^b f(x) dx \ = \lim_{n \to \infty} \sum_{i=1}^n f(x_i)\ \Delta x</md>
     where we divide the interval <m> x \in [a,b] </m> into <m>n</m> increments
     of size <m>\Delta x=\frac{b-a}{n}</m> with division points <m>a &lt; a + \Delta x &lt; a + 2\Delta x &lt; \cdots &lt; a + n\Delta x = b</m>, 
     and <m>x_1,\ldots x_n</m> are sample points from each increment.  This definition is not a theoretical curiosity: it is the reason integrals
@@ -19,7 +19,7 @@
     <p>However, for sufficiently simple functions <m>f(x)</m>, we can evaluate integrals algebraically by the shortcut of the Second 
       Fundamental Theorem of Calculus. This says that if <m>f(x)</m> is the rate of change of some known antiderivative <m>F(x)</m>, 
       then the integral of <m>f(x)</m> is the cumulative total change of <m>F(x)</m>:
-      <me> F'(x)=f(x) \qquad\Longrightarrow\qquad \int_a^b f(x)\,dx \ =\ \left.F(x)\right|_{x=a}^{x=b}\ =\ F(b)-F(a)\,.</me>
+      <md> F'(x)=f(x) \qquad\Longrightarrow\qquad \int_a^b f(x)\,dx \ =\ \left.F(x)\right|_{x=a}^{x=b}\ =\ F(b)-F(a)\,.</md>
 
       (The First Fundamental Theorem says that the definite integral gives an antiderivative even if there is no formula <m>F(x)</m>:
       defining <m>I(x)= \int_a^x f(t)\,dt</m>, we have <m>I'(x)  = f(x)</m>.)
@@ -29,7 +29,7 @@
       Algebraic integration is the process of finding antiderivative formulas, denoted as indefinite integrals <m>\int\! f(x)\,dx=F(x)+C</m>. 
       The most direct method is to reverse Basic Derivatives, such as <m>(x^p)' = px^{p-1}</m> reversing to <m>\int\! x^p\,dx =\frac{x^{p+1}}{p+1}</m>. 
       Our only other integration method so far is the Substitution Method, which reverses the Chain Rule:
-      <me> \int\! f(g(x))\,g'(x)\,dx \ =\ \int \! f(u)\,du\ =\ F(u) +C\ =\ F(g(x)) + C, </me> 
+      <md> \int\! f(g(x))\,g'(x)\,dx \ =\ \int \! f(u)\,du\ =\ F(u) +C\ =\ F(g(x)) + C, </md> 
       where <m>u=g(x)</m>, <m>du=g'(x)\,dx</m>, and <m>F'(u)=f(u)</m>.
     </p>
   </subsection>
@@ -38,13 +38,13 @@
   <title> Reversing the Product Rule</title>
 
   <p>
-  Since we have: <me> (f(x)\,g(x))' \ =\ f(x)\, g'(x) + g(x)\, f'(x)\,,</me>
+  Since we have: <md> (f(x)\,g(x))' \ =\ f(x)\, g'(x) + g(x)\, f'(x)\,,</md>
   we can take the antiderivative of both sides to give:
-<me> f(x)\,g(x) \ =\ \int\! f(x)\,g'(x)\,dx + \int\! g(x)\,f'(x)\,dx\,,</me> or:
-<me> \int\! f(x)\,g'(x)\,dx \ =\ f(x)\,g(x) - \int\! g(x)\,f'(x)\,dx\,.</me>
+<md> f(x)\,g(x) \ =\ \int\! f(x)\,g'(x)\,dx + \int\! g(x)\,f'(x)\,dx\,,</md> or:
+<md> \int\! f(x)\,g'(x)\,dx \ =\ f(x)\,g(x) - \int\! g(x)\,f'(x)\,dx\,.</md>
 In Leibnitz notation, taking <m>u=f(x)</m>, <m>du=f'(x)\,dx</m>
 and <m>v=g(x)</m>, <m>dv = g'(x)\,dx</m>:
-<me> \int\! u\ dv \ =\ uv \,-\, \int\! v\ du\,. </me>
+<md> \int\! u\ dv \ =\ uv \,-\, \int\! v\ du\,. </md>
 This method transforms the integral of a product <m>f(x)\,g'(x)</m>
 into <m>f(x) \,g(x)</m> minus the integral of <m>g(x)\,f'(x)</m>, the other term in the Product Rule; we can 
 think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x)</m> to its antiderivative <m>g(x)</m>.
@@ -72,7 +72,8 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
 
       <li>
         <p>
-          Sometimes you can repeat Steps 1 and 2 on <m>\int\! g(x)\,f'(x)\,dx</m>  with a <em>different</em> <m>u,v</m>. 
+          Sometimes you can repeat Steps 1 and 2 on <m>\int\! g(x)\,f'(x)\,dx</m>  with a <em>different</em> <m>u,v</m> 
+          <fn> Repeating with the <em> same </em> factorization <m>\int\! v\,du</m> would get back the original integral <m>\int\! u\,dv</m>. </fn>. 
           This might further simplify integral so you can evaluate by other methods.
         </p>
       </li>
@@ -151,7 +152,7 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
       </p>
 
       <p>The other obvious choice will work: take <m>u=x</m>, <m>dv = \cos(x)\,dx</m>, so that <m>du = 1\, dx</m> 
-        and <m>v=\sin(x)</m>. Then:
+        and <m>v=\sin(x)</m>. Then <fn>For brevity, we neglect the constant <m>+C</m>, though you should write it in formal work.</fn>:
       </p>
 
       <sbsgroup widths="25% 5% 20% 5% 30%" align="center">
@@ -221,8 +222,8 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
 
       <p>
         To check our answer, we reverse our Integration by Parts using the Product Rule:
-        <me> (x\sin(x) + \cos(x))' \ =\ x\sin'(x) + \sin(x)(x)' + \cos'(x) </me>
-        <me> =\, x\cos(x) + \sin(x) - \sin(x) \ =\ x\cos(x).</me>
+        <md> (x\sin(x) + \cos(x))' \ =\ x\sin'(x) + \sin(x)(x)' + \cos'(x) </md>
+        <md> =\, x\cos(x) + \sin(x) - \sin(x) \ =\ x\cos(x).</md>
       </p>
     </solution>
 
@@ -449,8 +450,104 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
 
     <solution>
       <p>
-        
+        Steps 1--4 give:
       </p>
+
+      <sbsgroup widths="21% 2% 12% 2% 30% 18%" align="center">
+        <sidebyside>
+          <p>
+            <m> \int e^x\sin(x)\,dx </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> e^x\sin(x) </m>
+          </p>
+
+          <p>
+            <m> - </m>
+          </p>
+
+          <p>
+            <m> \int e^x\cos(x)\,dx </m>
+          </p>
+
+          <p>
+            <m> u=\sin(x), \, v=e^x </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m> e^x\sin(x) </m>
+          </p>
+
+          <p>
+            <m> - </m>
+          </p>
+
+          <p>
+            <m> \left(e^x\cos(x) + \int e^x\sin(x)\,dx\right) </m>
+          </p>
+
+          <p>
+            <m> </m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            
+          </p>
+
+          <p>
+            
+          </p>
+
+          <p>
+            
+          </p>
+
+          <p>
+            
+          </p>
+
+          <p>
+            
+          </p>
+
+          <p>
+            <m> u=\cos(x), \, v=e^x </m>
+          </p>
+        </sidebyside>
+      </sbsgroup>
+
+      <p>
+        We conclude:
+      </p>
+
+      <md>
+        \int e^x\sin(x)\,dx \ = e^x\sin(x) -e^x\cos(x) -\int e^x\sin(x)\,dx.
+      </md>
+
+      <p>
+        Since our integral <m>\int e^x\sin(x)\,dx</m> appears on both sides, we go to Step 5 and solve for it:
+      </p>
+
+      <md>
+        \int e^x\sin(x)\,dx\ = \tfrac12\left(e^x\sin(x)-e^x\cos(x)\right).
+      </md>
     </solution>
   </example>
 
@@ -529,7 +626,7 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
           </p>
 
           <p>
-            x
+            <m> x </m>
           </p>
         </sidebyside>
       </sbsgroup>
@@ -539,7 +636,7 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
   <example>
     <statement>
       <p>
-        Evaluate <m>\int \sin^{-1}(x)\,dx</m>.
+        Evaluate <m>\int \sin^{-1}(x)\,dx</m>. <fn> Notation: <m>\sin^{-1}(x)=\arcsin(x)</m>, but <m>\sin(x)^{-1}=\frac{1}{\sin(x)}=\csc(x)</m>.</fn>
       </p>
     </statement>
 
@@ -598,7 +695,7 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
         Continuing Step 3, we use the substitution <m>z = 1-x^2</m> on the right-hand integral:
       </p>
       
-      <sbsgroup widths="25% 5% 25% 5% 25%">
+      <sbsgroup widths="30% 5% 40%">
         <sidebyside>
           <p>
             <m> \int x\,\frac1{\sqrt{1-x^2}}\,dx </m>
@@ -609,15 +706,7 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
           </p>
 
           <p>
-            <m> -\frac12 \int \frac1{\sqrt{1-x^2}}\,(-2x)\,dx\</m>
-          </p>
-
-          <p>
-            <m> = </m>
-          </p>
-
-          <p>
-            
+            <m> -\frac{1}{2} \int \frac{1}{\sqrt{1-x^2}}\,(-2x)\,dx\ </m>
           </p>
         </sidebyside>
 
@@ -631,15 +720,7 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
           </p>
 
           <p>
-            <m> -\frac{1}{2} \int \frac{1}{\sqrt z}\, dz </m>
-          </p>
-
-          <p>
-            <m> = </m>
-          </p>
-
-          <p>
-            <m> -\sqrt{z} </m>
+            <m> -\frac{1}{2} \int \frac{1}{\sqrt z}\, dz = -\sqrt{z} </m>
           </p>
         </sidebyside>
 
@@ -654,14 +735,6 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
 
           <p>
             <m> -\sqrt{1-x^2} </m>
-          </p>
-
-          <p>
-            
-          </p>
-
-          <p>
-            
           </p>
         </sidebyside>
       </sbsgroup>
