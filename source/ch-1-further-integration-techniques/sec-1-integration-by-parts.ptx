@@ -50,5 +50,80 @@ into <m>f(x) \,g(x)</m> minus the integral of <m>g(x)\,f'(x)</m>, the other term
 think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x)</m> to its antiderivative <m>g(x)</m>.
   </p>
 </subsection>
+<subsection xml:id="ssec-method-for-ibp">
+  <title>Method for Integration by Parts</title>
+  <p>
+    <ol>
+      <li>
+       <p>Given an indefinite integral <m>\int\! h(x)\,dx</m>, find a factor of the integrand <m>h(x)</m> which you recognize as the 
+        derivative of a function <m>g(x)</m>: that is, write <m>h(x)=f(x)\cdot g'(x)</m>.</p>
+      </li>
+
+      <li>
+        <p>Taking <m>u=f(x)</m>, <m>dv = g'(x)\,dx</m>, transform the integral <m>\int\! u\,dv=\int\! f(x)\, g'(x)\,dx</m> into 
+          <m>uv-\int\! v\,du \ =\ f(x)\,g(x)-\int\! g(x)\,f'(x)\,dx</m></p>
+      </li>
+
+      <li>
+        <p>
+          Simplify <m>g(x)\,f'(x)</m>, possibly using identities, and try to find its integral by other methods such as Substitution.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          Sometimes you can repeat Steps 1 and 2 on <m>\int\! g(x)\,f'(x)\,dx</m>  with a <em>different</em> <m>u,v</m>. 
+          This might further simplify integral so you can evaluate by other methods.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          Instead of simplifying the integral, Step 3 or 4 might give an expression with the <em>same</em> 
+          integral you started with. Solve the resulting equation to find that integral.
+        </p>
+      </li>
+
+    </ol>
+  </p>
+
+  <example xml:id="ex-ibp" title="Integration by Parts Example">
+    <p>
+      Evaluate <m>\int\! x\,\cos(x)\,dx</m>.
+    </p>
+
+    <solution>
+      <p>
+        There are two obvious candidates for $<m>u,v</m>. First, if we take <m>u=\cos(x)</m>, <m>dv=x\,dx</m>, we get 
+        <m>du=-\sin(x)\,dx</m>, <m>v = \frac12 x^2</m>, and:
+        
+        <sidebyside widths="25% 10% 25% 10% 25%">
+          <p>
+            <m>\int u\,dv</m>
+          </p>
+
+          <p>
+            <m>=</m>
+          </p>
+
+          <p>
+            <m>uv</m>
+          </p>
+
+          <p>
+            <m>-</m>
+          </p>
+
+          <p>
+            <m>\int v\,du</m>
+          </p>
+          
+        </sidebyside>
+
+      </p>
+    </solution>
+    
+  </example>
+</subsection>
 
 </section>
