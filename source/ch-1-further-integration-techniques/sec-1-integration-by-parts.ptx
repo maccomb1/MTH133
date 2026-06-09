@@ -88,18 +88,73 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
   </p>
 
   <example xml:id="ex-ibp" title="Integration by Parts Example">
-    <p>
-      Evaluate <m>\int\! x\,\cos(x)\,dx</m>.
-    </p>
-
+    <statement>
+      <p>
+        Evaluate <m>\int\! x\,\cos(x)\,dx</m>.
+      </p>
+    </statement>
+    
     <solution>
       <p>
-        There are two obvious candidates for $<m>u,v</m>. First, if we take <m>u=\cos(x)</m>, <m>dv=x\,dx</m>, we get 
-        <m>du=-\sin(x)\,dx</m>, <m>v = \frac12 x^2</m>, and:
-        
-        <sidebyside widths="25% 10% 25% 10% 25%">
+        There are two obvious candidates for <m>u,v</m>. First, if we take <m>u=\cos(x)</m>, <m>dv=x\,dx</m>, 
+        we get <m>du=-\sin(x)\,dx</m>, <m>v = \frac12 x^2</m>, and:
+        <sbsgroup widths = "25% 5% 20% 5% 30%" align="center">
+          <sidebyside>
+            <p>
+              <m> \int u\,dv </m>
+            </p>
+
+            <p>
+              <m> = </m>
+            </p>
+
+            <p>
+              <m> uv </m>
+            </p>
+
+            <p>
+              <m> - </m>
+            </p>
+
+            <p>
+              <m> \int v\,du </m>
+            </p>
+          </sidebyside>
+          <sidebyside>
+            <p>
+              <m> \int \cos(x)\,x\,dx </m>
+            </p>
+
+            <p>
+              <m> = </m>
+            </p>
+
+            <p>
+              <m> \cos(x)\left(\tfrac 12 x^2\right) </m>
+            </p>
+
+            <p>
+              <m> - </m>
+            </p>
+
+            <p>
+              <m> \int \tfrac12 x^2\,(-\sin(x))\,dx </m>
+            </p>
+          </sidebyside>
+        </sbsgroup>
+        Unfortunately, the new integral <m>\int\! x^2\sin(x)\,dx</m> is harder than the original <m>\int\! x\cos(x)\,dx</m>. 
+        We must make a wiser choice of <m>u,v</m>, so that the derivative <m>du</m> will be simpler than the original <m>u</m>, 
+        while the antiderivative <m>v</m> will be no worse than the original <m>dv</m>.
+      </p>
+
+      <p>The other obvious choice will work: take <m>u=x</m>, <m>dv = \cos(x)\,dx</m>, so that <m>du = 1\, dx</m> 
+        and <m>v=\sin(x)</m>. Then:
+      </p>
+
+      <sbsgroup widths="25% 5% 20% 5% 30%" align="center">
+        <sidebyside>
           <p>
-            <m>\int u\,dv</m>
+            <m> \int u\,dv </m>
           </p>
 
           <p>
@@ -117,13 +172,115 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
           <p>
             <m>\int v\,du</m>
           </p>
-          
         </sidebyside>
 
+        <sidebyside>
+          <p>
+            <m>\int x\,\cos(x)\,dx</m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+
+          <p>
+            <m>x\sin(x)</m>
+          </p>
+
+          <p>
+            <m>-</m>
+          </p>
+          
+          <p>
+            <m>\int \sin(x)\,1\,dx</m>
+          </p>
+        </sidebyside>
+
+        <sidebyside>
+          <p>
+            <m> </m>
+          </p>
+
+          <p>
+            <m> = </m>
+          </p>
+          <p>
+            <m>x\sin(x) </m>
+          </p>
+          <p>
+            <m> + </m>
+          </p>
+          <p>
+            <m> \cos(x) </m>
+          </p>
+        </sidebyside>
+      </sbsgroup>
+
+      <p>
+        To check our answer, we reverse our Integration by Parts using the Product Rule:
+        <me> (x\sin(x) + \cos(x))' \ =\ x\sin'(x) + \sin(x)(x)' + \cos'(x) </me>
+        <me> =\, x\cos(x) + \sin(x) - \sin(x) \ =\ x\cos(x).</me>
       </p>
     </solution>
-    
+
   </example>
+  
+  <example>
+    <statement>
+      <p>
+        Evaluate  <m>\int x^2\,e^{-x}\,dx</m>.
+      </p>
+    </statement>
+
+    <solution>
+      <p>
+        
+      </p>
+    </solution>
+  </example>
+  
+  <example>
+    <statement>
+      <p>
+        Evaluate <m>\int e^x\sin(x)\,dx</m>.
+      </p>
+    </statement>
+
+    <solution>
+      <p>
+        
+      </p>
+    </solution>
+  </example>
+
+  <example>
+    <statement>
+      <p>
+        Evaluate <m>\int \ln(x)\,dx</m>.
+      </p>
+    </statement>
+
+    <solution>
+      <p>
+        
+      </p>
+    </solution>
+  </example>
+
+  <example>
+    <statement>
+      <p>
+        Evaluate <m>\int \sin^{-1}(x)\,dx</m>.
+      </p>
+    </statement>
+
+    <solution>
+      <p>
+        
+      </p>
+    </solution>
+  </example>
+
 </subsection>
 
 </section>
