@@ -91,7 +91,7 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
   <example xml:id="ex-ibp" title="Integration by Parts Example">
     <statement>
       <p>
-        Evaluate <m>\int\! x\,\cos(x)\,dx</m>.
+        Evaluate <md>\int\! x\,\cos(x)\,dx.</md>
       </p>
     </statement>
     
@@ -232,7 +232,7 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
   <example>
     <statement>
       <p>
-        Evaluate  <m>\int x^2\,e^{-x}\,dx</m>.
+        Evaluate  <md>\int x^2\,e^{-x}\,dx.</md>
       </p>
     </statement>
 
@@ -444,7 +444,7 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
   <example>
     <statement>
       <p>
-        Evaluate <m>\int e^x\sin(x)\,dx</m>.
+        Evaluate <md>\int e^x\sin(x)\,dx.</md>
       </p>
     </statement>
 
@@ -554,7 +554,7 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
   <example>
     <statement>
       <p>
-        Evaluate <m>\int \ln(x)\,dx</m>.
+        Evaluate <md>\int \ln(x)\,dx.</md>
       </p>
     </statement>
 
@@ -636,7 +636,7 @@ think of lowering <m>f(x)</m> to its derivative <m>f'(x)</m> and raising <m>g'(x
   <example>
     <statement>
       <p>
-        Evaluate <m>\int \sin^{-1}(x)\,dx</m>. <fn> Notation: <m>\sin^{-1}(x)=\arcsin(x)</m>, but <m>\sin(x)^{-1}=\frac{1}{\sin(x)}=\csc(x)</m>.</fn>
+        Evaluate <fn> Notation: <m>\sin^{-1}(x)=\arcsin(x)</m>, but <m>\sin(x)^{-1}=\frac{1}{\sin(x)}=\csc(x)</m></fn> <md>\int \sin^{-1}(x)\,dx.</md>
       </p>
     </statement>
 

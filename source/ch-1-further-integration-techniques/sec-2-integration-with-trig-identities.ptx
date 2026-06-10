@@ -3,6 +3,79 @@
 <section xml:id="sec-2-integration-with-trig-identities" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Integration with Trigonometric Identities</title>
 
-  <p> Text of section. </p>
+  <subsection xml:id="ssec-prod-by-sub">
+    <title>Products by Substitution</title>
+      <p>
+        In this section, we develop methods to find indefinite integrals (antiderivatives) of products of trig functions, 
+        beyond the direct antiderivatives:
+
+        <md>
+          \begin{array}{ccccc}
+          \int \cos(x)\,dx = \sin(x), &amp; \int \sin(x)\,dx = -\cos(x), &amp; \int \sec^2(x)\,dx = \tan(x), \\
+          \int \tan(x)\sec(x)\,dx = \sec(x), &amp; \int \csc^2(x)\,dx = -\cot(x), &amp; \int \cot(x)\csc(x)\,dx = -\csc(x).
+          \end{array}
+        </md>
+
+        The easiest cases allow a simple trig substitution reducing to a polynomial, often using:
+        <md>\sin^2(x)+\cos^2(x)=1, \qquad \tan^2(x)+1=\sec^2(x).</md>
+
+        Let <m>m,n</m> be integers with <m>n\geq 0</m>. The basic paradigms, with examples, are:
+
+        <md>
+          <mrow> (a) \int  \sin^{m}(x) \cos^{2n+1}(x) \,dx: \text{ take } u=\sin(x),\, du=\cos(x)\,dx. </mrow>
+          <mrow> \, \, \, \int\cos^{m}(x) \sin^{2n+1}(x)\,dx: \text{ take } u=\cos(x),\, du=-\sin(x)\,dx. </mrow>
+        </md>
+
+        <example xml:id = "ex-odd-cos-power" >
+          <statement>
+            <p>
+              Compute <md> \int\sin^{-10}(x) \cos^{3}(x)\,dx. </md>
+            </p>
+          </statement>
+          
+          <solution>
+            <p>
+              <md>
+                \begin{array}{rcl}
+                  \int\sin^{-10}(x) \cos^{3}(x)\,dx &amp; = &amp; \int \sin^{-10}(x)\cos^{2}(x)\cdot \cos(x)\,dx \\[.5em] 
+                  &amp; = &amp; \int \sin^{-10}(x)(1-\sin^2(x))\cdot \cos(x)\,dx \\[.5em]
+                  &amp; = &amp; \int u^{-10}(1-u^2) \,du\\[.5em]
+                  &amp; = &amp; \int u^{-10}-u^{-8} \,du\\[.5em]
+                  &amp; = &amp; \tfrac{1}{-9}u^{-9} - \tfrac{1}{-7}u^{-7}+C \\[.5em]
+                  &amp; = &amp; -\tfrac{1}{9}\sin^{-9}(x) + \tfrac{1}{7}\sin^{-7}(x)+C.
+                \end{array}\\[-.9em]
+              </md>
+            </p>
+          </solution>
+        </example>
+
+        <example xml:id = "ex-odd-sin-power">
+          <statement>
+            <p>
+              Compute <md> \int \sin^{5}(x)\,dx. </md>
+              
+            </p>
+          </statement>
+
+          <solution>
+            <p>
+              <md>
+                \begin{array}{rcl}
+                  \int \sin^{5}(x)\,dx 
+                  &amp; = &amp; -\int \sin^{4}(x)\cdot (-\sin(x))\,dx \\[.5em]
+                  &amp; = &amp; -\int (1-\cos^2(x))^2\cdot (-\sin(x))\,dx \\[.5em]
+                  &amp; = &amp; -\int (1-u^2)^2 \,du \\[.5em]
+                  &amp; = &amp; -\int (1-2u^2+u^4)\,du\\[.5em]
+                  &amp; = &amp; -u + \tfrac23 u^3 - \tfrac1{5}u^{5}+C\\[.5em]
+                  &amp; = &amp; -\cos(x) + \tfrac23\cos^{3}(x) - \tfrac1{5}\cos^{5}(x)+C.
+                \end{array}
+              </md>
+            </p>
+          </solution>
+        </example>
+
+
+      </p>
+  </subsection>
 
 </section>
