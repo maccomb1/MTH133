@@ -5,27 +5,35 @@
 
   <subsection xml:id="ssec-prod-by-sub">
     <title>Products by Substitution</title>
+    <p>
+      In this section, we develop methods to find indefinite integrals (antiderivatives) of products of trig functions, 
+      beyond the direct antiderivatives:
+
+      <md>
+        \begin{array}{ccccc}
+        \int \cos(x)\,dx = \sin(x), &amp; \int \sin(x)\,dx = -\cos(x), &amp; \int \sec^2(x)\,dx = \tan(x), \\
+        \int \tan(x)\sec(x)\,dx = \sec(x), &amp; \int \csc^2(x)\,dx = -\cot(x), &amp; \int \cot(x)\csc(x)\,dx = -\csc(x).
+        \end{array}
+      </md>
+
+      The easiest cases allow a simple trig substitution reducing to a polynomial, often using:
+      <md>\sin^2(x)+\cos^2(x)=1, \qquad \tan^2(x)+1=\sec^2(x).</md>
+
+      Let <m>m,n</m> be integers with <m>n\geq 0</m>. The basic paradigms, with examples, are:
+    </p>
+
+    <subsubsection xml:id="sssec-type-a-trig-int">
+      <title>Type A</title>
       <p>
-        In this section, we develop methods to find indefinite integrals (antiderivatives) of products of trig functions, 
-        beyond the direct antiderivatives:
-
         <md>
-          \begin{array}{ccccc}
-          \int \cos(x)\,dx = \sin(x), &amp; \int \sin(x)\,dx = -\cos(x), &amp; \int \sec^2(x)\,dx = \tan(x), \\
-          \int \tan(x)\sec(x)\,dx = \sec(x), &amp; \int \csc^2(x)\,dx = -\cot(x), &amp; \int \cot(x)\csc(x)\,dx = -\csc(x).
-          \end{array}
+          <mrow> \int  \sin^{m}(x) \cos^{2n+1}(x) \,dx: \text{ take } u=\sin(x),\, du=\cos(x)\,dx. </mrow>
+          <mrow> \int\cos^{m}(x) \sin^{2n+1}(x)\,dx: \text{ take } u=\cos(x),\, du=-\sin(x)\,dx. </mrow>
         </md>
 
-        The easiest cases allow a simple trig substitution reducing to a polynomial, often using:
-        <md>\sin^2(x)+\cos^2(x)=1, \qquad \tan^2(x)+1=\sec^2(x).</md>
+      </p>
+    </subsubsection>
 
-        Let <m>m,n</m> be integers with <m>n\geq 0</m>. The basic paradigms, with examples, are:
-
-        <md>
-          <mrow> (a) \int  \sin^{m}(x) \cos^{2n+1}(x) \,dx: \text{ take } u=\sin(x),\, du=\cos(x)\,dx. </mrow>
-          <mrow> \, \, \, \int\cos^{m}(x) \sin^{2n+1}(x)\,dx: \text{ take } u=\cos(x),\, du=-\sin(x)\,dx. </mrow>
-        </md>
-
+      <p>
         <example xml:id = "ex-odd-cos-power" >
           <statement>
             <p>
@@ -53,7 +61,6 @@
           <statement>
             <p>
               Compute <md> \int \sin^{5}(x)\,dx. </md>
-              
             </p>
           </statement>
 
@@ -74,8 +81,41 @@
           </solution>
         </example>
 
-
       </p>
+
+    <subsubsection xml:id="sssec-type-b-trig-int">
+          <title>Type B</title>
+          <p>
+            <md>
+            \int \tan^{m}(x)\sec^{2n+2}(x)\,dx: \text{ take } u=\tan(x), du=\sec^2(x)\,dx
+            </md>
+          </p>
+    </subsubsection>
+
+    <p>
+      <example xml:id = "ex-even-sec-power">
+        <statement>
+          <p>
+            Compute <md> \int \tan^{-3}(x)\sec^{6}(x)\,dx. </md>
+          </p>
+        </statement>
+
+        <solution>
+          <md>
+          \begin{array}{rcl}
+          \int \tan^{-3}(x)\sec^{6}(x)\,dx &amp; = &amp; \int \tan^{-3}(x)\sec^{4}(x)\cdot \sec^2(x)\,dx \\[.5em]
+          &amp; = &amp; \int \tan^{-3}(x)(\tan^2(x)+1)^2 \cdot \sec^2(x)\,du\\[.5em]
+          &amp; = &amp; \int u^{-3}(u^2+1)^2\,du\\[.5em]
+          &amp; = &amp; \int (u+2u^{-1}+u^{-3})\,du\\[.5em]
+          &amp; = &amp; \tfrac12 u^2 + \ln\!|u| - \tfrac12 u^{-2}+C\\[.5em]
+          &amp; = &amp; \tfrac12 \tan^2(x) +\ln|\!\tan(x)| -\tfrac12 \cot^2(x)+C.
+          \end{array}
+          </md>
+        </solution>
+      </example>
+
+      For brevity, we will henceforth omit the constant of integration <m>+C</m>
+    </p>
   </subsection>
 
 </section>
