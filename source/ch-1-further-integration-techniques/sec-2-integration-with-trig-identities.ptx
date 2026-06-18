@@ -118,7 +118,7 @@
     </p>
   </subsection>
 
-  <subsection xml:id="-ssec-other-trig-sub">
+  <subsection xml:id="ssec-other-trig-sub">
     <title> Remaining cases </title>
 
     <p> 
@@ -184,6 +184,7 @@
           Evaluate <m>\int \tan^4(x) \,dx.</m>
         </p>
       </statement>
+
       <solution>
         <md>
         <mrow>\int \tan^4(x) \,dx = \int \tan^2(x) (\sec^2(x)-1) \,dx = \int \tan^2(x)\sec^2(x)-\tan^2(x) \,dx </mrow>
@@ -194,7 +195,11 @@
 
     <p>
     For even positive powers of <m>\sin</m> and <m>\cos</m>, rewrite using the identities:
-    <md> \sin^2(x)=\tfrac12(1{-}\cos(2x)) \qquad \cos^2(x)=\tfrac12(1{+}\cos(2x)) \qquad \sin(x)\cos(x)=\tfrac12\sin(2x).</md>
+    <md> 
+      <mrow> \sin^2(x)=\tfrac12(1{-}\cos(2x)) </mrow> 
+      <mrow>\cos^2(x)=\tfrac12(1{+}\cos(2x)) </mrow>
+      <mrow>\sin(x)\cos(x)=\tfrac12\sin(2x). </mrow>
+    </md>
     </p>
 
     <example>
@@ -203,6 +208,7 @@
           Evaluate <m>\int \sin^6(x) \,dx.</m>
         </p>
       </statement>
+
       <solution>
         <md>
         % solution goes here
@@ -219,13 +225,13 @@
       match compass directions. An amazing trick allows reduces this integral down to a <m>u</m> substitution:
 
       <md> 
-        <mrow> \\int\! \sec(x)\,dx\ = \\int\! \sec(x)\, \frac{\sec(x)+\tan(x)}{\sec(x)+\tan(x)}\,dx</mrow>
-        <mrow> \ = \\int\! \frac{1}{\sec(x)+\tan(x)}\cdot\left(\sec^2(x)+\sec(x)\tan(x)\right)dx\ =\\int\! \frac{1}{u}\,du</mrow>
+        <mrow> \int\! \sec(x)\,dx\ = \int\! \sec(x)\, \frac{\sec(x)+\tan(x)}{\sec(x)+\tan(x)}\,dx </mrow>
+        <mrow> = \int\! \frac{1}{\sec(x)+\tan(x)}\cdot\left(\sec^2(x)+\sec(x)\tan(x)\right)dx\ = \int\! \frac{1}{u}\,du </mrow>
       </md>
 
       For <m> u = \sec(x) + \tan(x)</m>, <m> \,du = (\sec(x)\tan(x) + \sec^2(x)) \, dx</m>.
 
-      Thus:<md>\int \sec(x)\,dx \  =\ \ln\!|u|\ =\ \ln|\!\sec(x){+}\tan(x)|.</md>
+      Thus:<md> \int \sec(x)\,dx \  =\ \ln\!|u|\ =\ \ln|\!\sec(x){+}\tan(x)|.</md>
 
       Another trick for this is to write <m>\int\! \sec(x)\,dx =\int \frac{1}{\cos^2(x)}\,\cos(x)\,dx</m>, and substitute <m> u=\sin(x)</m> to get 
       <m>\int\!\! \frac{1}{1-u^2}\,du.</m> We will see how to integrate such rational functions in <xref ref="sec-4-partial-fractions"/>.
@@ -235,16 +241,16 @@
       <statement>
         <p>
            Here is a tricky integration by parts, in which we get back to the same integral we started with: Evaluate
-           <md>\int\!\sec^3(x)\,dx.</m>
+           <md>\int\!\sec^3(x)\,dx.</md>
         </p>
       </statement>
       <solution>
         <md> 
-        <mrow>\int\!\sec^3(x)\,dx\=\\int\!\sec(x)(1+\tan^2(x))\,dx\ =\ \int\! \sec(x)\,dx + \int\! \underbrace{\tan(x)}_u\,\underbrace{\sec(x)\tan(x)\,dx}_{dv}</mrow>
-        <mrow> =\ \ln\!|\!\sec(x){+}\tan(x)| + \underbrace{\tan(x)}_u\underbrace{\sec(x)}_v - \int\! \underbrace{\sec(x)}_v\,\underbrace{\sec^2(x)\,dx}_{du}</mrow>
+        <mrow> \int \sec^3(x)\,dx\= \int\!\sec(x)(1+\tan^2(x))\,dx\ = \int\! \sec(x)\,dx + \int\! \underbrace{\tan(x)}_u\,\underbrace{\sec(x)\tan(x)\,dx}_{dv}</mrow>
+        <mrow> = \ln\!|\!\sec(x){+}\tan(x)| + \underbrace{\tan(x)}_u\underbrace{\sec(x)}_v - \int\! \underbrace{\sec(x)}_v\,\underbrace{\sec^2(x)\,dx}_{du}</mrow>
         </md>
 
-        <p> Since we have <m>\int\!\sec^3(x)\,dx</m> on both sides <emph>\it with opposite signs</emph>, we can solve for it to get:
+        <p> Since we have <m>\int\!\sec^3(x)\,dx</m> on both sides <em> with opposite signs</em>, we can solve for it to get:
         </p>
 
         <md>\int\!\sec^3(x)\,dx\ =\ \tfrac12\!\left(\!\vphantom{\sum}\ln\!\left|\vphantom{x^2}\!\sec(x){+}\tan(x)\right| \,+\,\tan(x)\sec(x)\right). </md>
@@ -264,7 +270,7 @@
 
     This allows us to do integrals of the form:
     <md>
-    <mrow>\int \cos(nx)\cos(mx)\,dx\ =\\int \tfrac12\cos(nx{+}mx) + \tfrac12\cos(nx{-}mx)\ dx.</mrow>
+    <mrow>\int \cos(nx)\cos(mx)\,dx\ = \int \tfrac12\cos(nx{+}mx) + \tfrac12\cos(nx{-}mx)\ dx.</mrow>
     <mrow> \ =\ \tfrac{1}{2(n{+}m)}\sin\!\left(\!\vphantom{A^2}(n{+}m)x\right) + \tfrac{1}{2(n{-}m)}\sin\!\left(\!\vphantom{A^2}(n{-}m)x\right)+C\,.</mrow>
     </md>
 
@@ -283,15 +289,15 @@
   For a really messy trigonometric integral like:
   <md>\int \!\!\frac{\cos^2(x)\sin(x)-2\tan(x)+1}{\sec^3(x)+\sin^3(x)+3\cos(x)\sin(x)+5}\ dx,</md> 
 
-  there is a general method in outlined further in <xref ref="ssec-4-w-sub"> called the 
-  <emph> Geometric Trig Substitution </emph>, the <emph>Weierstrass Substitution</emph>, or 
-  just the <emph>Tangent Half-Angle Substitution</emph>. You let <m>t = \tan(\frac{x}{2})</m>, 
-  and from here you can compute that 
+  there is a general method called the 
+  <em> Geometric Trig Substitution </em>, the <em>Weierstrass Substitution</em>, or 
+  just the <em>Tangent Half-Angle Substitution</em>. You let <m>t = \tan(\frac{x}{2})</m>, 
+  and from here you can work out that 
 
   <md> \sin(x) =  \frac{2t}{1+t^2}\,,\quad \ \ \cos(x) = \frac{1-t^2}{1+t^2}\,, \quad \ \ dx = \frac{2}{1+t^2}\,dt\,,\quad \ \ t =\tan(\tfrac12 x) = \frac{\sin(x)}{1+\cos(x)}\,. </md>
   
-  This reduces the trig integral to the integral of a rational function, which can be done by Partial Fractions <xref ref = "sec-4-partial-fractions">. 
-  See <xref ref "ssec-w-sub"> for the geometry of this subsitution, as well as some examples.
+  This reduces the trig integral to the integral of a rational function, which can be done by Partial Fractions <xref ref = "sec-4-partial-fractions"/>. 
+  For the geometry of this substitution, as well as some examples, see <xref ref="ssec-4-w-sub"/>
   </p>
 
   </subsection>

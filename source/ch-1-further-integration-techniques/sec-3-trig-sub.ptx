@@ -3,6 +3,252 @@
 <section xml:id="sec-3-trig-sub" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Trigonometric Substitution</title>
 
-  <p> Text of section. </p>
+  <subsection xml:id="ssec-reduction-to-trig-int">
+    <title>Reducing to standard trig forms</title>
+    
+    <p>
+      To find an indefinite integral <m>\int\! f(x)\,dx</m>, we transform it by methods like Substitution and Integration by Parts until we reduce to an integral we recognize from before, a ``standard form''.
+      In the <xref ref="sec-2-integration-with-trig-identities"> previous section </xref>, we were able to compute most integrals involving products of trig functions,
+      so these are now standard forms to work toward.
+
+      A common type of difficult integral involves forms like <m>\sqrt{\pm x^2\pm1}</m>.
+      We convert such forms into trigonometric integrals, which at first seems to complicate
+      them. However, we take careful advantage of the Pythagorean identities <m>\cos^2(\theta)+\sin^2(\theta)=1</m> 
+      and <m>\tan^2(\theta)+1=\sec^2(\theta)</m>,
+      so that the resulting trig formulas simplify to previously known integrals.
+
+      Our first example is <m> \int\! \sqrt{1-x^2}\,dx </m>, which computes area under a unit semi-circle.
+      This seems simple enough, but no obvious substitution or integration by parts will simplify it.
+      The expression <m>\sqrt{1-x^2}</m> reminds us of the identity <m>\sqrt{1-\sin^2(\theta)}=\cos(\theta)</m>,
+      so imagine our integral was obtained from a more complicated one after a
+      trig substitution <m>x=\sin(\theta)</m>: 
+      the current variable <m>x</m> is actually a function of a previous variable <m>\theta</m>, 
+      and <m>dx=\cos(\theta)\,d\theta</m>. The previous integral would be:
+      <md> \int\!\! \sqrt{1{-}x^2}\,dx \ =\ \int\!\!{\ts\sqrt{1{-}\sin^2(\theta)}}\cdot\cos(\theta)\,d\theta, \quad\text{where } \left\{\!\!\begin{array}{c}x=\sin(\theta)\\[.3em] dx=\cos(\theta)\,d\theta.\end{array}\right. </md>
+
+      Now this simplifies to a standard form from the <xref ref="ssec-other-trig-sub"> previous section </xref>: 
+      <fn> Variable <m>\theta</m> is irrelevant: <m>\int\!\cos^2(\theta)\,d\theta = \tfrac12\theta{+}\tfrac14\sin(2\theta)</m> 
+        means the same as <m>\int\!\cos^2(x)\,dx = \tfrac12x{+}\tfrac14\sin(2x) </m> </fn>
+
+      <md>\int\!{\ts\sqrt{1{-}\sin^2(\theta)}\cdot\cos(\theta)\,d\theta}\ =\ \int\!\cos^2(\theta)\,d\theta\ =\ \tfrac12\theta + \tfrac14\sin(2\theta) \ =\ \tfrac12\theta + \tfrac12\sin(\theta)\cos(\theta)\,.</md>
+
+      Substituting back the original variable: <m>\theta=\arcsin(x)</m>, <m>\sin(\theta)=x</m>, <m>\cos(\theta)=\sqrt{1{-}x^2}</m>:
+
+      <md> \int\!\! \sqrt{1{-}x^2}\,dx \ =\ \tfrac12\arcsin(x) + \tfrac12x\sqrt{1{-}x^2}\,. </md>
+
+      Let's check the area of the unit circle, i.e. twice the total area under <m>y=\sqrt{1{-}x^2}</m>:
+      <md>2\int_{-1}^{1} \!\!\!\! \sqrt{1{-}x^2}\,dx \ =\ \left[\arcsin(x) + x\sqrt{1{-}x^2}\,\right]_{x=-1}^{x=1}\ 
+      =\ \arcsin(1) -\arcsin(-1)\ =\ \pi.</md>
+    </p>
+  </subsection>
+
+  <subsection xml:id="ssec-int-with-sqrt">
+    <title>Integrals with $\sqrt{\vphantom{x^2}\!\! \pm\! x^2{\pm} a^2}</title>
+    
+    <p>
+      We choose a reverse trig substitution depending on the signs in the expression, then use the corresponding Pythagorean identity to obtain a standard trig form. See also the table of integrals further below.
+    </p>
+
+    <table>
+      <title xml:id="table-trig-sub"> Guide for Substitution</title>
+      <tabular>
+        <row>
+          <cell><m>Type</m></cell>
+          <cell><m>Substitution</m></cell>
+          <cell><m>dx</m></cell>
+          <cell><m>Simplification</m></cell>
+        </row>
+
+        <row>
+          <cell><m>\sqrt{a^2-x^2}</m></cell>
+          <cell><m>x=a\sin(\theta)</m></cell>
+          <cell><m>dx=a\cos(\theta)d\theta</m></cell>
+          <cell><m>\sqrt{a^2-a^2\sin^2(\theta)} = a\cos(\theta)</m></cell>
+        </row>
+
+        <row>
+          <cell><m>\sqrt{a^2+x^2}</m></cell>
+          <cell><m>x=a\tan(\theta)</m></cell>
+          <cell><m>dx=a\sec^2(\theta) d\theta</m></cell>
+          <cell><m>\sqrt{a^2+a^2\tan^2(\theta)} = a\sec(\theta)</m></cell>
+        </row>
+
+        <row>
+          <cell><m>\sqrt{x^2-a^2}</m></cell>
+          <cell><m>x=a\sec(\theta)</m></cell>
+          <cell><m>dx=a\sec(\theta)\tan(\theta) d\theta</m></cell>
+          <cell><m>\sqrt{a^2\sec^2(\theta)-a^2} = a\tan(\theta)</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <example xml:id="ex-trig-sub-1" title="Trigonometric Substitution Example 1">
+      <statement>
+        <p>
+          Evaluate <m>\int\!\!\frac{1}{\sqrt{4-x^2}}\,dx</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Let <m> x=2\sin(\theta)</m>, <m>dx = 2\cos(\theta)\,d\theta</m>, 
+          <m>\sqrt{4{-}(2\sin(\theta))^2} = 2\cos(\theta)</m>:
+          <md>
+            \int\!\!\frac{1}{\sqrt{4-x^2}}\,dx
+            \ =\
+            \int\!\!\frac{1}{2\cos(\theta)}\cdot 2\cos(\theta)\,d\theta
+            \ =\
+            \theta
+            \ =\ 
+            \sin^{-1}(\tfrac12x)\,.
+          </md>
+          We could do this more directly by manipulating the integrand to the known derivative of 
+          <m>\arcsin(x) </m> by the substitution <m> u=\frac12x</m>:
+
+        </p>
+      </solution>
+
+      <solution>
+        <p>
+          <md>
+            \int\!\!\frac{1}{\sqrt{4{-}x^2}}\,dx
+            \ =\
+            \int\!\!\frac{1}{\sqrt{1{-}(\frac12 x)^2}}\cdot \tfrac12\,  dx
+            \ =\
+            \int\!\!\frac{1}{\sqrt{1{-}u^2}}\,du
+            \ =\
+            \sin^{-1}(u)
+            \ =\
+            \sin^{-1}(\tfrac12 x).
+          </md>
+        </p>
+      </solution>
+
+    </example>
+
+    <example xml:id="ex-trig-sub-2" title="Trigonometric Substitution Example 2">
+      <statement>
+        <p>
+          Example statement here.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Solution text here.
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex-trig-sub-3" title="Trigonometric Substitution Example 3">
+      <statement>
+        <p>
+          Example statement here.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Solution text here.
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex-trig-sub-4" title="Trigonometric Substitution Example 4">
+      <statement>
+        <p>
+          Example statement here.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Solution text here.
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex-trig-sub-5" title="Trigonometric Substitution Example 5">
+      <statement>
+        <p>
+          Example statement here.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Solution text here.
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex-trig-sub-6" title="Trigonometric Substitution Example 6">
+      <statement>
+        <p>
+          Example statement here.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Solution text here.
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex-trig-sub-7" title="Trigonometric Substitution Example 7">
+      <statement>
+        <p>
+          Example statement here.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Solution text here.
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex-trig-sub-8" title="Trigonometric Substitution Example 8">
+      <statement>
+        <p>
+          Example statement here.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Solution text here.
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex-trig-sub-9" title="Trigonometric Substitution Example 9">
+      <statement>
+        <p>
+          Example statement here.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Solution text here.
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex-trig-sub-10" title="Trigonometric Substitution Example 10">
+      <statement>
+        <p>
+          Example statement here.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Solution text here.
+        </p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection xml:id="ssec-trig-int-table">
+    <title>Table of Integrals</title>
+    
+    <p>
+      Text for conclusion subsection.
+    </p>
+  </subsection>
 
 </section>
