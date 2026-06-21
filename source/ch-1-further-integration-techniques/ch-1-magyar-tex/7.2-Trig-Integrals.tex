@@ -1,0 +1,379 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.3in}
+\addtolength{\oddsidemargin}{-.4in}
+\addtolength{\textwidth}{.8in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Trigonometric Integrals}\hfill Stewart \S7.2}
+\vspace{1em}
+
+\noindent 
+{\bf Products by substitution.} In this section, we develop methods
+to find indefinite integrals (antiderivatives) of products of trig functions, beyond the
+direct antiderivatives:
+$$\ts
+\int \cos(x)\,dx = \sin(x), \ \ 
+\int \sin(x)\,dx = -\cos(x), \ \ 
+\int \sec^2(x)\,dx = \tan(x), 
+$$
+\\[-2.4em]
+$$\ts
+\int \tan(x)\sec(x)\,dx = \sec(x),\ \ 
+\int \csc^2(x)\,dx = -\cot(x), \ \ 
+\int \cot(x)\csc(x)\,dx = -\csc(x).
+$$ 
+The easiest cases allow a simple trig substitution reducing to a polynomial, 
+often using:
+$$\sin^2(x)+\cos^2(x)=1, \qquad \tan^2(x)+1=\sec^2(x).$$
+Let $m,n$ be integers with $n\geq 0$. The basic paradigms, with examples, are:
+
+\begin{itemize}
+\item[(a)] $\int  \sin^{m}(x) \cos^{2n+1}(x) \,dx$:
+take $u=\sin(x)$, $du=\cos(x)\,dx$. \\
+$\int\cos^{m}(x) \sin^{2n+1}(x)\,dx$:
+take $u=\cos(x)$, $du=-\sin(x)\,dx$.  
+$$\begin{array}{rcl}
+\int\sin^{-10}(x) \cos^{3}(x)\,dx 
+&=&
+\int \sin^{-10}(x)\cos^{2}(x)\cdot \cos(x)\,dx
+\\[.5em]&=&
+\int \sin^{-10}(x)(1-\sin^2(x))\cdot \cos(x)\,dx
+\\[.5em]
+&=&
+\int u^{-10}(1-u^2) \,du
+\\[.5em]
+&=&
+\int u^{-10}-u^{-8} \,du
+\\[.5em]
+&=&
+\tfrac{1}{-9}u^{-9} - \tfrac{1}{-7}u^{-7}+C
+\\[.5em]
+&=&
+-\tfrac{1}{9}\sin^{-9}(x) + \tfrac{1}{7}\sin^{-7}(x)+C.
+\end{array}$$
+\\[-.9em]
+$$\begin{array}{rcl}
+\int \sin^{5}(x)\,dx 
+&=&
+-\int \sin^{4}(x)\cdot (-\sin(x))\,dx
+\\[.5em]&=&
+-\int (1-\cos^2(x))^2\cdot (-\sin(x))\,dx
+\\[.5em]
+&=&
+-\int (1-u^2)^2 \,du
+\\[.5em]
+&=&
+-\int (1-2u^2+u^4)\,du
+\\[.5em]
+&=&
+-u + \tfrac23 u^3 - \tfrac1{5}u^{5}+C
+\\[.5em]
+&=&
+-\cos(x) + \tfrac23\cos^{3}(x) - \tfrac1{5}\cos^{5}(x)+C.
+\end{array}$$
+
+\item[(b)] $\int \tan^{m}(x)\sec^{2n+2}(x)\,dx$: 
+take $u=\tan(x)$, $du=\sec^2(x)\,dx$. 
+$$\begin{array}{rcl}
+\int \tan^{-3}(x)\sec^{6}(x)\,dx 
+&=&
+\int \tan^{-3}(x)\sec^{4}(x)\cdot \sec^2(x)\,dx 
+\\[.5em]
+&=&
+\int \tan^{-3}(x)(\tan^2(x)+1)^2 \cdot \sec^2(x)\,du
+\\[.5em]
+&=&
+\int u^{-3}(u^2+1)^2\,du
+\\[.5em]
+&=&
+\int (u+2u^{-1}+u^{-3})\,du
+\\[.5em]
+&=&
+\tfrac12 u^2 + \ln\!|u| - \tfrac12 u^{-2}+C
+\\[.5em]
+&=&
+\tfrac12 \tan^2(x) +\ln|\!\tan(x)| -\tfrac12 \cot^2(x)+C.
+\end{array}$$
+ 
+\end{itemize}
+
+\noindent
+For brevity, we will henceforth omit the constant of integration $+C$.
+
+
+\pagebreak
+
+\noindent
+{\bf Remaining cases.} What if a product of trig functions does not fit 
+types (a) or (b)?
+
+\begin{itemize}
+
+\item  Rewrite in terms of $\sin$ and $\cos$, obtaining  
+$\sin^{p}(x)\cos^q(x)$ for integers $p,q$.
+Use type (a) if $p$ is odd and positive, or if $q$ is odd and positive.
+Reduce to type (b) if $p$ and $q$ are both even with $p+q$ negative;
+or if $p$ and $q$ are both odd and negative.\\
+$$\hspace{-4.0em}
+\int \sin^2(x)\cos(x)\tan^2(x)\csc(x)\,dx 
+\ =\ \int \sin^2(x)\cos(x)\,\frac{\sin^2(x)}{\cos^2(x)}\,\frac{1}{\sin(x)}\,dx
+$$
+$$\hspace{3.0em}
+\ =\ \int (\cos(x))^{-1}\sin^{3}(x)\,dx
+\ =\  -\ln|\cos(x)|+\tfrac12\cos^2(x), \ \ 
+\text{type (a)}.
+$$
+$$
+\int \csc^2(x)\,dx 
+\ =\ \int \frac{1}{\sin^2(x)}\,dx
+\ =\ \int \frac{\cos^2(x)}{\sin^2(x)}\frac{1}{\cos^2(x)}\,dx
+\ =\ \int \tan^{-2}(x)\sec^2(x)\,dx
+$$
+$$\hspace{3.0em}
+\ =\ \int u^{-2}\,du
+\ =\  -u^{-1} \ = \
+\ = \ -(\tan(x))^{-1} \ = \ -\cot(x), \ \ 
+\text{type (b)}.
+$$
+$$\hspace{-6.0em}
+\int \frac{1}{\sin^3(x)\cos(x)}\,dx
+\ =\ \int \frac{\cos^3(x)}{\sin^3(x)}\frac{1}{\cos^4(x)}\,dx
+\ =\ \int \tan^{-3}(x)\sec^4(x)\,dx
+$$
+$$\hspace{3.0em}
+\ =\ \int (u^2+1)u^{-3}\,du
+\ =\  \ln|\!\tan(x)| -\tfrac12\cot^2(x), \ \ 
+\text{type (b)}.
+$$
+
+
+
+\item Pythagorean identities: \quad
+$\int \tan^4(x)\,dx\ =\ \int (\sec^2(x)-1)\tan^2(x)\,dx $\\
+$\ =\ \int \sec^2(x)\tan^2(x)\,dx - \int (\sec^2(x)-1)\,dx \ =\ \frac13\tan^3(x)-\tan(x) + x$,
+type (b).
+
+\item For even positive powers of $\sin$ and $\cos$,
+rewrite using the identities:\footnote{
+Or: $\int\sin(x)\sin(x)\,dx 
+\stackrel{\text{IBP}}= -\cos(x)\sin(x)-\int (-\cos(x))\cos(x)\,dx 
+\stackrel{\text{Pyth}}= -\cos(x)\sin(x)+\int 1-\sin^2(x)\,dx$\\
+$=-\cos(x)\sin(x)+x-\int\sin^2(x)\,dx$. Solve for $\int\sin^2(x)\,dx=\frac12(x-\cos(x)\sin(x))
+=\frac12 x-\frac14\sin(2x)$.
+}
+\\[-.6em]
+$$\sin^2(x)=\tfrac12(1{-}\cos(2x)), 
+\quad
+\cos^2(x)=\tfrac12(1{+}\cos(2x)),\quad
+\sin(x)\cos(x)=\tfrac12\sin(2x).
+$$
+\\[-1.7em]
+$$
+\int \sin^6(x)\,dx 
+\ =\ 
+\int (\tfrac12(1{-}\cos(2x))^3\,dx
+$$
+$$
+\ =\ 
+\tfrac18\int 1- 3\cos(2x)+3\cos^2(2x)-\cos^3(2x)\ dx
+$$
+$$
+\ =\ 
+\tfrac18\int 1-3\cos(2x)+\tfrac32(1{+}\cos(4x))-\cos^3(2x)\ dx\,,
+$$
+where we used the binomial formula $(a{+}b)^3=a^3+3a^2b + 3ab^2+b^3$.
+Now each term can be done directly or by type (a)
+with the substitution $u=\sin(2x)$.
+
+\end{itemize}
+%\medskip
+
+\noindent
+{\bf Recalcitrant cases.} In case of odd negative powers of $\sin$ or $\cos$, 
+we need special tricks.
+\\[.5em]
+{\sc example:} 
+The integral of secant $\int \sec(x)\,dx$ was needed by map-makers in the 1600's, 
+when Calculus was first developed. It calibrates stretching in the Mercator projection, 
+which makes map directions match compass directions.
+An amazing trick from \S6.2:
+$$
+\int\! \sec(x)\,dx
+\ = \
+\int\! \sec(x)\,
+\frac{\sec(x)+\tan(x)}{\sec(x)+\tan(x)}
+\,dx
+$$
+\\[-2em]
+$$
+\ = \
+\int\! 
+\frac{1}{\sec(x)+\tan(x)}\cdot\left(\sec^2(x)+\sec(x)\tan(x)\right)dx
+\ =\
+\int\! \frac{1}{u}\,du
+$$
+for $u=\sec(x)+\tan(x)$, 
+$du=(\sec(x)\tan(x)+\sec^2(x))\,dx$.
+
+\pagebreak
+
+\noindent
+Thus:
+$$
+\int \sec(x)\,dx \  =\ \ln\!|u|
+\ =\ 
+\ln|\!\sec(x){+}\tan(x)|.
+$$
+Another trick for this is to write $\int\! \sec(x)\,dx =\int \frac{1}{\cos^2(x)}\,\cos(x)\,dx$, and substitute $u=\sin(x)$ to get $\int\!\! \frac{1}{1-u^2}\,du$.
+We will see how to integrate such rational functions in \S7.4.
+\\[.5em]
+{\sc example:} Here is a tricky integration by parts, in which we get back to the same integral we started with:
+$$
+\int\!\sec^3(x)\,dx
+\ =\ 
+\int\!\sec(x)(1+\tan^2(x))\,dx
+\ =\ 
+\int\! \sec(x)\,dx 
++ \int\! \underbrace{\tan(x)}_u\,\underbrace{\sec(x)\tan(x)\,dx}_{dv}
+$$
+$$
+\ =\ \ln\!|\!\sec(x){+}\tan(x)| 
++ \underbrace{\tan(x)}_u\underbrace{\sec(x)}_v
+- \int\! \underbrace{\sec(x)}_v\,\underbrace{\sec^2(x)\,dx}_{du}
+$$
+Since we have $\int\!\sec^3(x)\,dx$ on both sides
+{\it with opposite signs}, we can solve for it to get:
+$$
+\int\!\sec^3(x)\,dx
+\ =\ 
+\tfrac12\!\left(\!\vphantom{\sum}
+\ln\!\left|\vphantom{x^2}\!\sec(x){+}\tan(x)\right| 
+\,+\,\tan(x)\sec(x)
+\right).
+$$
+{\bf Trig integrals with inside coefficients.} Add together the angle addition identities:
+$$
+\cos(a{+}b)  \ = \ \cos(a)\cos(b) - \sin(a)\sin(b)
+$$
+$$
+\cos(a{-}b) \ = \  \cos(a)\cos(b) + \sin(a)\sin(b)
+$$
+\\[-2em]
+$$
+\tfrac12(\cos(a{+}b) + \cos(a{-}b)) \ = \  \cos(a)\cos(b).
+$$
+This allows us to do integrals of the form:
+$$
+\int \cos(nx)\cos(mx)\,dx
+\ =\
+\int \tfrac12\cos(nx{+}mx) + \tfrac12\cos(nx{-}mx)\ dx
+$$
+$$
+\ =\ \tfrac{1}{2(n{+}m)}\sin\!\left(\!\vphantom{A^2}(n{+}m)x\right)
++ \tfrac{1}{2(n{-}m)}\sin\!\left(\!\vphantom{A^2}(n{-}m)x\right)+C\,.
+$$
+\\[-.7em]
+Similarly:
+$$
+\tfrac12(\cos(a{-}b) - \cos(a{+}b)) \ = \  \sin(a)\sin(b)
+$$
+$$
+\tfrac12(\sin(a{+}b) + \sin(a{-}b)) \ = \  \sin(a)\cos(b).
+$$
+\\[0em]
+{\bf Tangent half-angle substitution.} For a really messy trigonometric integral
+like:
+$$
+\int \!\!\frac{\cos^2(x)\sin(x)-2\tan(x)+1}{\sec^3(x)+\sin^3(x)+3\cos(x)\sin(x)+5}\ dx,
+$$
+there is a general method in the extra notes,
+the Geometric Trig Substitution:
+$$
+\sin(x) =  \frac{2t}{1+t^2}\,,
+\quad \ \ 
+\cos(x) = \frac{1-t^2}{1+t^2}\,, 
+\quad \ \ 
+%x = \arcsin\!\left(\!\tfrac{2t}{1+t^2}\!\right), 
+%\quad
+dx = \frac{2}{1+t^2}\,dt\,,
+\quad \ \ 
+t =\tan(\tfrac12 x) = \frac{\sin(x)}{1+\cos(x)}\,.
+$$ 
+This reduces the trig integral to the integral of a rational function, 
+which can be done by Partial Fractions (\S7.4).
+
+
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

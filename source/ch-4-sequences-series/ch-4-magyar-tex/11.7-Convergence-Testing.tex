@@ -1,0 +1,182 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.8in}
+\addtolength{\textheight}{1.5in}
+\addtolength{\oddsidemargin}{-.4in}
+\addtolength{\textwidth}{.8in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Method for Convergence Testing}\hfill Stewart \S11.7}
+\vspace{1em}
+
+\noindent 
+For a series $\sum_{n=1}^\infty a_n=a_1+a_2+a_3+\cdots$, 
+determine if it converges toward a limit 
+as we add more terms, or diverges (either to $\pm\infty$ or oscillating).
+%A key fact is that the first few terms $a_1, a_2,\ldots$
+%have no effect on the convergence or divergence, 
+%which depends only on the infinite tail of the sum,
+%$\sum_{n=N}^\infty a_n$ for any starting point $N$. 
+
+\begin{enumerate}
+
+\item[0.] If $\lim\limits_{n\to\infty} a_n\neq 0$, then the series diverges
+by the $n$-th Term Test (Vanishing Test).
+
+\item Try to manipulate the series into a Standard Series:
+\begin{itemize}
+
+\item Geometric series: \ $\sum\limits_{n=1}^\infty cr^{n-1} = c+cr+cr^{2} +c r^3+\cdots
+=\left\{\!\!\begin{array}{cl}
+\frac{c}{1-r} &\text{ for $|r|<1$}\\
+\text{diverges} &\text{ for $|r|\geq 1$.}
+\end{array}\right.
+$
+\item Standard $p$-series: \ 
+$\sum\limits_{n=1}^\infty \frac{1}{n^p}
+= 1 + \frac{1}{2^p} + \frac{1}{3^p}+\cdots
+=\left\{\!\!\begin{array}{cl}
+\text{converges}  &\text{ for $p>1$}\\
+\text{diverges} &\text{ for $p\leq 1$.}
+\end{array}\right.
+$
+
+\end{itemize}
+
+\item If $a_n$ is a fraction, estimate with a simpler fraction $b_n$, 
+often a standard series, by taking only the {\it largest} term from the numerator
+and denominator of $a_n$.
+\\
+Convergence of $\sum a_n$ is usually same as convergence of $\sum b_n$.  
+Justify with a Test:
+\\[-1.5em]
+\begin{itemize}
+\item Direct Comparison Test (positive $a_n$)
+\begin{itemize}
+\item[$\circ$]  Ceiling $0\leq a_n\leq c_n$ where $\sum c_n$ converges \ $\Longrightarrow$ \ $\sum a_n$ also converges.
+\item[$\circ$]   Floor $0\leq d_n\leq a_n$ where $\sum d_n$ diverges \ $\Longrightarrow$ \ $\sum a_n$ also diverges.
+\end{itemize}
+The ceiling $c_n$ or floor $d_n$ will usually be closely related to the estimate $b_n$.
+\smallskip
+\item Limit Comparison Test: 
+Determine $L=\smash{\lim\limits_{n\to\infty}}a_n/\,b_n$. 
+\begin{itemize}
+\item[$\circ$] $|L|<\infty$ and $\sum b_n$ converges  \ $\Longrightarrow$ \ $\sum a_n$ also converges.
+
+\item[$\circ$]  $|L|>0$ and $\sum b_n$ diverges \ $\Longrightarrow$ \ $\sum a_n$ also diverges. \smallskip
+
+\noindent  [Compare with $(L{-}\epsilon) b_n < a_n< (L{+}\epsilon) b_n$ for $n>N$].\footnote{
+Most later tests are proved by reducing to a Direct Comparison, specified in [brackets]}
+\end{itemize}
+\end{itemize}
+
+\item 
+Try the Integral Test if $a_n$ is positive and fairly simple, but not comparable to a standard series: e.g.~$\frac{1}{n\ln(n)}$.
+For a positive decreasing function $f(x)$ with $a_n=f(n)$, 
+compute  improper integral \smash{$\int_{1}^\infty\!\! f(x)\,dx =\lim\limits_{N\to\infty}\!\!\int_1^N\!\! f(x)\,dx=\lim\limits_{N\to\infty}\!\! F(N){-}F(1)$.}
+\begin{itemize}
+\item[$\circ$] $\int_1^\infty\!f(x)\,dx$\, converges  \ $\Longrightarrow$ \ $\sum a_n$ also converges \  
+[$\sum_{n=1}^\infty a_n\leq a_1+\int_1^\infty\! f(x)\,dx$].
+\item[$\circ$] $\int_1^\infty\! f(x)\,dx$\, diverges  \ $\Longrightarrow$ \ $\sum a_n$ also diverges 
+[$\sum_{n=1}^\infty a_n\geq \int_1^\infty\! f(x)\,dx$].
+\end{itemize}
+
+
+\item Try the Ratio Test if $a_n$ has a growing number of factors, for example
+if it contains $r^n$ or $n!$.
+Determine $\smash{\lim\limits_{n\to\infty}} |a_{n+1}/a_n|=L$.
+\begin{itemize}
+\item[$\circ$] $L<1$  \ $\Longrightarrow$ \ $\sum a_n$ converges \, 
+[\,$|a_n|\leq c(L{+}\epsilon)^n$ for $n>N$].
+\item[$\circ$] $L>1$  \ $\Longrightarrow$ \  $\sum a_n$ diverges \, 
+ [\,$|a_n|\geq c(L{-}\epsilon)^n$ for $n>N$].
+\item[$\circ$] $L=1$  \ $\Longrightarrow$ \   no conclusion. [e.g. any standard $p$-series]
+\end{itemize}
+
+\item If $\sum a_n$ has positive and negative terms, try:
+\begin{itemize}
+\item  Absolute Convergence: $\sum |a_n|$ converges \ $\Longrightarrow$ \   $\sum a_n$ also converges. 
+\item Alternating Series: $a_n=(-1)^{n-1} b_n$ with $b_n\geq 0$:
+\\[.3em]
+$\lim\limits_{n\to\infty} b_n=0,\ \text{$b_n$ decreasing} \ \Longrightarrow \  \sum a_n
+\text{ converges. }$
+\\[.3em]
+Error estimate: \ 
+$\sum_{n=1}^{2N} a_n\leq \sum_{n=1}^\infty a_n \leq \sum_{n=1}^{2N} a_n + b_{2N+1}$.
+\end{itemize}
+\end{enumerate}
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

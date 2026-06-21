@@ -1,0 +1,265 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{1.2in}
+\addtolength{\oddsidemargin}{-.2in}
+\addtolength{\textwidth}{.4in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Integral Test}\hfill Stewart \S11.3}
+\vspace{1em}
+
+\noindent 
+{\bf Series and integrals.} 
+Our goal for infinite series is to express a complicated quantity
+as an infinite sum of simple terms, so that finite partial sums 
+approximate the quantity as accurately as we like.
+We will not have significant tools to achieve this until \S11.9.
+
+For now (\S11.3-11.7), we concentrate on a less specific question: 
+when does a given series converge to {\it some} finite value, 
+rather than diverge to infinity or an oscillating value?
+For example, we have seen the $n$th Term Vanishing Test: 
+the series must diverge if the the terms do not approach zero, $\lim_{n\to\infty}a_n\neq 0$.
+A more subtle and powerful convergence test comes
+from comparing the sum of a series to the area under a curve
+$y=f(x)$ passing through each point $(n,a_n)$.
+
+\begin{quote}
+{\it Integral Test:} Suppose the function $f(x)$ is continuous,
+positive, and decreasing on the interval $x\in[1,\infty)$,
+and that $a_n=f(n)$. We compare the improper integral  $\int_1^\infty f(x)\,dx$
+with the infinite series $\sum_{n=1}^\infty a_n$.
+
+\begin{itemize}
+\item If $\int_1^\infty f(x)\,dx$ diverges, 
+then $\sum_{n=1}^\infty a_n$ also diverges.
+\item If $\int_1^\infty f(x)\,dx$ converges, 
+then $\sum_{n=1}^\infty a_n$ also converges.
+\end{itemize}
+\end{quote}
+\medskip
+
+\noindent
+{\bf Divergent case.} 
+Consider $\sum_{n=1}^\infty a_n=\sum_{n=1}^\infty \frac1n$.
+Then the function $f(x)=\frac1x$ has $a_n=f(n)$,
+and for $x\in[1,\infty)$, this function is: 
+\begin{itemize}
+\item continuous, since its only vertical asymptote is $x=0$, outside $x\in[1,\infty)$\,;
+\item positive, since $x\geq 1$ implies $\frac1x>0$\,;
+\item decreasing, since its derivative is negative,\footnote{
+See \S3.3 Derivatives and Graphs, in the Math 132 Lecture Notes} $f'(x)=-\frac1{x^2}<0$.
+\end{itemize}
+Thus, we can apply the Integral Test to compare the infinite series with the improper integral  $\int_1^x f(x)\,dx$. We compute:
+$$\textstyle
+\int_1^\infty \frac1x \,dx 
+\ =\ \lim\limits_{n\to\infty} \int_1^n \frac1x \,dx 
+\ =\ 
+ \left.\lim\limits_{n\to\infty}\ln(x)\right|_{x=1}^{x=n}
+\ =\ 
+\lim\limits_{n\to\infty} \ln(n)-\ln(1) \ =\ \infty.
+$$
+Since the integral diverges, the series $\sum_{n=1}^\infty a_n$ must also diverge.\footnote{
+Elementary proof of divergence: $\textstyle \sum_{n=1}^\infty \frac1n = 1 +\underbrace{ \tfrac12}_{\geq1/2}
++\underbrace{\tfrac13+\tfrac14}_{\geq1/2}
++\underbrace{\tfrac15+\tfrac16+\tfrac17+\tfrac18}_{\geq 1/2}+\cdots = \infty$.
+}
+
+The Integral Test is best understood geometrically.
+The value of the series is the total area under the bar-graph 
+of $\{a_n\}$, where we draw the bar at height $a_n$ 
+above the interval $x\in[n,n{+}1]$.
+\\[1em]
+\centerline{
+\includegraphics[width=3.5in]
+{11-3-Integral-Divergence.png} 
+}
+\vspace{-1em}
+
+\noindent
+The integral is the area of the region under
+$y=f(x)$ and above $x\in[1,\infty)$.
+But the bar graph completely contains the integral region, so:
+$$
+\sum_{n=1}^\infty a_n \ \geq \ \int_1^\infty f(x)\,dx\,.
+$$ 
+Since the integral diverges to infinity,
+getting larger and larger with no bound as we add area on the right,
+the series must also diverge as we add more terms.
+\\[1em]
+\noindent
+{\bf Convergent case.} Now consider 
+$\sum_{n=1}^\infty a_n=\sum_{n=1}^\infty \frac1{n^2}$
+which has  $a_n=f(n)$ for $f(x)=\frac1{x^2}$, which is again
+a continuous, positive, decreasing function for $x\in[1,\infty)$.
+Thus we can apply the Integral Test to compare the infinte series 
+with the improper integral $\int_1^x f(x)\,dx$:
+$$\textstyle
+\int_1^\infty \frac1{x^2} \,dx 
+\ =\ \lim\limits_{n\to\infty} \int_1^n \frac1{x^2} \,dx 
+\ =\ 
+ \left.\lim\limits_{n\to\infty}-\frac1x\right|_{x=1}^{x=n}
+\ =\ 
+\lim\limits_{n\to\infty} -\frac1n-(-\frac11) \ =\ 1.
+$$
+Since the integral converges, the series $\sum_{n=1}^\infty a_n$ must also converge.
+
+Again, we can understand this geometrically. 
+The value of the series is the total area under the bar-graph 
+of $\{a_n\}$, but this time we draw the bar at height $a_n$ 
+above the interval $x\in[n{-}1,n]$, shifted left from our previous picture, 
+so the bar graph lies under $y=f(x)$.
+For this series, the heights are $a_n=\frac1{n^2}$, much lower than
+the previous $a_n=\frac1n$, so it has a better
+chance of converging to a finite area.
+\\[1em]
+\centerline{
+\includegraphics[width=3.5in]
+{11-3-Integral-Convergence.png} 
+}
+\vspace{-1em}
+
+\noindent
+Clearly, the part of the bar-graph after $a_2$ is contained in the integral region
+under $y=f(x)$ and above $x\in[1,\infty)$. Thus:
+$$
+\sum_{n=2}^\infty a_n \ \leq \ \int_1^\infty\!\! f(x)\,dx\,, 
+$$ 
+$$
+\sum_{n=1}^\infty a_n \ =\ a_1+\sum_{n=2}^\infty a_n  \ \leq \ a_1 + \int_1^\infty\!\! f(x)\,dx \ =\ 2\,.
+$$ 
+So $\sum_{n=1}^\infty \frac1{n^2}$ is not only finite, it is less than 2.\footnote{
+In fact, Euler computed this limit as $\frac{\ \pi^2}{6}\approx 1.64$.
+Look up the Basel Problem.}
+\\[1em]
+{\bf Examples.} \begin{itemize}
+
+\item {\it Standard p-series.} 
+The above reasoning is easily generalized to show:
+
+$$\boxed{
+\ \sum_{n=1}^\infty \frac1{n^p}
+\ \ \text{converges if $p>1$, diverges if $p\leq1$.}\ 
+}$$
+\\[-1.5em]
+
+\item  Determine the convergence of:
+$$
+\sum\limits_{n=1}^\infty a_n \ =\ \sum\limits_{n=1}^\infty \frac1{(2n-5)(2n-7)}\,. 
+$$
+In this case, the function $f(x)=\frac1{(2x-5)(2x-7)}$
+has vertical asymptotes at $x=\frac52,\frac72$:
+it is not continuous, or positive, or decreasing on $x\in[1,\infty)$,
+so the Integral Test does not immediately apply.
+
+However, to the right of the asympotes, for $x\in[4,\infty)$,
+the function is continuous; it is positive, 
+since $2x-5>0$ and $2x-7>0$ for $x\geq 4$;
+and it is decreasing, since the derivative
+$f'(x) =  -\frac{8 (x-3)}{(5-2 x)^2 (7-2 x)^2} < 0$
+for $x\geq 4$. Further, we have:
+$$\begin{array}{rcl}
+\int_4^\infty \frac1{(2x-5)(2x-7)}\, dx
+&=&
+\int_4^\infty\!\! -\frac{\frac12}{2 x-5} +  \frac{\frac12}{2 x-7}\  dx
+\\[1em]
+&=& 
+\lim_{n\to\infty}
+\left.
+\tfrac14 \ln\!\left(\frac{2x{-}7}{2x{-}5}\right)
+\right|_{x=4}^n
+\ =\
+0 - \ln(\frac13) \ < \ \infty.
+\end{array}$$
+since $\lim_{n\to\infty} \ln\!\left(\frac{2n{-}7}{2n{-}5}\right)
+=\ln(1)=0$.
+
+Slightly generalizing the reasoning of the convergent case of the Integral Test above,
+we find that $\sum\limits_{n=5}^\infty a_n \leq \int_4^\infty f(x)\,dx$.
+Thus, we have:
+$$\begin{array}{rcl}
+\sum\limits_{n=1}^\infty a_n
+&=&
+a_1+a_2+a_3+a_4+ \sum\limits_{n=5}^\infty a_n
+\\[1.5em]
+&<& a_1+a_2+a_3+a_4+ \int_4^\infty f(x)\,dx \ <\ \infty.
+\end{array}$$
+
+\end{itemize}
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[1em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

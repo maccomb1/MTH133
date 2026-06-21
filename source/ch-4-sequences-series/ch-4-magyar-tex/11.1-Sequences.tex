@@ -1,0 +1,388 @@
+ \documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{1.0in}
+\addtolength{\oddsidemargin}{-.35in}
+\addtolength{\textwidth}{.7in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Sequences}\hfill 
+Stewart \S11.1}
+\vspace{1em}
+
+\noindent 
+{\bf Real functions and sequences.} So far, our main objects of study have been functions $f:\R\to\R$, where
+the inputs and outputs are in the set of real numbers
+$\R=(-\infty,\infty)$. In this chapter, we introduce a 
+new type of function called a {\it sequence}:
+$$
+a: \{1,2,3,\ldots\}\rightarrow\R\,,
+$$
+in which the inputs are whole numbers $n = 1,2,3,\ldots$, and the outputs are again real numbers, usually  written as $a_n$ instead of $a(n)$. 
+The index $n$ can be replaced arbitrarily: $a_i$ for $i=1,2,3,\ldots$ is the same sequence
+as $a_n$. Some sequences may begin with $a_0$.
+
+We can write a sequence either as a formula or as a list of outputs; for example:
+$$
+a_n = \tfrac 1n \qquad\Longleftrightarrow\qquad
+\{a_n\}_{n=1}^\infty = 1, \tfrac12, \tfrac 13, \tfrac 14,\ldots
+$$
+Here $\{a_n\}_{n=1}^\infty$ denotes the entire sequence, thought of as an infinite list, and we write the first few values $a_1 = 1$, $a_2=\frac12$, $a_3=\frac13$, 
+with dot-dot-dot ($\ldots$) meaning ``continue this pattern''.
+We can picture this by plotting the points $(n,a_n)$ in the plane,
+sometimes with a bar-graph as at left;
+or by marking only the output values $a_1,a_2,a_3,\ldots$ on a number line
+as at right:
+\\[1em]
+\centerline{
+\includegraphics[width=2.5in]
+{11-1-SeqGraph.png}
+\qquad 
+\includegraphics[width=2.2in]
+{11-1-SeqCluster.png} 
+}
+\vspace{-.5em}
+
+\noindent
+{\sc examples:}
+\begin{itemize}
+\item $\{a_n\}= 1, -1, 1, -1,\ldots
+\ \ \Longleftrightarrow\ \ 
+a_n = \left\{\!\!\begin{array}{rl}
+1 & \text{for $n$ odd}\\
+-1 & \text{for $n$ even}
+\end{array}
+\right.
+\ \ \Longleftrightarrow\ \ 
+a_n = (-1)^{n-1}
+$
+
+\item 
+$a_n=\sin\!\left(\frac{n\pi}{2} \right)
+\quad\Longleftrightarrow\quad
+a_n = \left\{
+\!\!\begin{array}{rl}
+0 & \text{for $n$ even}\\
+1 & \text{for $n=4k+1$ with integer $k$}\\
+-1 & \text{for $n=4k+3$ with integer $k$}
+\end{array}
+\right.
+$
+$$\hspace{-.3in}
+\quad\Longleftrightarrow\quad
+\begin{array}{|c||c|c|c|c|c|c|c|c|c|} 
+\hline  &&&&&&&& \\[-1.1em] 
+n & \,1\, & 2 & 3 & 4 & 5 & 6 & 7 & 8 &\cdots\\
+\hline&&&&&&&&&\\[-1.1em] \hline  &&&&&&&& \\[-1.1em] 
+a_n & 1 & 0 & \!\!-1 & 0 & 1 & 0 & \!\!-1 & 0 & \cdots\\
+\hline
+\end{array}$$
+
+\item $a_n = 2^n 
+\quad\Longleftrightarrow\quad
+\{a_n\} = 2, 4, 8, 16, \ldots
+\quad\Longleftrightarrow\quad
+a_1 = 2,\ a_n=2a_{n-1} \text{ for $n\geq 2$}
+$
+\\[.5em]
+The last definition is {\it recursive}, meaning that each value $a_n$ is defined in terms of the previous value $a_{n-1}$, starting with an initial value $a_1=2$,  
+
+\newpage
+
+\item The {\it Fibonacci sequence} is the most famous recursive sequence:
+each entry is the sum of the previous two.
+$$
+F_1 = F_2 = 1,\quad F_n=F_{n-1}+ F_{n-2} \ \text{ for $n\geq 3$}.
+$$
+$$
+\begin{array}{|c||c|c|c|c|c|c|c|c|c|} 
+\hline  &&&&&&&& \\[-1.1em] 
+n & \,1\, & 2 & 3 & 4 & 5 & 6 & 7 & 8 &\cdots\\
+\hline&&&&&&&&&\\[-1.1em] \hline  &&&&&&&& \\[-1.1em] 
+F_n & 1 & 1 & 2 & 3 & 5 & 8 & \!13\! & \!21\! & \cdots\\
+\hline
+\end{array}
+$$
+\\[.3em]
+There is no obvious formula for $F_n$ in terms of $n$, but look up {\it Binet's formula}. 
+
+\end{itemize} 
+
+\noindent
+{\bf Convergence.}  It would be meaningless to take the limit of a sequence $a_n$ as $n\to c$, since a whole number $n$ cannot gradually approach a finite value $c$. However, we can take the limit as $n\to\infty$.
+\begin{quote}
+{\it Definition:} We say the sequence $\{a_n\}_{n=1}^\infty$ {\it converges} to the number $L$, 
+denoted $\lim_{n\to\infty} a_n = L$,
+whenever $a_n$ gets as close as desired to $L$,
+provided $n$ is large enough. 
+Specifically, for any error tolerance $\epsilon>0$,
+there is some lower bound $N$ such that
+$n>N$ forces $L-\epsilon < a_n < L+\epsilon$;
+or equivalently:
+$$
+n>N \quad\Longrightarrow\quad |a_n-L|<\epsilon\,.
+$$
+If the limit does not exist, we say the sequence {\it diverges}.
+\end{quote}
+This just repeats the error-control definition for $\lim_{x\to\infty} f(x)=L$
+from \S1.7, and we have a similar definition for divergence to infinity, $\lim_{n\to\infty} a_n=\infty$ or $-\infty$.
+In the pictures above, we can see the convergence of $a_n=\frac1n$ to $L=0$: in the graph, we see the 
+points $(n,a_n)$ approach the horizontal asymptote $y=L$;
+on the number line, we see the $a_n$ points march right up to the limit value $L$.
+\\[.5em]
+{\sc example:} Prove that:
+$\lim_{n\to\infty} 2+\frac{(-1)^n}{2n} = 2$.
+Given the acceptable error tolerance $\epsilon>0$, 
+we work backward from the desired inequality:
+$$
+2-\epsilon < 2+\frac{(-1)^n}{2n} < 2 + \epsilon
+ \ \ \Longleftrightarrow \ \ 
+-\epsilon < \frac{(-1)^n}{2n} < \epsilon 
+\ \ \Longleftrightarrow \ \ 
+\left|\frac{(-1)^n}{2n}\right| < \epsilon
+\ \ \Longleftrightarrow \ \ 
+n> \frac{1}{2\epsilon}
+$$
+For example, if we want $|a_n-2|<\epsilon=\frac1{100}$, we take $n>\frac{1}{2\epsilon}=\frac{1}{2/100} = 50$.
+\\[1em]
+{\bf Limit Laws.} We do not usually perform error-control analysis to work
+with limits of sequences $a_n$, but rather rely on our previous knowledge of limits
+of functions $f(x)$: 
+\begin{quote}
+{\it Sequence Comparison Theorem:} If $f(x)$ is a function with $a_n=f(n)$ for all $n$, then $\lim\limits_{n\to\infty} a_n=\lim\limits_{x\to\infty} f(x)$, when the right-hand limit exists or is $\pm\infty$.
+\end{quote}
+%
+{\sc example:} Compute $\lim_{n\to\infty} \frac{n^2+n}{2n^2-3}$. Here $a_n=\frac{n^2+n}{2n^2-3}$
+for $n=1,2,3,\ldots$ is the sequence version of $f(x)=\frac{x^2+x}{2x^2-3}$ for
+real numbers $x$, and we have techniques to deal with limits of $f(x)$.
+Here, we can use L'H\^opital's Rule:
+$$
+\lim_{n\to\infty} \frac{n^2+n}{2n^2-3}
+\ =\
+\lim_{x\to\infty}\frac{x^2+x}{2x^2-3}
+\ \stackrel{\mathrm{Hop}}{=}\ 
+\lim_{x\to\infty}\frac{2x+1}{4x}
+\ \stackrel{\mathrm{Hop}}{=}\ 
+\lim_{x\to\infty}\frac{2}{4}
+\ =\ \frac12\,.
+$$
+We cannot use L'H\^opital's Rule directly on $a_n$ because we cannot take the derivative of a sequence: it is not a curve with a slope at each point.
+\\[-.5em]
+
+An alternative way of handling limits of sequences is to repeat the kind of analysis we did with functions: combine Basic Limits using Limit Laws (\S1.6).
+We have:
+
+\begin{itemize}
+
+\item {\it Basic Limits:} $\lim\limits_{n\to\infty} c = c$ \ and \ $\lim\limits_{n\to\infty} n = \infty$.
+
+%\item {\it Infinity Law:} If $\lim\limits_{n\to\infty}a_n=\lim\limits_{n\to\infty}b_n=\infty$, then 
+%$\lim\limits_{n\to\infty}a_n+b_n=\lim\limits_{n\to\infty}a_nb_n=\infty$, and 
+%$\lim\limits_{n\to\infty} \frac{1}{a_n}=0$.
+
+\item {\it Sum Law:} $\lim\limits_{n\to\infty}a_n+b_n=\lim\limits_{n\to\infty}a_n+\lim\limits_{n\to\infty}b_n$\,.
+
+\item {\it Product Law:} $\lim\limits_{n\to\infty}a_nb_n=\lim\limits_{n\to\infty}a_n\cdot\lim\limits_{n\to\infty}b_n$\,.
+
+\item {\it Quotient Law:} $\lim\limits_{n\to\infty}\dfrac{a_n}{b_n}\ =\ \dfrac{\lim\limits_{n\to\infty}a_n}{\lim\limits_{n\to\infty}b_n}$\,.
+
+\end{itemize}
+
+\noindent
+The above Laws are valid provided the right-side expressions make sense: for example, in the Quotient Law 
+we must assume that $a_n$ and $b_n$ converge, and $\lim\limits_{n\to\infty}b_n\neq 0$.  Furthermore, the Laws 
+are valid when the right-side limits are infinite, provided we use the Infinity Rules:
+\\[-1em]
+$$
+\infty + \infty =\infty \qquad\qquad \infty\cdot\infty =\infty \qquad\qquad 
+c\cdot\infty = \left\{\begin{array}{rl}\infty&\text{if $c>0$}\\ -\infty & \text{if $c<0$}\end{array}\right.
+\qquad\qquad
+\frac{1}{\pm\infty} = 0\,.
+$$
+{\sc example:} We can re-do the sequence in the previous example as follows:
+$$
+\lim_{n\to\infty}\frac{n^2+n}{2n^2-3}
+\ =\
+\lim_{n\to\infty}\frac{n^2+n}{2n^2-3}\cdot \frac{\frac1{n^2}}{\frac1{n^2}}
+\ =\
+\lim_{n\to\infty}\frac{1+\frac1n}{2-\frac3{n^2}}
+$$
+Applying the Limit Laws and Infinity Rules, this becomes:
+$$
+\frac{1+\lim\limits_{n\to\infty}\frac1n}{2-3\!\left(\lim\limits_{n\to\infty}\frac1n\right)^{\!2}}
+\ =\
+\frac{1+\frac1{\infty}}{2-3\!\left(\frac1{\infty}\right)^{\!2}}
+\ =\
+\frac{1+0}{2-3(0^2)}
+\ =\ \frac12\,.
+$$
+\\[0em]
+{\bf Limit Theorems.} We have two more results which parallel those for limits of $f(x)$:
+
+\begin{quote}
+{\it Squeeze Theorem:} If $a_n\leq b_n\leq c_n$ for all $n$, and $\lim\limits_{n\to\infty} a_n = \lim\limits_{n\to\infty} c_n = L$,
+then $\lim\limits_{n\to\infty} b_n=L$.
+\end{quote}
+
+\noindent
+{\sc example:} Rigorously evaluate the limit of $b_n= \frac{2+\sin(n^2)}{n}$.
+Note that the sequence $q_n=\sin(n^2)$ diverges, oscillating unpredictably between $-1\leq\sin(n^2)\leq 1$.
+However, we have bounds:
+$$
+a_n\ =\ \frac1n\ =\ \frac{2-1}{n}\ \leq\ \frac{2+\sin(n^2)}{n}\ \leq\ \frac{2+1}{n}\ =\ \frac3n\ =\ c_n\,.
+$$
+Since the upper and lower bounds both approach the limit $L = 0$, so does the middle sequence: $\lim\limits_{n\to\infty} \frac{2+\sin(n^2)}{n}=0$.
+
+\begin{quote}
+{\it Continuity Theorem:} If $g(x)$ is continuous, i.e.~$\lim\limits_{x\to c} g(x)=g(c)$ for all  $c$, 
+then:
+$$
+\lim_{n\to\infty} g(a_n) \ =\ g\!\left(\lim_{n\to\infty} a_n\right).
+$$
+\end{quote}
+
+\noindent
+{\sc example:} Find $\lim\limits_{n\to\infty} n^{1/n}$:
+that is, does the sequence $1, \sqrt{2}, \sqrt[3]{3}, \sqrt[4]{4},\ldots$ approach a finite value?
+As always with exponentiation, we rewrite in terms of the natural exponential $\exp(x)=e^x$, which is a continuous function:
+$$
+\lim_{n\to\infty} n^{1/n}
+\ =\
+\lim_{n\to\infty} e^{\ln(n)/n}
+\ =\
+\lim_{n\to\infty} \exp\!\left( \frac{\ln(n)}{n} \right)
+\ =\
+\exp\!\left( \lim_{n\to\infty} \frac{\ln(n)}{n} \right).
+$$
+Now we can evaluate the inside limit by L'H\^opital:
+$$
+\lim_{n\to\infty} \frac{\ln(n)}{n}
+\ =\
+\lim_{x\to\infty} \frac{\ln(x)}{x}
+\ =\
+\lim_{x\to\infty} \frac{1/x}{1}
+\ =\ 0.
+$$
+Hence $\lim\limits_{n\to\infty} n^{1/n}=e^0 = 1$. 
+Check this by computing values of $n^{1/n}$ on your calculator.
+\\[1em]
+{\bf Continuous compounding.} Here is a surprising example from financial theory.
+Suppose a bank account pays an annual interest rate of $r$: for example, $r=0.04=4\%$ means that after a year, each dollar becomes $1+r = 1.04$ dollars.
+
+Now suppose half the interest is paid after half a year, giving $1+\frac r2$ dollars, 
+and in the second half-year, the previous interest also earns interest (i.e. compound interest). 
+At the end of the year, each dollar becomes 
+$(1+\frac r2)(1+\frac r2)=(1+\frac r2)^2$ dollars.
+If the interest is paid three times a year, compound interest gives
+$(1+\frac r3)^3$ dollars; and if interest is paid $n$ times a year, it gives 
+$(1+\frac rn)^n$ dollars.
+
+Now imagine if interest were paid every hour, or every second, etc.,
+approaching a system of compounding continuously at every instant. 
+Would this produce an unbounded amount of money, or tend to a limit? Let's see!
+$$
+\left(1+\frac rn\right)^{\!n}
+\ =\
+\exp\!\left(\ln\!\left(1+\frac rn\right)n\right)
+$$
+Now L'H\^opital gives:
+$$
+\lim_{x\to\infty}
+\ln\!\left(1+\frac rx\right)\,x
+\ =\
+\lim_{x\to\infty}
+\frac{\ln\!\left(1+rx^{-1}\right)}{x^{-1}}
+\ \stackrel{\mathrm{Hop}}{=}\ 
+\lim_{x\to\infty}
+\frac{\frac{1}{1+rx^{-1}}\,(-rx^{-2})}{-x^{-2}}
+$$
+$$
+\ =\
+\lim_{x\to\infty}\frac{rx}{x+r}
+\ \stackrel{\mathrm{Hop}}{=}\ 
+\lim_{x\to\infty}\frac{r}{1}
+\ =\ r\,.
+$$
+Therefore:
+$$
+\lim_{n\to\infty}\left(1+\frac rn\right)^{\!n}
+\ =\ \exp(r) \ =\  e^r\,.
+$$
+Thus, an interest rate of $r$ produces an annual yield of $e^r$ under
+continuous compounding. No intervals of compounding  will produce more than this. 
+Once again, the natural exponential intrudes even though the original question had nothing to do with it.
+
+\end{document}
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

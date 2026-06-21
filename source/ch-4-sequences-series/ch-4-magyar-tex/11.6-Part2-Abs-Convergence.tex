@@ -1,0 +1,262 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-1in}
+\addtolength{\textheight}{1.9in}
+\addtolength{\oddsidemargin}{-.45in}
+\addtolength{\textwidth}{.9in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\sech}{\mathrm{sech}}
+\newcommand{\csch}{\mathrm{csch}}
+
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Absolute Convergence}\hfill Stewart \S11.6/II}
+\vspace{1em}
+
+\noindent 
+{\bf Series with positive terms.} 
+So far, we have mostly considered positive series $\sum_{n=1}^\infty a_n$ 
+with $a_n\geq 0$,
+whose partial sums $s_N = \sum_{n=1}^N a_n=a_1+a_2+\cdots+a_N$ can only increase as we add 
+more  positive terms. As $N\to\infty$, these can behave in one of two ways: 
+\begin{itemize}
+\item Convergence: partial sums level off beneath 
+a ceiling value:\footnote{
+In fact if the increasing partial sums have an upper bound, $s_n\leq B$ for all $n$,
+then the completeness axiom of real analysis states that the least upper bound
+$\lim\limits_{n\to \infty} s_n$ exists.
+}
+{$\lim\limits_{N\to\infty} s_N =  \sum\limits_{n=1}^\infty a_n=L$}.
+\\[-1em]
+\item Divergence to infinity: partial sums increase without bound:\!\!
+$\lim\limits_{N\to\infty}\!\! s_N =  \sum\limits_{n=1}^\infty a_n=~\infty$.
+\end{itemize}
+We can picture the sequence $\{s_n\}_{n=1}^\infty$ as a line graph connecting the points $(n,s_n)$:
+\\[1em]
+\centerline{
+\includegraphics[width=2.3in]
+{11-6-Pos-Convergence.png}
+\qquad \qquad 
+\includegraphics[width=2.5in]
+{11-6-Pos-Infinity.png} 
+}
+\vspace{0em}
+
+\noindent
+{\bf Series with positive and negative terms.} 
+In the more general case where $a_n$ can be positive or negative, the partial
+sums can osciallate up and down depending on the sign of each term added.
+\begin{itemize}
+\item Convergence (oscillating): partial sums wiggle above and below the horizontal asymptote which is their limiting value:
+{$\lim\limits_{N\to\infty} s_N =  \sum\limits_{n=1}^\infty a_n=L$}.
+\\[-1em]
+\item Divergence to infinity (oscillating): partial sums have more ups than downs, 
+making an overall increase without bound:
+$\lim\limits_{N\to\infty} s_N =  \sum\limits_{n=1}^\infty a_n=\infty$ ;
+%or more downs than ups, so that 
+%\smash{$\lim\limits_{n\to\infty} s_n =  \sum\limits_{i=1}^\infty a_i=-\infty$} ; 
+or more downs than ups, so the limit is $-\infty$.
+\item Divergence (indecisive oscillation): partial sums do not consistently go up or down or approach a horizontal asymptote, so $\lim\limits_{N\to\infty} s_N =  \sum\limits_{n=1}^\infty a_n$ does not exist at all.
+\end{itemize}
+\centerline{
+\includegraphics[width=2.3in]
+{11-6-Osc-Convergence.png}
+\qquad \qquad 
+\includegraphics[width=2.3in]
+{11-6-Osc-Infinity.png} 
+}
+\vspace{1em}
+
+\addtolength{\textheight}{-.6in}
+
+\newpage
+
+\addtolength{\topmargin}{.3in}
+\noindent
+An example of indecisive oscillation is $a_n=(-1)^n$, for which:
+$$
+s_n \ =\ 1-1+1-1+\cdots\pm 1 \ =\
+\left\{\begin{array}{cl} 1 &\text{for $n$ odd}\\
+0  & \text{for $n$ even.}
+\end{array}\right.$$
+{\bf Absolute convergence.} We say that a series $\sum_{n=1}^\infty a_n$ 
+is {\it absolutely convergent}
+whenever the series of absolute values is convergent: $\sum_{n=1}^\infty |a_n|=M$.
+A series is {\it conditionally convergent} if it is convergent, $\sum_{n=1}^\infty a_n=L$, but $\sum_{n=1}^\infty |a_n|=\infty$.
+
+In terms of the graph of $s_N =\sum_{n=1}^N a_n$,
+absolute convergence means the total length of ups and downs is a finite number $M$.
+Equivalently, if we change all down steps $a_n<0$ to up steps $|a_n|>0$, 
+we obtain the graph of a convergent positive series $t_N=\sum_{n=1}^N |a_n|$ converging to
+the ceiling $M$:
+\\[1em]
+\centerline{
+\includegraphics[width=3in]
+{11-6-Abs-Convergence.png}
+}
+\vspace{-.7em}
+
+\noindent
+{\it Absolute Convergence Theorem:} If a series is absolutely convergent with $\sum_{n=1}^\infty |a_n|=M$, then it is convergent with \ $\sum_{n=1}^\infty a_n=L$.
+\\[.5em]
+{\it Proof:} Let $b_n = |a_n|$, and $q(n)=\pm 1$ be the sign of $a_n$, so that $a_n=q(n) \,b_n$. By hypothesis, $\sum |a_n|=\sum b_n$ is convergent, hence so are
+the sums of only the positive $a_n$ and only the negative $a_n$:
+$$
+\mathop{\sum\limits_{n=1}^\infty}\limits_{q(n)=+1} b_n \ =\ L_1
+\ \ \quad\text{and}\quad
+\mathop{\sum\limits_{n=1}^\infty}\limits_{q(n)=-1} b_n \ =\ L_2\,.
+$$
+Now:
+$$\begin{array}{rcl}
+\sum_{n=1}^\infty a_n
+ & =  & \lim\limits_{N\to\infty} \sum\limits_{n=1}^N a_n
+\ \stackrel{(\ast)}=\
+ \lim\limits_{N\to\infty} 
+\mathop{\sum\limits_{n=1}^N}\limits_{q(n)=+1} b_n
+-\mathop{\sum\limits_{n=1}^N}\limits_{q(n)=-1} b_n
+ \\[2em]
+& \stackrel{(\ast\ast)}= & \lim\limits_{N\to\infty} 
+\mathop{\sum\limits_{n=1}^N}\limits_{q(n)=+1} b_n
+-\lim\limits_{N\to\infty}
+\mathop{\sum\limits_{n=1}^N}\limits_{q(n)=-1} b_n
+\ =\ L_1-L_2
+ \end{array}
+$$
+Here the equality $(\ast)$ follows from rearranging a finite sum of terms,
+and $(\ast\ast)$ follows from the Limit Sum Law from Calculus I \S1.6.
+
+\pagebreak
+
+\noindent
+{\bf Series with alternating signs.} We say that a series is {\it alternating} when
+successive terms $a_n$ are of opposite sign; i.e.~$a_n = (-1)^n b_n$ or $a_n = (-1)^{n-1} b_n$ with $b_n\geq 0$.
+\begin{quote}
+{\it Alternating Series Test:} If $a_n$ is an alternating series with $b_n=|a_n|$ decreasing,
+meaning $b_n\geq b_{n+1}$ for all $n$, and $\lim_{n\to\infty}b_n=0$,
+then $\sum_{n=1}^\infty a_n$ converges to some $L$.
+Also, the error of a partial sum is bounded by the next term:
+$$\left|\,L-\sum\limits_{n=1}^N a_n\,\right| \leq |a_{N+1}|.$$
+\end{quote}
+
+\noindent
+{\it Proof:} Assuming $a_n=(-1)^{n-1}b_n$ where $ b_1\geq b_2\geq b_3\geq\cdots\geq 0$, 
+and setting $s_N=\sum_{n=1}^N a_n = b_1 - b_2 + b_3 - b_4 + \cdots \pm b_N$,
+we see that:
+$$
+s_3 = b_1 - b_2 + b_3
+= b_1 - (b_2-b_3) < b_1 = s_1\,,
+$$
+and similarly:
+$$
+s_2\leq s_4\leq s_6\leq\cdots \leq s_5 \leq s_3 \leq s_1\,,
+$$
+so the even values of $s_N$ form an increasing subsequence, and the odd values form a
+decreasing subsequence.
+Furthermore, we have $\lim_{n\to \infty} |s_{n+1}-s_n| = \lim_{n\to \infty}b_n=0$,
+so the even and odd subsequences become arbitrarily close, clearly zeroing in on a finite limit $L$. 
+Error estimate:
+for $N$ even, $s_{N} \leq L\leq s_{N+1}= s_{N}+b_{N+1}$; similarly for $N$ odd. Q.E.D.
+\\[1em]
+\centerline{
+\includegraphics[width=3in]
+{11-6-Alt-Convergence.png}
+}
+\vspace{-.5em}
+
+\noindent
+Absolutely convergent series have several nice properties which conditionally convergent series lack. For example, if we rearrange the order of terms in an absolutely convergent series, the limit does not change, but this is not true for a conditionally convergent series. 
+\\[.5em]
+{\sc example:} Consider $\sum_{n=1}^\infty (-1)^{n-1} \frac1n = 1 -\frac12 + \frac13-\frac14+\cdots$, which is convergent by the Alternating Series Test.\footnote{
+In fact, we will see later that $1 -\frac12 + \frac13-\frac14+\cdots=\ln(2)$.
+}
+We easily see that the series of positive terms 
+$\sum_{n=1}^\infty \frac1{2n-1}=\infty$ and the series of negative terms 
+$\sum_{n=1}^\infty (- \frac1{2n})=-\infty$ are both divergent, so the conditionally convergent sum of the alternating series involves competing infinities. If we rearrange to give the positive terms a head start,
+so that a large number of positive terms outrun each negative term,
+then the positive infinity will win. In a sum like:
+$$
+1 + \tfrac13+\tfrac15 \mathbf{-\tfrac12} +\tfrac17+\tfrac19+\cdots+\tfrac1{21} \mathbf{-\tfrac14} +\tfrac1{23}+\tfrac1{25}+\cdots+\tfrac1{101} \mathbf{-\tfrac1{6}}+\cdots,
+$$
+all the  terms $a_n=(-1)^{n-1}\frac1n$ eventually appear, but the partial sums tend to $\infty$, not to the finite value of the original alternating series.
+
+
+
+
+
+
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[1em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

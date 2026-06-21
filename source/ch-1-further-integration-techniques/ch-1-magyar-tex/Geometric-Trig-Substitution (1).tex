@@ -1,0 +1,261 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-0.4in}
+\addtolength{\textheight}{0.8in}
+\addtolength{\oddsidemargin}{-.4in}
+\addtolength{\textwidth}{.8in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+\centerline{\bf \Large\bf
+Geometric Trig Substitution}
+\vspace{1em}
+
+\noindent
+Here is some esoteric knowledge for the hard-core students.
+Consider any integral in which trig functions are combined 
+by the four arithmetic operations, such as:
+$$
+\int \!\!\frac{\cos^2(x)\sin(x)-2\tan(x)+1}{\sec^3(\theta)+\sin^3(\theta)+3\cos(\theta)\sin(\theta)+5}\ d\theta.
+$$
+There is an amazing technique, the {\it Tangent Half-Angle Substitution}, 
+which allows us to reduce any such problem to
+the integral of a rational function (a quotient of polynomials), 
+which can then be done  by Partial Fractions (see \S7.4).
+
+This substitution is motivated by the geometry of the circle.
+Recall that the basic trig functions are {\it circular functions},
+meaning we can trace the points on a unit circle by
+the coordinates $(x,y)=(\cos(\theta),\sin(\theta))$.
+There is another way to trace this circle, the {\it rational parametrization}: for any number $t\in(-\infty,\infty)$,
+draw the line $L$ from the fixed point $(-1,0)$ to the point $(0,t)$ on the $y$-axis:
+this line cuts the circle in exactly one other point $(x,y)$.
+As $(0,t)$ moves along the $y$-axis, the point $(x,y)$ moves around the
+entire circle, leaving out only the fixed point $(-1,0)$.
+\\[.7em]
+\centerline{
+\includegraphics[width=3.5in]
+{7-3-Rat-Param-2.png} 
+}
+\vspace{-.9em}
+
+\noindent
+To compute the coordinates $(x,y)$ corresponding to a given $t$, 
+we write the slope of line $L$ using the two similar
+triangles between $L$ and the $x$-axis:
+$$
+\text{slope} \ =\ \frac{t}{1}\ =\ \frac{y}{x{+}1} 
+\qquad\Longrightarrow\qquad
+y=t(x{+}1).
+$$
+The point $(x,y)$ also satisfies the circle equation $x^2+y^2=1$.
+Substituting for $y$ gives:
+$$
+x^2 + (t(x{+}1))^2 = 1
+\qquad\Longrightarrow\qquad
+x^2 + t^2x^2 + 2t^2x + t^2 - 1= 0\,.
+$$
+Now, for any $t$, this equation is always satisfied by the fixed point 
+with $x=-1$, so $x{+}1$ must be a factor of the last polynomial.
+Long division gives:
+$$
+x^2 + t^2x^2 + 2tx + t - 1
+\ =\
+(x{+}1) (t^2 x{+}x{+}t^2{-}1) = 0
+\quad\Longleftrightarrow\quad
+\left\{\begin{array}{@{\!}c}
+x = \dfrac{1-t^2}{1+t^2}
+\\[1em]
+ \text{ or } \ x = -1 \,.
+\end{array}\right.$$
+To write $y$ in terms of $t$, plug this into $y = t(x+1)$, 
+Hence we get a new formula tracing the points of the circle,
+controlled by $t\in(-\infty,\infty)$:
+$$
+(x,y)  = \left(\frac{1-t^2}{1+t^2}\,, \frac{2t}{1+t^2}\right)\!.
+$$
+Incidentally, plugging in rational values of $t$ produces infinitely
+many points on the unit circle with rational coordinates, corresponding
+to all Pythagorean triples, whole numbers $(a,b,c)$ with $a^2+b^2=c^2$.
+For example, $t = 2$ gives:
+$$
+(x,y)  = \left(-\tfrac{3}{5}, \tfrac{4}{5}\right)
+\quad\Longrightarrow\quad
+(\tfrac{3}{5})^2+(\tfrac{4}{5})^2=1
+\quad\Longrightarrow\quad
+3^2+4^2=5^2.
+$$
+
+Now, comparing $(x,y)  = \left(\frac{1-t^2}{1+t^2}\,, \frac{2t}{1+t^2}\right)$ 
+with  $(x,y)=(\cos(\theta),\sin(\theta))$ suggests the substitution:
+$$
+\cos(\theta) = \frac{1-t^2}{1+t^2}, \qquad
+\sin(\theta) =  \frac{2t}{1+t^2}, \qquad
+\tan(\theta) = \frac{2t}{1-t^2}, \qquad \text{etc.}
+$$
+We can think of this as a backward substitution (\S7.3),
+$\theta = \arcsin\!\left(\!\frac{2t}{1+t^2}\!\right)$,
+and compute:
+$$
+\sin(\theta) =  \frac{2t}{1+t^2}
+\quad\Longrightarrow\quad
+\cos(\theta)\,d\theta \ =\ 2\,\frac{1-t^2}{(1+t^2)^2}\,dt
+$$
+$$
+\quad\Longrightarrow\quad
+d\theta \ =\ 2\,\frac{1}{\cos(\theta)}\,\frac{1-t^2}{(1+t^2)^2}\,dt
+\ =\
+2\,\frac{1+t^2}{1-t^2}\,\frac{1-t^2}{(1+t^2)^2}\,dt
+\ =\
+\frac{2}{1+t^2}\,dt\,.
+$$
+\vspace{.1em}
+
+To restore the original variable $\theta$ at the end of the integration, 
+we need to write $t=\frac{y}{x+1}$ in terms of trig functions.  
+We can do this just by $(x,y)=(\cos(\theta),\sin(\theta))$;
+but also recall the theorem of elementary geometry which says the angle between $L$ and the $x$-axis is $\frac\theta2$, giving another expression for the slope:
+$$
+\text{slope} \ =\ t \ =\ \frac{y}{x{+}1}
+\ =\ 
+\frac{\sin(\theta)}{\cos(\theta)+1}
+\ =\
+\tan\!\left(\frac\theta2\right)
+\,,
+$$
+which is why we call it the Tangent Half-Angle Substitution.
+
+\newpage
+
+\centerline{\sc summary} 
+
+\vspace{.5em}
+
+\boxed{$$ \ds
+\ \ \ \cos(\theta) = \frac{1-t^2}{1+t^2}, \ \  \ 
+ \sin(\theta) =\frac{2t}{1+t^2}, \ \ \ 
+d\theta = \frac{2}{1+t^2}\,dt, \ \ \ 
+t = \frac{\sin(\theta)}{\cos(\theta)+1}
+= \tan\!\left(\frac\theta2\right). \ \ \ 
+$$}
+
+\vspace{1.5em}
+
+\noindent
+{\sc example:} We carry out this substitution, then the
+Partial Fraction Method from \S7.4:
+$$
+\int\!\!\frac{1}{\sin^2(\theta) + \cos(\theta) + 2}\ d\theta
+\ =\ 
+\int\!\!\frac{1} { \left(\!\frac{2t}{1{+}t^2}\!\right)^{\!\!2} + \left(\!\frac{1{-}t^2}{1{+}t^2}\!\right) + 2}\ 
+\cdot \frac{2}{1{+}t^2}\,dt
+\ =\
+\int\!\! \frac{2(t^2{+}1)}{t^4 + 8t^2 + 3}\,dt
+$$
+$$
+\ =\
+\int\!\! \frac{2(t^2{+}1)}{(t^2{+}4)^2-13}\,dt
+\ =\
+\int  
+\frac {1+\frac3{\sqrt{13}}} {t^2{+}4{+}\sqrt{13}}
+\ +\
+\frac {1-\frac3{\sqrt{13}}} {t^2{+}4{-}\sqrt{13}}
+\ \,dt
+$$
+\\[-1em]
+$$
+\ =\ 
+(\sqrt{13}{+}3){\ts\sqrt{4{-}\sqrt{13}}}\arctan\!\left(\!\tfrac{t}{\sqrt{4+\sqrt{13}}}\right)
+\ +\
+(\sqrt{13}{-}3){\ts\sqrt{4{+}\sqrt{13}}}\arctan\!\left(\!\tfrac{t}{\sqrt{4-\sqrt{13}}}\right)
+$$
+$$
+\ =\ 
+(\sqrt{13}{+}3){\ts\sqrt{4{-}\sqrt{13}}}\arctan\!\left(\!\tfrac{\tan(\theta/2)}{\sqrt{4+\sqrt{13}}}\right)
+\ +\
+(\sqrt{13}{-}3){\ts\sqrt{4{+}\sqrt{13}}}\arctan\!\left(\!\tfrac {\tan(\theta/2)}{\sqrt{4-\sqrt{13}}}\right).\!\!
+$$
+\\[-1.5em]
+
+The point here is not the specific answer, which can be gotten by computer
+much more reliably than by hand. 
+It is the principle that this is possible for any integral of this type, 
+precisely because of the rational parametrization of the circle. 
+This leads toward the theory of Lie groups, which generalizes the circle 
+to highly symmetric geometric objects in higher dimensions,
+starting with the 3-dimensional sphere.\footnote{
+We should be able to produce a similar substitution for
+integrals involving matrix coefficients of any representation of a compact
+Lie group, composed with the exponential map on the Lie algebra.
+}
+
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

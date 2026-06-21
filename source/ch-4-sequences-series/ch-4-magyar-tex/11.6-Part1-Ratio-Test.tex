@@ -1,0 +1,180 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.9in}
+\addtolength{\textheight}{1.6in}
+\addtolength{\oddsidemargin}{-.4in}
+\addtolength{\textwidth}{.8in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\sech}{\mathrm{sech}}
+\newcommand{\csch}{\mathrm{csch}}
+
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Ratio Test}\hfill Stewart \S11.6/I}
+\vspace{1em}
+
+\noindent 
+We have one more important test for convergence of 
+an infinite series $\sum_{n=1}^\infty a_n$. 
+This test does not require us to 
+choose a comparison series: instead, we test the ratio of 
+each term $a_n$ compared to the next term $a_{n+1}$.
+\\[-1em]
+\begin{quote}
+{\it Ratio Test:} Suppose $\ds\lim\limits_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|=L$\,.
+\\[-1em]
+\begin{itemize}
+\item If $L<1$, then $\sum_{n=1}^\infty a_n$ converges.
+\item If $L>1$, then $\sum_{n=1}^\infty a_n$ diverges.
+\item If $L=1$, then this test fails to determine convergence.
+\end{itemize}
+
+\end{quote}
+
+\noindent
+{\it Proof:} Assuming $a_n>0$, the limit $\lim\limits_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|=L$ means that, for any small number $\epsilon>0$,
+we can take a starting point $N$ so that  for all $n\geq N$, we have:
+$$\begin{array}{ccccc}
+L{-}\epsilon & \leq\ & \dfrac{a_{n+1}}{a_n}& \leq\ &  L{+}\epsilon 
+\\[1em]
+a_n(L{-}\epsilon) & \leq\ &  a_{n+1}& \leq\ &  a_n(L{+}\epsilon)\,.
+\end{array}$$
+Iterating this inequality gives: 
+$
+c_1(L{-}\epsilon)^n  \leq\  a_{n} \leq\   c_2(L{+}\epsilon)^n
+$
+for some constants $c_1,c_2$.\footnote{
+Specifically:
+$
+a_{n}\leq a_{n-1}(L{+}\epsilon)\leq a_{n-2}(L{+}\epsilon)^2
+\leq\cdots\leq a_N(L{+}\epsilon)^{n-N} = \frac{a_N}{(L{+}\epsilon)^{N}} (L{+}\epsilon)^n.
+$
+}
+
+If $L<1$, we take $\epsilon$ small enough
+that $L{+}\epsilon<1$, and we compare $\sum a_n$ to the convergent ceiling
+series $\sum c_2(L{+}\epsilon)^n$. 
+If $L>1$, we take $\epsilon$ small enough
+that $L{-}\epsilon>1$, and we compare $\sum a_n$ to the divergent floor
+series $\sum c_2(L{-}\epsilon)^n$. 
+If $L=1$, adding any $\epsilon$ produces a divergent ceiling, and subtracting any $\epsilon$ produces a convergent floor, neither of which would constrain the original  series.
+Finally, for the general case where the $a_n$'s may be positive or negative, 
+the above argument shows $\sum |a_n|$ converges, which implies $\sum a_n$ converges by \S11.6 Part II. Q.E.D.
+ \\[.9em]
+ The Ratio Test is most useful when $a_n$ is a product of a growing number of factors, which will mostly cancel out in $\frac{a_{n+1}}{a_n}$.
+ \\[.2em]
+ {\sc example:} Determine the convergence of $\ds\sum_{n=1}^\infty \frac{n^2}{2^n}$\,.
+ 
+We did this one in \S11.4 by finding a tricky comparison series. The Ratio Test naturally applies here,
+ because $a_n= \frac{n^2}{2^n}=(n)(n)(\frac12)\cdots(\frac12)$ has more and more factors as $n$ gets larger.
+We have:
+$$
+L\ =\
+\lim_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|
+\ =\
+\lim\limits_{n\to\infty} 
+\frac{(n{+}1)^2}{2^{n+1}}\left/
+\frac{n^2}{2^n}
+\right.
+\ =\
+\lim_{n\to\infty}
+\frac{(n{+}1)^2}{n^2}\left/
+\frac{2^{n+1}}{2^n}
+\right.
+\ =\
+\frac12\,.
+$$
+Since $L=\frac12<1$, the Test shows $\sum a_n$ converges.
+\\[.5em]
+ {\sc example:} Determine the convergence of $\ds\sum_{n=1}^\infty (-1)^n\frac{x^{2n}}{n!}$, where $x$ is a given number and 
+ we use the factorial notation $n! = (n)(n{-}1)(n{-}2)\cdots (2)(1)$. 
+Again, the terms have a large number of factors, so we use the Ratio Test:
+$$
+L\ =\
+\lim_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|
+\ =\
+\lim\limits_{n\to\infty} 
+\frac{x^{2(n+1)}}{(n{+}1)!}\left/
+\frac{x^{2n}}{n!}
+\right.
+\ =\
+\lim\limits_{n\to\infty} \frac{x^2}{n{+}1}
+\ =\ 0\,.
+$$
+Since $L = 0<1$, the Test shows $\sum a_n$ converges.
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

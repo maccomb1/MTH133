@@ -1,0 +1,359 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{1.0in}
+\addtolength{\oddsidemargin}{-.35in}
+\addtolength{\textwidth}{.7in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Improper Integrals}\hfill Stewart \S7.8}
+\vspace{1em}
+
+\noindent 
+{\bf Integrals near a vertical asymptote.} What happens if we take the integral of a function over an interval containing a vertical asymptote, such as:
+$$
+I \ = \ \int_0^2 \frac{1}{x}\,dx \ =\ ??
+$$
+Algebraically, we would get $I=\ln|2| -\ln|0|$, but $\ln(0)$ is undefined.
+Numerically, the Riemann sum for $I$ does not converge, because of the very large values of $f(x)$ near $x=0$. Geometrically, $I$ measures a
+region (the positive area in the graph on the next page) which stretches infinitely 
+along the asymptote $x=0$, and the meaning of such an
+infinitely extended area is not clear.
+ 
+Our previous definitions fail to give meaning to this integral, so we give a new definition:
+$$
+\int_0^2 \frac{1}{x}\,dx \ =\  \lim_{r\to 0^+} \int_r^2 \frac{1}{x}\,dx.
+$$
+That is, we take the integral over the interval $x\in [r,2]$ where the function is continuous, then take the limit as $r$ squeezes up against the asymptote $x=0$ from the right.
+Now, $\int_r^2\frac1x\,dx= \ln|2|-\ln|r|$, 
+and $\lim_{r\to 0^+} \ln(r)=-\infty$, meaning $\ln(r)$ becomes a larger and larger
+negative number, so the improper integral is:\footnote{
+We take $\ln(2)$ minus a larger and larger negative number; 
+and this equals a larger and larger positive number, denoted by $\infty$.
+}
+$$
+\int_0^2 \frac1x\,dx\ =\
+\lim_{r\to 0^+} \ln(2)-\ln(r) 
+\ =\ \infty.
+$$
+
+This says that the total area under the graph $y=\frac1x$ and above $[0,2]$ is infinite: no matter how many square units of paint are put on this region, there will still be unpainted area high up next to the asymptote.
+\\[1em]
+{\bf General definition:}
+If the function $f(x)$ has a vertical asymptote near $x=q$,
+we define the {\it improper integral of vertical type}:
+\begin{itemize}
+\item on an interval $[a,q]$ as \ \
+$\ds
+\int_a^q f(x)\,dx \ =\ \lim_{r\to q^-}\int_a^r f(x)\,dx;
+$
+\item on an interval $[q,b]$ as \ \
+$\ds
+\int_q^b f(x)\,dx \ =\ \lim_{r\to q^+}\int_r^b f(x)\,dx.
+$
+\item on an interval with $q\in(a,b)$ as \ \
+$\ds
+\int_a^b f(x)\,dx \ =\ \int_a^q f(x)\,dx + \int_q^b f(x)\,dx.
+$
+\end{itemize}
+If such an integral has a finite value, we say it {\it converges};
+if it is infinite or undefined, we say it {\it diverges}.
+%
+\newpage
+
+\noindent
+{\sc example:} Evaluate $\int_{-1}^2\frac 1x\,dx$.
+This attempts to measure two infinite regions: one above $[0,2]$ along the positive $y$-axis, and another below $[-1,0]$ along the negative $y$-axis. 
+\\[1em]
+\centerline{
+\includegraphics[width=2in]
+{7-8-Inf-Area.png}
+}
+\vspace{0em}
+
+\noindent
+The improper integral avoids the asymptote from both sides:
+$$
+\int_{-1}^2 \frac1x\,dx 
+\ =\ 
+\int_{-1}^0 \frac1x\,dx + 
+\int_{0}^2 \frac1x\,dx 
+\ =\ 
+\lim_{r\to 0^-}\int_{-1}^r \frac1x\,dx 
+\,+\, \lim_{r\to 0^+}\int_r^2\frac1x\,dx.
+$$
+But when we try to calculate this, we get:
+$$
+\int_{-1}^2 \frac1x\,dx \ =\ 
+\left(\lim_{r\to0^-}  \ln|r|-\ln|\!-1| \right)
+\,+\,
+\left(\lim_{r\to 0^+} \ln|2|-\ln|r|\right)
+\ =\ -\infty +\infty\,,
+$$
+which is an indeterminate form: the integral is truly undefined.
+We have no clear meaning for an infinite positive area canceled by an infinite negative area.
+In particular, the naive answer is wrong:
+$$
+\int_{-1}^2 \frac1x\,dx \ =\ \text{undefined} \ \neq\ \ln|2|-\ln|\!-1|.
+$$
+\\[.5em]
+\noindent
+{\sc example:} Evaluate $\int_{1}^2 \frac{1}{\sqrt{x-1}}\,dx$.
+Since the vertical asymptote is $x=1$, we have:
+$$
+\int_{1}^2 \frac{1}{\sqrt{x-1}}\,dx \ =\ 
+\lim_{r\to 1^+}\int_{r}^2 \frac{1}{\sqrt{x-1}}\,dx 
+\ =\ 
+\lim_{r\to 1^+} \left.2\sqrt{x{-}1}\,\right|_{x=r}^{x=2}
+$$
+$$
+\ =\ 
+\lim_{r\to 1^+} 2\sqrt{2{-}1}-2\sqrt{r{-}1}
+\ =\ 2 - 0 \ =\ 2.
+$$
+In this case, the region has a finite area of 2, even though it stretches infinitely high along the vertical asymptote. Thus, if we have enough paint for 2 square units, and paint higher and higher parts of the region using less and less paint, we never run out.
+
+\newpage 
+
+\noindent
+{\bf Integrals near a horizontal asymptote.}
+If $y=f(x)$ has $y=0$ as a horizontal asymptote, we can define  
+{\it improper integrals of horizontal type}.
+\begin{itemize}
+\item If $\lim_{x\to\infty} f(x) = 0$, we define the integral on an interval $[a,\infty)$ as:
+$$
+\int_a^\infty f(x)\,dx
+\ =\
+\lim_{r\to\infty} \int_a^r f(x)\,dx.
+$$
+\item If $\lim_{x\to\infty} f(x)=0$, we define the integral over an interval
+$(-\infty,a]$ as:
+$$
+\int_{-\infty}^a f(x)\,dx
+\ =\
+\lim_{r\to-\infty} \int_r^a f(x)\,dx.
+$$
+\item If $\lim_{x\to\pm\infty} f(x)=0$, we define its integral
+over the whole real line $(-\infty,\infty)$
+by splitting at any finite value $x=a$:
+$$
+\int_{-\infty}^{\infty} f(x)\,dx
+\ =\
+\int_{-\infty}^a f(x)\,dx + \int_a^{\infty} f(x)\,dx \qquad \text{for any $a$.}
+$$
+\end{itemize}
+
+\noindent
+{\sc example:}
+$
+\int_1^\infty \!\frac1{x^2} \,dx
+\ =\
+\lim\limits_{r\to\infty} \int_1^r \frac{1}{x^2}\,dx
+\ =\
+\lim\limits_{r\to\infty} \left(-\left.\frac1{x}\right)\right|_{x=1}^{x=r}
+\ =\ \lim_{r\to\infty} -\frac1r + \frac11 \ =\ 1\,.
+$
+\\[.2em]
+This integral measures a region which stretches infinitely along the $x$-axis above $[1,\infty)$, but which has a finite total area of 1.
+
+On the other hand $\int_1^\infty \frac{1}{\sqrt x}\,dx
+\ =\ \lim_{r\to\infty} \left.2\sqrt x\ \right|_{x=1}^{x=r}\ =\infty$.
+In fact, $\int_{1}^\infty \frac{1}{x^p}\,dx$ is finite if $p>1$, but is infinite if $p\leq 1$.
+Informally, the faster $f(x)$ shrinks as $x\to\infty$, 
+the easier it is for the integral to converge to a finite value. 
+\\[1em]
+{\sc example:}
+$\int_0^\infty e^{-x}\,dx =\lim_{r\to\infty} \int_0^r e^{-x}\,dx
+= \lim_{r\to\infty} \left.-e^{-x}\right|_{x=0}^{x=r} = -0-(-1)=1$.
+\\[.2em]
+It is not surprising that this converges, because $e^{-x}$ shrinks faster than $\frac1{x^p}$ for any $p$.
+\\[1em]
+{\sc example:}
+$$
+\int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx
+\ =\
+\lim_{r\to-\infty}\int_{r}^0 \frac{1}{1+x^2}\,dx
+\ +\
+\lim_{r\to\infty}\int_{0}^r \frac{1}{1+x^2}\,dx
+$$
+$$
+\ =\
+\lim_{r\to-\infty} \left.\tan^{-1}(x)\right|_{x=r}^{x=0}
+\ +\ 
+\lim_{r\to\infty} \left.\tan^{-1}(x)\right|_{x=0}^{x=r}
+\  =\
+\left(0-(-\tfrac{\pi}2)\right) + \left(\tfrac{\pi}2-0\right)
+\ =\ \pi.
+$$
+Remarkably, the total area under $y=\frac 1{1+x^2}$ turns out to be $\pi$, same as a unit circle!
+\\[1em]
+\centerline{
+\includegraphics[width=3in]
+{7-8-Bell.png}
+}
+
+\newpage
+
+\noindent
+{\bf Comparison tests for convergence.}  
+Sometimes an improper integral is too complicated to find an algebraic antiderivative, but we can still be sure it converges
+because the infinite region measured fits inside a larger region of known finite area.
+
+For example, the Gaussian bell-curve integral
+$\int_1^\infty e^{-x^2}\,dx$ cannot be integrated by an antiderivative. However, for $x\geq 1$, we have $x^2\geq x$,
+so $e^{-x^2}\leq e^{-x}$: that is, the curve $y=e^{-x^2}$ lies below $y=e^{-x}$:
+\\[1em]
+\centerline{
+\includegraphics[width=2.5in]
+{7-8-Gaussian.png}
+}
+\\[.5em]
+We can easily evaluate the area below the upper curve,
+which shows that the smaller area under the
+lower curve is finite, i.e.~the improper integral converges:
+$$
+\int_1^\infty e^{-x^2}\,dx
+\ <\
+\int_1^\infty e^{-x}\,dx
+\ =\ 0-(-e^{-1}) \ =\ \tfrac1e \ \approx\ 0.37\ .
+$$
+{\it Direct Comparison Test:} Consider an improper integral
+$\int_a^b g(x)$, with $a$ or $b$ infinite.
+\begin{itemize}
+\item
+If $|f(x)|\,{\leq}\, g(x)$ for $x\,{\in}\,[a,b]$, and $\int_a^b g(x)\,dx$ converges,
+then $\int_a^b f(x)\,dx$ converges.
+\item If $f(x)\,{\geq}\,g(x)\,{\geq}\,0$  for $x\,{\in}\,[a,b]$ and $\int_a^b g(x)\,dx$ diverges,
+then $\int_a^b f(x)\,dx$ diverges.
+\end{itemize}
+
+\noindent
+The proof uses the Domination Rule for ordinary integrals (\S4.2),
+plus some complications with limits.
+\\[.5em]
+{\sc example:} Does $\int_0^\infty \frac{4\sin(x)+1}{e^{2x}+x^2}\,dx$ converge? 
+This function shrinks rapidly, since the top does not grow,
+and the bottom grows exponentially; thus we guess that
+the integral converges.
+To prove this using the first part of the Test, we should 
+bound \smash{$f(x)=\frac{4\sin(x)+1}{e^{2x}+x^2}$} 
+inside the graph of a fairly simple comparison function
+$g(x)=\frac{g_1(x)}{g_2(x)}$ with $|f(x)|\leq g(x)$.
+Now, increasing the numerator of $f(x)$ and 
+decreasing its denominator gives a larger fraction, so we take:
+$$
+\left|\frac{4\sin(x)+1}{e^{2x}+x^2}\right|
+\ \leq\ 
+\frac{5}{e^{2x}} \ =\  5e^{-2x}\,.
+$$
+The comparison integral converges: $\int_0^\infty 5e^{-2x}\,dx = \lim_{r\to\infty}
+\left.\left(-\frac52 e^{-2x}\right)\right|_{x=0}^{x=r} = \frac52$; hence 
+the original integral also converges: 
+$$
+\left|\int_0^\infty \frac{4\sin(x)+1}{e^{2x}+x^2}\,dx\right|
+\ \leq\ \tfrac52\,.
+$$
+\\[1em]
+By contrast, to prove {\it divergence} of a fractional $f(x)$, 
+we would bound $f(x)\geq g(x)$, above a floor function $g(x)$ with
+smaller numerator and larger denominator, and $\int g(x)\,dx=\infty$.
+\newpage
+
+\noindent
+{\it Limit Comparison Test} or {\it Ratio Comparison Test:}
+For functions $f(x), g(x)$ with $\lim\limits_{x\to\infty} \frac{f(x)}{g(x)} = L\neq 0$,
+the improper integral $\int_a^\infty f(x)\,dx$ converges if and only if 
+$\int_a^\infty g(x)\,dx$ converges.
+\\[1em]
+In the case that $g(x)\geq 0$, this is simply because, given $\lim_{x\to\infty} \frac{f(x)}{g(x)} = L$, we can take $x$ large enough so that 
+$\frac12 L g(x)\leq f(x)\leq \frac32L g(x)$, and we can apply the Direct Comparison Test.
+
+To apply this Test to $\int_a^\infty f(x)\,dx$ for a fraction $f(x)=\frac{f_1(x)}{f_2(x)}$,
+we generally choose the comparison function
+$g(x)=\frac{g_1(x)}{g_2(x)}$ where $g_1(x)$ is the
+ largest term in $f_1(x)$, and likewise with $g_2(x)$ and
+$f_2(x)$.
+For example, for:
+$$
+f(x)=\frac{x^2-e^{-x}+\sin(x)}
+{\sqrt{x^5+7}}\qquad\text{take}\qquad
+g(x)=\frac{x^2}{\sqrt{x^5}}=x^{-1/2}\,,
+$$
+and we easily see $\lim_{x\to\infty} \frac{f(x)}{g(x)} = 1$ (see \S6.8).
+We previously showed $\int_a^\infty x^{-1/2}\,dx$ diverges, so the original integral
+$\int_a^\infty f(x)\,dx$ also diverges.
+
+\end{document}
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

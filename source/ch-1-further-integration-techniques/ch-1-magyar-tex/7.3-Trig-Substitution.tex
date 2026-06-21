@@ -1,0 +1,477 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.8in}
+\addtolength{\textheight}{1.4in}
+\addtolength{\oddsidemargin}{-.4in}
+\addtolength{\textwidth}{.8in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+\newcommand{\sech}{\mathrm{sech}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Reverse Trig Substitution}\hfill Stewart \S7.3}
+\vspace{1em}
+
+\noindent 
+{\bf Reducing to standard trig forms.}
+To find an indefinite integral $\int\! f(x)\,dx$, we transform it by methods like Substitution and Integration by Parts until we reduce to an integral we recognize from before, a ``standard form''.
+In the previous section \S7.2, we were able to compute most integrals involving products of trig functions,
+so these are now standard forms to work toward.
+
+%Our strategy for trig integrals
+%was to use the many identities and relations among the various trig functions, especially the
+%Pythagorean idenities $\cos^2(\theta)+\sin^2(\theta)=1$ 
+%and $\tan^2(\theta)+1=\sec^2(\theta)$,
+%along with the standard derivatives formulas.
+
+A common type of difficult integral involves forms like $\sqrt{\pm x^2\pm1}$.
+We convert such forms into trigonometric integrals, which at first seems to complicate
+them. However, we take careful advantage of the Pythagorean identities $\cos^2(\theta)+\sin^2(\theta)=1$ and $\tan^2(\theta)+1=\sec^2(\theta)$,
+so that the resulting trig formulas simplify to previously known integrals.
+
+Our first example is $\int\! \sqrt{1-x^2}\,dx$, which computes area under a unit semi-circle.
+This seems simple enough, but no obvious substitution or integration by parts will simplify it.
+The expression $\sqrt{1-x^2}$ reminds us of the identity $\sqrt{1-\sin^2(\theta)}=\cos(\theta)$,
+so imagine our integral was obtained from a more complicated one after a
+trig substitution $x=\sin(\theta)$: 
+the current variable $x$ is actually a function of a previous variable $\theta$, 
+and $dx=\cos(\theta)\,d\theta$. The previous integral would be:
+$$
+\int\!\! \sqrt{1{-}x^2}\,dx \ =\ \int\!\!{\ts\sqrt{1{-}\sin^2(\theta)}}\cdot\cos(\theta)\,d\theta,
+\quad\text{where }
+\left\{\!\!\begin{array}{c}x=\sin(\theta)\\[.3em] dx=\cos(\theta)\,d\theta.\end{array}\right.
+$$
+Now this simplifies to a standard form from \S7.2:\footnote{
+Variable $\theta$ is irrelevant:
+$\int\!\cos^2(\theta)\,d\theta = \tfrac12\theta{+}\tfrac14\sin(2\theta)$
+means the same as 
+$\int\!\cos^2(x)\,dx = \tfrac12x{+}\tfrac14\sin(2x)$.
+}
+$$
+\int\!{\ts\sqrt{1{-}\sin^2(\theta)}\cdot\cos(\theta)\,d\theta}
+\ =\
+\int\!\cos^2(\theta)\,d\theta
+\ =\
+\tfrac12\theta + \tfrac14\sin(2\theta)
+\ =\
+\tfrac12\theta + \tfrac12\sin(\theta)\cos(\theta)\,.
+$$
+Substituting back the original variable: \
+$\theta=\arcsin(x)$, $\sin(\theta)=x$, $\cos(\theta)=\sqrt{1{-}x^2}$:
+$$
+\int\!\! \sqrt{1{-}x^2}\,dx \ =\ \tfrac12\arcsin(x) + \tfrac12x\sqrt{1{-}x^2}\,.
+$$
+Let's check the area of the unit circle, i.e.~twice the total area under $y=\sqrt{1{-}x^2}$:
+$$
+2\int_{-1}^{1} \!\!\!\! \sqrt{1{-}x^2}\,dx \ =\ 
+\left[\arcsin(x) + x\sqrt{1{-}x^2}\,\right]_{x=-1}^{x=1}
+\ =\
+\arcsin(1) -\arcsin(-1)
+\ =\
+\pi.
+$$
+{\bf Integrals with $\sqrt{\vphantom{x^2}\!\! \pm\! x^2{\pm} a^2}$.}
+We choose a reverse trig substitution depending on the signs in the expression, 
+then use the corresponding Pythagorean identity to obtain a standard trig form.
+See also the table of integrals further below.
+$$\begin{array}{|c|c|c|c|}
+\hline &&& \\[-.5em] 
+\ \sqrt{a^2{-}x^2}\  & \ x = a\sin(\theta)\ &\ dx = a\cos(\theta)\,d\theta\ & 
+\ \sqrt{a^2{-}a^2\sin^2(\theta)} \,=\, a\cos(\theta)\
+\\[.5em] \hline &&& \\[-.5em] 
+\sqrt{a^2{+}x^2} & x = a\tan(\theta) & dx = a\sec^2(\theta)\,d\theta & 
+\sqrt{a^2{+}a^2\tan^2(\theta)} \,=\, a\sec(\theta)
+\\[.5em] \hline &&& \\[-.5em] 
+\sqrt{x^2{-}a^2} & x = a\sec(\theta) & dx = a\tan(\theta)\sec(\theta)\,d\theta & 
+\sqrt{a^2\sec^2(\theta){-}a^2} \,=\, a\tan(\theta)
+\\[.5em] \hline 
+\end{array}$$
+
+\noindent
+{\sc example:} $\int\!\!\frac{1}{\sqrt{4-x^2}}\,dx$. Let $x=2\sin(\theta)$, $dx = 2\cos(\theta)\,d\theta$, $\sqrt{4{-}(2\sin(\theta))^2} = 2\cos(\theta)$:
+$$
+\int\!\!\frac{1}{\sqrt{4-x^2}}\,dx
+\ =\
+\int\!\!\frac{1}{2\cos(\theta)}\cdot 2\cos(\theta)\,d\theta
+\ =\
+\theta
+\ =\ 
+\sin^{-1}(\tfrac12x)\,.
+$$
+We could do this more directly by manipulating the integrand 
+to the known derivative of $\arcsin(x)$ by the substitution $u=\frac12x$:\footnote{See \S6.6 for inverse trig functions like $\arcsin=\sin^{-1}$, and their derivatives.}
+$$
+\int\!\!\frac{1}{\sqrt{4{-}x^2}}\,dx
+\ =\
+\int\!\!\frac{1}{\sqrt{1{-}(\frac12 x)^2}}\cdot \tfrac12\,  dx
+\ =\
+\int\!\!\frac{1}{\sqrt{1{-}u^2}}\,du
+\ =\
+\sin^{-1}(u)
+\ =\
+\sin^{-1}(\tfrac12 x).
+$$
+%
+{\sc example:} $\int\!\!\frac{1}{\sqrt{9x^2{+}4}}\,dx
+=\int\!\!\frac{1}{\sqrt{(3x)^2{+}2^2}}\,dx$. 
+Let $3x=2\tan(\theta)$, $dx = \frac23\sec^2(\theta)\,d\theta$, \\
+$\sqrt{9x^2{+}4}=\sqrt{(3x)^2+2^2}=\sqrt{(2\tan(\theta))^2+2^2}=
+2\sqrt{\tan^2(\theta)+1}= 2\sec(\theta)$:
+$$
+\int\!\!\frac{1}{\sqrt{9x^2{+}4}}\,dx
+\ =\
+\int\!\!\frac{1}{2\sec(\theta)}\cdot \tfrac23\sec^2(\theta)\,d\theta
+\ =\
+\tfrac13\!\int\!\sec(\theta)\,d\theta
+$$
+$$
+\ =\ \tfrac13\ln\!\left|\vphantom{M^2}\!\tan(\theta) + \sec(\theta)\right|
+\ =\ 
+\tfrac13\ln\!\left|\tfrac32x +\tfrac12{\ts\sqrt{9x^2{+}4}}\right|\,.
+$$
+%We could simplify this by factoring out $\frac32$, which then gets absorbed into the 
+%arbitrary constant omitted above:
+%$$
+%\tfrac13\ln\!\left|\tfrac32(x{+}\tfrac13{\ts\sqrt{9x^2{+}4}})\right|+C_1
+%\ =\ 
+%\tfrac13\ln\!\left|x {+}\tfrac13\sqrt{9x^2{+}4}\,\right|
+%+ \tfrac13\ln(\tfrac32) + C_1
+%\ =\ 
+%\tfrac13\ln\!\left|x{+}\sqrt{\!x^2{+}\smash{\tfrac49}}\,\right|
+%+ C_2\,.
+%$$
+Alternatively, we could use hyperbolic functions (\S6.7),
+satisfying $\cosh^2(t)=\sinh^2(t)+1$.
+Thus $x = \frac23\sinh(t)$, $dx = \frac23 \cosh(t)\,dt$ and $\sqrt{9x^2+4} = 2\sqrt{\sinh^2(t) + 1} = 2 \cosh(t)$ gives:
+$$
+\int\! \frac{1}{\sqrt{9x^2+4}}\,dx 
+\ =\  \int\! \frac{1}{2\cosh(t)}\tfrac23 \cosh(t)\,dt
+\ =\  \tfrac13 t 
+$$
+$$
+\ =\ \tfrac13\sinh^{-1}(\tfrac32 x)
+\ =\ 
+\tfrac13\ln\!\left(\tfrac32 x {+} \sqrt{ \smash{\tfrac94} x^2 {+} 1 }\,\right).
+$$
+A third method is to substitute $u=\frac32x$ 
+to get $\frac13\int \frac1{\sqrt{u^2+1}}\,du=\frac13\sinh^{-1}(u)=\frac13\sinh^{-1}(\frac32 x)$.
+\\[1.5em]
+{\sc example:} $\int\!\!\frac{\sqrt{x^2{-}25}}x\,dx$; \ \ $x=5\sec(\theta)$, $dx = 5\tan(\theta)\sec(\theta)\,d\theta$, $\sqrt{\!(5\sec(\theta))^2{-}25}=$~$ 5\tan(\theta)$:
+$$
+\int\!\!\frac{\sqrt{x^2{-}25}}x\,dx
+\ =\
+\int\!\!\frac{5\tan(\theta)}{5\sec(\theta)}\cdot 5\tan(\theta)\sec(\theta)\,d\theta
+\ =\
+5\!\int\!\tan^2(\theta)\,d\theta
+$$
+$$
+\ =\
+5\!\int\!\sec^2(\theta){-}1\,d\theta
+\ =\
+5\tan(\theta) - 5\theta
+\ =\
+\sqrt{x^2{-}25} - 5\,\sec^{-1}(\tfrac 15 x)\,.
+$$
+Rewriting $\sec^{-1}(u) = \tan^{-1}\!\sqrt{u^2{-}1}$ as in \S6.6, this becomes:
+$
+\sqrt{x^2{-}25} \,-\, 5\tan^{-1}(\frac15\sqrt{x^2{-}25})\,.
+$
+\\[1.5em]
+{\sc example:} $\int\!\!\!\frac{1}{(x^2{-}4)^{3/2}}\,dx$; 
+\ \  $x=2\sec(\theta)$, $dx = 2\tan(\theta)\sec(\theta)\,d\theta$, $((2\sec(\theta))^2{-}4)^{\frac32}=$~$8\tan^3(\theta)$:
+$$
+\int\!\!\!\frac{1}{(x^2{-}4)^{3/2}}\,dx
+\ =\
+\int\!\!\frac{1}{8\tan^3(\theta)}\cdot 2\tan(\theta)\sec(\theta)\,d\theta
+\ =\
+\tfrac14\!\int\!\sin^{\!-2}(\theta)\cos(\theta)\,d\theta
+$$
+$$
+\ =\ -\tfrac14\sin(\theta)^{-1}
+\ =\ 
+-\tfrac14\,\frac{\frac12x}{\sqrt{\!(\frac12x)^2{-}1}}
+\ =\ 
+-\,\frac{x}{4\sqrt{x^2{-}4}}\,.
+$$
+Or: $x=2\cosh(t)$, $x^2{-}4=4\sinh^2(t)$ produces
+$\frac14\int \mathrm{csch}^2(t)\,dt=-\frac14\coth(t)=-\frac{\cosh(t)}{4\sinh(t)}$.
+%
+\pagebreak
+
+\noindent
+{\sc example:} $\int\!\!\sqrt{x^2-1}\,dx$;\  $x = \cosh(t)$, $dx = \sinh(t)\,dt$,
+$x^2{-}1=\cosh^2(t){-}1=\sinh^2(t)$:
+$$\begin{array}{rcl}
+\ds\int\!\sqrt{x^2-1}\,dx &=& \ds
+\int\!\sqrt{\cosh^2(t){-}1\,}\,\sinh(t)\,dt 
+\\[.8em]
+&=& \ds
+\int\sinh^2(t)\,dt
+\ =\  \tfrac12\cosh(t)\sinh(t) - \tfrac12 t
+\\[.8em]
+&=&  \frac12 x\sqrt{x^2-1} - \frac12 \cosh^{-1}(x),
+\\[.8em]
+&=& \frac12 x\sqrt{x^2-1} - \frac12 \ln(x+\sqrt{x^2-1}),
+\end{array}$$
+using  the formulas for $\int\!\sinh^2(t)\,dt$ and $\cosh^{-1}(x)$ from \S6.7.
+\\[1.5em]
+{\sc example:} $\int\!\!\sqrt{1-x^2}\,dx$;  $x = \tanh(t)$, $dx = \sech^2(t)\,dt$,
+$1{-}x^2=1{-}\tanh^2(t)=\sech^2(t)$:
+$$\begin{array}{rcl}
+\ds\int\!\sqrt{1-x^2}\,dx &=& \ds
+\int\!\sech^3(t)\,dt 
+\ =\ 
+\frac12 \left(\tanh(t)\,\sech(t)+\int\sech(t)\,dt\right)
+\\[1.2em]
+&=& \ds
+\tfrac12\tanh(t)\,\sech(t)+\tan^{-1}(e^t)
+\ =\
+ \tfrac12 x\sqrt{1{-}x^2} + \tan^{-1}\!\sqrt{\tfrac{1+x}{1-x}},
+\end{array}$$
+via \S6.7, 7.2. This simplifies to the previous $\int\! \sqrt{1{-}x^2}\,dx \ =\  \tfrac12x\sqrt{1{-}x^2}+\tfrac12\sin^{-1}(x)+\frac\pi4$.
+\\[1.5em]
+{\sc example:} $\int\!\!\frac{1}{x\sqrt{x^2+x}}\,dx$.
+It will not help to complete the square and do a linear substitution $u=ax+b$, 
+since the denominator will still contain the factor $x=\frac 1a u-b$. 
+Rather, write $x^2+x=x^2(1+\frac1x)$ and do a linear fractional substitution 
+$u=1+\frac1x$, $du=-\frac{1}{x^2}\,dx$: 
+$$
+\int\!\!\frac{1}{x\sqrt{x^2+x}}\,dx \ =\ 
+\int\!\!\frac{1}{x^2\sqrt{1+\frac1x}}\,dx \ =\ 
+-\int\!\!\frac{1}{\sqrt u}\,du \ =\ 
+-2 \sqrt{u} \ = \ -2\sqrt{1+\tfrac1x}.
+$$
+{\sc example:} $\int\!\!\frac{1}{x\sqrt{3x^2-2x-1}}\,dx$.
+Using the strategy of the previous example, 
+we rewrite as a quadratic in $\frac1x$ and 
+complete the square in terms of $u=\frac ax +b$:
+$$\begin{array}{rcl}
+3x^2-2x-1 &=& x^2 (3-\frac2x - \frac1{x^2})
+\\[1em]
+&=& x^2 \left(3+1^2-1^2- 2(1)\frac1x 
+-\tfrac{1}{x^2}\right)
+\\[1em]
+&=& x^2 \left(4-(1 {+} \frac1x)^2\right)
+\ =\  4x^2 \left(1-(\frac12 {+} \frac1{2x})^2\right).
+\end{array}$$
+Then $u=\frac1{2x} +\frac12$, $du = -\frac1{2x^2}\,dx$ gives:
+$$\hspace{-.25in}
+\int\!\!\frac{1}{x\sqrt{3x^2{-}2x{-}1}}\,dx 
+\ =\ \int\!\! \frac{1}{2x^2\,\sqrt{1-(\frac12 {+} \frac1{2x})^2}}\,dx
+\ =\ \!\int\!\! \frac{\!\!-1}{\sqrt{1{-}u^2}}\,du
+\ =\  -\sin^{-1\!}(u) \ = \ -\sin^{-1\!}(\tfrac1{2x} {+}\tfrac12).
+$$
+\\[0em]
+{\sc example:} $\int\!\! \sqrt{\frac{x}{x-1}} \,dx$. It turns out best to substitute
+$u=\sqrt{x{-}1}$, $x=u^2{+}1$, $dx = 2u\,du$:
+$$
+\int\!\!\sqrt{\frac{x}{x{-}1}}\,dx \ = \
+\int\!\frac{\sqrt{u^2{+}1}}u\,2u\,du \ =\ 
+\int 2\sqrt{u^2{+}1}\,du
+\ = \ u\sqrt{u^2{+}1} + \sinh^{-1}(u)
+$$
+$$
+\ = \ \sqrt{x(x{-}1)} + \sinh^{-1}\!\sqrt{x{-}1}
+\ =\ \sqrt{x(x{-}1)} +\ln(\sqrt x + \sqrt{x{-}1})
+$$
+\\[-.3em] 
+{\sc example:} $\int\!\frac{1}{\sqrt{x^2+x}}\,dx$. 
+In \S6.7, completing the square gave $\cosh^{-1\!}(2x{+}1)=\ln(2x{+}1{+}2\sqrt{x^2{+}x})$, 
+but sneaky substitution gives a surprise equivalent answer: $z=\sqrt{x}$,\, $x=z^2$,\, $dx=2z\,dz$;
+$$
+\int\!\!\frac{1}{\sqrt{x^2+x}}\,dx
+\ =\ 
+\int\!\!\frac{1}{\sqrt{z^4+z^2}}\,2z\,dz
+\ =\ 
+\int\!\!\frac{2}{\sqrt{z^2+1}}\,dz
+\ =\ 
+2\sinh^{-1}(z) 
+\ = \ 2\sinh^{-1}\!\!\sqrt x\,.
+$$
+\\[-.3em] 
+{\sc example:} $\int \sec^3(x)\,dx$. We did this notorious example
+in \S7.2 via integration by parts, 
+but double trig-hyperbolic substitution also works. 
+We have $\sec(x)=\sqrt{1{+}\tan^2(x)}$, which is similar to the
+hyperbolic identity $\cosh(t)=\sqrt{1{+}\sinh^2(t)}$. Thus, we substitute:
+$$
+\tan(x) \ =\ \sinh(t), \qquad \sec^2(x)\,dx = \cosh(t)\,dt,
+$$
+$$
+\int \sec^3(x)\,dx \ =\ 
+\int \sqrt{1{+}\tan^2(x)}\sec^2(x)\,dx
+ \ =\ 
+\int \sqrt{1{+}\sinh^2(t)}\cosh(t)\,dt
+$$
+$$
+\ = \ \int \cosh^2(t)\,dt 
+\ = \ \int \!\left(\tfrac12\cosh(2t){+}\tfrac12\right)dt
+\ =\ \tfrac14\sinh(2t)+\tfrac12 t
+$$
+$$
+\ = \ \tfrac12 \sinh(t)\cosh(t) + \tfrac12 t
+\ =\ \tfrac12\tan(x)\sec(x) + \tfrac12\sinh^{-1}(\tan(x)).
+\vphantom{\int}
+$$
+Then $\sinh^{-1}(x) = \ln(x + \sqrt{1{+}x^2})$ recovers the previous answer:
+$$
+\int \sec^3(x)\,dx \ =\ \tfrac12\tan(x)\sec(x)+\tfrac12\ln(\tan(x){+}\sec(x)).
+$$
+\\[.5em]
+{\bf Table of integrals} 
+which produce inverse trig and hyperbolic functions (omitting $+C$).
+$$
+\int\!\! \frac1{\sqrt{1-x^2}}\,dx \ =\ \sin^{-1}(x) \ =\ \tfrac\pi 2 - \cos^{-1}(x)
+\qquad\quad
+\int\!\! \frac1{\sqrt{x^2-1}}\,dx \ =\ \cosh^{-1}(x) \ =\ \ln(x+\sqrt{x^2-1}) 
+$$
+$$
+\int\!\! \frac1{\sqrt{1+x^2}}\,dx \ =\ \sinh^{-1}(x) \ =\ \ln(x+\sqrt{1+x^2})
+$$
+\\[-.7em]
+$$
+\hspace{-.5in}
+\int\!\! \frac{1}{x\sqrt{x^2{-}1}}\,dx \ =\ \sec^{-1}(x) \ =\ \tan^{-1}\!\!\sqrt{x^2{-}1}\,\footnote{
+Equality holds for $x\geq 1$; for $x\leq-1$, see end of \S6.6.
+}
+\qquad\quad
+\int\!\! \frac{1}{x\sqrt{1{-}x^2}}\,dx \ =\  -\text{sech}^{-1}(x) 
+\ =\ 
+\ln(x)\,-\,\ln(1+\sqrt{1{-}x^2})
+$$
+\\[-.7em]
+$$
+\int\!\! \frac1{x\sqrt{1+x^2}}\,dx \ =\ -\text{csch}^{-1}(x) 
+\ =\  
+\ln(x)-\ln(1+\sqrt{1+x^2})
+$$
+\\[-.5em]
+$$
+\int\!\! \frac1{1+x^2}\,dx \ =\ \tan^{-1}(x) 
+\qquad\quad
+\int\!\! \frac1{1-x^2}\,dx \ =\ \tanh^{-1}(x) \ =\ \tfrac12\ln(1+x) - \tfrac12\ln(1-x)
+$$
+\\[-.5em]
+$$
+\int\!\! \sqrt{1 - x^2}\, dx \ =\ \tfrac12 x\sqrt{1 - x^2}\, +\, \tfrac12\sin^{-1}(x)
+\qquad\quad
+\int\!\! \sqrt{x^2-1}\,dx \ =\ \tfrac12 x\sqrt{x^2 - 1} \,-\, \tfrac12\cosh^{-1}(x)
+$$
+\\[-.5em]
+$$
+\int\!\! \sqrt{x^2+1}\,dx \ =\ \tfrac12 x\sqrt{x^2 + 1} + \tfrac12\sinh^{-1}(x)
+$$
+
+\end{document}
+
+
+
+\\[.5em]
+{\sc example:} $\int\!\frac{1}{\sqrt{x^2+x+1}}\,dx$. 
+Completing the square gives:
+$$
+x^2+x+1
+\ =\
+x^2+2(\tfrac12)x + (\tfrac12)^2 -(\tfrac12)^2+1
+\ =\
+(x{+}\tfrac12)^2 + \tfrac34\,.
+$$
+Let $x+\tfrac12=\sqrt{\tfrac34}\tan(\theta)$, $dx =\sqrt{\tfrac34}\sec^2(\theta)\,d\theta$, $\sqrt{\tfrac34\tan^2(\theta){+}\tfrac34} = \sqrt{\tfrac34}\sec(\theta)$:
+$$
+\int\!\frac{1}{\sqrt{x^2{+}x{+}1}}\,dx
+\ =\
+\int\!\frac{1}{\sqrt{\tfrac34}\sec(\theta)}\cdot \sqrt{\tfrac34}\sec^2(\theta)\,d\theta
+\ =\
+\int\! \sec(\theta)\,d\theta
+$$
+$$
+\ =\ \ln\!\left|\vphantom{M^2}\!\tan(\theta) + \sec(\theta)\right|
+\ =\ 
+\ln\left|\sqrt{\tfrac43}(x{+}\tfrac12) +\sqrt{\tfrac43(x{+}\tfrac12)^2 + 1}\right|
+$$
+$$
+\ =\ 
+\ln\left|\vphantom{\sum}x{+}\tfrac12{+}\sqrt{x^2{+}x{+}1}\right| + \ln\sqrt{\tfrac43}.
+$$
+We keep not writing $+C$ after our indefinite integrals,
+but we must remember that we can add an arbitrary constant to our answer,
+and obtain another antiderivative just as good. 
+Adding \smash{$-\sqrt{\tfrac43}$} allows us to drop the last term above. 
+Also,we can rewrite this even more simply in terms of
+the inverse hyperbolic sine from \S6.7: it is \smash{$\sinh^{-1}(\tfrac{2}{\sqrt3}(x{+}\tfrac12))$.}
+
+$\int e^x\sqrt{e^{2x}+1}\,dx = \int \sqrt{u^2+1}\,du=\int \sec(\theta)\,d\theta$.
+
+
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

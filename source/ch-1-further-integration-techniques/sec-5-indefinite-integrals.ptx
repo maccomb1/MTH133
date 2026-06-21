@@ -1,8 +1,310 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <section xml:id="sec-5-indefinite-integrals" xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>Indefinite Integrals</title>
+  <title>Improper Integrals</title>
 
-  <p> Text of section. </p>
+  <p><alert>Integrals near a vertical asymptote.</alert> What happens if we take the integral of a function over an interval containing a vertical asymptote, such as:</p>
+
+  <p><md>
+    I \ = \ \int_0^2 \frac{1}{x}\,dx \ =\ ??
+  </md></p>
+
+  <p>Algebraically, we would get <m>I=\ln|2| -\ln|0|</m>, but <m>\ln(0)</m> is undefined. Numerically, the Riemann sum for <m>I</m> does not converge, because of the very large values of <m>f(x)</m> near <m>x=0</m>. Geometrically, <m>I</m> measures a region (the positive area in the graph on the next page) which stretches infinitely along the asymptote <m>x=0</m>, and the meaning of such an infinitely extended area is not clear.</p>
+
+  <p>Our previous definitions fail to give meaning to this integral, so we give a new definition:</p>
+
+  <p><md>
+    \int_0^2 \frac{1}{x}\,dx \ =\  \lim_{r\to 0^+} \int_r^2 \frac{1}{x}\,dx.
+  </md></p>
+
+  <p>That is, we take the integral over the interval <m>x\in [r,2]</m> where the function is continuous, then take the limit as <m>r</m> squeezes up against the asymptote <m>x=0</m> from the right. Now, <m>\int_r^2\frac1x\,dx= \ln|2|-\ln|r|</m>, and <m>\lim_{r\to 0^+} \ln(r)=-\infty</m>, meaning <m>\ln(r)</m> becomes a larger and larger negative number, so the improper integral is: <fn>We take <m>\ln(2)</m> minus a larger and larger negative number; and this equals a larger and larger positive number, denoted by <m>\infty</m>.</fn></p>
+
+  <p><md>
+    \int_0^2 \frac1x\,dx\ =\
+    \lim_{r\to 0^+} \ln(2)-\ln(r)
+    \ =\ \infty.
+  </md></p>
+
+  <p>This says that the total area under the graph <m>y=\frac1x</m> and above <m>[0,2]</m> is infinite: no matter how many square units of paint are put on this region, there will still be unpainted area high up next to the asymptote.</p>
+
+  <definition xml:id="def-int-vertical-asymptote">
+    <statement>
+      <p>
+        If the function <m>f(x)</m> has a vertical asymptote near <m>x=q</m>, we define the <term>improper integral of vertical type</term>:
+        <ul>
+          <li>on an interval <m>[a,q]</m> as <m>\int_a^q f(x)\,dx \ =\ \lim_{r\to q^-}\int_a^r f(x)\,dx;</m></li>
+          <li>on an interval <m>[q,b]</m> as <m>\int_q^b f(x)\,dx \ =\ \lim_{r\to q^+}\int_r^b f(x)\,dx.</m></li>
+          <li>on an interval with <m>q\in(a,b)</m> as <m>\int_a^b f(x)\,dx \ =\ \int_a^q f(x)\,dx + \int_q^b f(x)\,dx.</m></li>
+        </ul>
+      </p>
+    </statement>
+  </definition>
+
+  <p>If such an integral has a finite value, we say it <term>converges</term>; if it is infinite or undefined, we say it <term>diverges</term>.</p>
+
+  <example>
+    <statement>
+      <p>
+        Evaluate <m>\int_{-1}^2\frac 1x\,dx</m>.
+      </p>
+    </statement>
+
+    <solution>
+      <p>
+        This attempts to measure two infinite regions: one above <m>[0,2]</m> along the positive <m>y</m>-axis, and another below <m>[-1,0]</m> along the negative <m>y</m>-axis.
+      </p>
+
+      <figure xml:id="fig-improper-inf-area-placeholder">
+    <caption>Image placeholder for 7-8-Inf-Area.</caption>
+    <image width="55%">
+      <shortdescription>Placeholder for the graph of two infinite regions around the vertical asymptote at x equals 0.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}[x=1.0cm,y=0.55cm]
+  \fill[blue!12] (0.18,0) .. controls (0.45,2.7) and (1.05,1.1) .. (2.2,0) -- cycle;
+  \fill[red!12] (-1.2,0) .. controls (-0.75,-2.2) and (-0.35,-3.4) .. (-0.12,-5.0) -- (-0.12,0) -- cycle;
+  \draw[->] (-1.5,0) -- (2.5,0) node[right] {$x$};
+  \draw[->] (0,-5.4) -- (0,4.2) node[above] {$y$};
+  \draw[dashed] (0,-5.0) -- (0,4.0);
+  \draw[thick,domain=0.18:2.2,samples=120,smooth] plot (\x,{1/\x});
+  \draw[thick,domain=-1.2:-0.12,samples=120,smooth] plot (\x,{1/\x});
+  \node[below right] at (0,0) {$0$};
+  \node[below] at (2,0) {$2$};
+  \node[below] at (-1,0) {$-1$};
+  \node[above right] at (0,3.2) {$x=0$};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+      </figure>
+
+      <p>The improper integral avoids the asymptote from both sides:</p>
+
+      <p><md>
+        \int_{-1}^2 \frac1x\,dx
+        \ =\
+        \int_{-1}^0 \frac1x\,dx +
+        \int_{0}^2 \frac1x\,dx
+        \ =\
+        \lim_{r\to 0^-}\int_{-1}^r \frac1x\,dx
+        \,+\, \lim_{r\to 0^+}\int_r^2\frac1x\,dx.
+      </md></p>
+
+      <p>But when we try to calculate this, we get:</p>
+
+      <p><md>
+        \int_{-1}^2 \frac1x\,dx \ =\
+        \left(\lim_{r\to0^-}  \ln|r|-\ln|\!-1| \right)
+        \,+\,
+        \left(\lim_{r\to 0^+} \ln|2|-\ln|r|\right)
+        \ =\ -\infty +\infty\,,
+      </md></p>
+
+      <p>which is an indeterminate form: the integral is truly undefined. We have no clear meaning for an infinite positive area canceled by an infinite negative area. In particular, the naive answer is wrong:</p>
+
+      <p><md>
+        \int_{-1}^2 \frac1x\,dx \ =\ \text{undefined} \ \neq\ \ln|2|-\ln|\!-1|.
+      </md></p>
+
+
+    </solution>
+  </example>
+
+  <example>
+    <statement>
+      <p>
+        Evaluate <m>\int_{1}^2 \frac{1}{\sqrt{x-1}}\,dx</m>.
+      </p>
+    </statement>
+
+    <solution>
+      <p> Since the vertical asymptote is <m>x=1</m>, we have:</p>
+
+      <p><md>
+        \int_{1}^2 \frac{1}{\sqrt{x-1}}\,dx \ =\
+        \lim_{r\to 1^+}\int_{r}^2 \frac{1}{\sqrt{x-1}}\,dx
+        \ =\
+        \lim_{r\to 1^+} \left.2\sqrt{x{-}1}\,\right|_{x=r}^{x=2}
+      </md></p>
+
+      <p><md>
+        \ =\
+        \lim_{r\to 1^+} 2\sqrt{2{-}1}-2\sqrt{r{-}1}
+        \ =\ 2 - 0 \ =\ 2.
+      </md></p>
+
+      <p>
+        In this case, the region has a finite area of 2, even though it stretches infinitely high along the vertical asymptote. 
+        Thus, if we have enough paint for 2 square units, and paint higher and higher parts of the region using less and less paint, 
+        we never run out.
+      </p>
+    </solution>
+  </example>
+
+
+  <p><alert>Integrals near a horizontal asymptote.</alert> If <m>y=f(x)</m> has <m>y=0</m> as a horizontal asymptote, we can define <term>improper integrals of horizontal type</term>.
+    <ul>
+      <li>If <m>\lim_{x\to\infty} f(x) = 0</m>, we define the integral on an interval <m>[a,\infty)</m> as:
+        <md>
+          \int_a^\infty f(x)\,dx
+          \ =\
+          \lim_{r\to\infty} \int_a^r f(x)\,dx.
+        </md>
+      </li>
+      <li>If <m>\lim_{x\to\infty} f(x)=0</m>, we define the integral over an interval <m>(-\infty,a]</m> as:
+        <md>
+          \int_{-\infty}^a f(x)\,dx
+          \ =\
+          \lim_{r\to-\infty} \int_r^a f(x)\,dx.
+        </md>
+      </li>
+      <li>If <m>\lim_{x\to\pm\infty} f(x)=0</m>, we define its integral over the whole real line <m>(-\infty,\infty)</m> by splitting at any finite value <m>x=a</m>:
+        <md>
+          \int_{-\infty}^{\infty} f(x)\,dx
+          \ =\
+          \int_{-\infty}^a f(x)\,dx + \int_a^{\infty} f(x)\,dx \qquad \text{for any $a$.}
+        </md>
+      </li>
+    </ul>
+  </p>
+
+  <p><alert>example:</alert>
+    <m>\int_1^\infty \!\frac1{x^2} \,dx
+    \ =\
+    \lim\limits_{r\to\infty} \int_1^r \frac{1}{x^2}\,dx
+    \ =\
+    \lim\limits_{r\to\infty} \left(-\left.\frac1{x}\right)\right|_{x=1}^{x=r}
+    \ =\ \lim_{r\to\infty} -\frac1r + \frac11 \ =\ 1\,.</m>
+  </p>
+
+  <p>This integral measures a region which stretches infinitely along the <m>x</m>-axis above <m>[1,\infty)</m>, but which has a finite total area of 1.</p>
+
+  <p>On the other hand <m>\int_1^\infty \frac{1}{\sqrt x}\,dx
+  \ =\ \lim_{r\to\infty} \left.2\sqrt x\ \right|_{x=1}^{x=r}\ =\infty</m>. In fact, <m>\int_{1}^\infty \frac{1}{x^p}\,dx</m> is finite if <m>p&gt;1</m>, but is infinite if <m>p\leq 1</m>. Informally, the faster <m>f(x)</m> shrinks as <m>x\to\infty</m>, the easier it is for the integral to converge to a finite value.</p>
+
+  <p><alert>example:</alert>
+  <m>\int_0^\infty e^{-x}\,dx =\lim_{r\to\infty} \int_0^r e^{-x}\,dx
+  = \lim_{r\to\infty} \left.-e^{-x}\right|_{x=0}^{x=r} = -0-(-1)=1</m>.
+  </p>
+
+  <p>It is not surprising that this converges, because <m>e^{-x}</m> shrinks faster than <m>\frac1{x^p}</m> for any <m>p</m>.</p>
+
+  <p><alert>example:</alert></p>
+
+  <p><md>
+    \int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx
+    \ =\
+    \lim_{r\to-\infty}\int_{r}^0 \frac{1}{1+x^2}\,dx
+    \ +\
+    \lim_{r\to\infty}\int_{0}^r \frac{1}{1+x^2}\,dx
+  </md></p>
+
+  <p><md>
+    \ =\
+    \lim_{r\to-\infty} \left.\tan^{-1}(x)\right|_{x=r}^{x=0}
+    \ +\
+    \lim_{r\to\infty} \left.\tan^{-1}(x)\right|_{x=0}^{x=r}
+    \  =\
+    \left(0-(-\tfrac{\pi}2)\right) + \left(\tfrac{\pi}2-0\right)
+    \ =\ \pi.
+  </md></p>
+
+  <p>Remarkably, the total area under <m>y=\frac 1{1+x^2}</m> turns out to be <m>\pi</m>, same as a unit circle!</p>
+
+  <figure xml:id="fig-improper-bell-placeholder">
+    <caption>Image placeholder for 7-8-Bell.</caption>
+    <image width="72%">
+      <shortdescription>Placeholder for the bell-shaped graph of y equals one over one plus x squared.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}[x=1.1cm,y=2.3cm]
+  \fill[blue!12] (-3,0) -- plot[domain=-3:3,samples=140,smooth] (\x,{1/(1+\x*\x)}) -- (3,0) -- cycle;
+  \draw[->] (-3.4,0) -- (3.4,0) node[right] {$x$};
+  \draw[->] (0,-0.08) -- (0,1.2) node[above] {$y$};
+  \draw[thick,domain=-3:3,samples=140,smooth] plot (\x,{1/(1+\x*\x)});
+  \draw[dashed] (0,1) -- (1,1);
+  \node[below left] at (0,0) {$0$};
+  \node[left] at (0,1) {$1$};
+  \node[below] at (-2,0) {$-2$};
+  \node[below] at (2,0) {$2$};
+  \node[above right] at (0.2,0.98) {$y=\frac{1}{1+x^2}$};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p><alert>Comparison tests for convergence.</alert> Sometimes an improper integral is too complicated to find an algebraic antiderivative, but we can still be sure it converges because the infinite region measured fits inside a larger region of known finite area.</p>
+
+  <p>For example, the Gaussian bell-curve integral <m>\int_1^\infty e^{-x^2}\,dx</m> cannot be integrated by an antiderivative. However, for <m>x\geq 1</m>, we have <m>x^2\geq x</m>, so <m>e^{-x^2}\leq e^{-x}</m>: that is, the curve <m>y=e^{-x^2}</m> lies below <m>y=e^{-x}</m>:</p>
+
+  <figure xml:id="fig-improper-gaussian-placeholder">
+    <caption>Image placeholder for 7-8-Gaussian.</caption>
+    <image width="62%">
+      <shortdescription>Placeholder for a comparison graph of y equals e to the negative x squared and y equals e to the negative x.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}[x=1.25cm,y=2.6cm]
+  \fill[blue!10] (1,0) -- plot[domain=1:3.2,samples=120,smooth] (\x,{exp(-\x*\x)}) -- (3.2,0) -- cycle;
+  \draw[->] (0,0) -- (3.5,0) node[right] {$x$};
+  \draw[->] (0,0) -- (0,1.15) node[above] {$y$};
+  \draw[thick,domain=0:3.2,samples=120,smooth] plot (\x,{exp(-\x)});
+  \draw[thick,dashed,domain=0:3.2,samples=120,smooth] plot (\x,{exp(-\x*\x)});
+  \draw[dotted] (1,0) -- (1,{exp(-1)});
+  \node[below left] at (0,0) {$0$};
+  \node[below] at (1,0) {$1$};
+  \node[right] at (1.45,0.34) {$y=e^{-x}$};
+  \node[right] at (0.95,0.63) {$y=e^{-x^2}$};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>We can easily evaluate the area below the upper curve, which shows that the smaller area under the lower curve is finite, i.e.~the improper integral converges:</p>
+
+  <p><md>
+    \int_1^\infty e^{-x^2}\,dx
+    \ &lt;\
+    \int_1^\infty e^{-x}\,dx
+    \ =\ 0-(-e^{-1}) \ =\ \tfrac1e \ \approx\ 0.37\ .
+  </md></p>
+
+  <p><term>Direct Comparison Test:</term> Consider an improper integral <m>\int_a^b g(x)</m>, with <m>a</m> or <m>b</m> infinite.
+    <ul>
+      <li>If <m>|f(x)|\,{\leq}\, g(x)</m> for <m>x\,{\in}\,[a,b]</m>, and <m>\int_a^b g(x)\,dx</m> converges, then <m>\int_a^b f(x)\,dx</m> converges.</li>
+      <li>If <m>f(x)\,{\geq}\,g(x)\,{\geq}\,0</m> for <m>x\,{\in}\,[a,b]</m> and <m>\int_a^b g(x)\,dx</m> diverges, then <m>\int_a^b f(x)\,dx</m> diverges.</li>
+    </ul>
+  </p>
+
+  <p>The proof uses the Domination Rule for ordinary integrals (<m>\S4.2</m>), plus some complications with limits.</p>
+
+  <p><alert>example:</alert> Does <m>\int_0^\infty \frac{4\sin(x)+1}{e^{2x}+x^2}\,dx</m> converge? This function shrinks rapidly, since the top does not grow, and the bottom grows exponentially; thus we guess that the integral converges.</p>
+
+  <p>To prove this using the first part of the Test, we should bound <m>f(x)=\frac{4\sin(x)+1}{e^{2x}+x^2}</m> inside the graph of a fairly simple comparison function <m>g(x)=\frac{g_1(x)}{g_2(x)}</m> with <m>|f(x)|\leq g(x)</m>. Now, increasing the numerator of <m>f(x)</m> and decreasing its denominator gives a larger fraction, so we take:</p>
+
+  <p><md>
+    \left|\frac{4\sin(x)+1}{e^{2x}+x^2}\right|
+    \ \leq\
+    \frac{5}{e^{2x}} \ =\  5e^{-2x}\,.
+  </md></p>
+
+  <p>The comparison integral converges: <m>\int_0^\infty 5e^{-2x}\,dx = \lim_{r\to\infty}
+  \left.\left(-\frac52 e^{-2x}\right)\right|_{x=0}^{x=r} = \frac52</m>; hence the original integral also converges:</p>
+
+  <p><md>
+    \left|\int_0^\infty \frac{4\sin(x)+1}{e^{2x}+x^2}\,dx\right|
+    \ \leq\ \tfrac52\,.
+  </md></p>
+
+  <p>By contrast, to prove <term>divergence</term> of a fractional <m>f(x)</m>, we would bound <m>f(x)\geq g(x)</m>, above a floor function <m>g(x)</m> with smaller numerator and larger denominator, and <m>\int g(x)\,dx=\infty</m>.</p>
+
+  <p><term>Limit Comparison Test</term> or <term>Ratio Comparison Test:</term> For functions <m>f(x), g(x)</m> with <m>\lim\limits_{x\to\infty} \frac{f(x)}{g(x)} = L\neq 0</m>, the improper integral <m>\int_a^\infty f(x)\,dx</m> converges if and only if <m>\int_a^\infty g(x)\,dx</m> converges.</p>
+
+  <p>In the case that <m>g(x)\geq 0</m>, this is simply because, given <m>\lim_{x\to\infty} \frac{f(x)}{g(x)} = L</m>, we can take <m>x</m> large enough so that <m>\frac12 L g(x)\leq f(x)\leq \frac32L g(x)</m>, and we can apply the Direct Comparison Test.</p>
+
+  <p>To apply this Test to <m>\int_a^\infty f(x)\,dx</m> for a fraction <m>f(x)=\frac{f_1(x)}{f_2(x)}</m>, we generally choose the comparison function <m>g(x)=\frac{g_1(x)}{g_2(x)}</m> where <m>g_1(x)</m> is the largest term in <m>f_1(x)</m>, and likewise with <m>g_2(x)</m> and <m>f_2(x)</m>. For example, for:</p>
+
+  <p><md>
+    f(x)=\frac{x^2-e^{-x}+\sin(x)}
+    {\sqrt{x^5+7}}\qquad\text{take}\qquad
+    g(x)=\frac{x^2}{\sqrt{x^5}}=x^{-1/2}\,,
+  </md></p>
+
+  <p>and we easily see <m>\lim_{x\to\infty} \frac{f(x)}{g(x)} = 1</m> (see <m>\S6.8</m>). We previously showed <m>\int_a^\infty x^{-1/2}\,dx</m> diverges, so the original integral <m>\int_a^\infty f(x)\,dx</m> also diverges.</p>
 
 </section>

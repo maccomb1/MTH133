@@ -1,0 +1,323 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.4in}
+\addtolength{\textheight}{.6in}
+\addtolength{\oddsidemargin}{-.4in}
+\addtolength{\textwidth}{.8in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\sech}{\mathrm{sech}}
+\newcommand{\csch}{\mathrm{csch}}
+
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Power Series}\hfill Stewart \S11.8}
+\vspace{1em}
+
+\noindent 
+{\bf Series of functions.}
+The main purpose of series is to write an interesting, 
+complicated quantity as an infinite sum of simple quantities,
+so that finite partial sums approximate the original quantity. 
+For example, it is a fact (explained in \S11.9) that:
+$$
+\tfrac14 \pi \ =\ 1 -\tfrac1{3} + \tfrac15 -\tfrac17 + \tfrac19-\cdots\,,
+$$
+and we can approximate $\pi$ by taking enough terms of this series (and multiplying by 4).\footnote{
+An irrational number like $\pi$ can never be written exactly as a fraction
+or a finite decimal, so simple ways to approximate are the best we can hope for.
+}
+So far, we have no tools to find or prove such formulas.
+Our Tests determine whether a series converges, 
+but they tell us nothing about what it converges to,
+nor how to write a given interesting quantity as a series.
+
+We have looked only at series of {\it numbers} manipulated with basic algebra and limits. 
+%The one case in which this
+%gave a satisfactory answer was the geometric series:
+%$$
+%\sum_{n=0}^\infty c r^n \ =\ 
+%\lim_{N\to\infty} \sum_{n=0}^N c r^n \ =\ 
+%\lim_{N\to\infty} c\,\frac{\ 1{-}r^{N+1}}{1{-}r\ } \ =\
+%\left\{\!\!\begin{array}{cl}
+%c\,\dfrac{1}{1{-}r} & \text{ for $|r|<1$}\\[1em]
+%\text{diverges} & \text{ for $|r|\geq 1$.}
+%\end{array}\right.
+%$$
+In the next few sections, we will learn about series of {\it functions},
+and use calculus to write interesting, complicated functions as 
+infinite sums of simple functions.
+
+\begin{quote}
+{\it Definition:} A {\it power series} is a function of $x$ whose output
+is the sum of an infinite series:
+$$
+f(x) \ =\ \sum_{n=0}^\infty c_n(x{-}a)^n
+\ =\ c_0 + c_1 (x{-}a) + c_2 (x{-}a)^2 + c_3 (x{-}a)^3 + \cdots
+$$
+Here the numbers $c_0,c_1,c_2,\ldots$ are called the {\it coefficients},
+and $a$ is called the {\it center}.
+The domain of the function (the set of acceptable inputs) contains those
+values of $x$ for which the series converges.
+\end{quote}
+
+\noindent
+The simplest power series is:
+$$
+f(x) \ =\ \sum_{n=0}^\infty x^n \ =\ 1 + x+x^2 + x^3+\cdots .
+$$
+This is a function which takes any particular input $x=r$ 
+to the output
+$f(r)=\sum_{n=0}^\infty r^n = 1 + r + r^2 + r^3+\cdots$, 
+the sum of the corresponding geometric series.
+As we know, this converges exactly when $|r|<1$,
+so the domain of $f(x)$ is $|x|<1$,
+the interval $x\in (-1,1)$.
+We also know a simple formula for this sum: 
+$f(x) = \frac1{1-x}$, which means we can write 
+this simple rational function 
+as a kind of infinite polynomial function:
+$$
+f(x) \ =\ \frac{1}{1-x} \ =\ 1 + x+x^2 + x^3+\cdots  
+\text{\ \ \ for $x\in(-1,1)$.}
+$$
+A general power series might not have a simple formula for the sum,
+but any standard function can be written as a power series, as we shall see
+in \S11.10.
+\newpage
+
+Taking a finite partial sum like $1+x+x^2$ gives an approximation
+to $f(x)=\frac{1}{1-x}$ for each $x\in(-1,1)$, so their graphs are close to each other above this interval:
+\\[1em]
+\centerline{
+\includegraphics[width=3in]
+{11-8-Converge.png} 
+}
+\vspace{0em}
+
+\noindent
+The series converges fastest, the approximation is closest,
+when $|x|$ is very small; that is, close to the center $x=0$.
+The graph of $1+x+x^2$ is just a parabola,
+but it is already a good approximation to $y=f(x)=\frac1{1-x}$ 
+for $x\in(-\frac12,\frac12)$, and taking 
+more terms, such as $1+x+x^2+x^3+x^4$, improves the approximation for $x\in(-1,1)$.
+The approximation is least accurate close to the vertical asymptote $x=1$, since 
+polynomial functions are always continuous.
+The approximations are useless outside the interval of convergence.
+
+We can modify $f(x)$ to get power series for related functions.
+For example, if we substitute $1{-}x$ into the series for $f(x)$, 
+we get a power series with center $x=1$:
+$$\begin{array}{rcl}
+\frac1x &=& \frac1{1-(1{-}x)} 
+\ =\ 1 + (1{-}x) + (1{-}x)^2 + (1{-}x)^3 + \cdots
+\\[.5em]
+&=& 1 - (x{-}1) + (x{-}1)^2 - (x{-}1)^3 + \cdots\,.
+\end{array}$$
+Since the previous series $\sum_{n=0}^\infty x^n$ converges when $|x|<1$, 
+the new series converges when $|1{-}x|<1$, 
+the interval $x\in(0,2)$ centered at $x=1$. 
+The partial sum approximations to $\frac1x$
+are most accurate when $|1{-}x|$ is very
+small, close to the center.
+\\[1em]
+{\bf Power Series Convergence Theorem.}
+Any power series $f(x) \ =\ \sum_{n=0}^n c_n(x{-}a)^n$ has
+one of three types of convergence:
+\begin{itemize}
+\item The series converges for all $x$.
+
+\item The series converges for $|x{-}a|<R$, the interval $x\in(a{}-R,a{+}R)$, and it diverges for $|x{-}a|>R$,
+where $R>0$ is a value called the {\it radius of convergence}.\footnote{ 
+The convergence at the endpoints $x=a{-}R,a{+}R$ must be determined separately.
+}
+
+\item The series converges only at the center $x=a$ and diverges otherwise.
+\end{itemize}
+
+\noindent
+Given a power series, we apply one of our Convergence Tests, usually the Ratio Test, to show which values of $x$ make the
+series converge.
+
+\addtolength{\textheight}{1in}
+
+\newpage
+
+\addtolength{\topmargin}{-.5in}
+
+\noindent
+{\sc example:} Determine the domain of convergence of 
+\ $\ds\sum_{n=0}^\infty \frac{x^n}{n!}$.
+\\
+Since the factorial on the bottom grows much faster than the 
+exponential function on top, we guess that this always converges.
+To prove this, the Ratio Test is appropriate because the terms of the
+series have a growing number of factors, most of which 
+cancel:
+$$
+\frac{a_{n+1}}{a_n}
+\ =\ 
+\frac{x^{n+1}}{(n{+}1)!}\left/\frac{x^n}{n!}\right.
+\ =\
+\frac{x^{n+1}}{x^n}\cdot
+\frac{n!}{(n{+}1)!} 
+$$
+$$
+\ =\ 
+x \cdot
+\frac{n\,(n{-}1)(n{-}2)\cdots (2)(1)}
+{(n{+}1)\,n\,(n{-}1)(n{-}2)\cdots (2)(1)}
+\ =\
+\frac{x}{n{+}1}\,.
+$$
+\\[0em]
+Taking any particular value of $x$, even a large value like $x=1000$,
+gives: 
+$$
+L\ =\ \lim\limits_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right| 
+\ =\  \lim\limits_{n\to\infty}\frac{|x|}{n{+}1} \ =\  0\,.
+$$
+Since $L <1$, the sequence converges for all $x$.
+\\[.5em]
+{\sc example:} Determine the domain of convergence of \ \
+$\ds\sum_{n=0}^\infty (-1)^n\frac{(x{-}2)^{2n+1}}{n^2\ln(n)}$\,.
+\\
+This is a power series with coefficients $c_n=\frac{(-1)^n}{n^2\ln(n)}$
+and center $a=2$. Ratio Test:
+$$
+L\ =\ 
+\lim_{n\to\infty}
+\left|\frac{a_{n+1}}{a_n}\right|
+\ =\ 
+\lim_{n\to\infty}\left|
+\frac{(x{-}2)^{2n+3}}{(n{+}1)^2\ln(n{+}1)}\left/
+\frac{(x{-}2)^{2n+1}}{n^2\ln(n)}\right.\right|
+$$
+$$
+\ =\
+|x{-}2|^2\cdot\lim_{n\to\infty}
+\frac{n^2}{(n{+}1)^2}
+\cdot
+\lim_{n\to\infty}\frac{\ln(n)}{\ln(n{+}1)}
+\ =\ |x{-}2|^2\cdot 1\cdot 1 \ =\ |x{-}2|^2\,,
+$$
+where the last two limits are determined by L'H\^opital's Rule.
+Thus, the series converges when $L = |x{-}2|^2 <1$, i.e.~when $|x{-}2|<1$,
+and diverges otherwise.
+The radius of convergence is $R=1$, and the open interval of convergence
+is $x\in(1,3)$. We do not worry about convergence at the endpoints.
+\\[.5em]
+{\sc example:} Determine the domain of convergence of 
+$\ds\sum_{n=0}^\infty \frac{(2x{+}4)^{3n}}{3^n}$\,.
+\\
+Factoring $2x{+}4=2(x{+}2)$, we can rewrite this as a power series:
+$$
+\sum_{n=0}^\infty \frac{(2x{+}4)^{3n}}{3^n}
+\ =\
+\sum_{n=0}^\infty 
+\frac{2^{3n}}{3^n}\, (x{+}2)^{3n}
+\ =\
+\sum_{n=0}^\infty 
+\left(\frac{8}{3}\right)^{\!\!n}\! (x{+}2)^{3n}
+\,.
+$$
+Not every power $(x{+}2)^n$ appears, only multiple-of-3 powers $
+a_n=(\frac83)^n(x{+}2)^{3n}$,
+but this still fits into the definition of power series since
+we can think of the missing terms as having zero coefficients.
+The Ratio Test gives $L =\lim_{n\to\infty}|\frac{a_{n+1}}{a_n}|
+= \frac83 |x{+}2|^3$, so the series converges when $\frac83 |x{+}2|^3< 1$,
+i.e.~when $|x{+}2|<\sqrt[3]{3/8}=\frac12\sqrt[3]3$. 
+The radius of convergence is $R=\frac12\sqrt[3]3$, 
+and the center is the point where $x{+}2=0$, 
+namely $x=-2$; so the open interval of convergence is: 
+$$
+x\,\in\,(-2-\tfrac12\sqrt[3]3,\,-2+\tfrac12\sqrt[3]3) \,\approx\, 
+(-2.72,-1.29).
+$$
+{\sc example:} Find a power series $\sum_{n=0}^\infty c_n x^n$ which converges only at $x=0$.
+We must choose coefficients $c_n$ which grow fast enough to overwhelm the decrease of 
+$x^n$, no matter how small we take $x\neq 0$. The factorial $c_n=n!$ does it:
+applying the Ratio Test to $\sum_{n=0}^\infty n!\,x^n$ gives
+$L=\lim_{n\to \infty} (n{+}1)x=\infty$ for {\it any} value of $x\neq 0$,
+showing divergence. Of course, for $x=0$, all the higher terms vanish, and the series converges.
+
+
+
+
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

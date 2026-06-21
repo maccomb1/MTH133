@@ -1,0 +1,422 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{.9in}
+\addtolength{\oddsidemargin}{-.3in}
+\addtolength{\textwidth}{.6in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\sech}{\mathrm{sech}}
+\newcommand{\csch}{\mathrm{csch}}
+
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+ Taylor Series}\hfill Stewart \S11.10}
+\vspace{1em}
+
+\noindent 
+{\bf Series representation of a function.} A series writes a given {\it complicated} quantity as an infinite sum of {\it simple} terms.
+To approximate the quantity, we take only the first few terms of the series,
+dropping the later terms which give smaller and smaller corrections. 
+In this section, we finally develop the tool that lets us do this in most cases: a way to write any reasonable function $f(x)$ as an explicit power series, a kind of infinte polynomial. 
+This will allow us to compute outputs of the function 
+by plugging values of $x$ into the series.
+
+Our functions must behave decently near the center point of the desired power series.
+We say $f(x)$ is {\it analytic} at $x=a$ if it is possible to write $f(x)=\sum_{n=0}^\infty c_n(x{-}a)^n$ for some coefficients $c_n$, with positive radius of convergence.
+In practice, any formula involving standard functions and operations 
+defines an analytic function, provided the formula gives real number values in a
+small interval around $x=a$. For example $\frac{1}{x{-}a}$ is {\it not} analytic at $x=a$, 
+because it gives $\pm\infty$ at $x=a$; and $\sqrt{x{-}a}$ is {\it not} analytic at $x=a$ because
+for $x$ slightly smaller than $a$, it gives the square root of a negative number.\footnote{
+The function $\sqrt[3]{x{-}a\,}$ is also not analytic near $x=a$,
+ever though it gives real number values.
+The problem is it has a vertical tangent at $x=a$,
+so it is not differentiable. Also see $e^{-1/x^2}$ in \S11.11.
+} 
+\begin{quote}
+{\it Taylor Series Theorem:} Let $f(x)$ be a function which is analytic at $x=a$.
+Then we can write $f(x)$ as the following power series,  called the {\it Taylor series} of $f(x)$
+at $x=a$:
+$$
+f(x) \ =\ f(a) + f'(a)\,(x{-}a) + \frac{f''(a)}{2!}\,(x{-}a)^2 + \frac{f'''(a)}{3!}\,(x{-}a)^3 + \frac{f''''(a)}{4!}\,(x{-}a)^4 + \cdots\,,
+$$
+valid for $x$ within a radius of convergence $|x{-}a|<R$ with $R>0$, or convergent for all $x$.
+
+If we write the $n$th derivative of $f(x)$ as $f^{(n)}(x)$, this becomes: 
+$$
+f(x) \ =\  \sum_{n=0}^\infty c_n(x{-}a)^n
+\qquad
+\text{with coefficients}
+\qquad
+c_n=\frac{f^{(n)}(a)}{n!}\,.
+$$
+\end{quote}
+%
+{\sc warning:} The coefficients are {\it constants} with no $x$, 
+so $c_1 =  f'(a)$, {\sc not} $ f'(x)$.
+\\[.5em]
+{\it Proof.} By hypothesis $f(x)$ is analytic, so $f(x)=\sum_{n=0}^\infty c_n(x{-}a)^n$ 
+for {\it some} $c_n$; we will derive the desired formula for these coefficients. Since $f(a) = \sum_{n=0}^\infty c_n(a{-}a)^n=
+c_0 + c_1(0) + c_2(0^2)+\cdots$, we get $c_0=f(a)$. 
+Next, by the Theorem in \S11.9, we have (dropping the zero term)
+$f'(x) = \sum_{n=1}^\infty nc_n (x{-}a)^{n-1}$, 
+so $f'(a) = c_1 + 2c_2(0) + 3c_3(0^2) + \cdots$, and $c_1 = f'(a)$. 
+Next, $f''(x) = \sum_{n=2}^\infty n(n{-}1)c_n (x{-}a)^{n-2}$,
+ so $f''(a) = (2)(1)c_2$ and $c_2=\frac12 f''(a)$.  Continuing, we get:
+$$
+f^{(N)}(x) \ =\ \sum_{n=N}^\infty n(n{-}1)\cdots(n{-}N{+}1)\, c_n\,(x{-}a)^{n-N}\,.
+$$
+The terms for $n= 0,1,\ldots, N{-}1$ are all zero, as is evident from the factors $n(n{-}1)\cdots(n{-}N+1)$,
+so the first non-zero term is for $n=N$. Plugging in $x=a$ gives:
+$f^{(N)}(a) \ = \ N(N{-}1)\cdots(1)c_N$, and $c_N=\frac{1}{N!} f^{(N)}(a)$ as desired. Q.E.D.
+
+Once we have a power series for $f(x)$ with known coefficients $c_n = \frac{f^{(n)}(a)}{n!}$, 
+we can approximate $f(x)$ by taking a finite partial sum of the series up to some cutoff term $N$. 
+This partial sum is called a {\it Taylor polynomial}, denoted $T_N(x)$:
+$$
+f(x)\ \approx\ T_N(x) \ =\ \sum_{n=0}^N c_n(x{-}a)^n = f(a) + f'(a)(x{-}a)  + \cdots + \frac{f^{(N)}(a)}{N!}(x{-}a)^N\,.
+$$
+Note that $T_1(x) = f(a)+f'(a)(x-a)$ is just the linear approximation near $x=a$, whose graph is the tangent line (Calculus I \S2.9).
+We can improve this approximation of $f(x)$ in two ways:
+\begin{itemize}
+\item Take more terms, increasing $N$.
+\item Take  the center $a$ close to $x$, giving small $(x{-}a)$ and tiny $(x{-}a)^n$.
+\end{itemize}
+%
+A Taylor series centered at $a=0$ is specially named a {\it Maclaurin series}.
+\\[1em]
+{\bf Example: sine function.} To find Taylor series for a function $f(x)$, we must determine
+$f^{(n)}(a)$. This is easiest for a function which satisfies a simple differential equation
+relating the derivatives to the original function. For example, $f(x)=\sin(x)$ satisfies 
+$f''(x) = -f(x)$, so coefficients of the Maclaurin series (center $a=0$) are:
+$$\begin{array}{|c||c|c|c|c|c|c|c|c|c|}
+\hline &&&&&&&& \\[-.9em] 
+n & 0 & 1 & 2  & 3 & 4 & 5 & 6 & 7 
+\\[.2em] \hline &&&&&&&& \\[-.9em]
+f^{(n)}(x) & \,\sin(x)\, &\,\cos(x)\, & \!-\sin(x)\! & \!-\cos(x)\! & \,\sin(x)\, &\,\cos(x)\, &\! -\sin(x)\!& \!-\cos(x) \!
+\\[.2em] \hline &&&&&&&& \\[-.9em] 
+f^{(n)}(0) & 0 &1 & 0 & -1 & 0 &1 & 0 & -1 
+\\[.2em] \hline &&&&&&&&\\[-.9em] 
+\!c_n\,{=}\,\frac{f^{(n)}(0)}{n!}\! & 0 & 1 & 0 & -\frac1{3!} & 0 &\frac1{5!} & 0 &-\frac1{7!}
+\\[.3em] \hline
+\end{array}$$
+That is:
+$$
+\sin(x) \ =\  x - \frac{x^3}{3!} +\frac{x^5}{5!}- \frac{x^7}{7!}+\cdots 
+\ =\ \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n{+}1)!}\,. 
+$$
+To find the domain of convergence, we apply the Ratio Test (11.6/I):
+$$
+L 
+\ = \ \lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+\ = \ \lim_{n\to\infty}\left|\frac{x^{2(n+1)+1}}{(2(n{+}1){+}1)!}\ \left/ \frac{x^{2n+1}}{(2n{+}1)!}\right.\right|
+$$ 
+$$
+\ = \ \lim_{n\to\infty}\frac{|x|^{2n+3}}{|x|^{2n+1}}\cdot\frac{(2n{+}1)!}{(2n{+}3)!}
+\ = \ \lim_{n\to\infty}\frac{|x|^2}{(2n{+}2)(2n{+}3)}
+\ =\ 0
+$$ 
+for any fixed $x\neq 0$. Since $L=0<1$ regardless of $x$, the series converges for all $x$.
+
+This formula for $\sin(x)$ astonishes because the right side is a simple algebraic series  having no apparent relation to trigonometry. We can try to understand and check the series by graphically comparing 
+$\sin(x)$ with its Taylor polynomial approximations:
+\\[1em]
+\centerline{
+\includegraphics[width=4.5in]
+{11-10-Sin-Taylor.png}
+}
+\vspace{-1.5em}
+
+\begin{itemize}
+\item The Taylor polynomial $T_1(x)=x$ (in red) is just the linear approximation or tangent line 
+of $y=\sin(x)$ at the center point $x=0$.
+The curve and line are close (to within a couple of decimal places) near the point of tangency
+and up to about $|x|\leq 0.5$. Once they veer apart, the approximation is useless.
+
+\item The next Taylor polynomial $T_3(x) = x-\frac{x^3}{3!}=x-\frac16 x^3$ (in green) matches $y=\sin(x)$ in its first three derivatives at $x=0$, and stays close to the original curve up to about $|x|\leq 1.5$\,.
+
+\item The next $T_5(x)= x-\frac{x^3}{3!}+\frac{x^5}{5!}=x-\frac16 x^3+\frac{1}{120}x^5$ is even closer to $f(x)$ for even larger $x$.
+Taking enough terms in the Taylor series will give a good approximation for {\it any} $x$, since
+the series converges everywhere.
+\end{itemize}
+
+
+\noindent
+%A given approximation $f(x)\approx T_N(x)$ is more accurate for smaller $|x|$. In fact, we need not consider large $x$, since all values of $\sin(x)$ can be reduced to $x\in[0,\frac\pi2]$.
+%\\[.5em]
+{\sc problem:} Compute $\sin(10^\circ)$. A geometric method would be to construct a right triangle with a $10^\circ$ angle, and measure the opposite side divided by the hypotenuse; but this would 
+only produce a couple of decimal places of accuracy.
+Of course,~a calculator can produce many decimal places, but how does it know?
+Taylor series!
+
+As always when doing calculus on trig functions, we must first convert to radians (see end of \S2.5):
+$10^\circ = \frac{2\pi}{360}( 10) = \frac{\pi}{18}$. Here $|x|=\tfrac{\pi}{18}\approx\frac16$ is small, so the Maclaurin series centered at $0$ should converge quickly, giving very accurate approximations:
+$$
+\sin(\tfrac{\pi}{18}) \ \approx\ T_3(\tfrac{\pi}{18}) \ =\  \tfrac{\pi}{18} - \tfrac16(\tfrac{\pi}{18})^3 \ \approx\ \underline{0.17364}68\,.
+$$
+It turns out this is correct to 5 decimal places (underlined), 
+using only two non-zero terms of the Taylor series and a good estimate for $\pi$.
+We could verify this by taking more terms and seeing that these 5 digits do not change,
+or by applying the Lagrange Remainder estimates in \S11.11.
+\newpage
+
+\noindent
+{\bf Example: square roots.} Compute $\sqrt{2}$ to 5 decimal places.\footnote{
+We saw a faster algorithm for this (but not for functions like $\sin$) in Calculus I \S3.8: 
+Newton's Method finds approximate solutions to equations like $g(x)=x^2-2=0$ 
+by repeatedly solving a linear approximation of $g(x)=0$;
+this improves approximate solution $x_n$ to $x_{n+1}=x_n-g(x_n)/g'(x_n)
+=x_n-(x_n^2{-}2)/(2x_n)$.
+Starting with $x_0=3/2=1.5$ gives $x=\sqrt 2$ accurate to 5 decimal places
+after just $n=2$ iterations, while the Taylor series requires $n=4$.
+Newton's Method doubles the number of accurate places each time, 
+while each term of the series adds a constant number of places (\S11.11).
+} 
+First, we must consider $\sqrt 2$ to be an output of the function $f(x)=\sqrt x$ at $x=2$.
+Next, we must choose the center $a$ for its Taylor series. 
+\begin{itemize}
+\item $a=0$ does not give a series because $\sqrt x$ is not analytic at $x=0$.
+Indeed, if there were a convergent Taylor series $\sqrt x= c_0 + c_1x+ c_2x^2+\cdots$, 
+we could plug in $x=-0.1$ to get:
+$\sqrt{-0.1}=c_0 + c_1(-0.1)+ c_2(-0.1)^2+\cdots$, a real value
+for the square root of a negative number! 
+
+\item $a=1$ is too far from $x=2$: it turns out $|x{-}a| = |2{-}1|= 1$ is
+beyond the radius of convergence of the Taylor series.
+
+\item $a=2$ is useless, since writing the Taylor series requires us to know $f^{(n)}(2)$, including $f(2)=\sqrt 2$, the same number 
+we are trying to compute.
+
+\item A useful choice of $a$ requires: $a>0$  so that the Taylor series exists; 
+$a$ is close to $x=2$, making $|x{-}a|$ small so the series converges quickly;
+and $f(a)=\sqrt a$ is easy to compute  so we can find the coefficients.
+A value satisfying all three conditions is:
+$a=\tfrac94\,.$
+
+\end{itemize}
+
+Now we have:
+$$\begin{array}{|c||c|c|c|c|c|}
+\hline &&&&& \\[-.9em] 
+n & 0 & 1 & 2  & 3 & 4 
+\\[.2em] \hline &&&&& \\[-.9em]
+f^{(n)}(x) & x^{1/2} & \frac12\,x^{-1/2} 
+&-\frac{1\cdot 1}{2\cdot 2}\,x^{-3/2} 
+& \frac{1\cdot 1\cdot 3}{2\cdot 2\cdot 2}\,x^{-5/2} 
+& -\frac{1\cdot 1\cdot 3\cdot 5}{2\cdot 2\cdot 2\cdot 2}\,x^{-7/2} 
+\\[.2em] \hline &&&&& \\[-.9em] 
+f^{(n)}(\frac94) & \frac{3}{2} & \frac{1}{3} & -\frac{2}{27} & \frac{4}{81} & -\frac{40}{729}
+\\[.3em] \hline &&&&&\\[-1em] 
+\!c_n\,{=}\,\frac{f^{(n)}(\frac94)}{n!}\! & \frac32 &\frac13 & -\frac1{27} & \frac2{243} & -\frac5{2187}  
+\\[.5em] \hline
+\end{array}$$
+Hence:
+$$
+\sqrt{x} \ =\ 
+\tfrac32 + \tfrac13(x{-}\tfrac94)
+-\tfrac1{27}(x{-}\tfrac94)^2 + \tfrac{2}{243}(x{-}\tfrac94)^3
+- \tfrac{5}{2187}(x{-}\tfrac94)^4+\cdots
+$$
+$$
+\ =\ \tfrac 32 + \tfrac13(x{-}\tfrac94)+ \sum_{n=2}^\infty (-1)^{n-1}\tfrac{(2n-3)!!}{n!}\,\tfrac{2^{n-1}}{3^{2n-1}}\,(x{-}\tfrac94)^n\,,
+$$
+where we use the odd-factorial notation $(2n{-}3)!! = (1)(3)(5)\cdots
+(2n{-}3)$.
+For $x=2$, we have $x{-}\tfrac94 = -\frac14$, so:
+$$\begin{array}{rcl}
+\sqrt 2 &=& \tfrac32 + \tfrac13(-\tfrac14)
+-\tfrac1{27}(-\tfrac14)^2 + \tfrac{2}{243}(-\tfrac14)^3
+- \tfrac{5}{2187}(-\tfrac14)^4+\cdots
+\\[.5em]
+&\approx& 
+\tfrac32 - \tfrac13\,\tfrac14
+-\tfrac1{27}\,\tfrac1{4^2} - \tfrac{2}{243}\,\tfrac1{4^3}
+- \tfrac{5}{2187}\tfrac1{4^4}
+\ \approx\ \underline{1.41421}43\,,
+\end{array}$$
+which is correct to 5 decimal places (underlined).
+\newpage
+
+\noindent
+{\bf Common Taylor series}
+\begin{itemize}
+
+
+\item $\ds\frac{1}{1{-}x} \ =\ \sum_{n=0}^\infty x^n$ \ for $|x|<1$ \ ({\it Geometric Series}).
+
+\item $\ds\ln(1{+}x) \ =\ 
+\sum_{n=1}^\infty (-1)^{n-1} \frac{x^n}{n}$ \ for $|x|<1$.
+
+\item $(1{+}x)^p \ =\  \ds\sum_{n=0}^\infty
+\frac{p(p{-}1)\cdots (p{-}n{+}1)}{n!}\, x^n$ \  for $|x|<1$
+\ ({\it Binomial Series}).
+
+ \item $\ds\exp(x)\ =\ \sum_{n=0}^\infty \frac{x^n}{n!}$ \ for all $x$.  
+
+\item $\ds\sin(x)\ =\ \sum_{n=0}^\infty (-1)^n\frac{x^{2n+1}}{(2n{+}1)!}$ \ for all $x$.
+
+\item $\ds\cos(x)\ =\ \sum_{n=0}^\infty (-1)^n\frac{x^{2n}}{(2n)!}$ \ for all $x$.
+
+\end{itemize}
+\vspace{1em}
+
+\noindent
+{\bf Euler's Basel Formula.}  
+$$ \sum_{n=1}^\infty \frac1{n^2} \ =\  \frac{\pi^2}6.$$
+%
+To see this, we introduce {\it infinite products}, which represent a function $f(x)$ by
+factors of the form $(1-\frac xb)$ where $x=b$ is zero of $f(x)$, a value where $f(b) = 0$.
+If $b_1, b_2,\ldots $ is the sequence of all zeroes of $f(x)$, then we should have a 
+{\it Weierstrass product}:
+$$
+f(x) \ = \ c\,\prod_{n=1}^\infty \left(1-\frac x{\ b_n}\right),
+$$
+where $c=f(0)$, since both sides have the same zeroes and the same value at $x=0$. 
+
+Now apply this to the function $f(x) = \frac{\sin(\pi x)}{\pi x}$, which has Taylor series:
+$$
+f(x) \ = \ \frac{\sin(\pi x)}{\pi x} 
+\ = \ 
+\frac{1}{\pi x}\left(\pi x -\frac{(\pi x)^3}{3!} + \frac{(\pi x)^5}{5!}+ \ldots \right)
+\ = \ 
+1 -\frac{\pi^2}{3!} x^2 + \frac{\pi^4}{5!}x^4 + \ldots   .      
+$$
+The zeroes are $n = \pm 1, \pm 2, \pm 3,\ldots$, and 
+$f(0) = \lim\limits_{x\to0}\frac{\sin(\pi x)}{\pi x}= 1$, so the product is:
+$$
+f(x) 
+\ = \ 
+\prod_{n=1}^\infty \left(1-\frac x{n}\right)\left(1+\frac x{n}\right)
+\ = \ 
+\prod_{n=1}^\infty \left(1-\frac{x^2}{n^2}\right).
+$$
+Now multiply out the infinite product (taking the limit of the finite products):
+$$
+f(x) \ = \ 1 -\frac{x^2}{1^2} - \frac{x^2}{2^2} - \frac{x^2}{3^2} - \cdots
++ \frac{x^4}{1^2 2^2} + \frac{x^4}{1^2 3^2} + \cdots
+$$
+Collecting terms and comparing with the Taylor series:
+$$
+f(x) \ = \ 1 - \left(\sum_{n=1}^\infty \frac1{n^2}\right)\!x^2 +
+\left(\sum_{n=1}^\infty \frac{d(n)}{n^2}\right)\!x^4 + \cdots
+\ = \ 1 -\frac{\pi^2}{3!} x^2 + \frac{\pi^4}{5!}x^4 + \cdots .
+$$
+where $d(n)$ is the number of factors of $n$.
+Equating the $x^2$ coefficients gives Euler's formula: $\sum_{i=1}^\infty \frac1{n^2} = \frac{\pi^2}6$\,.
+\\[1em]
+{\bf Extra Topic: Irrationality of $e$.}  In \S11.2, 
+we saw that repeating infinite decimals represent rational numbers (fractions),
+and every fraction can be written by long division as a repeating decimal.
+Any infinite decimal which does not repeat cannot be written as a fraction: 
+it is {\it irrational}. However, it is diffficult to prove that any given interesting number
+such as $\pi$ or $\sqrt 2$ is irrational. 
+
+We can use series to prove the irrationality of the constant
+$e =2.7182818284590\cdots$.
+To prove the negative proposition that $e$ is not equal to any possible fraction $a/b$,
+we use the {\it method of contradiction}: 
+that is, we assume that there {\it were} some fraction with $e=a/b$, 
+and use this to deduce an impossible conclusion, which will show 
+that the original assumption  $e=a/b$ was also impossible.
+
+Thus, using the Taylor series definition for $e$, we assume the possibility, 
+for some whole numbers $a,b$, of the equation:
+$$
+1 + \frac{1}{1!} + \frac{1}{2!} +\frac{1}{3!}+ \cdots \ \stackrel{\text{def}}{=}\ e \ =\ \frac ab\,.
+$$
+It is easy to show $2<e<3$, so $e$ is not a whole number, and would have denominator $b>1$.
+Consider the $b^{\mathrm{th}}$ order Taylor approximation,
+with error or remainder $R_b$:
+$$
+1 + \frac{1}{1!} + \frac{1}{2!} +\frac{1}{3!}+ \cdots + \frac{1}{b!}+ R_b \ = \ e,
+\qquad
+R_b= \sum_{n= b+1}^\infty \frac{1}{n!}.
+$$
+We multiply by $b!$ to clear denominators up to the $\frac 1{b!}$ term:
+$$
+b! + \frac{b!}{1!} + \frac{b!}{2!} + \cdots +\frac{b!}{b!}+b!R_b\ \ =\ b!\, e \ =\ b!\,\frac ab \ =\ (b{-}1)!\, a\,.
+$$
+The terms $b!\,, \frac{b!}{1!}, \frac{b!}{2!}, \ldots ,\frac{b!}{b!}$ on the left
+are whole numbers, and $(b{-}1)!\,a$ on the right is a whole number, 
+so the remainder $b!R_b$ must also be a whole number.
+But it must also be very small,
+as we can see from a simple geometric series comparison:\footnote{
+Here we do not need the powerful Lagrange remainder formula from \S11.11.
+}
+$$\begin{array}{rcl}
+b!R_b
+\ = \  \sum\limits_{n= b+1}^\infty \frac{b!}{n!}
+&=&
+\frac{1}{b{+}1} + \frac{1}{(b{+}1)(b{+}2)} + \frac{1}{(b{+}1)(b{+}2)(b{+}3)}+\cdots
+\\[1em]
+&<&
+\frac{1}{b+1} + \frac{1}{(b{+}1)^2} + \frac{1}{(b{+}1)^3}+\cdots
+\\[1em]
+& = & \frac{1}{b{+}1}\frac{1}{1 -(\frac1{b+1})}\ =\ \frac{1}{b{+}1}\frac{b+1}{b+1-1}
+\ =\ \frac1b \ < \ 1.
+\end{array}$$
+Thus, we have constructed a positive number $b!R_b$ which is both a whole number 
+and less than 1, which is impossible. 
+Therefore the original assumption $e=a/b$ must also be impossible.
+
+
+
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

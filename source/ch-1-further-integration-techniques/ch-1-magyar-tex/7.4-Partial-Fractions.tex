@@ -1,0 +1,527 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.9in}
+\addtolength{\textheight}{1.8in}
+\addtolength{\oddsidemargin}{-.4in}
+\addtolength{\textwidth}{.8in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Partial Fractions}\hfill Stewart \S7.4}
+\vspace{1em}
+
+\noindent 
+{\bf Integrating basic rational functions.}
+For a function $f(x)$, we have examined several algebraic methods\footnote{
+Substitution \S4.5, Integration by Parts \S7.1, Products of Trig Functions \S7.2, Reverse Trig Substitution \S7.3
+}
+for finding its indefinite integral (antiderivative) $F(x)=\int f(x)\,dx$, 
+which allows us to compute definite integrals $\int_a^b f(x)\,dx=F(b)-F(a)$ by the Second Fundamental Theorem. 
+
+In this section, we will learn a special technique to integrate any {\it rational function},
+meaning a quotient of two polynomials:
+$$
+f(x) \ =\ \frac{g(x)}{h(x)}
+\ =\ 
+\frac{a_mx^m + a_{m-1}x^{m-1} + \cdots + a_1x + a_0}
+{b_nx^n + b_{n-1}x^{n-1} + \cdots + b_1x + b_0}\,,
+$$
+where $a_i, b_j$ are constant coefficients. 
+We call the largest powers $m$ and $n$ the {\it degrees} of the polynomials $g(x)$ and $h(x)$, assuming that the highest coefficients $a_m,b_n\neq 0$.
+
+We have several basic rational functions whose integrals we already know:
+\begin{itemize}
+
+\item[(i)] 
+$\ds\int\! a_mx^m + \cdots + a_1x + a_0\ dx \ =\  \tfrac{a_m}{m+1}x^{m+1} + \cdots+  \tfrac{a_1}{2}x^2 + a_0x + C$. 
+
+\item[(ii)] $\ds\int\! \frac{1}{x-a}\  dx \ = \  \ln\!|x{-}a|+C$.
+
+\item[(iii)] $\ds\int\! \frac{1}{(x-a)^n}\  dx \ = \  -\frac{1}{(n{-}1)(x-a)^{n-1}}$ \ for $n\geq 2$.
+
+\item[(iv)] $\ds\int\!\frac{x}{x^2 + a}\ dx 
+\ =\ 
+\tfrac 12\,\int\!\frac{1}{x^2 +a}\cdot 2x\, dx 
+\ =\ 
+\tfrac 12\ln\!|x^2{+}a|+C$
+
+\item[(v)] $\ds\int\!\frac{1}{x^2 + a}\ dx 
+\ =\ 
+\tfrac{1}{\sqrt a}\,\int\! \frac{1}{(\frac x{\sqrt a})^2 + 1}\cdot \tfrac{1}{\sqrt a}\,dx 
+\ =\ 
+\tfrac 1{\sqrt a}\arctan(\tfrac x{\sqrt a})+C$,\, for $a>0$.
+
+\item[(vi)] $\ds\int\!\frac{1}{(x^2 + 1)^2}\ dx$. \
+Letting  \ $x = \tan(\theta)$, \ $x^2{+}1 =\sec^2(\theta)$, \ $dx=\sec^2(\theta)\,d\theta$:
+$$\hspace{-5em}
+\int\!\frac{1}{(x^2 + 1)^2}\ dx 
+\ = \ 
+\int\! \frac{1}{\sec^4(\theta)}\,\sec^2(\theta)\,d\theta
+\ = \ 
+\int\! \cos^2(\theta)\,d\theta
+$$
+$$
+\ =\
+\tfrac12( \theta + \sin(\theta)\cos(\theta)) + C
+\ =\
+\tfrac12\!\left(\!\arctan(x) + \frac{x}{x^2+1}\!\right) + C\,.
+$$
+We used: $\int\! \cos^2(\theta)\,d\theta = \int\! \frac12\,{+}\,\frac12\cos(2\theta)\,d\theta
+=\frac12\theta \,{+}\, \frac14\sin(2\theta)=\frac12\theta \,{+}\,\frac12 \sin(\theta)\cos(\theta)$,
+and (as in \S6.6) 
+$\sin(\theta) = \frac{x}{\sqrt{x^2+1}}$, \ $\cos(\theta) = \frac{1}{\sqrt{x^2+1}}$ .
+\end{itemize}
+\vspace{.5em}
+
+\noindent
+{\bf Quadratic denominator.} With the above basic integrals,
+we can integrate any rational function with numerator of degree at most 1 and
+denominator of degree at most 2:
+$$
+\int\!\frac{px + q}{ax^2 + bx+c}\ dx\,.
+$$
+There are two different cases, depending on the sign of the {\it discriminant} $d=b^2-4ac$.
+\\[.5em]
+{\sc example:} Here is how to handle the case where $d=b^2-4ac>0$, such as:
+$$
+\ds\int\!\frac{x+1}{x^2 + x-2}\ dx, 
+$$
+where $d = 1^2-4(1)(-2)=9$. By the Quadratic Formula, 
+the denominator has two real roots $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}=1,-2$,
+which are the vertical asymptotes of our function: 
+\\[.5em]
+\centerline{
+\includegraphics[width=3in]
+{7-4-Asymptotes.png} 
+}
+\mbox{}
+\\[-2em]
+
+\noindent
+We split our function into a sum of simple parts, 
+each having just one vertical asymptote:
+$$
+\frac{x+1}{x^2 + x-2}
+\ =\ 
+\frac{x+1}{(x{-}1)(x{+}2)}
+\ =\ 
+\frac{A}{x{-}1} + \frac{B}{x{+}2}\,.
+$$
+This is called the {\it partial fraction expansion} of our rational function.
+For any constants $A,B$, the graph of the right-hand function 
+will have the same asymptotes as our original function, 
+but we can actually find constants which make the
+two exactly equal. 
+Clearing denominators, we want $A,B$ such that:
+$$
+x+1 \ =\ 
+A(x{+}2) + B(x{-}1) \quad \text{for all $x$.}
+$$
+Setting $x = 1$ gives $1+1 = A(1{+}2) + B(0)$, so $A=\frac23$;
+and setting $x=-2$ gives $-2+1 = A(0) + B(-2{-}1)$, so $B=\frac13$. 
+Now we can use the basic integral (ii) above:
+$$
+\int\!\frac{x+1}{x^2 + x-2}\,dx
+\ =\ 
+\int\!\frac{\frac23}{x{-}1} + \frac{\frac13}{x{+}2}\ dx
+\ =\ 
+\tfrac23\ln\!|x{-}1| + \tfrac13\ln\!|x{+}2| + C\,.
+$$
+\\[.5em]
+{\sc example:} The other case is when $d = b^2-4ac<0$, such as:
+$$
+\int\!\frac{x+1}{x^2 + x + 1}\ dx,
+$$
+for which $d=1^2 - 4(1)(1) = -3$. In this case, the denominator has no real-number zeroes: $x^2+x+1> 0$, and it cannot be factored; it is an {\it irreducible} polynomial. The graph of $\frac{x+1}{x^2 + x + 1}$ has no vertical asymptotes.
+Our strategy is to reduce its integral to the basic integrals (iv) and (v) above.
+
+The first step is to complete the square in the denominator and force it into the form $(x{+}p)^2 + q$,
+the same process that produces the Quadratic Formula:
+$$
+x^2 + x+1 
+\ =\ 
+x^2 + 2(\tfrac12)x 
++ (\tfrac12)^2 - (\tfrac12)^2 + 1
+\ =\ 
+(x{+}\tfrac12)^2 + \tfrac34\,.
+$$
+Thus, letting $u=x+\frac12$,\, $du=dx$:
+$$\begin{array}{rcl}
+\ds\int\!\frac{x+1}{x^2 + x+1}\ dx 
+& = &
+\ds\int\! \frac{(x{+}\tfrac12) -\tfrac12+1}{(x{+}\tfrac12)^2+\tfrac34}\ dx
+\\[1.5em]
+& = &
+\ds\int\! \frac{u}{u^2+\tfrac34}\ dx
++
+\tfrac12\int\! \frac{1}{u^2+\tfrac34}\ dx
+\\[1.5em]
+& = & 
+\tfrac12\ln\!|u^2{+} \tfrac34| 
+\,+\, 
+\tfrac{1}{ 2\sqrt{3/4} } \arctan( \tfrac{u}{\sqrt{3/4}} ) + C
+\\[1em]
+& = &
+\tfrac12\ln\!\left|x^2{+}x{+}1\right| 
+\,+\, 
+\tfrac{1}{ \sqrt{3} } \arctan( \tfrac{2x{+}1}{\sqrt3} ) + C.
+\end{array}$$
+In fact, the two terms in our answer correspond to splitting the original function (blue)
+into a graph with reflection symmetry across the line $x=-\frac12$ (green), 
+and a graph with $180^\circ$ rotation symmetry around the point $(-\frac12, 0)$ (red):
+\\[1em]
+\centerline{
+\includegraphics[width=4in]
+{7-4-Bell.png} 
+}
+\vspace{0em}
+
+%
+%$$\begin{array}{rcl}
+%\ds\int\!\frac{px + q}{ax^2 + bx+c}\ dx 
+%& = &
+%\ds\int \frac{p\!\left(x+\tfrac{b}{2a}\right) -\tfrac{pb}{2a} + q}{a\!\left(\left(x+\tfrac{b}{2a}\right)^{\!2}- \tfrac{d}{4a^2}\right)}\ dx
+%\\[2em]
+%&& \quad\text{Let:}\quad
+% u = x+\tfrac{b}{2a}  \quad \text{and} \quad h=-d>0.
+%\\[1em]
+%& = &
+%\ds\tfrac pa\int\! \frac{u} {u^2 + \tfrac{h}{4a^2}}\ du
+%\,+\, \left(\!\tfrac{2qa-pb}{2a^2}\!\right)\!\int\! \frac{ 1} {u^2 + \tfrac{h}{4a^2}}\ du
+%\\[2em]
+%& = &
+%\ds\tfrac p{2a}\ln\left|\left(x{+}\tfrac{b}{2a}\right)^{\!2}+\tfrac{h}{4a^2}\right|
+%\,+\, \left(\!\tfrac{2qa-pb}{2a^2\sqrt{h/4a^2}}\!\right)\!\arctan\!\left(\tfrac{x}%{\sqrt{h/4a^2}}\right)
+%\\[2em]
+%& = &
+%\ds\tfrac p{2a}\ln\left|\left(x{+}\tfrac{b}{2a}\right)^{\!2}+\tfrac{4ac-b^2}{4a^2}\right|
+%\,+\, \left(\!\tfrac{2qa-pb}{a\sqrt{4ac-b^2}}\!\right)\!\arctan\!\left(\tfrac{2ax}{\sqrt{4ac-b^2}}\right)\!.
+%\end{array}$$
+%That is quite a formula, but it is completely general for $d<0$.
+
+\noindent
+{\sc example:} One more case: if the numerator has degree greater than or equal to the denominator, for example:
+$$
+\int\!\frac{x^4+2x+3}{x^2+x-2}\ dx\,.
+$$
+Then $y=0$ is no longer a horizontal asymptote. 
+Instead, the behavior of the function as $x\to\pm\infty$ is
+controlled by a polynomial curve obtained by polynomial long division.
+$$\begin{array}{c@{\ }c@{\!}r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}rc}
+&&&&&&x^2&-&x\,&+&3 & \text{ rem } -3x + 9
+\\[-.75em]
+&&\underline{\hspace{1.9in}} \hspace{-1.60in}
+\\[-.15em]
+x^2+x-2 & \left)\vphantom{\ds\sum}\right. \!\!\!&\ \ \ x^4 & \ \ \ &\ \ \ &\ \ \ &\ \ \ &\ + \ &2x & + & 3
+\\
+&&\!-(x^4 & + & x^3 & - & 2x^2 )\!\!
+\\[-.75em]
+&&\underline{\hspace{1.15in}} \hspace{-.95in}
+\\[.4em]
+&&&-&x^3 & + &2x^2 & +  &2x & + & 3 
+\\[.3em]
+&&& - & \!\!(x^3 &-& x\ & +& 2x)\!\!
+\\[-.75em]
+&&&&\underline{\hspace{1.15in}} \hspace{-.95in}
+\\[.4em]
+&&&&&&3x^2&&&+&3
+\\
+&&&&&-& \!\!(3x^2&+&3x&-&6)\!\!
+\\[-.75em]
+&&&&&&\underline{\hspace{1.05in}} \hspace{-.75in}
+\\[.4em]
+&&&&&&&-&3x&+&9
+\end{array}$$
+Thus $x^4+2x+3 = (x^2{-}x{+}3){\cdot}(x^2{+}x{-}2) + (-3x{+}9)$, and:
+$$
+\frac{x^4+2x+3}{x^2+x-2} 
+\ \ =\ \
+(x^2{-}x{+}3) + \frac{-3x+9}{x^2+x+1}
+\ \ =\ \
+(x^2{-}x{+}3) + \frac{2}{x-1} - \frac{5}{x+2}
+$$
+The last equality is a partial fraction expansion similar to our first example above.
+Now:
+$$
+\int\!\frac{x^4+2x+3}{x^2+x-2} \ dx
+\ =\ 
+\tfrac13 x^3{-}\tfrac12 x^2{+}3x + 2\ln\!|x{-}1| -  5\ln\!|x{+}2| + C\,.
+$$
+\\[0em]
+{\bf General case.} The above techniques suffice to integrate any rational function
+$\int \frac{g(x)}{h(x)}\ dx$, provided we can factor the denominator $h(x)$.
+First, we perform a partial fraction decomposition of $f(x)$ into a sum of terms of the following forms:
+\begin{itemize}
+
+\item A polynomial $q(x)$, which is the quotient in the long division $g(x)\div h(x) = q(x)$ with remainder $r(x)$ of smaller degree than $h(x)$,
+so that $\frac{g(x)}{h(x)} = q(x) + \frac{r(x)}{h(x)}$. 
+
+\item For each linear factor $x-c$ of the denominator $h(x)$, suppose $(x-a)^n$ is the highest 
+power which divides $h(x)$. Then we add a sum of $n$ terms:
+$$\frac{A_1}{x-a}+\frac{A_2}{(x-a)^2}+\cdots+\frac{A_n}{(x-a)^n}\,.$$
+
+\item For each irreducible quadratic factor $ax^2 + bx+c$ of $h(x)$, 
+suppose $(ax^2 + bx+c)^n$ is the highest power which divides $h(x)$. 
+Then we add a sum of $n$ terms:
+$$\frac{B_1x + C_1}{ax^2 + bx+c}+\frac{B_2x + C_2}{(ax^2 + bx+c)^2}
++\cdots+\frac{B_nx + C_n}{(ax^2 + bx+c)^n}\,.
+$$
+
+\end{itemize}
+%
+Leaving aside the polynomial term $q(x)$, we set $r(x)/h(x)$ equal to the sum of all the other terms above,
+then we clear the denominators and solve for all the unknown constants in the numerators as 
+we did for $A,B$ in our first example above. 
+(The {\it Partial Fractions Theorem} states that a unique solution always exists.)
+Once this is done, we can integrate using (i)--(vi) and the above examples (see also the integrals of higher powers below).
+\\[.5em]
+{\sc example:} 
+We find the partial fraction expansion of: 
+$$
+ f(x) \ = \ \frac1{x^2(x^2+1)^2}
+\ =\
+\frac{A_1}{x} + \frac{A_2}{x^2} + \frac{B_1x{+}C_1}{x^2+1}+ \frac{B_2x{+}C_2}{(x^2+1)^2}\,.
+$$
+Since the numerator has degree less than the denominator, there is no polynomial term $q(x)$.
+We need to find the six constants $A_1, A_2, B_1, B_2, C_1, C_2$ which make the above equation valid.
+Clearing denominators gives:
+$$\begin{array}{rcl}
+1 &=& A_1x(x^2{+}1)^2 + A_2(x^2{+}1)^2 + (B_1x{+}C_1)x^2(x^2{+}1) + (B_2x{+}C_2)x^2 
+\\
+&=& 
+(A_1{+}B_1)x^5+ (A_2{+}C_1)x^4 + (2 A_1{+}B_1{+}B_2)x^3+(2 A_2{+}C_1{+}C_2)x^2+A_1 x+ A_2
+\end{array}$$
+Since this is an equality of polynomial functions, the coefficients of $x^k$ on the right 
+must equal the coefficients of $1 = 0x^5 + \cdots +0x +1$ on the left:
+$$\begin{array}{c}
+A_1+B_1 = 0
+\\
+ A_2+C_1=0
+\\
+ 2 A_1+B_1+B_2 = 0
+\\
+ 2 A_2+C_1+C_2 = 0
+\\
+A_1 = 0, \quad A_2=1.
+\end{array}$$
+We solve this as:
+$$
+A_1 = 0, \quad A_2 = 1, \quad B_1 = -A_1 = 0, \quad C_1 = -A_2 = -1, 
+$$
+$$
+B_2 = -2A_1 - B_1 = 0, \quad 
+C_2 = -2A_2 - C_1 =  -1\,.
+$$
+Hence, according to (i)--(vi):
+$$\begin{array}{rcl}
+\ds\int\! \frac1{x^2(x^2+1)^2}\ dx
+&=&
+\ds\int\!\frac{1}{x^2} \, {-}\,  \frac{1}{x^2+1}\, {-}\,  \frac{1}{(x^2+1)^2}\ dx
+\\[1em]
+&=&
+\ds-\frac1x - \arctan(x) - \frac12\!\left(\arctan(x) + \frac{x}{x^2+1}\right).
+\end{array}$$
+
+%$$\hspace{-.3in}
+%f(x) \ =\  q(x) + 
+%\left(\frac{g_{1,1}(x)}{h_1(x)} +
+%\frac{g_{1,2}(x)}{h_1(x)^2} + \cdots +
+%\frac{g_{1,n_1}(x)}{h_1(x)^{n_1}}\right)
+%$$
+%$$
+%\hspace{1.2in} +\ \cdots\  + 
+%\left(\frac{g_{k,1}(x)}{h_k(x)} +
+%\frac{g_{k,2}(x)}{h_k(x)^2} + \cdots +
+%\frac{g_{k,n_k}(x)}{h_k(x)^{n_k}}
+%\right)\,,
+%$$
+%where $q(x)$ is the quotient polynomial of $g(x)/h(x)$ and each
+%$g_{i,j}(x)$ is either a constant (if $h_i(x)$ is linear)
+%or a  linear polynomial (of $h_i(x)$ is quadratic).
+%Note that the total number of terms is $n_1+\cdots+n_k=n$, the degree of the denominator $h(x)$,
+%and each term has an unknown constant or quadratic  $g_{i,j}(x)$ which must be solved for like $A,B$ in our previous example.
+%Once this is done, we can integrate using (i)--(vi) and the above examples.\footnote{
+%For $\int\!\frac{1}{(x^2 + 1)^j}\,dx$ we need even more elaborate contortions.
+%The truth is this only becomes manageable if we use imaginary number factorizations like $x^2+1 =(x{-}\sqrt{-1})(x{+}\sqrt{-1})$, avoiding quadratic denominators entirely.
+%}
+
+\pagebreak
+
+\noindent
+{\bf Trig integrals again.}  In \S7.2--7.3, we reduced trig integrals by substitution 
+to rational function integrals, which we can now find by partial fractions.
+For example:
+$$
+\int\!\sec(x)\,dx 
+\ =\
+\int\! \frac{1}{\cos^2(x)}\cdot \cos(x)\,dx 
+\ =\
+\int\! \frac{1}{1-\sin^2(x)}\cdot\cos(x)\,dx
+$$
+$$
+\left\{\begin{array}{r@{\ }c@{\ }l} u &=& \sin(x) \\ du &=& \cos(x)\,dx\end{array}\right\}
+\quad
+\ =\
+\int\! \frac1{1-u^2}\ du
+\ =\
+\int\!\frac{\tfrac12}{1+u} + \frac{\tfrac12}{1-u}\ du
+$$
+$$
+\ =\
+\tfrac12\ln(1{+}u)-\tfrac12\ln(1{-}u)
+\ =\
+\ln  \sqrt{\frac{1{+}u}{1{-}u}}
+\ =\
+\ln  \sqrt{\frac{1{+}\sin(x)}{1{-}\sin(x)}}\ .
+$$
+\\[.5em]
+{\sc challenge:} Show by identities that this is equal to our previous answer 
+$\int\sec(x)\,dx=\ln\!|\!\tan(x)+\sec(x)|$ given in \S7.2 .
+Also: try this method on $\int\!\sec^3(x)\,dx=\int\!\! \frac{1}{(1-u^2)^2}\,du$.
+\\[.5em]
+{\sc challenge:}  Integrate $\int\! \sqrt{\tan(x)}\,dx$. 
+The substitution $u=\tan(x)$, $x=\arctan(u)$, $dx = \frac1{u^2+1}\,du$ 
+gives $\int\! \frac{\sqrt u}{u^2+1}\,du$. Then $z=\sqrt u$ reduces this to a rational function.
+For partial fractions, factor $z^4+1=(z^2{+}1)^2-2z^2=(z^2+1+\sqrt2\, z)(z^2+1-\sqrt2\,z)$.
+Solve:
+$$%\textstyle
+\frac{z^2}{z^4+1} \ =\ \frac{Az+B}{z^2+\sqrt2\, z+1} + \frac{Cz+D}{z^2-\sqrt2\, z+1}\, .
+$$
+%
+{\bf Higher quadratic powers.} For powers of irreducible quadratics in the denominator:
+  $$
+  \hspace{-.5in} (*) \qquad
+ \int\!\frac{x}{(x^2 + 1)^n}\,dx \ =\ -\frac{1}{2(n{-}1)(1+x^2)^{n-1}},
+ $$
+using the substitution $u=x^2+1$. 
+The other basic rational integral
+$$
+I_n=\int\!\frac{1}{(x^2 + 1)^n}\,dx
+$$ 
+can be evaluated {\it recursively} using Integration by Parts and the previous integral:
+$$\hspace{-.1in} 
+\begin{array}{r@{\ }ll}
+I_n =&   \int\!\frac{1}{(x^2 + 1)^n}\,dx 
+\ =\ 
+\int \frac{x^2 + 1}{(x^2 + 1)^n}\,dx 
+- \int \frac{x^2}{(x^2 + 1)^n}\,dx 
+& \text{since} \ 1 = (x^2{+}1) -x^2
+\\[.8em]
+=&
+\int \frac{1}{(x^2 + 1)^{n-1}}\,dx 
+- \int x\cdot\frac{x}{(x^2 + 1)^n}\,dx 
+& \text{setting up Int By Parts}
+\\[.8em]
+=&
+\int \frac{1}{(x^2 + 1)^{n-1}}\,dx 
+ + x\cdot \frac{1}{2(n-1)(x^2 + 1)^{n-1}} 
+ -  \int 1\cdot \frac{1}{2(n-1)(x^2 + 1)^{n-1}}\,dx
+& \text{by IBP and  integral $(*)$}
+\\[.8em]
+=&
+ I_{n-1} + \frac{x}{2(n-1)(1+x^2)^{n-1}} - \frac{1}{2(n-1)}I_{n-1}
+& \text{by definition of $I_{n-1}$.}
+\end{array}$$
+Simplifying, we get the recursive formula:
+$$
+I_n \ \ =\ \ \frac{2n{-}3}{2(n{-}1)}I_{n-1} \,+\, \frac{x}{2(n{-}1)(x^2 + 1)^{n-1}}.
+$$
+{\sc example:} For $n=3$, we already know $I_2 = \int\!\frac{1}{(x^2 + 1)^2}\,dx
+= \frac12(\arctan(x) +\frac{x}{x^2+1})$, so:
+$$\begin{array}{rcl}
+I_3 &=& \int\!\frac{1}{(x^2 + 1)^3}\,dx 
+\ =\  \frac{2(3)-3}{2(3-1)}I_{2} + \frac{x}{2(3-1)(x^2 + 1)^{2}}
+\\[.8em]
+&=&
+  \frac34 \frac12(\arctan(x) +\frac{x}{x^2+1})+ \frac14\frac{x}{(x^2 + 1)^{2}}
+\\[.8em]
+&=&
+  \frac38\arctan(x) +\frac{x (3 x^2 + 5)}{8 (x^2 + 1)^2}\,.
+\end{array}$$
+
+
+\end{document}
+
+
+We need even more elaborate contortions.
+The truth is this only becomes manageable if we use imaginary number factorizations like $x^2+1 =(x{-}\sqrt{-1})(x{+}\sqrt{-1})$, avoiding quadratic denominators entirely.
+
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

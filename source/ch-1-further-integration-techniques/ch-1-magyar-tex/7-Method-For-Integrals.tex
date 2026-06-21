@@ -1,0 +1,227 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\addtolength{\topmargin}{-1.3in}
+\addtolength{\textheight}{3.0in}
+\addtolength{\oddsidemargin}{-.4in}
+\addtolength{\textwidth}{.8in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+%\newcommand{\Sym}{\mathrm{Sym}}
+%\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+%\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\begin{document}
+
+%\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Method for Integration}\hfill \S7.1--7.4}
+\vspace{1em}
+
+\noindent 
+Given a function $f(x)$, we wish to find the indefinite integral $\int\! f(x)\,dx=F(x)+C$,
+i.e.~an antiderivative function with $F'(x)=f(x)$. For brevity,
+we omit the constant $+C$.
+\\[-2em]
+
+\begin{enumerate}
+
+\item  Basic integrals which directly reverse basic derivatives:
+\\[-.8em]
+$$\ts
+\int\! x^p\,dx = \tfrac1{p+1}x^{p+1} \ (p\!\neq \!-1)
+\qquad
+\int\! \tfrac1x\,dx = \ln\!|x|
+\qquad
+\int\! e^x\,dx= e^x
+$$
+$$\ts
+\int\! \sin(x)\,dx= -\cos(x)
+\qquad
+\int\! \cos(x)\,dx= \sin(x)
+$$
+\\[-2.2em]
+$$\ts
+\int\! \sec^2(x)\,dx= \tan(x)
+\qquad
+\int\! \tan(x)\sec(x)\,dx= \sec(x)
+$$
+\\[-2.5em]
+$$\ts
+\int\!\! \frac{1}{\sqrt{1{-}x^2}}\,dx = \arcsin(x)
+\qquad
+\int\!\! \frac{1}{1{+}x^2}\,dx = \arctan(x)
+$$
+
+\item  Substitution:
+Factor the integrand so that $\int f(x)\,dx = \int h(g(x))\cdot g'(x)\,dx$.
+
+Take $u=g(x)$, $du=g'(x)\,dx$,
+so that $\int h(g(x))\, g'(x)\,dx
+=\int h(u)\,du$. Integrate to get $\int h(u)\,du=H(u)$. Restore the original variable:
+$\int f(x)\,dx = H(g(x))$.
+
+Tips: Take an inside function $u=g(x)$; if there is no factor $du = g'(x)\,dx$, 
+multiply by $\frac{1}{g'(x)}g'(x)$,
+or take inverse function $x=g^{-1}(u)$, $dx=(g^{-1})'(u)\,du$.
+Or start with a factor $du = g'(x)\,dx$;  
+and in the other factor,
+reverse-substitute $x=g^{-1}(u)$.
+
+\item Integration by Parts. Find a known derivative $g'(x)$ as a factor of the integrand: 
+
+$\int f(x)\,dx = \int h(x){\cdot} g'(x)\,dx
+=h(x){\cdot} g(x)-\int g(x){\cdot} h'(x)\,dx$, 
+i.e.~$\int u\,dv = uv-\int v\,du$.
+
+The remaining integral $\int g(x){\cdot} h'(x)\,dx$ should be easier,
+provided $h'(x)$ is {\it simpler} than $h(x)$, but 
+$g(x)$ is {\it about as complicated} as $g'(x)$.
+Or try $g'(x)=1$, $g(x)=x$.
+
+After identities, the right side may again contain $-\int f(x)\,dx$: 
+solve for the integral.
+
+\item Products of Trig Functions: (a) 
+$f(\theta)= 
+(\text{odd pos pwr of\,}\sin\theta)\times(\text{any pwr of\,}\cos\theta)$, \\
+subs $\cos\theta=u$, $\sin^2\!\theta=1-u^2$, $\sin\theta\,d\theta=-du$; 
+or (a$^\prime$) switch $\sin$ \& $\cos$; 
+(b) $f(\theta)=(\text{even pos pwr\,}\sec\theta)\times(\text{any pwr\,}\tan\theta)$, 
+subs $\tan\theta=u$, 
+$\sec^2\!\theta=u^2-1$, $\sec^2\!\theta\,d\theta=du$.
+
+All even pos pwr $\sin\theta, \cos\theta$:  identities 
+$\sin^2(x)=\frac12-\frac12\cos(2x)$, 
+$\cos^2(x)=\frac12+\frac12\cos(2x)$.
+
+A hard case: $\int \sec\theta\,d\theta = \ln\!|\!\tan\theta{+}\sec\theta|$.
+Geometric substitution converts any trig integral to 
+rational: $\cos(\theta) = \frac{1-t^2}{1+t^2}$, \,
+$\sin(\theta) =  \frac{2t}{1+t^2}$, \,
+$d\theta = \frac{2}{1+t^2}\,dt$, \,
+$t \!=\! \tan(\frac12\theta)$.
+
+\item Reverse Trig Substitution. If $\sqrt{a^2{-}x^2}$ appears in $\int f(x)\,dx$, complicate it by substituting \ $x=a\sin(\theta)$, \ $dx = a\cos(\theta)\,d\theta$; simplify
+$\sqrt{a^2{-}x^2}=\sqrt{a^2{-}(a\sin(\theta))^2\,} = a\cos(\theta)$.
+Do the resulting trig integral; then restore $\theta = \sin^{-1}(\frac xa)$,
+$\sin(\theta)=\frac xa$,
+$\cos(\theta) = \frac1a\sqrt{a^2-x^2}$.
+
+For $\sqrt{x^2{-}a^2}$, use $x=a\sec(\theta)$ or $a\cosh(t)$;
+for $\sqrt{x^2{+}a^2}$, use $x=a\tan(\theta)$ or $a\sinh(t)$.
+
+\item Partial Fractions integrates rational functions
+$f(x) = \frac{g(x)}{h(x)}=\frac{\text{polynomial}}{\text{polynomial}}$.
+If $g(x)$ has higher or equal degree to $h(x)$, 
+long division gives $f(x) = q(x) + \frac{r(x)}{h(x)}$
+with $r(x)$ of smaller degree than $h(x)$: proceed with $\frac{r(x)}{h(x)}$.
+
+If denominator factors as $h(x) = (x{-}a)(x{-}b)\cdots$ with all
+different roots $a,b,\ldots$\,, split 
+$
+f(x) = \frac{g(x)}{(x{-}a)(x{-}b)\cdots} = \frac{A}{x-a} + \frac{B}{x-b}+\cdots.
+$
+Solve for constant $A$ after clearing denominators 
+and substituting $x=a$; 
+subs $x=b$ to solve for $B$, etc; 
+then $\int\!\! \frac{A}{x{-}a}\,dx=A\ln|x{-}a|$.
+
+Complete the square in denom: 
+$ax^2{+}bx{+}c=a(x{+}k)^2+\ell$ with   
+$k=\frac{b}{2a}$, $\ell=-(\frac{b}{2a})^2+c$.\\
+For $a,\ell>0$:  
+$\int\! \frac{(x+k)}{a(x{+}k)^2+\ell}\, dx =\frac{1}{2a}\ln(ax^2{+}bx{+}c)$; \  
+$\int\! \frac{1}{a(x{+}k)^2+\ell} dx 
+=\frac{1}{\sqrt{\!a\ell}}\arctan\!\sqrt{\!\frac{a}{\ell}}(x{+}k)$.
+
+See \S7.4 for higher terms if $h(x)$ has factors  $(x{-}a)^n$
+or irreducible $(ax^2{+}bx{+}c)^n$.
+
+\item An integral has no elementary formula if it reduces to one of these special functions:
+sine integral $\text{Si}(x) = \int \frac{\sin(x)}{x}\,dx$,
+but Dirichlet $\int_{-\infty}^\infty\! \frac{\sin(x)}x\,dx = \pi$\,; 
+exp int $\text{Ei}(x) = \int \!\frac{e^x}{x}\,dx$\,; \\
+error function $\sqrt\pi\,\text{erf}(x) = \int\! e^{-x^2} dx$,
+but Gauss \mbox{$\int_{-\infty}^\infty e^{-x^2} dx=\Gamma(\frac12)=\sqrt{\pi}$\,; }
+log int $\text{Li}(x) = \int\! \frac1{\ln(x)}\,dx$,
+but Feynman $\int_0^1\! \frac{x^p-1}{\ln(x)}\,dx = \ln(\frac{1}{p+1})$;
+dilog $\text{Li}_2(x) = -\int\! \frac{\ln(1-x)}x\,dx$\,;\\
+elliptic integrals, $k\,{\neq}\, 1$: 
+$\int\!\! \frac{d\theta}{\sqrt{1-k^2\sin^2(\theta)}}$,
+$\int\!\! \mbox{\small $\sqrt{1{-}k^2\sin^2(\theta)}\, d\theta$}$,
+$\int\!\! \frac{d\theta}
+{(1-n\sin^2(\theta)) \sqrt{1-k^2\sin^2(\theta)} }$\,; \\
+gamma $\Gamma(z) = (z{-}1)! = \int_0^\infty t^{z-1} e^{-t}\,dt$\,; 
+beta $B(z_1,z_2) = \frac{\Gamma(z_1)\Gamma(z_2)}{\Gamma(z_1+z_2)}
+=\int_0^1 t^{z_1-1}(1{-}t)^{z_2-1}dt$.
+
+\end{enumerate}
+
+\vspace{-3em}
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

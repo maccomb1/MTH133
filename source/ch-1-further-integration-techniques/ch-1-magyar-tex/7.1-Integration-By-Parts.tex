@@ -1,0 +1,308 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.9in}
+\addtolength{\textheight}{1.6in}
+\addtolength{\oddsidemargin}{-.4in}
+\addtolength{\textwidth}{.8in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Integration by Parts}\hfill Stewart \S7.1}
+\vspace{1em}
+
+\noindent 
+{\bf Review of integrals.}
+The definite integral gives the cumulative total of many small parts, such as the slivers which add up to the area under a graph. Numerically, it is a limit of Riemann sums:
+$$
+\int_a^b\! f(x)\,dx \ =\
+\lim_{n\to\infty}\,\sum_{i=1}^n f(x_i)\,\Delta x\,,
+$$
+where we divide the interval $x\in[a,b]$ into $n$ increments
+of size $\Delta x=\frac{b-a}{n}$ with division points
+$a<a{+}\Delta x<a{+}2\Delta x<\cdots < a{+}n\Delta x=b$, and $x_1,\ldots x_n$ are sample points from each increment.
+This definition is not a theoretical curiosity: it is the reason integrals are relevant to physical problems, and it is the only way to evaluate most integrals: there is no algebraic way.
+
+However, for sufficiently simple functions $f(x)$, we can evaluate integrals algebraically by the shortcut of the Second Fundamental Theorem of Calculus. 
+This says that if $f(x)$ is the rate of change of some known antiderivative $F(x)$, then the integral of $f(x)$ is the cumulative total change of $F(x)$:
+$$
+F'(x)=f(x) 
+\qquad\Longrightarrow\qquad 
+\int_a^b f(x)\,dx \ =\ \left.F(x)\right|_{x=a}^{x=b}
+\ =\ 
+F(b)-F(a)\,.
+$$
+(The First Fundamental Theorem says that the definite integral gives an antiderivative even if there is no formula $F(x)$:
+defining $I(x)= \int_a^x f(t)\,dt$, we have $I'(x)  = f(x)$.)
+
+Algebraic integration is the process of finding antiderivative formulas, 
+denoted as indefinite integrals $\int\! f(x)\,dx=F(x)+C$. 
+The most direct method is to reverse Basic Derivatives, 
+such as $(x^p)' = px^{p-1}$ reversing to $\int\! x^p\,dx =\frac{x^{p+1}}{p+1}$. 
+Our only other integration method so far is the Substitution Method, 
+which reverses the Chain Rule:
+$$
+\int\! f(g(x))\,g'(x)\,dx 
+\ =\
+\int\! f(u)\,du
+\ =\ F(u) +C
+\ =\ F(g(x)) + C,
+$$
+where $u=g(x)$, $du=g'(x)\,dx$, and $F'(u)=f(u)$.
+\\[.5em]
+{\bf Reversing the Product Rule.} Since we have:
+$$
+(f(x)\,g(x))' \ =\ 
+f(x)\, g'(x) + g(x)\, f'(x)\,,
+$$
+we can take the antiderivative of both sides to give:
+$$
+f(x)\,g(x) \ =\ 
+\int\! f(x)\,g'(x)\,dx + \int\! g(x)\,f'(x)\,dx\,,
+$$
+%or:
+$$
+\int\! f(x)\,g'(x)\,dx \ =\ f(x)\,g(x) - \int\! g(x)\,f'(x)\,dx\,.
+$$
+In Leibnitz notation, taking $u=f(x)$, $du=f'(x)\,dx$
+and $v=g(x)$, $dv = g'(x)\,dx$:
+$$
+\int\! u\ dv \ =\ uv \,-\, \int\! v\ du\,.
+$$
+This method transforms the integral of a product $f(x)\,g'(x)$
+into $f(x) \,g(x)$ minus the integral of $g(x)\,f'(x)$, the other term in the Product Rule; we can 
+think of lowering $f(x)$ to its derivative $f'(x)$ and raising $g'(x)$ to its antiderivative $g(x)$.
+
+\newpage
+
+\noindent
+{\bf Method for Integration by Parts.}
+
+\begin{enumerate}
+
+\item Given an indefinite integral $\int\! h(x)\,dx$, find a factor of the integrand $h(x)$ which you recognize as the derivative of a function $g(x)$: that is, write $h(x)=f(x)\cdot g'(x)$.
+
+\item Taking $u=f(x)$, $dv = g'(x)\,dx$, transform the integral $\int\! u\,dv=\int\! f(x)\, g'(x)\,dx$ into $uv-\int\! v\,du \ =\ f(x)\,g(x)-\int\! g(x)\,f'(x)\,dx$. 
+
+\item Simplify $g(x)\,f'(x)$, possibly using identities, and try to find its integral by other methods such as Substitution.
+
+\item Sometimes you can repeat Steps 1 \& 2 on $\int\! g(x)\,f'(x)\,dx$  
+with a \emph{different} $u,v$.\footnote{
+Repeating with the {\it same} factorization $\int\! v\,du$ would
+get back the original integral $\int\! u\,dv$.
+}
+This might further simplify integral so you can evaluate by other methods.
+
+\item Instead of simplifying the integral, Step 3 or 4 might give an expression with the {\it same} integral you started with. Solve the resulting equation to find that integral.
+
+\end{enumerate}
+%
+Notice that Step 1 is the same as for the Method of Substitution, where you want to find a factor of the integrand which is a known derivative $g'(x)$; but for Substitution, $g(x)$ should also appear as an inside function in the remaining factor: $h(x)=f(g(x))\cdot g'(x)$.
+\\[1em]
+{\sc example:} Evaluate $\int x\cos(x)\,dx$. There are two obvious candidates for $u,v$. 
+First, if we take $u=\cos(x)$, $dv=x\,dx$, we get $du=-\sin(x)\,dx$, $v = \frac12 x^2$, and:
+$$\begin{array}{ccccc}
+\int u\,dv & = & uv & - & \int v\,du 
+\\[.5em]
+\int \cos(x)\,x\,dx & = & \cos(x)\left(\tfrac 12 x^2\right) & - & \int \tfrac12 x^2\,(-\sin(x))\,dx
+\end{array}$$
+Unfortunately, the new integral $\int\! x^2\sin(x)\,dx$ is harder than the original $\int\! x\cos(x)\,dx$. We must make a wiser choice of $u,v$, so that the derivative $du$ will be simpler than the original $u$, while the antiderivative $v$ will be no worse than the original $dv$.
+
+The other obvious choice will work: take $u=x$, $dv = \cos(x)\,dx$, so that $du = 1\, dx$ and $v=\sin(x)$. Then:\footnote{
+For brevity, we neglect the constant $+C$, 
+though you should write it in formal work.
+}
+$$\begin{array}{ccccc}
+\int u\,dv & = & uv & - & \int v\,du 
+\\[.5em]
+\int x\,\cos(x)\,dx & = & x\,\sin(x) & - & \int \sin(x)\,1\,dx
+\\[.5em]
+& = & x\sin(x) & + & \cos(x) .
+\end{array}$$
+Thus, Steps 1--3 were enough to integrate.
+
+To check our answer, we reverse our Integration by Parts using the Product Rule:
+$$
+(x\sin(x) + \cos(x))' 
+\ =\ 
+x\sin'(x) + \sin(x)(x)' + \cos'(x)
+$$
+$$
+\ =\
+x\cos(x) + \sin(x) - \sin(x) \ =\ x\cos(x).
+$$
+\\[.5em]
+{\sc example:} Evaluate  $\int x^2\,e^{-x}\,dx$. We should choose $u=x^2$, $dv=e^{-x}$, so that $du=2x\,dx$ is simpler, but $v = -e^{-x}$ is no more complicated:
+$$\begin{array}{ccccc}
+\int u\,dv & = & uv & - & \int v\,du 
+\\[.5em]
+\int x^2\,e^{-x}\,dx & = & x^2(-e^{-x}) & - & \int (-e^{-x})\,2x\,dx
+\\[.5em]
+&=& -x^2e^{-x}&+ &2\int\! x e^{-x}\,dx
+\end{array}$$
+Going on to Step 4, we repeat the process for the integral on the right side,
+this time with $u = x$, $dv= e^{-x}\,dx$ and
+$du = dx$, $v = -e^{-x}$:
+$$\begin{array}{ccccc}
+\int u\,dv & = & uv & - & \int v\,du 
+\\[.5em]
+\int x\,e^{-x}\,dx & = & x(-e^{-x}) & - & \int (-e^{-x})\,dx
+\\[.5em]
+&=& -xe^{-x}&+ &\int\! e^{-x}\,dx
+\\[.5em]
+&=& -xe^{-x}&+ &(-e^{-x})
+\end{array}$$
+\\[-1.5em]
+Putting these together:
+$$
+\int x^2\,e^{-x}\,dx
+\ =\
+-x^2e^{-x}+ 2(-xe^{-x}-e^{-x})
+\ =\ -(x^2+2x+2)e^{-x}.
+$$
+\\[-.2em]
+\noindent
+{\sc example:} Evaluate $\int e^x\sin(x)\,dx$.
+Steps 1--4 give:
+$$\begin{array}{cccccc}
+\int e^x\sin(x)\,dx & = & e^x\sin(x) & - & \int e^x\cos(x)\,dx,
+& u = \sin(x), v = e^x
+\\[.5em]
+& = & e^x\sin(x) & - & \left(e^x\cos(x) -
+\int e^x(-\sin(x))\,dx\right),
+& u = \cos(x), v = e^x.
+\end{array}$$
+We conclude:
+$$
+\int e^x\sin(x)\,dx \ =\ 
+e^x\sin(x) -e^x\cos(x) -\int e^x\sin(x)\,dx.
+$$
+Since our integral $\int e^x\sin(x)\,dx$ appears on both sides, we go to Step 5 
+and solve for it:
+$$
+\int e^x\sin(x)\,dx\ =\ 
+\tfrac12\left(e^x\sin(x)-e^x\cos(x)\right).
+$$
+\\[-.2em]
+\noindent 
+{\sc example:} Evaluate $\int \ln(x)\,dx$.
+Here there does not seem to be any $dv$ factor, but we can always take $dv=1\,dx$, so $v = x$:
+$$\begin{array}{ccccc}
+\int u\,dv & = & uv & - & \int v\,du 
+\\[.5em]
+\int \ln(x)\,1\,dx
+&=&
+\ln(x)\,x &-& \int x\,\frac1x\,dx
+\\[.5em]
+&=&
+x\ln(x)&-&x.
+\end{array}$$
+\\[-0em]
+\noindent 
+{\sc example:} Evaluate $\int \sin^{-1}(x)\,dx$.\footnote{
+Notation: $\sin^{-1}(x)=\arcsin(x)$, but $\sin(x)^{-1}=\frac{1}{\sin(x)}=\csc(x)$.
+}
+Again we must use $u=\sin^{-1}(x)$ and $dv = 1\,dx$, counting on the fact that $du$ is simpler than $u$:
+$$\begin{array}{ccccc}
+\int u\,dv & = & uv & - & \int v\,du 
+\\[.5em]
+\int \sin^{-1}(x)\,1\,dx
+&=&
+\sin^{-1}(x)\,x &-& \int x\,\frac1{\sqrt{1-x^2}}\,dx
+\end{array}$$
+Continuing Step 3, we use the substitution $z = 1-x^2$ on the right-hand integral:
+$$\ts
+\int x\,\frac1{\sqrt{1-x^2}}\,dx
+\ =\
+-\frac12 \int \frac1{\sqrt{1-x^2}}\,(-2x)\,dx
+\ =\
+-\frac12\int \frac1{\sqrt z}\,dz
+\ =\
+-\sqrt{z}
+\ =\
+-\sqrt{1{-}x^2}.
+$$
+Combining:
+$$\ts
+\int \sin^{-1}(x)\,dx
+\ =\
+x\sin^{-1}(x) - (-\sqrt{1{-}x^2})
+\ =\
+x\sin^{-1}(x) + \sqrt{1{-}x^2}.
+$$
+
+
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
