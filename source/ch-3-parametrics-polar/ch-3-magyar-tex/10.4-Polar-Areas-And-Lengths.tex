@@ -1,0 +1,456 @@
+ \documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-1.0in}
+\addtolength{\textheight}{2.0in}
+\addtolength{\oddsidemargin}{-.5in}
+\addtolength{\textwidth}{1in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Polar Areas and Lengths}\hfill 
+Stewart \S10.4}
+\vspace{1em}
+
+\noindent  {\bf Slope in polar coordinates.}
+We have seen that round, turny shapes are more simply described by polar $r\theta$-equations
+than by rectangular $xy$-equations. In this section, we use 
+polar equations to compute geometric information.
+
+Thus, we consider a polar curve $r=f(\theta)$ over $\theta\in[a,b]$.
+We split the interval $\theta\in[a,b]$ into a large number $n$ of increments,
+each of length $\Delta\theta=\frac{b-a}n$,
+with sample points $\theta_1,\ldots,\theta_n$.
+Here is a typical increment of the curve over $\theta\in[\theta_i, \theta_{i{+}1}]$, 
+showing the corresponding increments in the coordinates:
+\\[1em]
+\centerline{
+\includegraphics[width=2.5in]
+{10-4-Delta-Y.png} 
+}
+\vspace{-1em}
+
+Our first problem is to find the slope of this curve at a given $\theta$.
+It is {\it not} the derivative $f'(\theta)=\frac{dr}{d\theta}$, 
+which is the rate of change of the radius with respect to the angle.
+Rather, slope is the rate of change of $y = r\,\sin(\theta) = f(\theta)\,\sin(\theta)$
+with respect to $x = r\,\cos(\theta) = f(\theta)\,\cos(\theta)$. That is:
+$$
+\text{(slope at $\theta$)} 
+\ =\
+\frac{dy}{dx}
+\ =\ 
+\frac{\ \ \frac{dy}{d\theta}\ \ }{ \frac{dx}{d\theta} }
+\ =\
+\frac{(f(\theta)\,\sin(\theta))'}{( f(\theta)\,\cos(\theta))' }
+\ =\ \frac{f'(\theta)\,\sin(\theta) + f(\theta)\,\cos(\theta)}
+{f'(\theta)\,\cos(\theta) - f(\theta)\,\sin(\theta)}\,.
+$$
+\\[0em]
+{\bf Area in polar coordinates.} Assume $r=f(\theta)\geq 0$ for $\theta\in[a,b]$ to avoid complications with signs, and consider the region inside the curve, defined by $0\leq r\leq f(\theta)$ for $\theta\in[a,b]$.
+Apply Slice Analysis (\S5.2), splitting the area $A$ into  
+$n$ thin wedges $\Delta A_i$ over $[\theta_i,\theta_{i+1}]$:
+\\[1em]
+\centerline{
+\includegraphics[width=2.5in]
+{10-4-Delta-A.png} 
+}
+\vspace{-1em}
+
+\noindent
+We must compute the wedge area $\Delta A_i$.
+Since $\Delta \theta$ is tiny, the small curve segments 
+are very close to straight lines, and $\Delta A_i$ is a very thin triangle.
+Neglecting the small piece with radius larger that $r_i$,
+the slice $\Delta A_i$ is approximately an isosceles triangle with height $r_i$
+and base $r_i\Delta\theta$.\footnote{
+On a circle of radius $r$, and arc of $\theta$ radians has length $r\theta$:
+this is the definition of radian measure.
+}
+Thus:
+$$
+\Delta A_i\ 
+\approx\ 
+\tfrac12\text{(base)}{\times}\text{(height)}
+\ \approx\ 
+\tfrac12(r_i\Delta\theta)r_i
+\ =\ 
+\tfrac12 r_i^2\Delta\theta
+%\ =\
+%\tfrac12 f(\theta_i)^2\Delta\theta
+\,.
+$$
+The total area is the sum of these pieces, which is clearly a Riemann sum for an integral:
+$$
+A \ =\ \lim_{n\to\infty} \sum_{i=1}^n \Delta A_i
+\ =\ \lim_{n\to\infty} \sum_{i=1}^n \tfrac12 r_i^2\Delta\theta
+\ =\ \lim_{n\to\infty} \sum_{i=1}^n \tfrac12 f(\theta_i)^2\Delta\theta
+%\ =\ \int_a^b \tfrac12 r^2\,d\theta
+\ =\ \int_a^b \tfrac12 f(\theta)^2\,d\theta\,.
+$$
+That is, the area inside a polar graph $r=f(\theta)$ is given by an integral formula, but a different integral 
+from the area under a rectangular graph $y=f(x)$.
+\\[1em]
+{\bf Arclength in polar coordinates.} 
+Finally, we compute the length of the curve $r=f(\theta)$ for $\theta\in[a,b]$.
+The length $L$ is a sum of $n$ increments $\Delta L_i$:
+\\[1em]
+\centerline{
+\includegraphics[width=3in]
+{10-4-Delta-L.png} 
+}
+\vspace{-1em}
+
+\noindent
+Each increment $\Delta L_i$  is approximately a straight line segment.
+Next to it is the radial segment $\Delta r$ and
+the tiny circular arc with length $r_i\,\Delta\theta$, 
+which is also approximately a straight line.
+We get an approximate right triangle with hypotentuse $\Delta L_i$
+and legs $r_i\,\Delta\theta$ and $\Delta r$, so the Pythagorean Theorem gives:
+$$
+\Delta L_i \ 
+\approx\ \sqrt{(r_i\Delta \theta)^2+(\Delta r)^2}
+\ =\ 
+\sqrt{
+\tfrac {(r_i\Delta \theta)^2+(\Delta r)^2} {(\Delta \theta)^2}
+}\,\Delta\theta
+\ =\ 
+\sqrt{ 
+ r_i^2 + (\tfrac{\Delta r}{\Delta \theta})^2
+} 
+\,\Delta\theta\,.
+$$
+Therefore the total arclength is:
+$$
+L \ =\ \lim_{n\to\infty} \sum_{i=1}^n \Delta L_i
+\ =\ \lim_{n\to\infty} \sum_{i=1}^n 
+\sqrt{ r_i^2 + (\tfrac{\Delta r}{\Delta\theta})^2 }\,\Delta\theta
+$$
+$$
+\ =\ \lim_{n\to\infty} \sum_{i=1}^n 
+\sqrt{ f(\theta_i)^2 + (\tfrac{\Delta f(\theta_i)}{\Delta\theta})^2 }\,\Delta\theta
+%\ =\ 
+%\int_a^b \sqrt{ r^2 + (\tfrac{dr}{d\theta})^2 }\,d\theta
+\ =\ 
+\int_a^b \sqrt{f(\theta)^2 + f'(\theta)^2}\,d\theta\,.
+$$
+We could also deduce this from our previous parametric arclength formula (\S10.3) by applying
+it to $(x(t),y(t))=(f(t)\cos(t), f(t)\sin(t))$.
+
+\pagebreak
+
+\noindent
+{\bf Example: Area of intersections.} Consider the polar curve $r = f(\theta)=1-\cos(\theta)$.
+We picture the abstract function $f$ by its rectangular graph in $\theta r$ parameter space 
+(end \S10.3):
+\\[1em]
+\centerline{
+\includegraphics[width=2.7in]
+{10-4-Cardioid-Rect.png} 
+}
+\vspace{-.8em}
+
+\noindent
+The polar graph is a cardioid (heart-shape), which we draw along with the circle $r=\frac12$.
+\\[.5em]
+\centerline{
+\includegraphics[width=3in]
+{10-4-Cardioid.png} 
+}
+\vspace{-.8em}
+
+\noindent
+{\sc prob:} Find the area of the crescent-shaped region
+inside the cardioid \& outside the circle.
+\\[.5em]
+We must first determine the intersection points of the two curves, where:
+$$
+r = 1-\cos(\theta) = \tfrac12
+\quad\Longrightarrow\quad
+\cos(\theta)=\tfrac12
+\quad\Longrightarrow\quad
+\theta= \pm\tfrac\pi3 + 2n\pi\,,
+$$
+where $n$ is any integer. Since the whole cardioid is traced by $\theta\in[0,2\pi]$,
+we can take all intersection points in this range: 
+$\theta=\frac\pi3$ and $\theta = -\frac{\pi}3 + 2\pi = \frac{5\pi}{3}$.
+Now we take the area inside the cardioid $r=f(\theta)=1-\cos(\theta)$, 
+minus the area inside the circle $r=g(\theta)=\frac12$:
+$$
+A 
+\ =\ \int_a^b \tfrac12 f(\theta)^2 -\tfrac12 g(\theta)^2\ d\theta
+\ =\ \int_{\pi/3}^{5\pi/3} \tfrac12(1{-}\cos(\theta))^2 - \tfrac12(\tfrac12)^2\ d\theta
+$$
+$$
+\ =\
+\left[\vphantom{\sum}\tfrac58\theta- \sin(\theta) + \tfrac18\sin(2\theta)\,\right]_{\theta=\pi/3}^{\theta=5\pi/3}
+\ =\
+\tfrac78\sqrt 3 +\tfrac{5\pi}6
+\ \approx\ 4.1\,.
+$$
+To do the integral, expand $(1-\cos(\theta))^2$ and use
+$\cos^2(\theta) = \frac12 + \frac12\cos(2\theta)$ (see \S7.2).
+\\[1em]
+{\sc prob:} Find the highest point of the cardioid: $y(t) = (1-\cos(t))\sin(t) = \text{max}$. From \S3.1, we need to solve
+$y'(t) =0$. Using the Product Rule and $\sin^2=1-\cos^2$ we get:
+ $y'(t)=\sin(t)\sin(t) + (1-\cos(t))\cos(t) = -2\cos^2(t)+\cos(t)+1=0$, and the Quadratic formula gives
+ $\cos(t) = -\frac12$, $t=\pm \frac{2\pi}{3}$. 
+The maximum is $y(\frac{2\pi}{3}) = \frac{3\sqrt 3}{4}$.
+
+\pagebreak
+
+\noindent
+{\bf Review example: Exponential spiral.} Consider a snail-shell spiral curve which
+doubles in radius with each turn:
+\\[0em]
+\centerline{
+\includegraphics[width=2.5in]
+{10-4-Double-Spiral.png} 
+}
+\vspace{-.5em}
+
+\noindent
+This is the polar graph  $r = f(\theta)=ca^\theta=ce^{b\theta}$
+of a general exponential function (\S6.4). 
+Assuming $f(0)=1$, $f(2\pi)=2$, allows us to solve 
+for $c=1$ and $a= 2^{1/2\pi} =e^{\ln(2)/2\pi}$ to get:
+$$
+r\,=\,2^{\,\theta/2\pi} \,=\, e^{b\theta}
+\quad\text{for}\quad b=\tfrac{\ln(2)}{2\pi}\,.
+$$
+What is the length of this curve, from the point $(r,\theta)=(1,0)$ all the way to the center,
+that is, for $\theta\in (-\infty,0]$? 
+We have $f'(\theta)  \,=\, (e^{b\theta})' = be^{b\theta}$, so
+the arclength formula gives:
+$$
+L 
+\ = \ 
+\int_{-\infty}^0\!\!\!\! \sqrt{f(\theta)^2 + f'(\theta)^2}\,d\theta
+\ = \ 
+\int_{-\infty}^0\!\!\!\! \sqrt{1{+}b^2}\, e^{b\theta}\,d\theta
+\ = \ 
+\left[ \tfrac1b\sqrt{1{+}b^2}\, e^{b\theta}\right]_{\theta=-\infty}^{\theta=0}
+$$
+$$
+\ = \ 
+\tfrac1b\sqrt{1{+}b^2} \,-\, \lim_{N\to\infty} \tfrac1b\sqrt{1{+}b^2}\, e^{-N}
+\ =\
+\sqrt{1{+}\tfrac{4\pi^2}{\ln^2(2)}} \ \approx\ 9.12\,.
+$$
+Or we could use geometry to show that these infinitely many turns have finite length. 
+Let $L_1$ be the length of the first turn $\theta\in[-2\pi,0]$, and $L_2$ the length of the second turn, etc. 
+The exponential spiral is {\it scale invariant}: 
+each turn inward is the $\frac12$ dilation of the previous turn,
+with half the length, so the total is a geomteric series 
+$\sum_{n=1}^\infty cr^{n-1} = \frac c{1-r}$ (\S11.2):
+$$
+L \,=\, L_1 +L_2+L_3+L_4+\cdots
+\,=\,  L_1+\frac12 L_1 +\frac1{2^2}L_1+\frac1{2^3}L_1+\cdots
+\,=\, \frac{L_1}{(1-\frac12)} \,=\, 2L_1.
+$$
+{\bf Harmonic Spiral.} From the above, we may say that the inward spiral $r=1/2^{\theta}$ 
+ has finite arclength as $\theta\to\infty$ because the geometric series 
+ $\sum_{n=1}^\infty \frac1{2^n}$ is  convergent.
+Let us instead model an inward spiral on the divergent harmonic series $\sum\frac1n=\infty$, 
+namely $r=\frac1{\theta}$ for $\theta\geq 1$. Then this should have infinite arclength:
+$$\textstyle
+L \ =\ \int_1^{\infty} \sqrt{(\frac{1}{\theta})^2+(-\frac{1}{\theta^2})^2}\,d\theta
+\ =\ \int_1^{\infty} \frac{1}{\theta}\sqrt{1+\frac{1}{\theta^2}}\,d\theta
+\ =\ \int_1^{\infty} \frac{\sqrt{1+\theta^2}}{\theta^2}\,d\theta.
+$$
+Since the integrand (in the second integral) is clearly positive and decreasing, the Integral Test  (\S11.3) 
+tells us that this diverges whenever the corresponding series diverges, namely :
+$$\textstyle
+\sum_{n=1}^\infty  \frac{1}{n}\sqrt{1+\frac{1}{n^2}}
+\  \approx\  \sum_{n=1}^\infty  \frac{1}{n} \ = \ \infty\  \text{(divergent)}.
+$$
+This can be justified by the Direct Comparison Test (\S11.4), since 
+$\tfrac{1}{n}\sqrt{1{+}\tfrac{1}{n^2}}>\tfrac{1}{n}$; or 
+the Limit Comparison Test: the ratio $\frac{a_n}{b_n}=\sqrt{1{+}\tfrac{1}{n^2}}\to 1$, 
+so they have the same divergence.
+
+\newpage
+
+\noindent
+Alternatively, we can directly integrate, 
+switching the variable to $\int\! \frac{\sqrt{1+x^2}}{x^2}\,dx$. 
+Since we have $\sqrt{1{+}x^2}$ (\S7.3), we try the trig substitution 
+$x = \tan(t)$, $\sqrt{1{+}x^2}=\sec(t)$, $dx = \sec^2(t)\,dt$:
+$$
+\int\! \frac{\sqrt{1+x^2}}{x^2}\,dx
+\ =\ 
+\int\! \frac{\sec(t)}{\tan^2(t)}\sec^2(t)\,dt
+\ = \ 
+\int\! \frac{1}{\sin^2(t)\cos(t)}\,dt
+\ = \ 
+\int\! \frac{1}{\sin^2(t)\cos^2(t)}\cos(t)\,dt.
+$$
+As in \S7.2, we do the substitution $u=\sin(t)$, $1{-}u^2 = \cos^2(t)$, $du = \cos(t)\,dt$:
+$$
+\int\! \frac{1}{\sin^2(t)\cos^2(t)}\cos(t)\,dt
+\ =\ 
+\int\! \frac{1}{u^2(1{-}u^2)}\ du 
+\ =\ \int\! \frac{A}{u^2}+\frac{B}{u}+\frac{C}{1{+}u}+\frac{D}{1{-}u}\ du.
+$$
+Here the result is a rational function, expanded by partial fracitions (\S7.4).
+Then: 
+$$
+\frac{1}{u^2(1{-}u^2)}
+\ =\ 
+ \frac{1{-}u^2}{u^2(1{-}u^2)} + \frac{u^2}{u^2(1{-}u^2)}
+ \ =\ \frac{1}{u^2} + \frac{1}{(1{-}u)(1{+}u)}
+  \ =\ \frac{1}{u^2} + \frac{C}{1{+}u}+\frac{D}{1{-}u}.
+$$
+We can find the remaining coefficients by clearing denominators to get 
+$$1= C(1{-}u)+D(1{+}u).$$
+Substituting $u = 1$ gives $D=\frac12$, and $u=-1$ gives $C=\frac12$.
+The integral becomes:
+$$
+\int \frac{1}{u^2}+\frac{\frac12}{1{+}u}+\frac{\frac12}{1{-}u}\ du
+\ =\ 
+-\frac{1}{u} + \tfrac12 \ln(1{+}u) - \tfrac12 \ln(1{-}u)
+\ =\ 
+-\frac{1}{u} + \frac12 \ln\!\left(\frac{1{+}u}{1{-}u}\right).
+$$
+Now we need to restore the original variable $x=\tan(t)$ from $u=\sin(t)$.
+The standard triangle for $x=\tan(t)$ implies $u=\sin(t) = \frac{x}{\sqrt{1+x^2}}$.
+After simplification, the final answer is:
+$$
+\int\! \frac {\sqrt{1{+}x^2}} {x^2}\,dx
+\ =\ -\frac{\sqrt{1{+}x^2}}x 
++ \frac12\ln\!\left(\!\frac {\sqrt{1{+}x^2}+x} {\sqrt{1{+}x^2}-x} \!\right).
+$$
+Therefore the total arclength is:
+$$
+L \ =\ 
+\int_1^\infty\! \frac {\sqrt{1{+}x^2}} {x^2}\,dx
+\ =\ 
+\lim_{x\to\infty} \tfrac12   \ln\!\left(\!\frac {\sqrt{1{+}x^2}+x} {\sqrt{1{+}x^2}-x} \!\right)
++ K
+$$
+for a constant $K$.  In the fraction $\frac {\sqrt{1{+}x^2}+x} {\sqrt{1{+}x^2}-x}$, 
+we {\it cannot} use L'Hopital's Rule (\S6.8), 
+since the numerator clearly approaches $\infty$,
+but the denominator does not. Substitute $x=1/z$:
+$$
+\lim_{x\to\infty} \sqrt{1{+}x^2}-x \ =\ 
+\lim_{z\to0^+}\! \sqrt{1{+}\frac1{z^2}}-\frac 1z \ =\ 
+\lim_{z\to0^+}\! \frac{\sqrt{z^2{+}1}-1}z\,. 
+$$
+This is a $\frac 00$ limit, so we {\it can} apply L'Hopital to get:
+$$
+\lim_{x\to\infty} \sqrt{1{+}x^2}-x 
+\ =\ \lim_{z\to0^+}\! \frac{(\sqrt{z^2{+}1}-1)'}{(z)'}
+\ =\ \lim\limits_{z\to0^+}\! \frac {\frac z{\sqrt{z^2+1}}}   {1} \ =\ 0^+. 
+$$
+After all that, we obtain the expected arclength:
+$$
+L \ =\ 
+\tfrac12   \ln\!\left(\!\frac {\infty} {\ \,0^+} \!\right) + K \ =\ 
+\tfrac12   \ln(\infty) + K \ =\ \infty\,.
+$$
+
+
+\end{document}
+
+
+$$\textstyle
+L \ =\ \int_1^{\infty} \sqrt{(\frac{1}{\theta})^2+(-\frac{1}{\theta^2})^2}\,d\theta
+\ =\ \int_1^{\infty} \frac{1}{\theta}\sqrt{1+\frac{1}{\theta^2}}\,d\theta.
+$$
+
+Or we could directly integrate, substituting
+$z = \sqrt{1{+}\frac{1}{\theta^2}}$, 
+$\theta = \frac{1}{\sqrt{z^2{-}1}}$,
+$d\theta = -\frac{z}{(z^2-1)^{3/2}} dz$:
+$$\textstyle
+\int \frac{1}{\theta}\sqrt{1{+}\frac{1}{\theta^2}}\,d\theta
+= -\int\! \sqrt{z^2{-}1}\cdot z\cdot \frac{z}{(z^2-1)^{3/2}}\,dz
+%= -\int\! \frac{z^2}{z^2-1}\,dz
+\stackrel{\text{P.F.}}= \int\! -1{+}\frac{1/2}{z+1}{-}\frac{1/2}{z-1}\,dz
+=-\sqrt{1{+}\frac{1}{\theta^2}}
+\,+\,\frac12\ln\!\frac{\sqrt{1+\theta^2}+\theta}{\sqrt{1+\theta^2}-\theta}.
+$$
+To find $\lim\limits_{\theta\to\infty}\sqrt{1{+}\theta^2}-\theta$, 
+substitute $\theta=\frac1t$, getting
+$
+\lim\limits_{t\to 0^+}\frac{\sqrt{t^2{+}1}-1}t
+\stackrel{\text{Hop}}=
+\lim\limits_{t\to 0^+}\frac t{\sqrt{t^2{+}1}} =0^+
+$.
+\\
+Hence the integral is $L=-1-(-1-\frac12\ln\frac{\infty}{0^+})=+\infty$.
+
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[1em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,6 +3,320 @@
 <section xml:id="sec-6-ratio-test" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>The Ratio Test</title>
 
-  <p> Text of section. </p>
+  <p>
+  We have one more important test for convergence of
+  an infinite series <m>\sum_{n=1}^\infty a_n</m>.
+  This test does not require us to
+  choose a comparison series: instead, we test the ratio of
+  each term <m>a_n</m> compared to the next term <m>a_{n+1}</m>.
+  </p>
+
+  <theorem xml:id="thm-ratio-test">
+    <statement>
+      <p><term>Ratio Test:</term> Suppose <m>\lim\limits_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|=L</m>.</p>
+      <p><ul>
+        <li>If <m>L&lt;1</m>, then <m>\sum_{n=1}^\infty a_n</m> converges.</li>
+        <li>If <m>L&gt;1</m>, then <m>\sum_{n=1}^\infty a_n</m> diverges.</li>
+        <li>If <m>L=1</m>, then this test fails to determine convergence.</li>
+      </ul></p>
+    </statement>
+  </theorem>
+
+  <p><term>Proof:</term> Assuming <m>a_n&gt;0</m>, the limit <m>\lim\limits_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|=L</m> means that, for any small number <m>\epsilon&gt;0</m>,
+  we can take a starting point <m>N</m> so that for all <m>n\geq N</m>, we have:</p>
+
+  <p><md>
+    \begin{array}{ccccc}
+    L{-}\epsilon &amp; \leq\ &amp; \dfrac{a_{n+1}}{a_n}&amp; \leq\ &amp;  L{+}\epsilon
+    \\[1em]
+    a_n(L{-}\epsilon) &amp; \leq\ &amp;  a_{n+1}&amp; \leq\ &amp;  a_n(L{+}\epsilon)\,.
+    \end{array}
+  </md></p>
+
+  <p>Iterating this inequality gives:
+  <m>c_1(L{-}\epsilon)^n  \leq  a_{n} \leq   c_2(L{+}\epsilon)^n</m>
+  for some constants <m>c_1,c_2</m>.<fn>
+  Specifically:
+  <m>a_{n}\leq a_{n-1}(L{+}\epsilon)\leq a_{n-2}(L{+}\epsilon)^2
+  \leq\cdots\leq a_N(L{+}\epsilon)^{n-N} = \frac{a_N}{(L{+}\epsilon)^{N}} (L{+}\epsilon)^n</m>.
+  </fn></p>
+
+  <p>If <m>L&lt;1</m>, we take <m>\epsilon</m> small enough
+  that <m>L{+}\epsilon&lt;1</m>, and we compare <m>\sum a_n</m> to the convergent ceiling
+  series <m>\sum c_2(L{+}\epsilon)^n</m>.
+  If <m>L&gt;1</m>, we take <m>\epsilon</m> small enough
+  that <m>L{-}\epsilon&gt;1</m>, and we compare <m>\sum a_n</m> to the divergent floor
+  series <m>\sum c_2(L{-}\epsilon)^n</m>.
+  If <m>L=1</m>, adding any <m>\epsilon</m> produces a divergent ceiling, and subtracting any <m>\epsilon</m> produces a convergent floor, neither of which would constrain the original series.
+  Finally, for the general case where the <m>a_n</m>'s may be positive or negative,
+  the above argument shows <m>\sum |a_n|</m> converges, which implies <m>\sum a_n</m> converges by §11.6 Part II. Q.E.D.</p>
+
+  <p>The Ratio Test is most useful when <m>a_n</m> is a product of a growing number of factors, which will mostly cancel out in <m>\frac{a_{n+1}}{a_n}</m>.</p>
+
+  <example>
+    <statement>
+      <p>Determine the convergence of <m>\sum_{n=1}^\infty \frac{n^2}{2^n}</m>.</p>
+    </statement>
+    <solution>
+      <p>We did this one in §11.4 by finding a tricky comparison series. The Ratio Test naturally applies here,
+      because <m>a_n= \frac{n^2}{2^n}=(n)(n)(\frac12)\cdots(\frac12)</m> has more and more factors as <m>n</m> gets larger.
+      We have:</p>
+      <p><md>
+        L\ =\
+        \lim_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|
+        \ =\
+        \lim\limits_{n\to\infty}
+        \frac{(n{+}1)^2}{2^{n+1}}\left/
+        \frac{n^2}{2^n}
+        \right.
+        \ =\
+        \lim_{n\to\infty}
+        \frac{(n{+}1)^2}{n^2}\left/
+        \frac{2^{n+1}}{2^n}
+        \right.
+        \ =\
+        \frac12\,.
+      </md></p>
+      <p>Since <m>L=\frac12&lt;1</m>, the Test shows <m>\sum a_n</m> converges.</p>
+    </solution>
+  </example>
+
+  <example>
+    <statement>
+      <p>Determine the convergence of <m>\sum_{n=1}^\infty (-1)^n\frac{x^{2n}}{n!}</m>, where <m>x</m> is a given number and
+      we use the factorial notation <m>n! = (n)(n{-}1)(n{-}2)\cdots (2)(1)</m>.</p>
+    </statement>
+    <solution>
+      <p>Again, the terms have a large number of factors, so we use the Ratio Test:</p>
+      <p><md>
+        L\ =\
+        \lim_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|
+        \ =\
+        \lim\limits_{n\to\infty}
+        \frac{x^{2(n+1)}}{(n{+}1)!}\left/
+        \frac{x^{2n}}{n!}
+        \right.
+        \ =\
+        \lim\limits_{n\to\infty} \frac{x^2}{n{+}1}
+        \ =\ 0\,.
+      </md></p>
+      <p>Since <m>L = 0&lt;1</m>, the Test shows <m>\sum a_n</m> converges.</p>
+    </solution>
+  </example>
+
+  <p><alert>Series with positive terms.</alert>
+  So far, we have mostly considered positive series <m>\sum_{n=1}^\infty a_n</m>
+  with <m>a_n\geq 0</m>,
+  whose partial sums <m>s_N = \sum_{n=1}^N a_n=a_1+a_2+\cdots+a_N</m> can only increase as we add
+  more positive terms. As <m>N\to\infty</m>, these can behave in one of two ways:</p>
+
+  <p><ul>
+    <li>Convergence: partial sums level off beneath
+    a ceiling value:<fn>
+    In fact if the increasing partial sums have an upper bound, <m>s_n\leq B</m> for all <m>n</m>,
+    then the completeness axiom of real analysis states that the least upper bound
+    <m>\lim\limits_{n\to \infty} s_n</m> exists.
+    </fn>
+    <m>\lim\limits_{N\to\infty} s_N =  \sum\limits_{n=1}^\infty a_n=L</m>.</li>
+    <li>Divergence to infinity: partial sums increase without bound:
+    <m>\lim\limits_{N\to\infty} s_N =  \sum\limits_{n=1}^\infty a_n=\infty</m>.</li>
+  </ul></p>
+
+  <p>We can picture the sequence <m>\{s_n\}_{n=1}^\infty</m> as a line graph connecting the points <m>(n,s_n)</m>:</p>
+
+  <figure xml:id="fig-11-6-pos-convergence-placeholder">
+    <caption>Positive-term series with convergent partial sums.</caption>
+    <image width="45%">
+      <shortdescription>Placeholder for 11-6-Pos-Convergence.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=4.2cm, minimum height=3cm, font=\small] {11-6-Pos-Convergence};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <figure xml:id="fig-11-6-pos-infinity-placeholder">
+    <caption>Positive-term series with partial sums diverging to infinity.</caption>
+    <image width="45%">
+      <shortdescription>Placeholder for 11-6-Pos-Infinity.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=4.2cm, minimum height=3cm, font=\small] {11-6-Pos-Infinity};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p><alert>Series with positive and negative terms.</alert>
+  In the more general case where <m>a_n</m> can be positive or negative, the partial
+  sums can osciallate up and down depending on the sign of each term added.</p>
+
+  <p><ul>
+    <li>Convergence (oscillating): partial sums wiggle above and below the horizontal asymptote which is their limiting value:
+    <m>\lim\limits_{N\to\infty} s_N =  \sum\limits_{n=1}^\infty a_n=L</m>.</li>
+    <li>Divergence to infinity (oscillating): partial sums have more ups than downs,
+    making an overall increase without bound:
+    <m>\lim\limits_{N\to\infty} s_N =  \sum\limits_{n=1}^\infty a_n=\infty</m>;
+    or more downs than ups, so the limit is <m>-\infty</m>.</li>
+    <li>Divergence (indecisive oscillation): partial sums do not consistently go up or down or approach a horizontal asymptote, so <m>\lim\limits_{N\to\infty} s_N =  \sum\limits_{n=1}^\infty a_n</m> does not exist at all.</li>
+  </ul></p>
+
+  <figure xml:id="fig-11-6-osc-convergence-placeholder">
+    <caption>Oscillating partial sums that converge.</caption>
+    <image width="45%">
+      <shortdescription>Placeholder for 11-6-Osc-Convergence.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=4.2cm, minimum height=3cm, font=\small] {11-6-Osc-Convergence};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <figure xml:id="fig-11-6-osc-infinity-placeholder">
+    <caption>Oscillating partial sums that diverge to infinity.</caption>
+    <image width="45%">
+      <shortdescription>Placeholder for 11-6-Osc-Infinity.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=4.2cm, minimum height=3cm, font=\small] {11-6-Osc-Infinity};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>An example of indecisive oscillation is <m>a_n=(-1)^n</m>, for which:</p>
+
+  <p><md>
+    s_n \ =\ 1-1+1-1+\cdots\pm 1 \ =\
+    \left\{\begin{array}{cl} 1 &amp;\text{for } n \text{ odd}\\
+    0  &amp; \text{for } n \text{ even.}
+    \end{array}\right.
+  </md></p>
+
+  <p><alert>Absolute convergence.</alert> We say that a series <m>\sum_{n=1}^\infty a_n</m>
+  is <term>absolutely convergent</term>
+  whenever the series of absolute values is convergent: <m>\sum_{n=1}^\infty |a_n|=M</m>.
+  A series is <term>conditionally convergent</term> if it is convergent, <m>\sum_{n=1}^\infty a_n=L</m>, but <m>\sum_{n=1}^\infty |a_n|=\infty</m>.</p>
+
+  <p>In terms of the graph of <m>s_N =\sum_{n=1}^N a_n</m>,
+  absolute convergence means the total length of ups and downs is a finite number <m>M</m>.
+  Equivalently, if we change all down steps <m>a_n&lt;0</m> to up steps <m>|a_n|&gt;0</m>,
+  we obtain the graph of a convergent positive series <m>t_N=\sum_{n=1}^N |a_n|</m> converging to
+  the ceiling <m>M</m>:</p>
+
+  <figure xml:id="fig-11-6-abs-convergence-placeholder">
+    <caption>Absolute convergence as finite total variation in partial sums.</caption>
+    <image width="55%">
+      <shortdescription>Placeholder for 11-6-Abs-Convergence.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=5.2cm, minimum height=3.2cm, font=\small] {11-6-Abs-Convergence};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <proposition xml:id="prop-absolute-convergence-theorem">
+    <title>Absolute Convergence Theorem</title>
+    <statement>
+      <p>If a series is absolutely convergent with <m>\sum_{n=1}^\infty |a_n|=M</m>, then it is convergent with <m>\sum_{n=1}^\infty a_n=L</m>.</p>
+    </statement>
+    <proof>
+      <p>Let <m>b_n = |a_n|</m>, and <m>q(n)=\pm 1</m> be the sign of <m>a_n</m>, so that <m>a_n=q(n)\,b_n</m>. By hypothesis, <m>\sum |a_n|=\sum b_n</m> is convergent, hence so are
+      the sums of only the positive <m>a_n</m> and only the negative <m>a_n</m>:</p>
+      <p><md>
+        \mathop{\sum\limits_{n=1}^\infty}\limits_{q(n)=+1} b_n \ =\ L_1
+        \ \ \quad\text{and}\quad
+        \mathop{\sum\limits_{n=1}^\infty}\limits_{q(n)=-1} b_n \ =\ L_2\,.
+      </md></p>
+      <p>Now:</p>
+      <p><md>
+        \begin{array}{rcl}
+        \sum_{n=1}^\infty a_n
+         &amp; =  &amp; \lim\limits_{N\to\infty} \sum\limits_{n=1}^N a_n
+        \ \stackrel{(\ast)}=\
+         \lim\limits_{N\to\infty}
+        \mathop{\sum\limits_{n=1}^N}\limits_{q(n)=+1} b_n
+        -\mathop{\sum\limits_{n=1}^N}\limits_{q(n)=-1} b_n
+         \\[2em]
+        &amp; \stackrel{(\ast\ast)}= &amp; \lim\limits_{N\to\infty}
+        \mathop{\sum\limits_{n=1}^N}\limits_{q(n)=+1} b_n
+        -\lim\limits_{N\to\infty}
+        \mathop{\sum\limits_{n=1}^N}\limits_{q(n)=-1} b_n
+        \ =\ L_1-L_2
+         \end{array}
+      </md></p>
+      <p>Here the equality <m>(\ast)</m> follows from rearranging a finite sum of terms,
+      and <m>(\ast\ast)</m> follows from the Limit Sum Law from Calculus I §1.6.</p>
+    </proof>
+  </proposition>
+
+  <p><alert>Series with alternating signs.</alert> We say that a series is <term>alternating</term> when
+  successive terms <m>a_n</m> are of opposite sign; i.e. <m>a_n = (-1)^n b_n</m> or <m>a_n = (-1)^{n-1} b_n</m> with <m>b_n\geq 0</m>.</p>
+
+  <theorem xml:id="thm-alternating-series-test">
+    <title>Alternating Series Test</title>
+    <statement>
+      <p>If <m>a_n</m> is an alternating series with <m>b_n=|a_n|</m> decreasing,
+      meaning <m>b_n\geq b_{n+1}</m> for all <m>n</m>, and <m>\lim_{n\to\infty}b_n=0</m>,
+      then <m>\sum_{n=1}^\infty a_n</m> converges to some <m>L</m>.
+      Also, the error of a partial sum is bounded by the next term:
+      <md>\left|\,L-\sum\limits_{n=1}^N a_n\,\right| \leq |a_{N+1}|.</md></p>
+    </statement>
+    <proof>
+      <p>Assuming <m>a_n=(-1)^{n-1}b_n</m> where <m>b_1\geq b_2\geq b_3\geq\cdots\geq 0</m>,
+      and setting <m>s_N=\sum_{n=1}^N a_n = b_1 - b_2 + b_3 - b_4 + \cdots \pm b_N</m>,
+      we see that:</p>
+      <p><md>
+        s_3 = b_1 - b_2 + b_3
+        = b_1 - (b_2-b_3) &lt; b_1 = s_1\,,
+      </md></p>
+      <p>and similarly:</p>
+      <p><md>
+        s_2\leq s_4\leq s_6\leq\cdots \leq s_5 \leq s_3 \leq s_1\,,
+      </md></p>
+      <p>so the even values of <m>s_N</m> form an increasing subsequence, and the odd values form a
+      decreasing subsequence.
+      Furthermore, we have <m>\lim_{n\to \infty} |s_{n+1}-s_n| = \lim_{n\to \infty}b_n=0</m>,
+      so the even and odd subsequences become arbitrarily close, clearly zeroing in on a finite limit <m>L</m>.
+      Error estimate:
+      for <m>N</m> even, <m>s_{N} \leq L\leq s_{N+1}= s_{N}+b_{N+1}</m>; similarly for <m>N</m> odd. Q.E.D.</p>
+    </proof>
+  </theorem>
+
+  <figure xml:id="fig-11-6-alt-convergence-placeholder">
+    <caption>Convergence behavior of alternating-series partial sums.</caption>
+    <image width="55%">
+      <shortdescription>Placeholder for 11-6-Alt-Convergence.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=5.2cm, minimum height=3.2cm, font=\small] {11-6-Alt-Convergence};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>Absolutely convergent series have several nice properties which conditionally convergent series lack. For example, if we rearrange the order of terms in an absolutely convergent series, the limit does not change, but this is not true for a conditionally convergent series.</p>
+
+  <example>
+    <statement>
+      <p>Consider <m>\sum_{n=1}^\infty (-1)^{n-1} \frac1n = 1 -\frac12 + \frac13-\frac14+\cdots</m>, which is convergent by the Alternating Series Test.<fn>
+      In fact, we will see later that <m>1 -\frac12 + \frac13-\frac14+\cdots=\ln(2)</m>.
+      </fn></p>
+    </statement>
+    <solution>
+      <p>We easily see that the series of positive terms
+      <m>\sum_{n=1}^\infty \frac1{2n-1}=\infty</m> and the series of negative terms
+      <m>\sum_{n=1}^\infty (- \frac1{2n})=-\infty</m> are both divergent, so the conditionally convergent sum of the alternating series involves competing infinities. If we rearrange to give the positive terms a head start,
+      so that a large number of positive terms outrun each negative term,
+      then the positive infinity will win. In a sum like:</p>
+      <p><md>
+        1 + \tfrac13+\tfrac15 \mathbf{-\tfrac12} +\tfrac17+\tfrac19+\cdots+\tfrac1{21} \mathbf{-\tfrac14} +\tfrac1{23}+\tfrac1{25}+\cdots+\tfrac1{101} \mathbf{-\tfrac1{6}}+\cdots,
+      </md></p>
+      <p>all the terms <m>a_n=(-1)^{n-1}\frac1n</m> eventually appear, but the partial sums tend to <m>\infty</m>, not to the finite value of the original alternating series.</p>
+    </solution>
+  </example>
 
 </section>

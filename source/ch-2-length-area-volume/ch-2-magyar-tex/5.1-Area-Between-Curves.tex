@@ -1,0 +1,290 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 0}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\addtolength{\topmargin}{-.4in}
+\addtolength{\textheight}{.7in}
+\addtolength{\oddsidemargin}{-.2in}
+\addtolength{\textwidth}{.4in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\tZ}{\tilde{\Z}}
+\newcommand{\sgn}{\mathrm{sgn}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+\newcommand{\tu}{\textunderscore}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\st}{\mbox{\footnotesize$\sqrt3$}}
+
+\newcommand{\ul}{\underline}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 132\hspace{1.5em} \hfill{\Large\bf Area Between Curves}\hfill Stewart \S5.1}
+\vspace{1em}
+
+\noindent
+{\bf Region between two parabolas.} We have seen that geometrically, the integral $\int_a^b f(x)\,dx$ computes the area between a curve $y=f(x)$ and an interval $x\in[a,b]$ on the $x$-axis (with area below the axis counted negatively). In Calculus II, we will show the versatility of the integral to compute all kinds of areas, lengths, volumes: almost any measure of size for a geometric object.
+
+In this section, we compute more general areas:
+those between two given curves $y=f(x)$ and $y=g(x)$,
+usually with no boundary on the $x$-axis.
+\\[.5em]
+{\sc example:} Consider the region 
+with top boundary $y=f(x) =x^2{+}x{+}1$, 
+bottom boundary $y=g(x)=2x^2{-}1$, 
+left boundary the $y$-axis $x\,{=}\,0$,
+right boundary~$x\,{=}\,1$:\footnote{
+We specify the region as the set  of 
+all points $(x,y)$ which satisfy the given
+conditions.
+}
+$$\begin{array}{rcl}
+R &=& 
+\{\,(x,y) \ \text{with}\ g(x)\leq y\leq f(x)
+\text{ and } x\in[0,1]\,\}.
+\\[.5em]
+&=& 
+\{\,(x,y) \ \text{with}\ 2x^2{-}1\leq y\leq x^2{+}x{+}1
+\text{ and } 0\leq x\leq 1\,\}.
+\end{array}$$
+\\[0em]
+\centerline{
+\includegraphics[width=3.8in]
+{5-1-Parabolas-1.png}
+%\hspace{.5in}
+%\includegraphics[width=2in]
+%{5-1-Vert-Slices.png}
+}
+\vspace{-.5em}
+
+\noindent
+Here $y=g(x)=2x^2{-}1$ is a standard parabola shifted downward, with minimum point $x=0$.
+The curve $y=f(x)=x^2{+}x{+}1$ is roughly like its leading term $y=x^2$, 
+a parabola opening upward; 
+its minimum point satisfies $(x^2{+}x{+}1)' = 2x{+}1 = 0$, i.e.~$x=-\frac12$.
+
+To compute the area of $R$, we use the same geometric-numerical strategy as for the region under a single curve: split $R$ into $n$ thin vertical slices of width $\Delta x =\frac1n$, each approximately a rectangle;
+then add up the rectangle areas and take the limit
+as $n$ becomes larger and larger.
+In the interval $x\in[0,1]$, we take sample points $x_1,\ldots, x_n$, one in each $\Delta x$ increment.
+The slice at position $x_i$ has height equal to the ceiling minus the floor,
+$f(x_i)-g(x_i)$, so:
+$$
+\text{area of slice} \ \approx\ \text{(height)$\times$(width)} \ =\  (f(x_i)-g(x_i))\,\Delta x,
+$$
+and the total area is:
+$$
+A_{[0,1]} \ = \ \lim_{n\to\infty} \sum_{i=1}^n (f(x_i)-g(x_i))\,\Delta x
+\ =\ \int_0^1\! (f(x)-g(x))\,dx
+$$
+$$ \ =\
+\int_0^1 (x^2{+}x{+}1)-(2x^2{-}1)\,dx \ =\ \left[\vphantom{\sum}2x{+}\tfrac12x^2{-}\tfrac13x^3\right]_{x=0}^{x=1} \ =\ \tfrac{13}6\,.
+$$
+\\[.5em]
+{\sc example:}
+Next, consider the region between the same curves
+$y=f(x) =x^2{+}x{+}1$ and $y=g(x)=2x^2{-}1$,
+but above the interval $x\in[1,3]$. 
+To picture the region without a calculator,
+we determine the intersection points where the  curves cross:
+$$
+f(x) = g(x)
+\quad\Longleftrightarrow\quad
+x^2{+}x{+}1 = 2x^2{-}1
+\quad\Longleftrightarrow\quad
+$$
+$$
+x^2{-}x{-}2 = 0
+\quad\Longleftrightarrow\quad
+x = \tfrac{1\pm\sqrt{1^2{-}4(1)(-2)}}{2(1)}= \tfrac{1\pm3}2
+= -1\text{ or }2
+$$
+by the Quadratic Formula. Only $x=2$ is relevant for our region above $x\in[1,3]$.
+At $x=1$ we have $g(1)<f(1)$,
+so to the left of $x=2$, our region is defined by $g(x)\leq y\leq f(x)$.
+At $x=3$, we have $f(3)<g(3)$, 
+so to the right of $x=2$, it is $f(x)\leq y\leq g(x)$: 
+\\[.5em]
+\centerline{
+\includegraphics[width=3.8in]
+{5-1-Parabolas-2.png}
+}
+\vspace{-.5em}
+
+\noindent
+Repeating our previous area formula for the two parts of our region gives:
+$$
+A_{[1,3]} \ = \  A_{[1,2]} + A_{[2,3]}
+\ = \ 
+\int_1^2 (f(x)-g(x))\,dx + \int_2^3 (g(x)-f(x))\,dx
+$$
+$$
+\ =\ \int_1^2 (2{+}x{-}x^2) \,dx \,+ \int_2^3 (-2{-}x{+}x^2)\,dx
+\ =\
+\tfrac76 + \tfrac{11}6 \ =\ 3.
+$$
+\newpage
+
+\noindent
+{\sc example:} Finally, we consider the same curves
+$y=f(x) =x^2{+}x{+}1$ and $y=g(x)=2x^2{-}1$, 
+but we take the entire finite region between
+them: $$R'=\{(x,y)\text{ with } g(x)\leq y\leq f(x)\}.$$
+\\[-1em]
+\centerline{
+\includegraphics[width=3.7in]
+{5-1-Parabolas-3.png}
+}
+\vspace{-.5em}
+
+\noindent
+Here the top boundary is $y=x^2+x+1$ and the bottom boundary is $y=2x^2-1$,
+but we have not specified an $x$ interval. However, we have already computed
+the intersection points $x=-1$ and $x=2$, and the curves
+do not enclose any finite regions beyond these points. Thus:
+$$
+A_{[-1,2]} \ =\ \int_{-1}^2 (f(x)-g(x))\,dx = \tfrac92\,.
+$$ 
+
+\noindent
+We can generalize the above examples in:
+\begin{quote}
+{\it Theorem:} The area of the region enclosed between $f(x)$ and $g(x)$ for $x\in[a,b]$
+is:
+$\ds
+A\ =\ 
+\int_a^b \left|\vphantom{\tfrac AA}f(x)-g(x)\right|\,dx\,.
+$
+\end{quote}
+
+\noindent
+The absolute value signs ensure we take the integral of top minus bottom, regardless of 
+which is which.
+In practice, we must find the intersection points where $f(x)=g(x)$,
+which split the integral into intervals where $g(x)\leq f(x)$ versus
+$f(x)\leq g(x)$.
+\\[1.5em]
+{\bf Integrating with respect to $\mathbf{y}$.}
+Consider the region:
+$$
+R \ =\ \{(x,y) \text{ with }  y^2 \leq x  \leq y{+}1\}\,.
+$$
+Here the boudary curves are naturally graphs in which $y$ is the independent variable:
+the right boundary is the line $x=f(y)=y{+}1$;
+and the left boundary is $x = g(y) = y^2$, a parabola opening to the right.
+
+\addtolength{\textheight}{8em}
+
+\newpage
+
+\addtolength{\topmargin}{-4em}
+
+
+\centerline{
+\includegraphics[width=2in]
+{5-1-Y-Function.png} 
+}
+\vspace{-0em}
+
+\noindent
+Understand: it is merely by habit that we consider $y$ as a function of $x$.
+We can make $x$ a function of $y$ instead if it is more convenient,
+and the same formulas will work if we switch the roles of $x$ and $y$. 
+Thus, we find the intersection points:
+$y{+}1 = y^2$ when $y=\frac{1{\pm}\sqrt5}2$ by the Quadratic Formula.
+The area as:
+$$
+A  \ =\ \int_{\frac{1{-}\sqrt5}2}^{\frac{1{+}\sqrt5}2} (y{+}1) - (y^2)\,dy
+\ = \ \left[\vphantom{\int}\tfrac12 y^2 + y - \tfrac13y^3 \right]_{y=\frac{1{-}\sqrt5}2}^{y=\frac{1{+}\sqrt5}2}
+\ =\  \tfrac56\sqrt5.
+$$
+Here $((y{+}1)- (y^2))\,dy$ represents the area of the {\it horizontal} slice of the region at height $y$,
+with thickness $dy$.
+
+To check this, we re-do it from our usual perspective, using $x$ as the independent variable. This makes it more complicated, since we must consider the 
+region as having three boundary graphs: 
+upper boundary $y=\sqrt x$,  lower right boundary $y=x{-}1$,
+and lower left boundary $y=-\sqrt x$. The intersection points are:
+\\[-1.5em]
+\begin{itemize}
+\item Between $y=\sqrt x$ and $y=x{-}1$: \   $x = \frac{3{+}\sqrt5}{2}$ \ (upper right corner)
+\\[-1.5em]
+\item Between $y=-\sqrt x$ and $y=x{-}1$: \   $x = \frac{3{-}\sqrt5}{2}$ \ (lower middle corner)
+\\[-1.5em]
+\item Between $y=\sqrt x$ and $y=-\sqrt x$: \  $x=0$ \ (left end)
+\end{itemize}
+\vspace{-0.3em}
+
+\noindent
+These split the region into left and right parts:
+\\[1em]
+\centerline{
+\includegraphics[width=2in]
+{5-1-X-Function.png} 
+}
+\vspace{-1em}
+
+\noindent
+The area is:
+\\[-1.0em]
+$$
+A \ =\ \int_{0}^{\frac{3{-}\sqrt5}{2}} (\sqrt x) - (-\sqrt x)\,dx
++ \int_{\frac{3{-}\sqrt5}{2}}^{\frac{3{+}\sqrt5}{2}} (\sqrt x) - (x{-}1)\,dx\,,
+$$
+which after much algebra gives the same answer as before: $\tfrac56\sqrt5$.
+
+
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[1em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{1em}
+
+\noindent
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+$$\begin{array}{|c|c|}
+A & B
+\\ \hline && \\[-1.1em]
+C & D
+\end{array}$$
+
+%%%%%%%%%%% Outline %%%%%%%%%%%%
+\begin{enumerate}
+
+\item  \begin{itemize}
+\item
+\item 
+\item 
+\end{itemize}
+
+\end{enumerate}
+
+\\[1em]
+\end{itemize}
+

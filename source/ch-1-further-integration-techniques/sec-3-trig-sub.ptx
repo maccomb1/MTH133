@@ -24,13 +24,13 @@
       trig substitution <m>x=\sin(\theta)</m>: 
       the current variable <m>x</m> is actually a function of a previous variable <m>\theta</m>, 
       and <m>dx=\cos(\theta)\,d\theta</m>. The previous integral would be:
-      <md> \int\!\! \sqrt{1{-}x^2}\,dx \ =\ \int\!\!{\ts\sqrt{1{-}\sin^2(\theta)}}\cdot\cos(\theta)\,d\theta, \quad\text{where } \left\{\!\!\begin{array}{c}x=\sin(\theta)\\[.3em] dx=\cos(\theta)\,d\theta.\end{array}\right. </md>
+      <md> \int\!\! \sqrt{1{-}x^2}\,dx \ =\ \int\!\!{\sqrt{1{-}\sin^2(\theta)}}\cdot\cos(\theta)\,d\theta, \quad\text{where } \left\{\!\!\begin{array}{c}x=\sin(\theta)\\[.3em] dx=\cos(\theta)\,d\theta.\end{array}\right. </md>
 
       Now this simplifies to a standard form from the <xref ref="ssec-other-trig-sub"> previous section </xref>: 
       <fn> Variable <m>\theta</m> is irrelevant: <m>\int\!\cos^2(\theta)\,d\theta = \tfrac12\theta{+}\tfrac14\sin(2\theta)</m> 
         means the same as <m>\int\!\cos^2(x)\,dx = \tfrac12x{+}\tfrac14\sin(2x) </m> </fn>
 
-      <md>\int\!{\ts\sqrt{1{-}\sin^2(\theta)}\cdot\cos(\theta)\,d\theta}\ =\ \int\!\cos^2(\theta)\,d\theta\ =\ \tfrac12\theta + \tfrac14\sin(2\theta) \ =\ \tfrac12\theta + \tfrac12\sin(\theta)\cos(\theta)\,.</md>
+      <md>\int\!{\sqrt{1{-}\sin^2(\theta)}\cdot\cos(\theta)\,d\theta}\ =\ \int\!\cos^2(\theta)\,d\theta\ =\ \tfrac12\theta + \tfrac14\sin(2\theta) \ =\ \tfrac12\theta + \tfrac12\sin(\theta)\cos(\theta)\,.</md>
 
       Substituting back the original variable: <m>\theta=\arcsin(x)</m>, <m>\sin(\theta)=x</m>, <m>\cos(\theta)=\sqrt{1{-}x^2}</m>:
 
@@ -43,7 +43,7 @@
   </subsection>
 
   <subsection xml:id="ssec-int-with-sqrt">
-    <title>Integrals with $\sqrt{\vphantom{x^2}\!\! \pm\! x^2{\pm} a^2}</title>
+    <title>Integrals with <m>\sqrt{\vphantom{x^2}\!\! \pm\! x^2{\pm} a^2}</m></title>
     
     <p>
       We choose a reverse trig substitution depending on the signs in the expression, then use the corresponding Pythagorean identity to obtain a standard trig form. See also the table of integrals further below.

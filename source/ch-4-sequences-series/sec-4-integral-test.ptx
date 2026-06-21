@@ -3,6 +3,211 @@
 <section xml:id="sec-4-integral-test" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>The Integral Test</title>
 
-  <p> Text of section. </p>
+  <p><alert>Series and integrals.</alert>
+  Our goal for infinite series is to express a complicated quantity
+  as an infinite sum of simple terms, so that finite partial sums
+  approximate the quantity as accurately as we like.
+  We will not have significant tools to achieve this until <xref ref="sec-9-representing-functions-with-power-series"/>.</p>
+
+  <p>For now (<xref ref="sec-4-integral-test"/>-<xref ref="sec-6-ratio-test"/>), we concentrate on a less specific question:
+  when does a given series converge to <term>some</term> finite value,
+  rather than diverge to infinity or an oscillating value?
+  For example, we have seen the <m>n</m>th Term Vanishing Test:
+  the series must diverge if the the terms do not approach zero, <m>\lim_{n\to\infty}a_n\neq 0</m>.
+  A more subtle and powerful convergence test comes
+  from comparing the sum of a series to the area under a curve
+  <m>y=f(x)</m> passing through each point <m>(n,a_n)</m>.</p>
+
+  <theorem xml:id="thm-integral-test">
+    <statement>
+      <p><term>Integral Test:</term> Suppose the function <m>f(x)</m> is continuous,
+      positive, and decreasing on the interval <m>x\in[1,\infty)</m>,
+      and that <m>a_n=f(n)</m>. We compare the improper integral <m>\int_1^\infty f(x)\,dx</m>
+      with the infinite series <m>\sum_{n=1}^\infty a_n</m>.</p>
+      <p><ul>
+        <li>If <m>\int_1^\infty f(x)\,dx</m> diverges,
+        then <m>\sum_{n=1}^\infty a_n</m> also diverges.</li>
+        <li>If <m>\int_1^\infty f(x)\,dx</m> converges,
+        then <m>\sum_{n=1}^\infty a_n</m> also converges.</li>
+      </ul></p>
+    </statement>
+  </theorem>
+
+  <p><alert>Divergent case.</alert>
+  Consider <m>\sum_{n=1}^\infty a_n=\sum_{n=1}^\infty \frac1n</m>.
+  Then the function <m>f(x)=\frac1x</m> has <m>a_n=f(n)</m>,
+  and for <m>x\in[1,\infty)</m>, this function is:</p>
+
+  <p><ul>
+    <li>continuous, since its only vertical asymptote is <m>x=0</m>, outside <m>x\in[1,\infty)</m>;</li>
+    <li>positive, since <m>x\geq 1</m> implies <m>\frac1x&gt;0</m>;</li>
+    <li>decreasing, since its derivative is negative,<fn>
+    See §3.3 Derivatives and Graphs, in the Math 132 Lecture Notes.
+    </fn> <m>f'(x)=-\frac1{x^2}&lt;0</m>.</li>
+  </ul></p>
+
+  <p>Thus, we can apply the Integral Test to compare the infinite series with the improper integral <m>\int_1^\infty f(x)\,dx</m>. We compute:</p>
+
+  <p><md>
+    \int_1^\infty \frac1x \,dx
+    \ =\ \lim\limits_{n\to\infty} \int_1^n \frac1x \,dx
+    \ =\
+     \left.\lim\limits_{n\to\infty}\ln(x)\right|_{x=1}^{x=n}
+    \ =\
+    \lim\limits_{n\to\infty} \ln(n)-\ln(1) \ =\ \infty.
+  </md></p>
+
+  <p>Since the integral diverges, the series <m>\sum_{n=1}^\infty a_n</m> must also diverge.<fn>
+  Elementary proof of divergence: <m>\sum_{n=1}^\infty \frac1n = 1 +\underbrace{ \tfrac12}_{\geq1/2}
+  +\underbrace{\tfrac13+\tfrac14}_{\geq1/2}
+  +\underbrace{\tfrac15+\tfrac16+\tfrac17+\tfrac18}_{\geq 1/2}+\cdots = \infty</m>.
+  </fn></p>
+
+  <p>The Integral Test is best understood geometrically.
+  The value of the series is the total area under the bar-graph
+  of <m>\{a_n\}</m>, where we draw the bar at height <m>a_n</m>
+  above the interval <m>x\in[n,n{+}1]</m>.</p>
+
+  <figure xml:id="fig-11-3-integral-divergence-placeholder">
+    <caption>Bar graph and curve comparison for the divergent harmonic series case.</caption>
+    <image width="60%">
+      <shortdescription>Placeholder for 11-3-Integral-Divergence figure.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=5cm, minimum height=3.3cm, font=\small] {11-3-Integral-Divergence};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>The integral is the area of the region under
+  <m>y=f(x)</m> and above <m>x\in[1,\infty)</m>.
+  But the bar graph completely contains the integral region, so:</p>
+
+  <p><md>
+    \sum_{n=1}^\infty a_n \ \geq \ \int_1^\infty f(x)\,dx\,.
+  </md></p>
+
+  <p>Since the integral diverges to infinity,
+  getting larger and larger with no bound as we add area on the right,
+  the series must also diverge as we add more terms.</p>
+
+  <p><alert>Convergent case.</alert> Now consider
+  <m>\sum_{n=1}^\infty a_n=\sum_{n=1}^\infty \frac1{n^2}</m>
+  which has <m>a_n=f(n)</m> for <m>f(x)=\frac1{x^2}</m>, which is again
+  a continuous, positive, decreasing function for <m>x\in[1,\infty)</m>.
+  Thus we can apply the Integral Test to compare the infinte series
+  with the improper integral <m>\int_1^\infty f(x)\,dx</m>:</p>
+
+  <p><md>
+    \int_1^\infty \frac1{x^2} \,dx
+    \ =\ \lim\limits_{n\to\infty} \int_1^n \frac1{x^2} \,dx
+    \ =\
+     \left.\lim\limits_{n\to\infty}-\frac1x\right|_{x=1}^{x=n}
+    \ =\
+    \lim\limits_{n\to\infty} -\frac1n-(-\frac11) \ =\ 1.
+  </md></p>
+
+  <p>Since the integral converges, the series <m>\sum_{n=1}^\infty a_n</m> must also converge.</p>
+
+  <p>Again, we can understand this geometrically.
+  The value of the series is the total area under the bar-graph
+  of <m>\{a_n\}</m>, but this time we draw the bar at height <m>a_n</m>
+  above the interval <m>x\in[n{-}1,n]</m>, shifted left from our previous picture,
+  so the bar graph lies under <m>y=f(x)</m>.
+  For this series, the heights are <m>a_n=\frac1{n^2}</m>, much lower than
+  the previous <m>a_n=\frac1n</m>, so it has a better
+  chance of converging to a finite area.</p>
+
+  <figure xml:id="fig-11-3-integral-convergence-placeholder">
+    <caption>Bar graph and curve comparison for the convergent p-series case with <m>p=2</m>.</caption>
+    <image width="60%">
+      <shortdescription>Placeholder for 11-3-Integral-Convergence figure.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=5cm, minimum height=3.3cm, font=\small] {11-3-Integral-Convergence};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>Clearly, the part of the bar-graph after <m>a_2</m> is contained in the integral region
+  under <m>y=f(x)</m> and above <m>x\in[1,\infty)</m>. Thus:</p>
+
+  <p><md>
+    \sum_{n=2}^\infty a_n \ \leq \ \int_1^\infty\!\! f(x)\,dx\,,
+  </md></p>
+
+  <p><md>
+    \sum_{n=1}^\infty a_n \ =\ a_1+\sum_{n=2}^\infty a_n  \ \leq \ a_1 + \int_1^\infty\!\! f(x)\,dx \ =\ 2\,.
+  </md></p>
+
+  <p>So <m>\sum_{n=1}^\infty \frac1{n^2}</m> is not only finite, it is less than 2.<fn>
+  In fact, Euler computed this limit as <m>\frac{\ \pi^2}{6}\approx 1.64</m>.
+  Look up the Basel Problem.
+  </fn></p>
+
+  <p><alert>Examples.</alert></p>
+
+  <p><term>Standard p-series.</term>
+  The above reasoning is easily generalized to show:</p>
+
+  <p><md>
+    \boxed{
+    \sum_{n=1}^\infty \frac1{n^p}
+    \ \ \text{converges if } p&gt;1\text{, diverges if } p\leq1.
+    }
+  </md></p>
+
+  <p>Determine the convergence of:</p>
+
+  <p><md>
+    \sum\limits_{n=1}^\infty a_n \ =\ \sum\limits_{n=1}^\infty \frac1{(2n-5)(2n-7)}\,.
+  </md></p>
+
+  <p>In this case, the function <m>f(x)=\frac1{(2x-5)(2x-7)}</m>
+  has vertical asymptotes at <m>x=\frac52,\frac72</m>:
+  it is not continuous, or positive, or decreasing on <m>x\in[1,\infty)</m>,
+  so the Integral Test does not immediately apply.</p>
+
+  <p>However, to the right of the asympotes, for <m>x\in[4,\infty)</m>,
+  the function is continuous; it is positive,
+  since <m>2x-5&gt;0</m> and <m>2x-7&gt;0</m> for <m>x\geq 4</m>;
+  and it is decreasing, since the derivative
+  <m>f'(x) =  -\frac{8 (x-3)}{(5-2 x)^2 (7-2 x)^2} &lt; 0</m>
+  for <m>x\geq 4</m>. Further, we have:</p>
+
+  <p><md>
+    \begin{array}{rcl}
+    \int_4^\infty \frac1{(2x-5)(2x-7)}\, dx
+    &amp;=&amp;
+    \int_4^\infty\!\! -\frac{\frac12}{2 x-5} +  \frac{\frac12}{2 x-7}\  dx
+    \\[1em]
+    &amp;=&amp;
+    \lim_{n\to\infty}
+    \left.
+    	\frac14 \ln\!\left(\frac{2x{-}7}{2x{-}5}\right)
+    \right|_{x=4}^n
+    \ =\
+    0 - \ln(\frac13) \ &lt; \ \infty.
+    \end{array}
+  </md></p>
+
+  <p>since <m>\lim_{n\to\infty} \ln\!\left(\frac{2n{-}7}{2n{-}5}\right)
+  =\ln(1)=0</m>.</p>
+
+  <p>Slightly generalizing the reasoning of the convergent case of the Integral Test above,
+  we find that <m>\sum\limits_{n=5}^\infty a_n \leq \int_4^\infty f(x)\,dx</m>.
+  Thus, we have:</p>
+
+  <p><md>
+    \begin{array}{rcl}
+    \sum\limits_{n=1}^\infty a_n
+    &amp;=&amp;
+    a_1+a_2+a_3+a_4+ \sum\limits_{n=5}^\infty a_n
+    \\[1.5em]
+    &amp;&lt;&amp; a_1+a_2+a_3+a_4+ \int_4^\infty f(x)\,dx \ &lt;\ \infty.
+    \end{array}
+  </md></p>
 
 </section>

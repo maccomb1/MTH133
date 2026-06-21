@@ -3,6 +3,141 @@
 <section xml:id="sec-6-what-technique-should-i-use" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>What Technique Should I Use?</title>
 
-  <p> Text of section. </p>
+  <p>Given a function <m>f(x)</m>, we wish to find the indefinite integral <m>\int\! f(x)\,dx=F(x)+C</m>,
+  i.e. an antiderivative function with <m>F'(x)=f(x)</m>. For brevity,
+  we omit the constant <m>+C</m>.</p>
+
+  <p>
+  <ol>
+    <li>
+      <title>Basic integrals which directly reverse basic derivatives:</title>
+      <p><md>
+        
+        \int\! x^p\,dx = \tfrac1{p+1}x^{p+1} \ (p\!\neq \!-1)
+        \qquad
+        \int\! \tfrac1x\,dx = \ln\!|x|
+        \qquad
+        \int\! e^x\,dx= e^x
+      </md></p>
+      <p><md>
+        
+        \int\! \sin(x)\,dx= -\cos(x)
+        \qquad
+        \int\! \cos(x)\,dx= \sin(x)
+      </md></p>
+      <p><md>
+        
+        \int\! \sec^2(x)\,dx= \tan(x)
+        \qquad
+        \int\! \tan(x)\sec(x)\,dx= \sec(x)
+      </md></p>
+      <p><md>
+        
+        \int\!\! \frac{1}{\sqrt{1{-}x^2}}\,dx = \arcsin(x)
+        \qquad
+        \int\!\! \frac{1}{1{+}x^2}\,dx = \arctan(x)
+      </md></p>
+    </li>
+
+    <li>
+      <title>Substitution:</title>
+      <p>Factor the integrand so that <m>\int f(x)\,dx = \int h(g(x))\cdot g'(x)\,dx</m>.</p>
+      <p>Take <m>u=g(x)</m>, <m>du=g'(x)\,dx</m>,
+      so that <m>\int h(g(x))\, g'(x)\,dx
+      =\int h(u)\,du</m>. Integrate to get <m>\int h(u)\,du=H(u)</m>. Restore the original variable:
+      <m>\int f(x)\,dx = H(g(x))</m>.</p>
+      <p>Tips: Take an inside function <m>u=g(x)</m>; if there is no factor <m>du = g'(x)\,dx</m>,
+      multiply by <m>\frac{1}{g'(x)}g'(x)</m>,
+      or take inverse function <m>x=g^{-1}(u)</m>, <m>dx=(g^{-1})'(u)\,du</m>.
+      Or start with a factor <m>du = g'(x)\,dx</m>;
+      and in the other factor,
+      reverse-substitute <m>x=g^{-1}(u)</m>.</p>
+    </li>
+
+    <li>
+      <title>Integration by Parts.</title>
+      <p>Find a known derivative <m>g'(x)</m> as a factor of the integrand:</p>
+      <p><md>
+        \int f(x)\,dx = \int h(x){\cdot} g'(x)\,dx
+        =h(x){\cdot} g(x)-\int g(x){\cdot} h'(x)\,dx,
+      </md></p>
+      <p>i.e. <m>\int u\,dv = uv-\int v\,du</m>.</p>
+      <p>The remaining integral <m>\int g(x){\cdot} h'(x)\,dx</m> should be easier,
+      provided <m>h'(x)</m> is <term>simpler</term> than <m>h(x)</m>, but
+      <m>g(x)</m> is <term>about as complicated</term> as <m>g'(x)</m>.
+      Or try <m>g'(x)=1</m>, <m>g(x)=x</m>.</p>
+      <p>After identities, the right side may again contain <m>-\int f(x)\,dx</m>:
+      solve for the integral.</p>
+    </li>
+
+    <li>
+      <title>Products of Trig Functions:</title>
+      <p>(a) <m>f(\theta)= (\text{odd pos pwr of\,}\sin\theta)\times(\text{any pwr of\,}\cos\theta)</m>, subs <m>\cos\theta=u</m>, <m>\sin^2\!\theta=1-u^2</m>, <m>\sin\theta\,d\theta=-du</m>; or (a<m>'</m>) switch <m>\sin</m> <m>\&amp;</m> <m>\cos</m>; (b) <m>f(\theta)=(\text{even pos pwr\,}\sec\theta)\times(\text{any pwr\,}\tan\theta)</m>, subs <m>\tan\theta=u</m>, <m>\sec^2\!\theta=u^2-1</m>, <m>\sec^2\!\theta\,d\theta=du</m>.</p>
+      <p>All even pos pwr <m>\sin\theta, \cos\theta</m>: identities
+      <m>\sin^2(x)=\frac12-\frac12\cos(2x)</m>,
+      <m>\cos^2(x)=\frac12+\frac12\cos(2x)</m>.</p>
+      <p>A hard case: <m>\int \sec\theta\,d\theta = \ln\!|\!\tan\theta{+}\sec\theta|</m>.
+      Geometric substitution converts any trig integral to
+      rational: <m>\cos(\theta) = \frac{1-t^2}{1+t^2}</m>, <m>\sin(\theta) =  \frac{2t}{1+t^2}</m>, <m>d\theta = \frac{2}{1+t^2}\,dt</m>, <m>t \!=\! \tan(\frac12\theta)</m>.</p>
+    </li>
+
+    <li>
+      <title>Reverse Trig Substitution.</title>
+      <p>If <m>\sqrt{a^2{-}x^2}</m> appears in <m>\int f(x)\,dx</m>, complicate it by substituting <m>x=a\sin(\theta)</m>, <m>dx = a\cos(\theta)\,d\theta</m>; simplify
+      <m>\sqrt{a^2{-}x^2}=\sqrt{a^2{-}(a\sin(\theta))^2\,} = a\cos(\theta)</m>.
+      Do the resulting trig integral; then restore <m>\theta = \sin^{-1}(\frac xa)</m>,
+      <m>\sin(\theta)=\frac xa</m>,
+      <m>\cos(\theta) = \frac1a\sqrt{a^2-x^2}</m>.</p>
+      <p>For <m>\sqrt{x^2{-}a^2}</m>, use <m>x=a\sec(\theta)</m> or <m>a\cosh(t)</m>;
+      for <m>\sqrt{x^2{+}a^2}</m>, use <m>x=a\tan(\theta)</m> or <m>a\sinh(t)</m>.</p>
+    </li>
+
+    <li>
+      <title>Partial Fractions</title>
+      <p>integrates rational functions
+      <m>f(x) = \frac{g(x)}{h(x)}=\frac{\text{polynomial}}{\text{polynomial}}</m>.
+      If <m>g(x)</m> has higher or equal degree to <m>h(x)</m>,
+      long division gives <m>f(x) = q(x) + \frac{r(x)}{h(x)}</m>
+      with <m>r(x)</m> of smaller degree than <m>h(x)</m>: proceed with <m>\frac{r(x)}{h(x)}</m>.</p>
+      <p>If denominator factors as <m>h(x) = (x{-}a)(x{-}b)\cdots</m> with all
+      different roots <m>a,b,\ldots</m>, split
+      <m>f(x) = \frac{g(x)}{(x{-}a)(x{-}b)\cdots} = \frac{A}{x-a} + \frac{B}{x-b}+\cdots</m>.
+      Solve for constant <m>A</m> after clearing denominators
+      and substituting <m>x=a</m>;
+      subs <m>x=b</m> to solve for <m>B</m>, etc;
+      then <m>\int\!\! \frac{A}{x{-}a}\,dx=A\ln|x{-}a|</m>.</p>
+      <p>Complete the square in denom:
+      <m>ax^2{+}bx{+}c=a(x{+}k)^2+\ell</m> with
+      <m>k=\frac{b}{2a}</m>, <m>\ell=-(\frac{b}{2a})^2+c</m>.</p>
+      <p>For <m>a,\ell&gt;0</m>:
+      <m>\int\! \frac{(x+k)}{a(x{+}k)^2+\ell}\, dx =\frac{1}{2a}\ln(ax^2{+}bx{+}c)</m>; <m>\int\! \frac{1}{a(x{+}k)^2+\ell} dx
+      =\frac{1}{\sqrt{\!a\ell}}\arctan\!\sqrt{\!\frac{a}{\ell}}(x{+}k)</m>.</p>
+      <p>See §7.4 for higher terms if <m>h(x)</m> has factors <m>(x{-}a)^n</m>
+      or irreducible <m>(ax^2{+}bx{+}c)^n</m>.</p>
+    </li>
+
+    <li>
+      <title>Special Functions (Non-Elementary)</title>
+      <p>An integral has no elementary formula if it reduces to one of these special functions:</p>
+      <p><ul>
+        <li>sine integral <m>\text{Si}(x) = \int \frac{\sin(x)}{x}\,dx</m>,
+        but Dirichlet <m>\int_{-\infty}^\infty\! \frac{\sin(x)}x\,dx = \pi</m>;</li>
+        <li>exp int <m>\text{Ei}(x) = \int \!\frac{e^x}{x}\,dx</m>;</li>
+        <li>error function <m>\sqrt\pi\,\text{erf}(x) = \int\! e^{-x^2} dx</m>,
+        but Gauss <m>\int_{-\infty}^\infty e^{-x^2} dx=\Gamma(\frac12)=\sqrt{\pi}</m>;</li>
+        <li>log int <m>\text{Li}(x) = \int\! \frac1{\ln(x)}\,dx</m>,
+        but Feynman <m>\int_0^1\! \frac{x^p-1}{\ln(x)}\,dx = \ln(\frac{1}{p+1})</m>;</li>
+        <li>dilog <m>\text{Li}_2(x) = -\int\! \frac{\ln(1-x)}x\,dx</m>;</li>
+        <li>elliptic integrals, <m>k\,{\neq}\, 1</m>:
+        <m>\int\!\! \frac{d\theta}{\sqrt{1-k^2\sin^2(\theta)}}</m>,
+        <m>\int\!\! \sqrt{1{-}k^2\sin^2(\theta)}\, d\theta</m>,
+        <m>\int\!\! \frac{d\theta}{(1-n\sin^2(\theta)) \sqrt{1-k^2\sin^2(\theta)} }</m>;</li>
+        <li>gamma <m>\Gamma(z) = (z{-}1)! = \int_0^\infty t^{z-1} e^{-t}\,dt</m>;</li>
+        <li>beta <m>B(z_1,z_2) = \frac{\Gamma(z_1)\Gamma(z_2)}{\Gamma(z_1+z_2)}
+        =\int_0^1 t^{z_1-1}(1{-}t)^{z_2-1}dt</m>.</li>
+      </ul></p>
+    </li>
+  </ol>
+  </p>
 
 </section>

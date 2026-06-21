@@ -3,6 +3,240 @@
 <section xml:id="sec-5-direct-limit-comparison" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Direct and Limit Comparison Tests</title>
 
-  <p> Text of section. </p>
+  <p><alert>Convergence and divergence.</alert> We continue to discuss convergence tests: ways to tell if a given series <m>\sum_{n=1}^\infty a_n=\lim_{N\to\infty} \sum_{n=1}^N a_n</m> converges (to a finite value),
+  or diverges (to infinity or by oscillating).<fn>
+  A general divergent series might oscillate up and down forever, but a positive series (with <m>a_n\geq 0</m>) either levels off to a finite value, or diverges to infinity.
+  </fn>
+  So far, we know convergence for two kinds of standard series:</p>
+
+  <p><ul>
+    <li>Geometric series: <m>\sum_{n=1}^\infty cr^{n-1}</m> converges to <m>\frac{c}{1-r}</m> if <m>|r|&lt;1</m>, diverges if <m>|r|\geq 1</m>.</li>
+    <li>Standard <m>p</m>-series: <m>\sum_{n=1}^\infty \frac{1}{n^p}</m> converges if <m>p&gt;1</m>, and diverges if <m>p\leq 1</m>.</li>
+  </ul></p>
+
+  <p>In this section, we test convergence of a complicated series <m>\sum a_n</m> by comparing it to a simpler one
+  (such as the above): a convergent ceiling <m>\sum c_n</m>, or a divergent floor <m>\sum d_n</m>.</p>
+
+  <theorem xml:id="thm-direct-comparison-test">
+    <title>Direct Comparison Test</title>
+    <statement>
+      <p>Let <m>M</m> be a positive integer starting point.</p>
+      <p><ul>
+        <li>If <m>0\,{\leq}\, a_n\,{\leq}\, c_n</m> for <m>n\,{\geq}\,M</m>, and <m>\sum\limits_{n=1}^\infty c_n</m> converges, then <m>\sum\limits_{n=1}^\infty a_n</m> converges.</li>
+        <li>If <m>a_n\,{\geq}\, d_n\,{\geq}\, 0</m> for <m>n\,{\geq}\,M</m>, and <m>\sum\limits_{n=1}^\infty d_n</m> diverges, then <m>\sum\limits_{n=1}^\infty a_n</m> diverges.</li>
+      </ul></p>
+    </statement>
+  </theorem>
+
+  <p>These results are clear, since the series <m>\sum_{n=1}^\infty a_n</m> is term-by-term smaller or larger than its comparison series, except possibly the first <m>M{-}1</m> terms.<fn>
+  Here we use the completeness axiom of real analysis: if a series of increasing partial sums
+  has an upper bound, <m>s_N=\sum_{n=1}^N a_n&lt;B</m> for all <m>N</m>, then the limit (least upper bound)
+  <m>L=\lim\limits_{N\to \infty} s_N</m> exists.
+  </fn></p>
+
+  <example>
+    <statement>
+      <p>Determine convergence of:
+      <m>\sum\limits_{n=1}^\infty a_n =\sum\limits_{n=1}^\infty \frac{n-1}{n^2\sqrt n \, +\,1}</m>.</p>
+    </statement>
+    <solution>
+      <p>We compare to the series <m>c_n</m> obtained from the dominant terms of the top and bottom,
+      and use the general principles for inequality of fractions:
+      <m>\frac{\text{smaller top}}{\text{larger bot}} \leq \frac{\text{top}}{\text{bot}} \leq \frac{\text{larger top}}{\text{smaller bot}}</m>.</p>
+      <p><md>
+        a_n=\frac{n-1}{n^2\sqrt n\,+\,1}
+        \ \ \leq\ \ c_n=\frac{n}{n^2\sqrt n}=\frac1{n^{3/2}}
+        \qquad\text{for } n\geq 1,
+      </md></p>
+      <p>since in <m>c_n</m> the top is larger and the bottom smaller.
+      The ceiling series <m>\sum_{n=1}^\infty c_n = \sum_{n=1}^\infty \frac1{n^{3/2}}</m>
+      is a standard <m>p</m>-series which converges, so <m>\sum_{n=1}^\infty a_n</m> also converges.</p>
+    </solution>
+  </example>
+
+  <example>
+    <statement>
+      <p>Determine convergence of:
+      <m>\sum\limits_{n=1}^\infty  \frac{2^{3n+\sin(n)}}{3^n + 4n^2}</m>.</p>
+    </statement>
+    <solution>
+      <p>As a rough guess, we ignore the lower-order terms in numerator and denominator to compare with <m>\frac{2^{3n}}{3^n}
+      \ =\ \left(\frac{8}{3}\right)^{\!n}</m>, which makes a divergent geometric series, so our series <m>a_n</m> should also diverge.
+      However, <m>d_n</m> is not of the form <m>\frac{\text{smaller top}}{\text{larger bot}}</m>, so we cannot use
+      <m>\sum_{n=1}^\infty d_n=\sum_{n=1}^\infty\left(\frac{8}{3}\right)^{\!n} = \infty</m>
+      as a divergent floor for <m>a_n</m> in the the Comparison Test.</p>
+
+      <p>We need a smaller <m>d_n</m>, with smaller top and larger bottom.
+      To decrease the top: <m>2^{3n+\sin(n)}=
+      2^{3n}2^{\sin(n)}\geq 2^{3n}2^{-1}</m>.
+      To increase the bottom, we take a slightly larger geometric series:
+      in fact
+      <m>4^n\geq 3^n+4n^2</m> for all <m>n\geq 3</m>.
+      Thus:</p>
+
+      <p><md>
+        a_n = \frac{2^{3n+\sin(n)}}{3^n + n^2}
+        \ \ \geq\ \ 
+        d_n = \frac{2^{3n}2^{-1}}{4^n}
+        =\tfrac12 2^n
+        \qquad\text{for } n\geq 3.
+      </md></p>
+
+      <p>We only need this inequality for all large <m>n</m>:
+      the first couple of terms <m>a_1, a_2</m> make no difference
+      to convergence or divergence of the infinite sums.
+      Since <m>\sum_{n=1}^\infty d_n = \sum_{n=1}^\infty\tfrac12 2^n=\infty</m> is a divergent floor,
+      the orginal <m>\sum_{n=1}^\infty a_n</m> also diverges.</p>
+    </solution>
+  </example>
+
+  <example>
+    <statement>
+      <p>Determine convergence of:
+      <m>\sum\limits_{n=1}^\infty \frac{n+1}{n^3 - 20}</m>.</p>
+    </statement>
+    <solution>
+      <p>Roughly estimate top and bottom by their leading terms:
+      <m>\sum_{n=1}^\infty\frac{n}{n^3}=\sum_{n=1}^\infty\frac{1}{n^2}</m>, a convergent standard <m>p</m>-series,
+      so the original series probably converges.
+      But <m>a_n=\frac{n+1}{n^3-20}&gt;\frac n{n^3}</m>, so we cannot use <m>c_n=\frac n{n^3}</m> as a convergent ceiling for <m>a_n</m>.
+      But maybe:</p>
+
+      <p><md>
+        a_n=\frac{n+1}{n^3-20}\ \leq\ c_n=2\frac{n}{n^3} \qquad
+        	ext{for } n\text{ large enough.}
+      </md></p>
+
+      <p>How large does <m>n</m> need to be to make this inequality valid?
+      Let us check:</p>
+
+      <p><md>
+        \frac{n+1}{n^3-20}\leq\frac2{n^2}
+        \quad\Longleftarrow\quad
+        0&lt;n^2(n+1)\leq 2(n^3-20)
+        \quad\Longleftrightarrow\quad
+        40\leq n^2(n{-}1)
+        \quad\Longleftarrow\quad
+        n\geq 4\,.
+      </md></p>
+
+      <p>Thus, we have:</p>
+
+      <p><md>
+        a_n=\frac{n+1}{n^3-20}\ \leq\ c_n = \frac2{n^2} \qquad
+        	ext{for } n\geq 4,
+      </md></p>
+
+      <p>where <m>\sum_{n=1}^\infty\frac{2}{n^2} = 2\sum_{n=1}^\infty\frac{1}{n^2}</m> converges,
+      so the original <m>\sum_{n=1}^\infty a_n</m> also converges.</p>
+    </solution>
+  </example>
+
+  <example>
+    <statement>
+      <p>Consider any infinite decimal:</p>
+      <p><md>
+        s \ =\ 0.d_1d_2d_3\cdots \ =\ \frac{d_1}{10}+\frac{d_2}{10^2}+\frac{d_3}{10^3}+\cdots
+        \ =\ \sum\limits_{n=1}^\infty \frac{d_n}{10^n}\,,
+      </md></p>
+      <p>where <m>0\leq d_n\leq 9</m> are <term>any</term> decimal digits. Does this series always converge,
+      so that the infinite decimal represents a real number, or could a bad choice of digits define a meaningless decimal?</p>
+    </statement>
+    <solution>
+      <p>In fact, we can compare <m>0\leq \frac{d_n}{10^n}\leq \frac{9}{10^n}</m>,
+      since each digit is at most 9.
+      The ceiling is a convergent geometric series: <m>\sum_{n=1}^\infty \frac{9}{10^n} =\sum_{n=1}^\infty \frac9{10}\left(\frac1{10}\right)^{\!n-1} = \frac{9}{10}\frac{1}{1-\frac1{10}}=1</m>, so the original decimal sequence also converges.
+      <term>Any</term> infinite decimal represents a number.</p>
+    </solution>
+  </example>
+
+  <theorem xml:id="thm-limit-comparison-test">
+    <title>Limit Comparison Test</title>
+    <statement>
+      <p>Suppose <m>\lim_{n\to\infty} \frac{a_n}{b_n} = L</m> with <m>0&lt;L&lt;\infty</m>.</p>
+      <p><ul>
+        <li>If <m>\sum\limits_{n=1}^\infty b_n</m> converges, then <m>\sum\limits_{n=1}^\infty a_n</m> converges.</li>
+        <li>If <m>\sum\limits_{n=1}^\infty b_n</m> diverges, then <m>\sum\limits_{n=1}^\infty a_n</m> diverges.</li>
+      </ul></p>
+    </statement>
+  </theorem>
+
+  <proof>
+    <p> Recall <m>\lim\limits_{n\to\infty} \frac{a_n}{b_n} = L</m> means that,
+      for any small <m>\epsilon&gt;0</m>,
+      we can take a starting point <m>N</m> so that for all <m>n\geq N</m>, we have:</p>
+      <p><md>
+        L{-}\epsilon \ \leq\ \tfrac{a_n}{b_n} \ \leq\ L{+}\epsilon
+        \qquad\text{and}\qquad
+        (L{-}\epsilon) b_n \ \leq\ a_n \ \leq\ (L{+}\epsilon) b_n\,.
+      </md></p>
+      <p>Taking <m>\epsilon</m> small enough that <m>L{\pm}\epsilon&gt;0</m>,
+      we can prove convergence or divergence
+      by taking <m>c_n=(L{+}\epsilon) b_n</m> or
+      <m>d_n=(L{-}\epsilon) b_n</m> in the Direct Comparison Test.
+    </p>
+  </proof>
+
+  <example>
+    <statement>
+      <p>We redo
+      <m>\sum\limits_{n=1}^\infty \frac{n+1}{n^3 - 20}</m>.
+      Now we can immediately compare with <m>b_n =\dfrac{n}{n^3}</m>:</p>
+    </statement>
+    <solution>
+      <p><md>
+        \frac{a_n}{b_n}
+        \ =\
+        \frac{n+1}{n^3 - 20}\,\left/\frac{n}{n^3}\right.
+        \ =\
+        \frac{n+1}{n}\left/\frac{n^3-20}{n^3}\right.
+        \ =\
+        \frac{1+\frac1n}{1-\frac{20}{n^3}}\,.
+      </md></p>
+      <p>Taking <m>n\to\infty</m> gives <m>L=1</m>.
+      Since this satisfies <m>0&lt;L&lt;\infty</m>,
+      and <m>\sum_{n=1}^\infty b_n=\sum_{n=1}^\infty \frac1{n^2}</m>
+      is a convergent standard <m>p</m>-series, the original series
+      <m>\sum_{n=1}^\infty a_n</m> also converges.</p>
+    </solution>
+  </example>
+
+  <p><alert>Extended Limit Comparison Test.</alert> Now let <m>a_n,b_n&gt; 0</m> be positive series.
+  In the case where <m>\lim\limits_{n\to\infty}\frac{a_n}{b_n}=L=0</m>,
+  we have <m>a_n</m> much smaller than <m>b_n</m>, so if <m>\sum_{n=1}^\infty b_n&lt;\infty</m> converges, then so does <m>\sum_{n=1}^\infty a_n&lt;\sum_{n=1}^\infty b_n&lt;\infty</m>.
+  Similarly, in the case where <m>\lim\limits_{n\to\infty}\frac{a_n}{b_n}=L=\infty</m>,
+  we have <m>a_n</m> much larger than <m>b_n</m>, so if <m>\sum_{n=1}^\infty b_n=\infty</m> diverges, then so does <m>\sum_{n=1}^\infty a_n&gt;\sum_{n=1}^\infty b_n=\infty</m>.</p>
+
+  <example>
+    <statement>
+      <p>Determine the convergence of: <m>\sum_{n=1}^\infty \frac{n^2}{2^n}</m>.</p>
+    </statement>
+    <solution>
+      <p>Since <m>n^2</m> is negligeable compared to the exponential growth of <m>2^n</m>,
+      we could roughly estimate this by <m>\sum_{n=1}^\infty b_n = \sum_{n=1}^\infty \frac{1}{2^n}
+      = \sum_{n=1}^\infty \left(\frac 12\right)^{\!n}</m>,
+      a convergent geometric series, so the original series should converge.</p>
+
+      <p>However, taking the Limit Comparison Test with this <m>b_n=\frac{1}{2^n}</m> gives
+      <m>L=\infty</m>, since <m>a_n=\frac{n^2}{2^n}</m> is much <term>larger</term> than <m>b_n</m>.
+      Thus this comparison fails:
+      <m>b_n</m> is a convergent floor for <m>a_n</m>, and we can't tell whether the larger <m>\sum a_n</m> converges or diverges.</p>
+
+      <p>We take a slightly larger, but still convergent, comparison: <m>b_n=\left(\frac 34\right)^{\!n}</m>:</p>
+
+      <p><md>
+        \lim_{n\to\infty} \frac{a_n}{b_n}
+        \ =\
+        \lim_{n\to\infty}  \frac{ n^2\!\left(\frac12\right)^{\!n} } {\left(\frac 34\right)^{\!n} }
+        \ =\
+        \lim_{n\to\infty} n^2 \!\left( \tfrac23 \right)^{\!n}
+        \ =\ 0\,,
+      </md></p>
+
+      <p>as we could prove by L'H\^opital's Rule. Thus <m>a_n=\frac{n^2}{2^n}</m> becomes much <term>smaller</term>
+      than <m>b_n</m>, and <m>\sum_{n=1}^\infty b_n=\sum_{n=1}^\infty \left(\frac 34\right)^{\!n}&lt;\infty</m> is a
+      convergent ceiling for <m>\sum_{n=1}^\infty a_n</m>, which therefore must also converge.</p>
+    </solution>
+  </example>
 
 </section>

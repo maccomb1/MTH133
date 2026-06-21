@@ -12,12 +12,12 @@
 
   <p>In this section, we will learn a special technique to integrate any <term>rational function</term>,
   meaning a quotient of two polynomials:
-  <me>
+  <md>
     f(x) \ =\ \frac{g(x)}{h(x)}
     \ =\
     \frac{a_mx^m + a_{m-1}x^{m-1} + \cdots + a_1x + a_0}
     {b_nx^n + b_{n-1}x^{n-1} + \cdots + b_1x + b_0}\,,
-  </me>
+  </md>
   where <m>a_i, b_j</m> are constant coefficients.
   We call the largest powers <m>m</m> and <m>n</m> the <term>degrees</term> of the polynomials <m>g(x)</m> and <m>h(x)</m>,
   assuming that the highest coefficients <m>a_m,b_n\neq 0</m>.</p>
@@ -51,19 +51,19 @@
     <li>
       <m>\int\frac{1}{(x^2 + 1)^2}\ dx</m>.
       Letting <m>x = \tan(\theta)</m>, <m>x^2{+}1 =\sec^2(\theta)</m>, <m>dx=\sec^2(\theta)\,d\theta</m>:
-      <me>
+      <md>
         \int\frac{1}{(x^2 + 1)^2}\ dx
         \ = \
         \int \frac{1}{\sec^4(\theta)}\,\sec^2(\theta)\,d\theta
         \ = \
         \int \cos^2(\theta)\,d\theta
-      </me>
-      <me>
+      </md>
+      <md>
         \ =\
         \tfrac12( \theta + \sin(\theta)\cos(\theta)) + C
         \ =\
         \tfrac12\!\left(\!\arctan(x) + \frac{x}{x^2+1}\!\right) + C\,.
-      </me>
+      </md>
       We used: <m>\int \cos^2(\theta)\,d\theta = \int \tfrac12\,{+}\,\tfrac12\cos(2\theta)\,d\theta
       =\tfrac12\theta \,{+}\, \tfrac14\sin(2\theta)=\tfrac12\theta \,{+}\,\tfrac12 \sin(\theta)\cos(\theta)</m>,
       and <m>\sin(\theta) = \frac{x}{\sqrt{x^2+1}}</m>, <m>\cos(\theta) = \frac{1}{\sqrt{x^2+1}}</m>.
@@ -74,18 +74,18 @@
   <p><alert>Quadratic denominator.</alert> With the above basic integrals,
   we can integrate any rational function with numerator of degree at most 1 and
   denominator of degree at most 2:
-  <me>
+  <md>
     \int\frac{px + q}{ax^2 + bx+c}\ dx\,.
-  </me>
+  </md>
   There are two different cases, depending on the sign of the <term>discriminant</term> <m>d=b^2-4ac</m>.</p>
 
   <example>
     <statement>
       <p>
         Handle the case where <m>d=b^2-4ac>0</m>, such as:
-        <me>
+        <md>
           \int\frac{x+1}{x^2 + x-2}\ dx,
-        </me>
+        </md>
         where <m>d = 1^2-4(1)(-2)=9</m>.
       </p>
     </statement>
@@ -112,32 +112,32 @@
 
       <p>We split our function into a sum of simple parts,
       each having just one vertical asymptote:
-      <me>
+      <md>
         \frac{x+1}{x^2 + x-2}
         \ =\
         \frac{x+1}{(x{-}1)(x{+}2)}
         \ =\
         \frac{A}{x{-}1} + \frac{B}{x{+}2}\,.
-      </me>
+      </md>
       This is called the <term>partial fraction expansion</term> of our rational function.
       For any constants <m>A,B</m>, the graph of the right-hand function
       will have the same asymptotes as our original function,
       but we can actually find constants which make the two exactly equal.
       Clearing denominators, we want <m>A,B</m> such that:
-      <me>
+      <md>
         x+1 \ =\
         A(x{+}2) + B(x{-}1) \quad \text{for all } x.
-      </me>
+      </md>
       Setting <m>x = 1</m> gives <m>1+1 = A(1{+}2) + B(0)</m>, so <m>A=\frac23</m>;
       and setting <m>x=-2</m> gives <m>-2+1 = A(0) + B(-2{-}1)</m>, so <m>B=\frac13</m>.
       Now we can use the basic integral (ii) above:
-      <me>
+      <md>
         \int\frac{x+1}{x^2 + x-2}\,dx
         \ =\
         \int\frac{\frac23}{x{-}1} + \frac{\frac13}{x{+}2}\ dx
         \ =\
         \tfrac23\ln\!|x{-}1| + \tfrac13\ln\!|x{+}2| + C\,.
-      </me>
+      </md>
       </p>
     </solution>
   </example>
@@ -146,9 +146,9 @@
     <statement>
       <p>
         Handle the case where <m>d = b^2-4ac \lt 0</m>, such as:
-        <me>
+        <md>
           \int\frac{x+1}{x^2 + x + 1}\ dx,
-        </me>
+        </md>
         for which <m>d=1^2 - 4(1)(1) = -3</m>.
       </p>
     </statement>
@@ -162,16 +162,16 @@
       <p>
         The first step is to complete the square in the denominator and force it into the form
         <m>(x{+}p)^2 + q</m>, the same process that produces the Quadratic Formula:
-        <me>
+        <md>
           x^2 + x+1
           \ =\
           x^2 + 2(\tfrac12)x
           + (\tfrac12)^2 - (\tfrac12)^2 + 1
           \ =\
           (x{+}\tfrac12)^2 + \tfrac34\,.
-        </me>
+        </md>
         Thus, letting <m>u=x+\frac12</m>, <m>du=dx</m>:
-        <me>
+        <md>
           \begin{array}{rcl}
           \displaystyle\int\frac{x+1}{x^2 + x+1}\ dx
           &amp; = &amp;
@@ -192,7 +192,7 @@
           \,+\,
           \tfrac{1}{ \sqrt{3} } \arctan( \tfrac{2x{+}1}{\sqrt3} ) + C.
           \end{array}
-        </me>
+        </md>
         In fact, the two terms in our answer correspond to splitting the original function (blue)
         into a graph with reflection symmetry across the line <m>x=-\frac12</m> (green),
         and a graph with <m>180^\circ</m> rotation symmetry around the point <m>(-\frac12, 0)</m> (red):
@@ -218,9 +218,9 @@
     <statement>
       <p>
         Handle the case where the numerator has degree greater than or equal to the denominator, for example:
-        <me>
+        <md>
           \int\frac{x^4+2x+3}{x^2+x-2}\ dx\,.
-        </me>
+        </md>
       </p>
     </statement>
     <solution>
@@ -228,7 +228,7 @@
         Then <m>y=0</m> is no longer a horizontal asymptote.
         Instead, the behavior of the function as <m>x\to\pm\infty</m> is
         controlled by a polynomial curve obtained by polynomial long division:
-        <me>
+        <md>
           \begin{array}{c@{\ }c@{\!}r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}r@{\,}c@{\,}rc}
           &amp;&amp;&amp;&amp;&amp;&amp;x^2&amp;-&amp;x\,&amp;+&amp;3 &amp; \text{ rem } -3x + 9
           \\[-.75em]
@@ -254,21 +254,21 @@
           \\[.4em]
           &amp;&amp;&amp;&amp;&amp;&amp;&amp;-&amp;3x&amp;+&amp;9
           \end{array}
-        </me>
+        </md>
         Thus <m>x^4+2x+3 = (x^2{-}x{+}3){\cdot}(x^2{+}x{-}2) + (-3x{+}9)</m>, and:
-        <me>
+        <md>
           \frac{x^4+2x+3}{x^2+x-2}
           \ \ =\ \
           (x^2{-}x{+}3) + \frac{-3x+9}{x^2+x+1}
           \ \ =\ \
           (x^2{-}x{+}3) + \frac{2}{x-1} - \frac{5}{x+2}\,.
-        </me>
+        </md>
         The last equality is a partial fraction expansion similar to our first example above. Now:
-        <me>
+        <md>
           \int\frac{x^4+2x+3}{x^2+x-2} \ dx
           \ =\
           \tfrac13 x^3{-}\tfrac12 x^2{+}3x + 2\ln\!|x{-}1| -  5\ln\!|x{+}2| + C\,.
-        </me>
+        </md>
       </p>
     </solution>
   </example>
@@ -284,14 +284,14 @@
     </li>
     <li>For each linear factor <m>x-c</m> of the denominator <m>h(x)</m>, suppose <m>(x-a)^n</m> is the highest
     power which divides <m>h(x)</m>. Then we add a sum of <m>n</m> terms:
-    <me>\frac{A_1}{x-a}+\frac{A_2}{(x-a)^2}+\cdots+\frac{A_n}{(x-a)^n}\,.</me>
+    <md>\frac{A_1}{x-a}+\frac{A_2}{(x-a)^2}+\cdots+\frac{A_n}{(x-a)^n}\,.</md>
     </li>
     <li>For each irreducible quadratic factor <m>ax^2 + bx+c</m> of <m>h(x)</m>,
     suppose <m>(ax^2 + bx+c)^n</m> is the highest power which divides <m>h(x)</m>.
     Then we add a sum of <m>n</m> terms:
-    <me>\frac{B_1x + C_1}{ax^2 + bx+c}+\frac{B_2x + C_2}{(ax^2 + bx+c)^2}
+    <md>\frac{B_1x + C_1}{ax^2 + bx+c}+\frac{B_2x + C_2}{(ax^2 + bx+c)^2}
     +\cdots+\frac{B_nx + C_n}{(ax^2 + bx+c)^n}\,.
-    </me>
+    </md>
     </li>
   </ul>
 
@@ -305,11 +305,11 @@
     <statement>
       <p>
         Find the partial fraction expansion of:
-        <me>
+        <md>
           f(x) \ = \ \frac1{x^2(x^2+1)^2}
           \ =\
           \frac{A_1}{x} + \frac{A_2}{x^2} + \frac{B_1x{+}C_1}{x^2+1}+ \frac{B_2x{+}C_2}{(x^2+1)^2}\,.
-        </me>
+        </md>
       </p>
     </statement>
     <solution>
@@ -317,17 +317,17 @@
         Since the numerator has degree less than the denominator, there is no polynomial term <m>q(x)</m>.
         We need to find the six constants <m>A_1, A_2, B_1, B_2, C_1, C_2</m> which make the above equation valid.
         Clearing denominators gives:
-        <me>
+        <md>
           \begin{array}{rcl}
           1 &amp;=&amp; A_1x(x^2{+}1)^2 + A_2(x^2{+}1)^2 + (B_1x{+}C_1)x^2(x^2{+}1) + (B_2x{+}C_2)x^2
           \\
           &amp;=&amp;
           (A_1{+}B_1)x^5+ (A_2{+}C_1)x^4 + (2 A_1{+}B_1{+}B_2)x^3+(2 A_2{+}C_1{+}C_2)x^2+A_1 x+ A_2
           \end{array}
-        </me>
+        </md>
         Since this is an equality of polynomial functions, the coefficients of <m>x^k</m> on the right
         must equal the coefficients of <m>1 = 0x^5 + \cdots +0x +1</m> on the left:
-        <me>
+        <md>
           \begin{array}{c}
           A_1+B_1 = 0 \\
           A_2+C_1=0 \\
@@ -335,17 +335,17 @@
           2 A_2+C_1+C_2 = 0 \\
           A_1 = 0, \quad A_2=1.
           \end{array}
-        </me>
+        </md>
         We solve this as:
-        <me>
+        <md>
           A_1 = 0, \quad A_2 = 1, \quad B_1 = -A_1 = 0, \quad C_1 = -A_2 = -1,
-        </me>
-        <me>
+        </md>
+        <md>
           B_2 = -2A_1 - B_1 = 0, \quad
           C_2 = -2A_2 - C_1 =  -1\,.
-        </me>
+        </md>
         Hence, according to (i)--(vi):
-        <me>
+        <md>
           \begin{array}{rcl}
           \displaystyle\int \frac1{x^2(x^2+1)^2}\ dx
           &amp;=&amp;
@@ -354,7 +354,7 @@
           &amp;=&amp;
           \displaystyle-\frac1x - \arctan(x) - \frac12\!\left(\arctan(x) + \frac{x}{x^2+1}\right).
           \end{array}
-        </me>
+        </md>
       </p>
     </solution>
   </example>
@@ -362,29 +362,29 @@
   <p><alert>Trig integrals again.</alert>  In §7.2--7.3, we reduced trig integrals by substitution
   to rational function integrals, which we can now find by partial fractions.
   For example:
-  <me>
+  <md>
     \int\sec(x)\,dx
     \ =\
     \int \frac{1}{\cos^2(x)}\cdot \cos(x)\,dx
     \ =\
     \int \frac{1}{1-\sin^2(x)}\cdot\cos(x)\,dx
-  </me>
-  <me>
+  </md>
+  <md>
     \left\{\begin{array}{r@{\ }c@{\ }l} u &amp;=&amp; \sin(x) \\ du &amp;=&amp; \cos(x)\,dx\end{array}\right\}
     \quad
     \ =\
     \int \frac1{1-u^2}\ du
     \ =\
     \int\frac{\tfrac12}{1+u} + \frac{\tfrac12}{1-u}\ du
-  </me>
-  <me>
+  </md>
+  <md>
     \ =\
     \tfrac12\ln(1{+}u)-\tfrac12\ln(1{-}u)
     \ =\
     \ln  \sqrt{\frac{1{+}u}{1{-}u}}
     \ =\
     \ln  \sqrt{\frac{1{+}\sin(x)}{1{-}\sin(x)}}\,.
-  </me>
+  </md>
   </p>
 
   <p><alert>Challenge:</alert> Show by identities that this is equal to our previous answer
@@ -396,22 +396,22 @@
   gives <m>\int \frac{\sqrt u}{u^2+1}\,du</m>. Then <m>z=\sqrt u</m> reduces this to a rational function.
   For partial fractions, factor <m>z^4+1=(z^2{+}1)^2-2z^2=(z^2+1+\sqrt2\, z)(z^2+1-\sqrt2\,z)</m>.
   Solve:
-  <me>
+  <md>
     \frac{z^2}{z^4+1} \ =\ \frac{Az+B}{z^2+\sqrt2\, z+1} + \frac{Cz+D}{z^2-\sqrt2\, z+1}\,.
-  </me>
+  </md>
   </p>
 
   <p><alert>Higher quadratic powers.</alert> For powers of irreducible quadratics in the denominator:
-  <me>
+  <md>
     \int\frac{x}{(x^2 + 1)^n}\,dx \ =\ -\frac{1}{2(n{-}1)(1+x^2)^{n-1}},
-  </me>
+  </md>
   using the substitution <m>u=x^2+1</m>.
   The other basic rational integral
-  <me>
+  <md>
     I_n=\int\frac{1}{(x^2 + 1)^n}\,dx
-  </me>
+  </md>
   can be evaluated <term>recursively</term> using Integration by Parts and the previous integral:
-  <me>
+  <md>
     \begin{array}{r@{\ }ll}
     I_n =&amp;   \displaystyle\int\frac{1}{(x^2 + 1)^n}\,dx
     \ =\
@@ -434,11 +434,11 @@
      I_{n-1} + \frac{x}{2(n-1)(1+x^2)^{n-1}} - \frac{1}{2(n-1)}I_{n-1}
     &amp; \text{by definition of } I_{n-1}.
     \end{array}
-  </me>
+  </md>
   Simplifying, we get the recursive formula:
-  <me>
+  <md>
     I_n \ \ =\ \ \frac{2n{-}3}{2(n{-}1)}I_{n-1} \,+\, \frac{x}{2(n{-}1)(x^2 + 1)^{n-1}}.
-  </me>
+  </md>
   </p>
 
   <example>
@@ -451,7 +451,7 @@
     </statement>
     <solution>
       <p>
-        <me>
+        <md>
           \begin{array}{rcl}
           I_3 &amp;=&amp; \displaystyle\int\frac{1}{(x^2 + 1)^3}\,dx
           \ =\  \frac{2(3)-3}{2(3-1)}I_{2} + \frac{x}{2(3-1)(x^2 + 1)^{2}}
@@ -462,7 +462,7 @@
           &amp;=&amp;
             \tfrac38\arctan(x) +\frac{x (3 x^2 + 5)}{8 (x^2 + 1)^2}\,.
           \end{array}
-        </me>
+        </md>
       </p>
     </solution>
   </example>
@@ -473,9 +473,9 @@
     <p>Here is some esoteric knowledge for the hard-core students.
     Consider any integral in which trig functions are combined
     by the four arithmetic operations, such as:
-    <me>
+    <md>
       \int \!\!\frac{\cos^2(x)\sin(x)-2\tan(x)+1}{\sec^3(\theta)+\sin^3(\theta)+3\cos(\theta)\sin(\theta)+5}\ d\theta.
-    </me>
+    </md>
     There is an amazing technique, the <term>Tangent Half-Angle Substitution</term>,
     which allows us to reduce any such problem to
     the integral of a rational function (a quotient of polynomials),
@@ -509,22 +509,22 @@
     <p>To compute the coordinates <m>(x,y)</m> corresponding to a given <m>t</m>,
     we write the slope of line <m>L</m> using the two similar
     triangles between <m>L</m> and the <m>x</m>-axis:
-    <me>
+    <md>
       \text{slope} \ =\ \frac{t}{1}\ =\ \frac{y}{x{+}1}
       \qquad\Longrightarrow\qquad
       y=t(x{+}1).
-    </me>
+    </md>
     The point <m>(x,y)</m> also satisfies the circle equation <m>x^2+y^2=1</m>.
     Substituting for <m>y</m> gives:
-    <me>
+    <md>
       x^2 + (t(x{+}1))^2 = 1
       \qquad\Longrightarrow\qquad
       x^2 + t^2x^2 + 2t^2x + t^2 - 1= 0\,.
-    </me>
+    </md>
     Now, for any <m>t</m>, this equation is always satisfied by the fixed point
     with <m>x=-1</m>, so <m>x{+}1</m> must be a factor of the last polynomial.
     Long division gives:
-    <me>
+    <md>
       x^2 + t^2x^2 + 2tx + t - 1
       \ =\
       (x{+}1) (t^2 x{+}x{+}t^2{-}1) = 0
@@ -534,67 +534,67 @@
       \\[1em]
        \text{ or } \ x = -1 \,.
       \end{array}\right.
-    </me>
+    </md>
     To write <m>y</m> in terms of <m>t</m>, plug this into <m>y = t(x+1)</m>.
     Hence we get a new formula tracing the points of the circle,
     controlled by <m>t\in(-\infty,\infty)</m>:
-    <me>
+    <md>
       (x,y)  = \left(\frac{1-t^2}{1+t^2}\,, \frac{2t}{1+t^2}\right)\!.
-    </me>
+    </md>
     Incidentally, plugging in rational values of <m>t</m> produces infinitely
     many points on the unit circle with rational coordinates, corresponding
     to all Pythagorean triples, whole numbers <m>(a,b,c)</m> with <m>a^2+b^2=c^2</m>.
     For example, <m>t = 2</m> gives:
-    <me>
+    <md>
       (x,y)  = \left(-\tfrac{3}{5}, \tfrac{4}{5}\right)
       \quad\Longrightarrow\quad
       \left(\tfrac{3}{5}\right)^2+\left(\tfrac{4}{5}\right)^2=1
       \quad\Longrightarrow\quad
       3^2+4^2=5^2.
-    </me>
+    </md>
     </p>
 
     <p>Now, comparing <m>(x,y)  = \left(\frac{1-t^2}{1+t^2}\,, \frac{2t}{1+t^2}\right)</m>
     with  <m>(x,y)=(\cos(\theta),\sin(\theta))</m> suggests the substitution:
-    <me>
+    <md>
       \cos(\theta) = \frac{1-t^2}{1+t^2}, \qquad
       \sin(\theta) =  \frac{2t}{1+t^2}, \qquad
       \tan(\theta) = \frac{2t}{1-t^2}, \qquad \text{etc.}
-    </me>
+    </md>
     We can think of this as a backward substitution,
     <m>\theta = \arcsin\!\left(\!\frac{2t}{1+t^2}\!\right)</m>,
     and compute:
-    <me>
+    <md>
       \sin(\theta) =  \frac{2t}{1+t^2}
       \quad\Longrightarrow\quad
       \cos(\theta)\,d\theta \ =\ 2\,\frac{1-t^2}{(1+t^2)^2}\,dt
-    </me>
-    <me>
+    </md>
+    <md>
       \quad\Longrightarrow\quad
       d\theta \ =\ 2\,\frac{1}{\cos(\theta)}\,\frac{1-t^2}{(1+t^2)^2}\,dt
       \ =\
       2\,\frac{1+t^2}{1-t^2}\,\frac{1-t^2}{(1+t^2)^2}\,dt
       \ =\
       \frac{2}{1+t^2}\,dt\,.
-    </me>
+    </md>
     </p>
 
     <p>To restore the original variable <m>\theta</m> at the end of the integration,
     we need to write <m>t=\frac{y}{x+1}</m> in terms of trig functions.
     We can do this just by <m>(x,y)=(\cos(\theta),\sin(\theta))</m>;
     but also recall the theorem of elementary geometry which says the angle between <m>L</m> and the <m>x</m>-axis is <m>\frac\theta2</m>, giving another expression for the slope:
-    <me>
+    <md>
       \text{slope} \ =\ t \ =\ \frac{y}{x{+}1}
       \ =\
       \frac{\sin(\theta)}{\cos(\theta)+1}
       \ =\
       \tan\!\left(\frac\theta2\right)
       \,,
-    </me>
+    </md>
     which is why we call it the Tangent Half-Angle Substitution.</p>
 
     <p><alert>Summary.</alert>
-    <me>
+    <md>
       \boxed{
       \cos(\theta) = \frac{1-t^2}{1+t^2}, \quad
       \sin(\theta) =\frac{2t}{1+t^2}, \quad
@@ -602,29 +602,29 @@
       t = \frac{\sin(\theta)}{\cos(\theta)+1}
       = \tan\!\left(\frac\theta2\right).
       }
-    </me>
+    </md>
     </p>
 
     <example>
       <statement>
         <p>
           Carry out the Tangent Half-Angle Substitution, then use the Partial Fraction Method to evaluate:
-          <me>
+          <md>
             \int\!\!\frac{1}{\sin^2(\theta) + \cos(\theta) + 2}\ d\theta.
-          </me>
+          </md>
         </p>
       </statement>
       <solution>
         <p>
-          <me>
+          <md>
             \int\!\!\frac{1}{\sin^2(\theta) + \cos(\theta) + 2}\ d\theta
             \ =\
             \int\!\!\frac{1} { \left(\!\frac{2t}{1{+}t^2}\!\right)^{\!\!2} + \left(\!\frac{1{-}t^2}{1{+}t^2}\!\right) + 2}\
             \cdot \frac{2}{1{+}t^2}\,dt
             \ =\
             \int\!\! \frac{2(t^2{+}1)}{t^4 + 8t^2 + 3}\,dt
-          </me>
-          <me>
+          </md>
+          <md>
             \ =\
             \int\!\! \frac{2(t^2{+}1)}{(t^2{+}4)^2-13}\,dt
             \ =\
@@ -633,19 +633,19 @@
             \ +\
             \frac {1-\frac3{\sqrt{13}}} {t^2{+}4{-}\sqrt{13}}
             \ \,dt
-          </me>
-          <me>
+          </md>
+          <md>
             \ =\
             (\sqrt{13}{+}3)\sqrt{4{-}\sqrt{13}}\,\arctan\!\left(\!\tfrac{t}{\sqrt{4+\sqrt{13}}}\right)
             \ +\
             (\sqrt{13}{-}3)\sqrt{4{+}\sqrt{13}}\,\arctan\!\left(\!\tfrac{t}{\sqrt{4-\sqrt{13}}}\right)
-          </me>
-          <me>
+          </md>
+          <md>
             \ =\
             (\sqrt{13}{+}3)\sqrt{4{-}\sqrt{13}}\,\arctan\!\left(\!\tfrac{\tan(\theta/2)}{\sqrt{4+\sqrt{13}}}\right)
             \ +\
             (\sqrt{13}{-}3)\sqrt{4{+}\sqrt{13}}\,\arctan\!\left(\!\tfrac{\tan(\theta/2)}{\sqrt{4-\sqrt{13}}}\right).
-          </me>
+          </md>
           The point here is not the specific answer, which can be gotten by computer
           much more reliably than by hand.
           It is the principle that this is possible for any integral of this type,

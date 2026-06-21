@@ -3,6 +3,250 @@
 <section xml:id="sec-8-power-series" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Power Series</title>
 
-  <p> Text of section. </p>
+  <p><alert>Series of functions.</alert>
+  The main purpose of series is to write an interesting,
+  complicated quantity as an infinite sum of simple quantities,
+  so that finite partial sums approximate the original quantity.
+  For example, it is a fact (explained in §11.9) that:</p>
+
+  <p><md>
+    	\frac14 \pi \ =\ 1 -\tfrac1{3} + \tfrac15 -\tfrac17 + \tfrac19-\cdots\,,
+  </md></p>
+
+  <p>and we can approximate <m>\pi</m> by taking enough terms of this series (and multiplying by 4).<fn>
+  An irrational number like <m>\pi</m> can never be written exactly as a fraction
+  or a finite decimal, so simple ways to approximate are the best we can hope for.
+  </fn>
+  So far, we have no tools to find or prove such formulas.
+  Our Tests determine whether a series converges,
+  but they tell us nothing about what it converges to,
+  nor how to write a given interesting quantity as a series.</p>
+
+  <p>We have looked only at series of <term>numbers</term> manipulated with basic algebra and limits.
+  In the next few sections, we will learn about series of <term>functions</term>,
+  and use calculus to write interesting, complicated functions as
+  infinite sums of simple functions.</p>
+
+  <definition xml:id="def-power-series">
+    <statement>
+      <p><term>Definition:</term> A <term>power series</term> is a function of <m>x</m> whose output
+      is the sum of an infinite series:</p>
+      <p><md>
+        f(x) \ =\ \sum_{n=0}^\infty c_n(x{-}a)^n
+        \ =\ c_0 + c_1 (x{-}a) + c_2 (x{-}a)^2 + c_3 (x{-}a)^3 + \cdots
+      </md></p>
+      <p>Here the numbers <m>c_0,c_1,c_2,\ldots</m> are called the <term>coefficients</term>,
+      and <m>a</m> is called the <term>center</term>.
+      The domain of the function (the set of acceptable inputs) contains those
+      values of <m>x</m> for which the series converges.</p>
+    </statement>
+  </definition>
+
+  <p>The simplest power series is:</p>
+
+  <p><md>
+    f(x) \ =\ \sum_{n=0}^\infty x^n \ =\ 1 + x+x^2 + x^3+\cdots .
+  </md></p>
+
+  <p>This is a function which takes any particular input <m>x=r</m>
+  to the output
+  <m>f(r)=\sum_{n=0}^\infty r^n = 1 + r + r^2 + r^3+\cdots</m>,
+  the sum of the corresponding geometric series.
+  As we know, this converges exactly when <m>|r|&lt;1</m>,
+  so the domain of <m>f(x)</m> is <m>|x|&lt;1</m>,
+  the interval <m>x\in (-1,1)</m>.
+  We also know a simple formula for this sum:
+  <m>f(x) = \frac1{1-x}</m>, which means we can write
+  this simple rational function
+  as a kind of infinite polynomial function:</p>
+
+  <p><md>
+    f(x) \ =\ \frac{1}{1-x} \ =\ 1 + x+x^2 + x^3+\cdots
+    	ext{ for } x\in(-1,1).
+  </md></p>
+
+  <p>A general power series might not have a simple formula for the sum,
+  but any standard function can be written as a power series, as we shall see
+  in §11.10.</p>
+
+  <p>Taking a finite partial sum like <m>1+x+x^2</m> gives an approximation
+  to <m>f(x)=\frac{1}{1-x}</m> for each <m>x\in(-1,1)</m>, so their graphs are close to each other above this interval:</p>
+
+  <figure xml:id="fig-11-8-converge-placeholder">
+    <caption>Partial-sum approximation to <m>f(x)=\frac{1}{1-x}</m> on the interval of convergence.</caption>
+    <image width="55%">
+      <shortdescription>Placeholder for 11-8-Converge figure.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=5.2cm, minimum height=3.2cm, font=\small] {11-8-Converge};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>The series converges fastest, the approximation is closest,
+  when <m>|x|</m> is very small; that is, close to the center <m>x=0</m>.
+  The graph of <m>1+x+x^2</m> is just a parabola,
+  but it is already a good approximation to <m>y=f(x)=\frac1{1-x}</m>
+  for <m>x\in(-\frac12,\frac12)</m>, and taking
+  more terms, such as <m>1+x+x^2+x^3+x^4</m>, improves the approximation for <m>x\in(-1,1)</m>.
+  The approximation is least accurate close to the vertical asymptote <m>x=1</m>, since
+  polynomial functions are always continuous.
+  The approximations are useless outside the interval of convergence.</p>
+
+  <p>We can modify <m>f(x)</m> to get power series for related functions.
+  For example, if we substitute <m>1{-}x</m> into the series for <m>f(x)</m>,
+  we get a power series with center <m>x=1</m>:</p>
+
+  <p><md>
+    \begin{array}{rcl}
+    \frac1x &amp;=&amp; \frac1{1-(1{-}x)}
+    \ =\ 1 + (1{-}x) + (1{-}x)^2 + (1{-}x)^3 + \cdots
+    \\[.5em]
+    &amp;=&amp; 1 - (x{-}1) + (x{-}1)^2 - (x{-}1)^3 + \cdots\,.
+    \end{array}
+  </md></p>
+
+  <p>Since the previous series <m>\sum_{n=0}^\infty x^n</m> converges when <m>|x|&lt;1</m>,
+  the new series converges when <m>|1{-}x|&lt;1</m>,
+  the interval <m>x\in(0,2)</m> centered at <m>x=1</m>.
+  The partial sum approximations to <m>\frac1x</m>
+  are most accurate when <m>|1{-}x|</m> is very
+  small, close to the center.</p>
+
+  <theorem xml:id="thm-power-series-convergence">
+    <title>Power Series Convergence Theorem</title>
+    <statement>
+      <p>Any power series <m>f(x) \ =\ \sum_{n=0}^n c_n(x{-}a)^n</m> has
+      one of three types of convergence:</p>
+      <p><ul>
+        <li>The series converges for all <m>x</m>.</li>
+        <li>The series converges for <m>|x{-}a|&lt;R</m>, the interval <m>x\in(a{}-R,a{+}R)</m>, and it diverges for <m>|x{-}a|&gt;R</m>,
+        where <m>R&gt;0</m> is a value called the <term>radius of convergence</term>.<fn>
+        The convergence at the endpoints <m>x=a{-}R,a{+}R</m> must be determined separately.
+        </fn></li>
+        <li>The series converges only at the center <m>x=a</m> and diverges otherwise.</li>
+      </ul></p>
+    </statement>
+  </theorem>
+
+  <p>Given a power series, we apply one of our Convergence Tests, usually the Ratio Test, to show which values of <m>x</m> make the
+  series converge.</p>
+
+  <example>
+    <statement>
+      <p>Determine the domain of convergence of <m>\sum_{n=0}^\infty \frac{x^n}{n!}</m>.</p>
+    </statement>
+    <solution>
+      <p>Since the factorial on the bottom grows much faster than the
+      exponential function on top, we guess that this always converges.
+      To prove this, the Ratio Test is appropriate because the terms of the
+      series have a growing number of factors, most of which
+      cancel:</p>
+      <p><md>
+        \frac{a_{n+1}}{a_n}
+        \ =\
+        \frac{x^{n+1}}{(n{+}1)!}\left/\frac{x^n}{n!}\right.
+        \ =\
+        \frac{x^{n+1}}{x^n}\cdot
+        \frac{n!}{(n{+}1)!}
+      </md></p>
+      <p><md>
+        \ =\
+        x \cdot
+        \frac{n\,(n{-}1)(n{-}2)\cdots (2)(1)}
+        {(n{+}1)\,n\,(n{-}1)(n{-}2)\cdots (2)(1)}
+        \ =\
+        \frac{x}{n{+}1}\,.
+      </md></p>
+      <p>Taking any particular value of <m>x</m>, even a large value like <m>x=1000</m>,
+      gives:</p>
+      <p><md>
+        L\ =\ \lim\limits_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+        \ =\  \lim\limits_{n\to\infty}\frac{|x|}{n{+}1} \ =\  0\,.
+      </md></p>
+      <p>Since <m>L &lt;1</m>, the sequence converges for all <m>x</m>.</p>
+    </solution>
+  </example>
+
+  <example>
+    <statement>
+      <p>Determine the domain of convergence of
+      <m>\sum_{n=0}^\infty (-1)^n\frac{(x{-}2)^{2n+1}}{n^2\ln(n)}</m>.</p>
+    </statement>
+    <solution>
+      <p>This is a power series with coefficients <m>c_n=\frac{(-1)^n}{n^2\ln(n)}</m>
+      and center <m>a=2</m>. Ratio Test:</p>
+      <p><md>
+        L\ =\
+        \lim_{n\to\infty}
+        \left|\frac{a_{n+1}}{a_n}\right|
+        \ =\
+        \lim_{n\to\infty}\left|
+        \frac{(x{-}2)^{2n+3}}{(n{+}1)^2\ln(n{+}1)}\left/
+        \frac{(x{-}2)^{2n+1}}{n^2\ln(n)}\right.\right|
+      </md></p>
+      <p><md>
+        \ =\
+        |x{-}2|^2\cdot\lim_{n\to\infty}
+        \frac{n^2}{(n{+}1)^2}
+        \cdot
+        \lim_{n\to\infty}\frac{\ln(n)}{\ln(n{+}1)}
+        \ =\ |x{-}2|^2\cdot 1\cdot 1 \ =\ |x{-}2|^2\,,
+      </md></p>
+      <p>where the last two limits are determined by L'H\^opital's Rule.
+      Thus, the series converges when <m>L = |x{-}2|^2 &lt;1</m>, i.e. when <m>|x{-}2|&lt;1</m>,
+      and diverges otherwise.
+      The radius of convergence is <m>R=1</m>, and the open interval of convergence
+      is <m>x\in(1,3)</m>. We do not worry about convergence at the endpoints.</p>
+    </solution>
+  </example>
+
+  <example>
+    <statement>
+      <p>Determine the domain of convergence of
+      <m>\sum_{n=0}^\infty \frac{(2x{+}4)^{3n}}{3^n}</m>.</p>
+    </statement>
+    <solution>
+      <p>Factoring <m>2x{+}4=2(x{+}2)</m>, we can rewrite this as a power series:</p>
+      <p><md>
+        \sum_{n=0}^\infty \frac{(2x{+}4)^{3n}}{3^n}
+        \ =\
+        \sum_{n=0}^\infty
+        \frac{2^{3n}}{3^n}\, (x{+}2)^{3n}
+        \ =\
+        \sum_{n=0}^\infty
+        \left(\frac{8}{3}\right)^{\!\!n}\! (x{+}2)^{3n}
+        \,.
+      </md></p>
+      <p>Not every power <m>(x{+}2)^n</m> appears, only multiple-of-3 powers
+      <m>a_n=(\frac83)^n(x{+}2)^{3n}</m>,
+      but this still fits into the definition of power series since
+      we can think of the missing terms as having zero coefficients.
+      The Ratio Test gives <m>L =\lim_{n\to\infty}|\frac{a_{n+1}}{a_n}|
+      = \frac83 |x{+}2|^3</m>, so the series converges when <m>\frac83 |x{+}2|^3&lt; 1</m>,
+      i.e. when <m>|x{+}2|&lt;\sqrt[3]{3/8}=\frac12\sqrt[3]3</m>.
+      The radius of convergence is <m>R=\frac12\sqrt[3]3</m>,
+      and the center is the point where <m>x{+}2=0</m>,
+      namely <m>x=-2</m>; so the open interval of convergence is:</p>
+      <p><md>
+        x\,\in\,(-2-\tfrac12\sqrt[3]3,\,-2+\tfrac12\sqrt[3]3) \,\approx\,
+        (-2.72,-1.29).
+      </md></p>
+    </solution>
+  </example>
+
+  <example>
+    <statement>
+      <p>Find a power series <m>\sum_{n=0}^\infty c_n x^n</m> which converges only at <m>x=0</m>.</p>
+    </statement>
+    <solution>
+      <p>We must choose coefficients <m>c_n</m> which grow fast enough to overwhelm the decrease of
+      <m>x^n</m>, no matter how small we take <m>x\neq 0</m>. The factorial <m>c_n=n!</m> does it:
+      applying the Ratio Test to <m>\sum_{n=0}^\infty n!\,x^n</m> gives
+      <m>L=\lim_{n\to \infty} (n{+}1)x=\infty</m> for <term>any</term> value of <m>x\neq 0</m>,
+      showing divergence. Of course, for <m>x=0</m>, all the higher terms vanish, and the series converges.</p>
+    </solution>
+  </example>
 
 </section>

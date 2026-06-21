@@ -1,0 +1,404 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.65in}
+\addtolength{\textheight}{1.3in}
+%\addtolength{\oddsidemargin}{-.8in}
+%\addtolength{\textwidth}{1.4in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf Volume}\hfill Stewart \S5.2}
+\vspace{1em}
+
+\noindent
+{\bf Geometry of integrals.} In this section, we will learn how to compute volumes 
+using integrals defined by slice analysis. First, we recall from Calculus I how to compute the area
+under a graph as the cumulative effect (the integral) of the height of the graph.
+Given the region under $y=f(x)$ and above an interval $[a,b]$ on the $x$-axis,
+we slice up the interval into $n$ increments (small parts) of width $\Delta x=\frac{b-a}{n}$,
+with division points:
+$$
+a < a{+}\Delta x <a{+}2\Delta x<\cdots < a{+}n\Delta x=b,
+$$
+and we take sample points $x_1,\ldots, x_n$, one in each increment.
+This slices the area into increments $\Delta A_1,\ldots, \Delta A_n$, 
+each approximately a rectangle:
+\\[1em]
+\centerline{
+\includegraphics[width=2.2in]
+{5-2-Area.png}
+}
+\vspace{-1em}
+
+\noindent
+The area of an increment is approximately:
+$$
+\Delta A_i \ \approx\ \text{(height)$\times$(width)} \ =\ f(x_i)\,\Delta x\,,
+$$
+so the total area is the Riemann sum (see \S4.1 Pt 1):
+$$
+A\ \ =\ \sum_{i=1}^n \Delta A_i
+\approx\ 
+\sum_{i=1}^n f(x_i)\Delta x\,.
+$$
+\vspace{-.5em}
+
+\noindent 
+Taking the limit of very many thin slices gives the exact area as the integral:
+$$
+A 
+\ =\ \lim_{n\to\infty} \sum_{i=1}^n f(x_i)\Delta x\ =\ \int_a^b\! f(x)\,dx\,.
+$$
+But this only gives approximate numerical answers to our question, 
+unless we can determine the limit, which is very difficult directly (\S4.1 Pt 2). 
+
+No really surprising ideas so far: 
+for thousands of years, mathematicians used similar methods to compute areas, 
+with very limited success.
+The genius of Newton shines in three ideas which solve the problem, 
+easily computing almost any area (\S4.3). 
+The first idea is to make area into a function: $A(x)=\int_a^x\! f(t)\,dt$ is the area
+over a variable interval $t\in [a,x]$. 
+Second, since area is the cumulative effect of the height $y=f(x)$,
+the rate of change of area is the height at the moving endpoint:
+$A'(x) = f(x)$. 
+This is the First Fundamental Theorem of Calculus: $A(x)$ is an antiderivative of $f(x)$. 
+
+The third and clinching idea is the algebra of differentiation.
+If we can reverse the derivative rules to find another antiderivative, 
+a known function $F(x)$ with $F'(x)=f(x)$, 
+then the Uniqueness Theorem (\S3.2) tells us 
+that the two antiderivatives are the same, 
+except for adding a constant:
+$
+A(x) = \int_a^x\! f(t)\,dt \ =\ F(x)+C
+$.
+Since $0=A(a)=F(a)+C$, we have $C=-F(a)$, and $A(x)=F(x)-F(a)$,  
+This is the Second Fundamental Theorem:
+$$
+A = A(b) = \int_a^b\! f(x)\,dx \ =\ F(b)-F(a).
+$$
+That is, the area is the integral of a {\it rate of change} $f(x) = F'(x)$, which is
+is equal to the {\it total change} in $F(x)$ over $x\in[a,b]$.\footnote{
+The {\it indefinite integral} $\int f(x)\,dx = F(x)+C$ is 
+the general antiderivative function, also called the primitive function.
+The {\it definite integral} $\int_a^b\! f(x) = F(b)-F(a)$ is a number.
+}
+
+These three brilliant ideas, working perfectly together, make it easy to compute the areas of most shapes, provided we are skillful enough at reversing derivative rules to find indefinite integrals.
+\\[.5em]
+{\sc example:} Find the area of the leftmost region enclosed below the curve $y=x \cos(x^2)$ and above the line  $y=-x$.
+\\[1em]
+\centerline{
+\includegraphics[width=1.3in]
+{5-2-XCosX2.png}
+}
+\vspace{-.5em}
+
+\noindent
+The left corner of the region is at $x=0$.
+To find the right corner, we set $x\cos(x^2)=-x$ with $x>0$, so $\cos(x^2)=-1$, 
+and the smallest positive solution is $x^2=\pi$, $x=\sqrt{\pi}\approx 1.77$\,. 
+
+To compute the area, we consider thin slices from the top curve to the bottom line, with height $x\cos(x^2)-(-x)=x\cos(x^2)+x$, and take a limit of Riemann sums to get:
+$$
+A
+\ =\ 
+\int_0^{\!\sqrt{\pi}}\!\! \left(x\cos(x^2)+x\right)dx
+\ =\ \int_0^{\!\sqrt{\pi}}\!\!  x\cos(x^2)\,dx\ +\
+\int_0^{\!\sqrt{\pi}}\!\!  x\,dx.
+$$
+We can evaluate the first term using the substitution $u=x^2$, $du=2x\,dx$, so
+$\int\! x\cos(x^2)\,dx$ $=\frac12\int\cos(x^2)\, 2x\,dx=\frac12\int \cos(u)\,du=\frac12\sin(u)=\frac12 \sin(x^2)$.
+$$
+A 
+\ =\
+\left[\vphantom{\sum}\tfrac12\sin(x^2) + \tfrac12 x^2\right]_{x=0}^{x=\sqrt{\pi}}
+\ = \
+\tfrac12{\pi}\ \approx\ 1.57\,.
+$$
+This is the same as the area of a semi-circle of radius 1, which looks about right from the picture. Not a result you could get from elementary geometry!
+
+\pagebreak
+
+\noindent
+{\bf Solids of revolution.} The integral is a very powerful tool to compute the total of many small parts, such as the thin slices which fill up an area. 
+%To get an exact result, we take the limit of very many, very thin slices.
+A similar method allows us to compute volumes. 
+We start with a {\it solid of revolution}
+which is formed by rotating a region in the plane around the $x$-axis, sweeping out a kind of barrel shape.
+\\[1em]
+\centerline{
+\includegraphics[width=2.2in]
+{5-2-Region.png}
+\qquad \ \ 
+\includegraphics[width=2.2in]
+{5-2-Rotated-Region.png} 
+}
+\vspace{0em}
+
+\noindent
+The total volume is  the sum of $n$ disk slices at sample points $x_1,\ldots,x_n$ in $[a,b]$, each with radius $f(x_i)$ and thickness $\Delta x=\frac{b-a}{n}$.
+\\[1em]
+\centerline{
+\includegraphics[width=2.4in]
+{5-2-Rotated-Disk.png} 
+}
+\vspace{-.3em}
+
+\noindent
+The volume of each slice is approximately:
+$$
+\Delta V_i \ \approx\ \text{(circle area)$\times$(thickness)} 
+\ =\ \pi f(x_i)^2\, \Delta x\,,
+$$
+and taking the limit as $n\to\infty$ gives the exact volume as an integral:
+$$
+V \ =\ \lim_{n\to\infty} \sum_{i=1}^n \pi f(x_i)^2\,\Delta x
+\ =\ \int_a^b \pi f(x)^2\,dx\,.
+$$
+Once we express our answer as an integral, we no longer consider its geometric motivation: finding an antiderivative and determining the value is a purely algebraic problem.
+
+This analysis should not be surprising: we expect our answer to converge to an integral as soon as we can slice up the problem into small increments.
+\\[.5em]
+{\sc example:} Find the volume of the trumpet solid obtained by rotating around the $x$-axis the region defined by:
+$0\leq y\leq \frac1x$ and $1\leq x\leq 2$. 
+This is the solid of revoltion of the curve $y=\frac1x$ over the interval $x\in[a,b]$. 
+\\[1em]
+\centerline{
+\includegraphics[width=2in]
+{5-2-Trumpet.png} 
+}
+\vspace{0em}
+
+\noindent
+Applying our formula: 
+$$
+V
+\ =\ 
+\int_1^2\pi\left(\tfrac1x\right)^2\,dx
+\ =\ 
+\int_1^2\pi x^{-2}\,dx
+$$
+$$
+\ =\ 
+\left[-\pi x^{-1}\right]_{x=1}^{x=2}
+\ =\ 
+(-\pi 2^{-1})-(-\pi 1^{-1})
+\ = \ \tfrac{\pi}{2}\,.
+$$
+\\[-.5em]
+{\sc example:} Find the volume of the solid obtained by rotating 
+the region defined by
+$x^2\leq y\leq 2$ and $x\geq 1$,
+around the vertical axis $x=1$.
+\\[1em]
+\centerline{
+\includegraphics[width=3in]
+{5-2-Y-Rotation.png} 
+}
+\vspace{0em}
+
+\noindent
+The setup is different from the $x$-axis rotation, so
+we must repeat our slice analysis. 
+Since we rotate around the vertical line $x=1$, 
+we should take horizontal slices positioned by their height $y$,
+and we should write our region as lying next to the interval
+$y\in [1,2]$ between the curves $x=1$ and $x=\sqrt y$.
+
+Our slices are thin horizontal disks at sample heights 
+$y_1,\ldots, y_n$ in the interval $y\in[1,2]$. 
+The thickness of each disk is $\Delta y$.
+The radius at height $y_i$ is the horizontal distance 
+from the axis $x=1$ to the curve $x=\sqrt y$;
+this distance is $\sqrt{y_i}-1$. The volume of each disk is 
+$\Delta V_i\approx\pi (\sqrt{y_i}{-}1)^2\,\Delta y$, and:
+$$\hspace{-.5in}
+V
+\ =\ 
+\int_1^2\!\!\pi\!\left(\sqrt{y}{-}1\right)^2\,dy
+\ =\ 
+\int_1^2\!\!\pi(y{-}2\sqrt{y}{+}1)\,dy
+\ =\ 
+\left[\pi\!\left(\tfrac12 y^2{-}\tfrac43y^{3/2}{+}y\right)\right]_{y=1}^{y=2}
+\ =\ \pi\! \left(\tfrac{23}{6}{-}\tfrac{8\sqrt2}3\right)\!.
+$$
+%$$
+%\ =\ 
+%\pi\!\left(\tfrac12 2^2{-}\tfrac43 2^{3/2}{+}2\right)
+%- \pi\!\left(\tfrac12 1^2{-}\tfrac43 1^{3/2}{+}1\right)
+%\ = \ 
+%\pi\! \left(\tfrac{23}{6}-\tfrac{8\sqrt2}3\right)
+%\ \approx\ 0.195
+%$$
+
+\pagebreak
+
+\noindent
+{\bf Solids with specified cross sections.} Consider a solid rather like the sail 
+of the man-o-war jellyfish. It has a horizontal base outlined by the circle
+$x^2+y^2= 1$ in the $xy$-plane, and its vertical cross section above each line $x=c$ 
+is an isosceles right triangle, with height equal to half its base length.
+\\[.5em]
+\centerline{
+\includegraphics[width=2.8in]
+{5-2-Man-O-War.png} 
+}
+\vspace{-1em}
+
+\noindent
+The slices are defined over $x\in[-1,1]$, and each slice at $x=x_i$ has a base segment
+reaching from $y=-\sqrt{1-x^2}$ to $y=\sqrt{1-x^2}$, a thickness $\Delta x$,
+and an area $\frac12$(base)$\times$(height) = $\tfrac12\!\left(\!2\sqrt{1{-}x_i^2}\,\right)\!\!\left(\!\sqrt{1{-}x_i^2}\,\right)$.
+Thus:
+$$
+V
+\ =\ 
+\int_{-1}^1\!\tfrac12\!\left(\!2\sqrt{1{-}x^2}\right)\!\!\left(\!\sqrt{1{-}x^2}\right)\,dx
+\ =\ 
+\int_{-1}^1\!\! 1{-}x^2\,dx
+\ =\ 
+\left[\vphantom{\sum}x {-} \tfrac13x^3\right]_{x=-1}^{x=1}
+ =\ \tfrac43.
+$$
+\\[0em]
+{\bf Method of slice analysis.} 
+The goal is to compute the size or bulk $S$ of a geometric object: 
+its length, area, volume, mass, energy, etc.
+\begin{enumerate}
+\item Cut the object into thin slices whose position is determined by
+some variable $x\in[a,b]$, often slices perpendicular to the $x$-axis. 
+
+\item Compute the approximate size of the slice with thickness $\Delta x$ 
+near a particular value of $x$ as: $\Delta S \approx f(x)\,\Delta x$.
+Summing up slices gives the total size, and the limit of thinner slices gives the integral:
+$$
+S  =\ \int_a^b\!\! f(x)\,dx\,.
+$$
+The size is the accumulation of the slice measurement $f(x)$: 
+e.g.~area is accumulation of slice height, volume is accumulation of slice area.
+
+\item Evaluate the integral $S=\int_a^b\!f(x)\,dx$ algebraically or numerically.
+
+\end{enumerate}
+\bigskip
+
+\noindent
+{\small
+{\sc challenge problem:} Consider the solid of revolution around the $x$-axis of the curve $y=f(x)$
+over the interval $x\in[a,b]$. Explain the following formula for the surface area of 
+this solid: $$S \ =\ \int_a^b 2\pi f(x)\sqrt{1{+}(f'(x))^2\,}\, dx\,.$$
+Hint: \
+$\sqrt{(\Delta x)^2 + (\Delta y)^2\,} 
+\ =\ \sqrt{1+(\frac{\Delta y}{\Delta x})^2\,}\ \Delta x 
+\ \approx\ \sqrt{1+(\frac{dy}{dx})^2\, }\ \Delta x$.
+}
+
+\end{document}
+
+
+
+\begin{itemize}
+
+\item Volume of rotation ($x$-axis): \\
+disk slices picture $\Longrightarrow$ sum formula
+$\Longrightarrow$ $V=\int_a^b \pi f(x)^2\,dx$
+
+\item example: Trumpet $0\leq y\leq 1/x$ for $1\leq x\leq 2$ around $x$-axis:\\
+$V =\int_1^2 \pi\!(1/x)^2\,dx = \left[-x^{-1}\right]_{x=1}^{x=2} = (-2^{-1}) - (-1^{-1}) =\frac12$.
+
+\item example: Hollow trumpet $1/x^2\leq y\leq 1/x$ and $1\leq x\leq 2$,
+$x$-axis:\\
+integral of washers = difference of solids of revolution
+\\
+$V =\int_1^2 \pi(1/x)^2-\pi(1/x^2)^2 \,dx = \left[-x^{-1}+\frac13 x^{-3}\right]_{x=1}^{x=2}  = (-2^{-1}) - (-1^{-1}) 
+(-\frac13 2^{-3} - (-\frac13 1^{-3})=\frac5{24}$.
+
+\item Other axes: $y$-axis $V=\int_c^d \pi g(y)^2\,dy$\\
+$(y=c)$-axis: $V=\int_a^b \pi (f(x){-}c)^2\,dx$
+
+\item Example: $x^2\leq y\leq 2$ $x\geq 1$ $y=1$-axis .\\
+$y=x^2\Rightarrow x =\sqrt y$\\
+$V = \int_1^2 \pi (\sqrt{y}-1)^2\,dy =\left[\frac12 y^2 -2(\frac23 y^{3/2}) + y\right]_{y=1}^{y=2} \approx 0.6  $
+
+\item Figure defined by fixed base and similar vertical slices:\\
+--Fin shape: circle base, triangular slices: picture with Paint \\
+\indent $V=\int_{-1}^1 \frac12 (2\sqrt{1{-}x^2})(\sqrt{1{-}x^2})\,dx=\int_{-1}^1 1-x^2\,dx$
+\\
+--Sphere: circle base, semi-circle slices $\Longrightarrow$ 
+\end{itemize}
+
+
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[1em]
+\centerline{
+\includegraphics[width=2in]{1-8-Discont-iv.png}
+\qquad \qquad 
+\includegraphics[width=2in]{1-8-Discont-v.png} 
+}
+\vspace{1em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+-- Example: marginal cost, marginal tax rate (next chapter?).
+\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

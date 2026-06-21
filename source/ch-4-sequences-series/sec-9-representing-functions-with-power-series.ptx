@@ -3,6 +3,199 @@
 <section xml:id="sec-9-representing-functions-with-power-series" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Representing Functions with Power Series</title>
 
-  <p> Text of section. </p>
+  <p><alert>Calculus on power series.</alert>
+  In this section, we will finally be able to give series for some interesting numbers and functions. The cornerstone we build on is the geometric series <m>\frac1{1-r}=\sum_{n=0}^\infty r^n</m>, which we manipulate into much more interesting series formulas. Now, series of <term>numbers</term> can only be manipulated by algebra;
+  but we have introduced series of <term>functions</term> (power series),
+  where we can apply the calculus operations of differentiation and integration.</p>
+
+  <theorem xml:id="thm-calculus-power-series">
+    <statement>
+      <p><term>Theorem:</term> Given a power series convergent for
+      <m>|x{-}a|&lt;R</m>, for some <m>R&gt;0</m>:</p>
+      <p><md>
+        f(x)
+        \ =\
+        \sum_{n=0}^\infty c_n (x{-}a)^n
+        \ =\
+        c_0 + c_1(x{-}a) + c_2(x{-}a)^2+ c_3(x{-}a)^3 +\cdots .
+      </md></p>
+      <p>Then we have:</p>
+      <p><ul>
+        <li>For <m>|x{-}a|&lt;R</m>, the derivative is:
+        <md>
+          f'(x)
+          \ =\
+          \sum_{n=1}^\infty n\,c_n (x{-}a)^{n-1}
+          \ =\
+          c_1 + 2c_2(x{-}a)+ 3c_3(x{-}a)^2 +\cdots .
+        </md>
+        </li>
+        <li>For <m>|x{-}a|&lt;R</m>, the antiderivative is:
+        <md>
+          \int\!\! f(x) \, dx
+          \ =\
+          C \ +\
+          \sum_{n=0}^\infty c_n \frac{(x{-}a)^{n+1}}{n{+}1\ \ }
+          \ = \ C\ +\  c_0 (x{-}a) \ +\  c_1\frac{(x{-}a)^2}{2 \ }\ +\  c_2\frac{(x{-}a)^3}{3 \ } \ +\ \cdots .
+        </md>
+        </li>
+      </ul></p>
+    </statement>
+  </theorem>
+
+  <p>That is, we can differentiate and integrate a power series term by term.</p>
+
+  <p><alert>Derivatives of geometric series.</alert>
+  We think of the geometric series as a function:</p>
+
+  <p><md>
+    f(x) \ =\ \frac{1}{1{-}x} \ =\ \sum_{n=0}^\infty x^n \ = \ 1 + x + x^2 + x^3 +x^4\cdots,
+  </md></p>
+
+  <p>Its first two derivatives are, for <m>|x|&lt;1</m>:</p>
+
+  <p><md>
+    f'(x) \ =\ \frac{1}{(1{-}x)^2} \ =\ \sum_{n=0}^\infty nx^{n-1} \ = \ 1 + 2x + 3x^2 + 4x^3 +\cdots,
+  </md></p>
+
+  <p><md>
+    f''(x) \ =\ \frac{2}{(1{-}x)^3} \ =\ \sum_{n=0}^\infty n(n{-}1)x^{n-2} \ = \ 2 + 3\cdot2x + 4\cdot3x^2 +\cdots.
+  </md></p>
+
+  <p>This lets us find the sums of many series similar to geometric series.</p>
+
+  <example>
+    <statement>
+      <p>Find the sum <m>\sum_{n=1}^\infty \frac{n^2}{3^n} = \frac{1}{3} + \frac{4}{9} + \frac{9}{27} + \frac{16}{81}+\cdots</m>. The first 10 terms sum to about <m>1.499</m>, so we can guess the answer is <m>\frac32</m>, but how to be sure?</p>
+    </statement>
+    <solution>
+      <p>Consider the series as one output of a function;
+      it is <m>g(\frac13)</m> for:</p>
+      <p><md>
+        g(x) \ = \ \sum_{n=0}^\infty n^2x^n  \ =\ x+ 4x^2 + 9 x^3+ 16x^4+\cdots.
+      </md></p>
+      <p>We can write this in terms of our known series because <m>n^2 = n(n{-}1) + n</m>, so that:</p>
+      <p><md>
+        \begin{array}{rcl}
+        g(x) \ = \ \sum_{n=0}^\infty n^2x^n &amp;=&amp;
+         \sum_{n=0}^\infty n(n{-}1)x^n \ +\ \sum_{n=0}^\infty nx^n
+        \\[.5em]
+         &amp;=&amp;
+         x^2\,\sum_{n=2}^\infty n(n{-}1)x^{n-2} \ +\ x\,\sum_{n=1}^\infty nx^{n-1}
+        \\[.5em]
+         &amp;=&amp;
+         x^2\, \frac{2}{(1{-}x)^3} + x\, \frac{1}{(1{-}x)^2}
+        \ =\
+        \frac{x(x{+}1)}{\ (1{-}x)^3}\,.
+        \end{array}
+      </md></p>
+      <p>Hence our series sums to <m>g(\frac13) = \frac{\frac13(\frac13{+}1)}{\ (1{-}\frac13)^3}=\frac32</m>. Fun!</p>
+    </solution>
+  </example>
+
+  <p><alert>Integrals of geometric series.</alert> Using the second part of the Theorem, we integrate
+  the geometric series formula <m>\frac 1{1-x}=\sum_{n=0}^\infty x^n</m>:</p>
+
+  <p><md>
+    \int\! \frac1{1-x}\,dx \ =\ -\log(1{-}x) \ =\ C+ \sum_{n=0}^\infty \frac1{n{+}1} x^{n+1} \ = \ C + x + \frac{x^2}2 + \frac{x^3}3 +\frac{x^4}4\cdots.
+  </md></p>
+
+  <p>To determine the correct constant <m>C</m>, we use the initial value at <m>x=0</m>:
+  the left side becomes <m>-\log(1-0)=0</m>, the right side <m>C + 0 +\frac{\,0^2}{2}+\cdots=C</m>, so <m>C=0</m>. We can manipulate this into an expression for <m>\ln(x)</m> itself:</p>
+
+  <p><md>
+    \begin{array}{rcl}
+    \ln(1{+}x) \ =\
+    -\left(-\ln(1{-}(-x))\right)
+    &amp;=&amp;
+    -\left((-x) +\frac{(-x)^2}{2} +\frac{(-x)^3}{3} +\frac{(-x)^4}{4}+\cdots \right)
+    \\[.5em]
+    &amp;=&amp;
+    x -\frac12 x^2 +\frac13 x^3 -\frac14 x^4 +\cdots
+    \\[.5em]
+    \ln(x) \ =\
+    \ln(1{+}(x{-}1))
+    &amp;=&amp;
+    (x{-}1) -\frac12(x{-}1)^2 +\frac13 (x{-}1)^3 -\frac14 (x{-}1)^4 +\cdots
+    \end{array}
+  </md></p>
+
+  <p>The first series converges for <m>|x|&lt;1</m>,
+  so plugging <m>x{-}1</m> in place of <m>x</m>,
+  we find that the last series converges for <m>|x{-}1|&lt;1</m>.
+  We conclude:</p>
+
+  <p><md>
+    \ln(x) \ =\ \sum_{n=1}^\infty \frac{(-1)^n}{n}(x{-}1)^n \quad\text{for}\quad |x{-}1|&lt;1.
+  </md></p>
+
+  <p>For example, taking <m>x=\frac12</m>, we get <m>x{-}1=-\frac12</m>, and:</p>
+
+  <p><md>
+    \ln(\tfrac12)\ =\  (-\tfrac12) - \tfrac12(-\tfrac12)^2 + \tfrac13(-\tfrac12)^3 -
+    	\frac14(-\tfrac12)^4+\cdots.
+  </md></p>
+
+  <p>Since <m>\ln(\frac12)=-\ln(2)</m>, we conclude:</p>
+
+  <p><md>
+    \ln(2) \ =\
+    \sum_{n=1}^\infty \frac1{n\,2^n}
+    \ =\
+    \frac12 +\frac1{2\cdot2^2}+\frac1{3\cdot2^3}+\frac1{4\cdot2^4}+\cdots.
+  </md></p>
+
+  <p>Since the denominator grows quickly, the series converges rapidly and gives a good approximation to <m>\ln(2)=0.69314\cdots</m> after only a few terms.
+  For example, the first 10 terms give:
+  <m>\sum_{n=1}^{10} \frac1{n\,2^n}=0.69306\cdots</m>, accurate to 3 or 4 decimal places.
+  When a calculator or Wolfram Alpha computes logarithms, it is using some method similar to this, taking enough terms to obtain the desired number of decimal places.</p>
+
+  <p><alert>Series for <m>\pi</m>.</alert> We obtained the series for logarithm because it is an inverse function whose derivative is a rational function (see the Inverse Derivative Theorem in §6.1). We can do the same for the arctangent:</p>
+
+  <p><md>
+    \frac1{1{+}x^2} \ =\ \frac{1}{1{-}(-x)^2}
+    \ =\ \sum_{n=0}^\infty (-x^2)^n\ =\ \sum_{n=0}^\infty (-1)^nx^{2n}
+    \ =\ 1 -x^2 + x^4 -x^6 + \cdots
+  </md></p>
+
+  <p><md>
+    	\tan^{-1}(x) \ =\ \int\!\frac1{1{+}x^2}\ dx
+    \ =\ \sum_{n=0}^\infty(-1)^n\frac{x^{2n+1}}{2n{+}1}
+    \ =\ x -\frac{x^3}{3} +\frac{x^5}5-\frac{x^7}7+\cdots.
+  </md></p>
+
+  <p>We know there is no constant shift because both sides are 0 at <m>x=0</m>.
+  The series converges for <m>|x|&lt;1</m>.
+  Since <m>\tan(\frac\pi4) = 1</m>, we have:</p>
+
+  <p><md>
+    \frac{\pi}4 \ = \ \tan^{-1}(1)
+    \ =\ 1 -\frac{1}{3} +\frac{1}5-\frac{1}7+\cdots.
+  </md></p>
+
+  <p>Here we must be careful, since <m>x=1</m> is all the way at the edge
+  of the interval of convergence: the series is not absolutely convergent,
+  but we can show conditional convergence by the Alternating Series Test (§11.6/II).
+  (Also, Abel's Theorem<fn><term>Theorem:</term> Let <m>f(x)=\sum_{n=0}^\infty a_n x^n</m> converge for <m>|x|&lt;R</m>, and suppose <m>f(R)=\sum_{n=0}^\infty a_nR^n</m> exists. Then <m>\lim_{x\to R^-} f(x) = f(R)</m>, so the power series defines a left-continuous function at <m>x=R</m>. <term>Proof:</term> Replacing <m>f(x)</m> with <m>f(Rx)</m>, we can assume <m>R=1</m>. Replacing <m>a_0</m> with <m>a_0-\sum_{n=1}^\infty a_n</m>, we can assume <m>f(1)=\sum_{n=0}^{\infty} a_n = 0</m>. We must show <m>\lim_{x\to 1^-} f(x) \stackrel{\text{def}}=\lim_{x\to 1^-} \sum_{n=0}^\infty a_nx^n \stackrel?= 0</m>. Abel's summation-by-parts formula: for sequences <m>\{a_n\}</m>, <m>\{b_n\}</m>, with <m>s_n=\sum_{k=0}^n a_k</m>, we have <m>\sum_{n=0}^N a_nb_n = s_N b_{N+1}  -  \sum_{n=0}^{N} s_n(b_{n+1}{-}b_n)</m>. For <m>b_n=x^n</m> with <m>b_{n+1}-b_n = (x{-}1)x^n</m>, we have <m>\sum_{n=0}^N a_nx^n \ = \ s_Nx^{N+1}  +(1{-}x)\sum_{n=1}^{N} s_{n}x^n</m>. For fixed <m>0&lt;x&lt;1</m>, <m>N\to\infty</m>, <m>f(x) = (1{-}x)\sum_{n=0}^{\infty} s_{n}x^n</m>. Given any <m>\ep&gt;0</m>, we must choose <m>x</m> close enough to 1 to force <m>|f(x)| = (1{-}x) \left|\sum_{n=0}^{\infty} s_{n}x^n\right| &lt; \ep</m>. First choose <m>N</m> large enough that <m>|s_n|=\left|\sum_{k=0}^n a_n\right|&lt;\frac12\ep</m> for <m>n\geq N</m>. Then choose <m>(1{-}x)</m> small enough that <m>(1{-}x)\left|\sum_{n=0}^{N-1} s_{n}x^n\right|&lt;\frac12\ep</m>. Then <m>|f(x)|\leq (1{-}x)\,\left|\sum_{n=0}^{N-1} s_{n}x^n\right| +(1{-}x)\, |\sum_{n=N}^{\infty} s_{n}x^n|\leq \frac12\ep + (1{-}x)\,\sum_{n=N}^\infty\frac12\ep\, x^n = \frac12\ep + \frac12\ep(1{-}x) \frac{x^N}{1-x} &lt;\ep</m>. Now, for <m>f(x) = x-\frac{x^3}{3}+\frac{x^5}{5}-\cdots</m>, we know that <m>f(x)=\tan^{-1}(x)</m> for <m>|x|&lt;1</m>, and Abel's Theorem gives <m>f(1) = \lim_{x\to1^-} f(x) = \lim_{x\to1^-} \tan^{-1}(x) = \tan^{-1}(1) =\frac\pi 4</m>.</fn>
+  shows that the convergent series gives the expected value <m>\tan^{-1}(1)</m>.)</p>
+
+  <p>This is known as the Leibnitz formula. It is astonishing because the series is so simple and
+  seemingly has no relation to circles or angles.
+  It can be used to compute <m>\pi</m> (multiplying both sides by 4),
+  but it is inefficient because of the slow convergence. It takes about 200 terms to get 2 decimal places of accuracy, <m>\pi\approx 3.14</m>.</p>
+
+  <p>Machin's trick gives an efficient series.
+  Angle addition <m>\tan(\alpha+\beta) = \frac{\tan\alpha \, +\, \tan\beta}{1-\tan\alpha\tan\beta}</m>
+  for <m>x=\tan\alpha</m>, <m>y=\tan\beta</m> gives:
+  <m>\arctan x + \arctan y = \arctan(\frac{x+y}{1-xy})</m>.
+  We want small <m>x,y</m> with <m>\frac{x+y}{1-xy} = 1</m>, to get <m>\arctan x + \arctan y = \arctan 1 = \frac\pi4</m>.
+  This is the hyperbola <m>(x{+}1)(y{+}1) = 2</m>, with a rational point <m>(x,y) = (\frac12,\frac13)</m>. Thus</p>
+
+  <p><md>
+    \pi = 4\left(\arctan(\frac12) + \arctan(\frac13)\right) = \sum\limits_{n=0}^\infty (-1)^n \frac{4}{2n+1}(\frac1{2^{2n+1}} + \frac1{3^{2n+1}}).
+  </md></p>
+
+  <p>Up to <m>n=3</m>, this gives <m>\pi</m> to 2 decimal places; <m>n=15</m> gives 10 places:
+  <m>3.1415926535\ldots</m></p>
 
 </section>

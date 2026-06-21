@@ -1,0 +1,431 @@
+ \documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.75in}
+\addtolength{\textheight}{1.5in}
+\addtolength{\oddsidemargin}{-.35in}
+\addtolength{\textwidth}{.7in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\mbox{}\vspace{1em}
+
+\centerline{\bf Math 133\hspace{2.5em} \hfill{\Large\bf
+Polar Coordinates}\hfill 
+Stewart \S10.3/I,II}
+\vspace{1em}
+
+\noindent 
+{\bf Points in polar coordinates.} The first and greatest achievement of modern mathematics
+was Descartes' description of geometric objects by numbers, using a {\it system of coordinates}.
+In the simplest example, {\it Cartesian} or {\it rectangular} coordinates on the plane 
+locate a point $P$ in terms of two coordinate measurements $x$ and $y$:
+how far over and how far up the point is, moving parallel to the marked axes.
+We loosely say that $P$ ``is'' the pair $(x,y)$, because the coordinates 
+tell how to get there from the origin.
+The name $P$ is like identifying a house as ``the Jones place'', 
+whereas the coordinates are like saying ``the third house to the 
+right on the second street down''.
+
+In this section, we learn how to locate the point $P$ using a different pair of measurements,
+the {\it polar coordinates} $(r,\theta)$. 
+The {\it radius} $r$ is the distance from the origin.
+The {\it angle} $\theta$ is measured couterclockwise in radians, 
+from the positive $x$-axis ray to the ray from orgin through the point $P$.
+This is like pointing to ``the house 500 yards in {\it that} direction''.
+%, a description more useful in the countryside than in the city.
+\\[.7em]
+\centerline{
+\includegraphics[width=1.6in]
+{10-3-Polar-Point.png} 
+}
+\vspace{-1em}
+
+Unlike rectangular coordinates, the polar coordinates of a point 
+are multivalent, having many equivalent versions because of the ambiguity of angles.
+For example, the point $(x,y)=(0,1)$ on the positive $y$-axis 
+corresponds to $(r,\theta)=(1,\frac\pi2)$, 
+where $\theta=\frac\pi2$ means a $\frac14$ turn counterclockwise 
+from the positive $x$-axis.
+However, we could equally well get to this point by a $\frac34$ turn clockwise,
+giving $(r,\theta)=(1,-\frac{3\pi}2)$. 
+In fact, we could get to the point by $1\frac14$ turns counterclockwise,
+$1\frac34$ clockwise, etc.
+In general, we must consider all angles that differ by a multiple of a full turn $2\pi$ as the same,
+meaning they define the same point:
+$$
+(r,\theta) = (r,\,\theta{+}2n\pi) \quad\text{for any integer $n$.}
+$$
+It is also useful to allow negative radius: $(-r,\theta)$ means to move
+out along the line at angle $\theta$, but in the opposite direction from the positive ray,
+along the ray $\theta\pm\pi$; thus:
+$$
+(-r, \theta) = (r,\,\theta\pm\pi)\,.
+$$
+There is even more ambiguity for the origin $(x,y)=(0,0)$,  
+which can be written as $(r,\theta)=(0,\theta)$ for any angle at all.
+
+Both types of coordinates completely locate a point, 
+so given either $(x,y)$ or $(r,\theta)$,
+we can find the other by simple trigonometric formulas:
+$$\begin{array}{lcl}
+\text{Given $(r,\theta)$}
+&\quad\Longrightarrow\quad&
+\text{find $(x,y)$ with}\ 
+\left\{\begin{array}{rcl}
+x &=& r\cos(\theta)
+\\[.3em]
+y &=& r\sin(\theta)\,.
+\end{array}\right.
+\\[2em]
+\text{Given $(x,y)$}
+&\quad\Longrightarrow\quad&
+\text{find $(r,\theta)$ with}\ 
+\left\{\begin{array}{rcl}
+r &=& \sqrt{x^2+y^2}
+\\[.3em]
+\theta &=& \arctan(\tfrac yx)\,.
+\end{array}\right.
+\end{array}$$
+Here we get $\theta$ from the defining formula $\tan(\theta)=\frac yx$,
+and we could equally well use $\sin(\theta) =\frac{y}{\sqrt{x^2{+}y^2}}$, etc.,
+always remembering we can change $\theta$ to
+$\theta{+}2n\pi$.
+Also, since $-\frac\pi2<\arctan(\theta)<\frac\pi2$,
+we must define $\arctan(\infty)=\frac\pi2$, 
+$\arctan(-\infty)=-\frac\pi2$;
+and we must adjust the angle by $\pm\pi$ if the point lies left of the $y$-axis.\footnote{
+Summarizing:
+$$
+\theta 
+\ =\ 
+\arcsin\!\left(\!\frac{y}{\sqrt{x^2{+}y^2}}\!\right)
+\ =\ 
+\arccos\!\left(\!\frac{x}{\sqrt{x^2{+}y^2}}\!\right)
+\ =\ 
+\left\{\!\!\begin{array}{cl}
+\arctan\left(\frac yx\right) &\text{if $x\geq 0$}\\[.5em]
+\arctan\left(\frac yx\right) +\mathrm{sgn}(y)\pi &\text{if $x< 0$}
+\end{array}\right.
+$$
+The function after the last equality is called {\tt atan2(y,x)} in computer languages.
+}
+\\[1em]
+{\bf Curves in polar coordinates.}
+Any geometric object in the plane is a set (collection) of points, 
+so we can describe it by a set of coordinate pairs.
+For example,  the unit circle $C$ is the set of all points at distance 1 from the origin;\footnote{ 
+There is no separate curve ``connecting'' the points: the curve {\it is} just all the points.}
+the coordinates of these points form the set of all pairs $(x,y)$ which satisfy the Pythagorean equation $x^2 + y^2=1$:
+$$
+C \ = \ \{(x,y)\text{ such that } x^2+y^2=1\}\,.
+$$
+Again, the equality of these sets is meant loosely: a pair of numbers
+like $(x,y)=(\frac35,\frac45)$ is not literally a geometric point  on the circle, 
+but it {\it identifies} a point by means of the rectangular coordinate system.
+Now, polar coordinates are specially adapted to describe round,
+turny shapes centered at the origin,
+and they make the equation of the circle as simple as possible:
+$$
+C \ = \ \{(r,\theta)\text{ such that } r=1\}\,.
+$$
+We also have the parametric forms $(r(t),\theta(t))=(1,t)$ and
+$(x(t),y(t))= (1\cos(t),1\sin(t))$.
+\\[.5em]
+{\sc example:} The line $x+y=1$ is not at all circular or centered at the origin, and its equation becomes complicated 
+in polar coordinates:
+$$
+x+y=1
+\ \ \Longleftrightarrow\ \
+r\cos(\theta) + r\sin(\theta) \ =\  1
+$$
+$$
+\ \ \Longleftrightarrow\ \
+r \ =\ \frac{1}{\cos(\theta){+}\sin(\theta)}
+\ =\ 
+\tfrac1{\sqrt2}\sec(\theta{-}\tfrac\pi4)\,.
+$$
+The last equality follows from the identity
+$\cos(\theta{-}\frac{\pi}4) = \cos(\theta)\cos(-\frac\pi4) - \sin(\theta)\sin(-\frac\pi4)
+=\frac1{\sqrt2}(\cos(\theta)+\sin(\theta))$.
+Parametrically, $(r(t),\theta(t))=(\frac{1}{\sqrt 2}\sec(t{-}\frac{\pi}4),t)$, $t\in (-\frac{\pi}4,\frac{3\pi}4)$;
+also $(x(t),y(t))=\frac{1}{\sqrt 2}\sec(t{-}\frac{\pi}4)(\cos(t), \sin(t))$,
+a trajectory with constant {\it angular} velocity.
+
+Similar reasoning gives the polar form of a general linear equation.
+For $ax + by=0$, we get $\theta=\alpha+\frac\pi2$ for the constant angle $\alpha=\arctan(\frac ba)$.
+For constant term $c\neq 0$:
+$$
+ax + by = c
+\quad\Longleftrightarrow\quad
+r \ = \ \frac{c}{a\cos(\theta)+b\sin(\theta)}
+\ =\
+\frac{c}{\sqrt{a^2+b^2}}\, \sec(\theta{-}\alpha)\,.
+$$
+
+\newpage
+
+\noindent
+{\sc example:} Consider Archimedes' spiral, 
+the shape of the groove on an old vinyl record (solid blue line).
+\\[.0em]
+\centerline{
+\includegraphics[width=2.5in]
+{10-3-Spiral.png} 
+}
+\vspace{-.5em}
+
+\noindent
+This is defined by a point moving steadily outward
+as it turns around the origin: in parametric polar coordinates,
+$(r(t),\theta(t))= (t,t)$ for $t\geq 0$,
+meaning at time $t$ the radius and angle are both $t$.
+Converting into rectangular coordinates:
+$$
+(x(t),y(t))\ =\
+(r(t)\cos \theta(t), r(t)\sin\theta(t))
+\ =\
+(t\cos(t), t\sin(t))\,, \quad t\geq 0.
+$$
+Deparametrizing gives the $r\theta$ and $xy$-equations:
+$$
+r \ =\ \theta + 2n\pi \ \ \text{for integer $n$}
+\quad\Longrightarrow\quad
+\sqrt{x^2+y^2} \ =\ \arctan\!\left(\frac yx\right)+2\pi n
+$$
+\\[-2.5em]
+$$
+\quad\Longrightarrow\quad
+y \ = \ x\,\tan\!\sqrt{x^2+y^2}\,.
+$$
+\\[-1em]
+For example, we can tell the points $(x,y) = (2n\pi, 0)$ are on the spiral, because
+$0 = 2n\pi\tan\sqrt{(2n\pi)^2+0^2}$.
+Actually, this $xy$-equation defines the spiral together with
+its $180^\circ$ rotation (dashed red line);
+note that this is different from the continuation of the $r\theta$-equation
+$r=\theta$ for $\theta<0$, which is the left-to-right reflection of the spiral.
+\\[1em]
+{\bf Sketching polar graphs.}  Remember that a function $f$ 
+is just a rule taking input numbers to output numbers.
+It does not care what letters we use for inputs and outputs,
+or how we interpret those letters geometrically.
+We usually illustrate the function by drawing its rectangular graph
+$y=f(x)$, in which $f$ controls the height $y$ above each point on the
+$x$-axis. But another way to illustrate this function is the polar graph
+$r=f(\theta)$, in which $f$ controls the radius $r$ along each 
+ray $\theta$.
+
+You can sketch the polar graph $r=f(\theta)$ by plotting points, 
+just as for a rectangular graph. For example, consider the polar curve:
+$$
+r = \sin(\theta)\,.
+$$
+Imagine the plane as a field, with you standing at the origin. 
+Look along the positive $x$-axis in direction $\theta=0$,
+and draw a point at radius $r=\sin(0)=0$, namely the origin itself.  
+As you increase $\theta>0$, turning slowly to the left, 
+you increase the radius as $\sin(\theta)$ increases.  
+The radius tops out at 1 when $\theta=\frac\pi2$ along the positive $y$-axis;
+and as you continue to turn, the point comes back in to the origin when $\theta=\pi$.
+After that, as you turn toward negative $y$ directions
+the radius becomes negative, so you draw points behind you, 
+in fact retracing the original curve.
+\\[-1em]
+
+\centerline{
+\includegraphics[width=2.5in]
+{10-3-Sin-Theta.png} 
+}
+\vspace{0em}
+
+\noindent
+This is a computer plot to turn the qualitative story above into an accurate graph. 
+But you really could do this by hand, by plotting $r$ for some standard $\theta$:
+$$
+\begin{array}{|c||c|c|c|c|c|c|c|c|c|} 
+\hline &&&&&&&&& \\[-.8em]
+\text{deg}&\ 0^{\circ} & 30^{\circ}\!\! & 45^{\circ}\!\! & 60^{\circ}\!\! & 90^{\circ}\!\! & \!\!120^{\circ}\!\!\! &\!\! 135^{\circ}\!\!\! &\!\! 150^{\circ}\!\!\! &\!\!  180^{\circ}\!\!\! 
+ \\[.3em] \hline&&&&&&&&& \\[-.8em]
+\theta & 0 & \frac{\pi}6 & \frac{\pi}4 & \frac{\pi}3 & \frac{\pi}2 & \frac{2\pi}3 & \frac{3\pi}4 & \frac{5\pi}6 & \pi
+ \\[.3em] \hline&&&&&&&&& \\[-.8em]
+r & 0 & 0.5 & 0.7 &  0.9 &  1 & 0.9 & 0.7 &  0.5 & 0
+\\[.3em]  \hline
+\end{array}
+$$
+\\[-1em]
+
+\centerline{
+\includegraphics[width=4.5in]
+{10-3-Sin-Theta-Sample.png} 
+}
+\vspace{.5em}
+
+\noindent 
+As we said, the angles $\pi\leq\theta\leq 2\pi$ give negative radius and re-plot the same points.
+
+%The computer does the same kind of plotting, but with many more points,
+%so why bother with our piddly hand sketches and point plotting?
+%Because of a very great danger for anyone who uses mathematics.
+%If you let the computer do the thinking, not just the calculating, 
+%you are ready to accept any bizarre wrong answer 
+%without any way to check it. Then one typo error will escalate
+%until your scientific paper has to be retracted,
+%your company's expenses are ten times what you predicted,
+%your bridge collapses, your rocket crashes.
+%Don't let it happen!
+%Before accepting the computer's answer, 
+%you must check the expected answer qualitatively against a story or sketch, 
+%and quantitatively by plotting sample points.
+
+From the sketch, we may guess this curve is a circle, which we verify by converting 
+to an $xy$-equation, and simplifying by completing the square:
+$$
+r =\sin(\theta) 
+\quad\Longrightarrow\quad
+\sqrt{x^2+y^2} \ =\ \,\frac{y}{\sqrt{x^2+y^2}}
+\quad\Longrightarrow\quad
+x^2+y^2-y = 0
+$$
+$$
+\quad\Longrightarrow\quad
+x^2+y^2-2(\tfrac12)y +(\tfrac12)^2 = (\tfrac12)^2
+\quad\Longrightarrow\quad
+x^2+(y{-}\tfrac12)^2 = (\tfrac12)^2\,.
+$$
+Indeed, this is a circle of radius $\frac12$ centered at $(x,y)=(0,\frac12)$.
+
+\newpage
+
+\noindent
+{\bf More sketching.} We sketch the curve:
+$$
+r = 1+\sin(2\theta)\,.
+$$
+This is more complicated, so instead of computing a table of $\theta$ and $r$ values, 
+we start by drawing the function $r = f(\theta)=1+\sin(2\theta)$ in our usual way as a rectangular graph,
+labeling the horizontal and vertical axes by $r$ and $\theta$ because
+that is how we intend to draw them later in the polar graph.
+\\[1em]
+\centerline{
+\includegraphics[width=4.5in]
+{10-3-Sin-2Theta-Rect.png} 
+}
+\vspace{-1em}
+
+\noindent
+Even without precise values, we can sketch the polar graph
+by adjusting the radius according to the heights of the rectangular graph
+(dotted lines).\footnote{
+Graphically, we crush the entire horizontal $\theta$-axis in the rectangular graph
+to the origin in the polar graph, spreading out the radial lines like a fan.
+}
+The blue lobe is traced by $\theta\in[-\frac{\pi}4, \frac{3\pi}4]$;
+then the green lobe is for $\theta\in[\frac{3\pi}4, \frac{7\pi}4]$.
+\\[1em]
+\centerline{
+\includegraphics[width=2.7in]
+{10-3-Sin-2Theta.png} 
+}
+\vspace{0em}
+
+\noindent We have $r=0$ at $\theta=\frac{3\pi}4$, so the tangent line
+through the origin has slope $\tan \frac{3\pi}4=-1$, i.e.~$y = -x$.
+Converting the original curve to rectangular coordinates gives:
+$$\hspace{-.5em}
+r \ = \ 1+\sin(2\theta) \ =\ 1 + 2\sin(\theta)\cos(\theta)
+\quad\Longrightarrow\quad
+\sqrt{x^2{+}y^2} \ =\ 1 +2\tfrac{y}{\sqrt{x^2{+}y^2}}\tfrac{x}{\sqrt{x^2{+}y^2}}
+ \ = \ \tfrac{(x{+}y)^2}{x^2{+}y^2},
+$$
+or $(x^2+y^2)^3=(x+y)^4$. The polar form is much more informative about the shape!
+%Implicit differentiation gives: 
+%\\[1em]
+%{\sc example:} Sketch the curve $r = \sin(2\theta)$. 
+%Repeating the above procedure, we get four lobes, 
+%traced in the order indicated 
+%as we turn from $\theta=0$ to $\theta=2\pi$,
+%with lobes 2 and 4 traced with $r<0$.
+%\\[1em]
+%\centerline{
+%\includegraphics[width=2in]
+%{10-3-Sin-2Theta.png} 
+%}
+%\vspace{0em}
+
+
+
+
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[1em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
