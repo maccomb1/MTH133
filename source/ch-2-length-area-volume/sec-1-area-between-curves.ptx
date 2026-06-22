@@ -3,6 +3,252 @@
 <section xml:id="sec-1-area-between-curves" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Area Between Curves</title>
 
-  <p> Text of section. </p>
+  <p><alert>Region between two parabolas.</alert> We have seen that geometrically, the integral <m>\int_a^b f(x)\,dx</m> computes the area between a curve <m>y=f(x)</m> and an interval <m>x\in[a,b]</m> on the <m>x</m>-axis (with area below the axis counted negatively). In Calculus II, we will show the versatility of the integral to compute all kinds of areas, lengths, volumes: almost any measure of size for a geometric object.</p>
+
+  <p>In this section, we compute more general areas:
+  those between two given curves <m>y=f(x)</m> and <m>y=g(x)</m>,
+  usually with no boundary on the <m>x</m>-axis.</p>
+
+  <example xml:id="ex-5-1-two-parabolas-interval-0-1">
+    <statement>
+      <p>Consider the region
+      with top boundary <m>y=f(x) =x^2{+}x{+}1</m>,
+      bottom boundary <m>y=g(x)=2x^2{-}1</m>,
+      left boundary the <m>y</m>-axis <m>x\,{=}\,0</m>,
+      right boundary <m>x\,{=}\,1</m>:<fn>
+      We specify the region as the set of
+      all points <m>(x,y)</m> which satisfy the given
+      conditions.
+      </fn></p>
+
+      <p><md><![CDATA[
+\begin{array}{rcl}
+R &=&
+\{\,(x,y) \ \text{with}\ g(x)\leq y\leq f(x)
+	ext{ and } x\in[0,1]\,\}.
+\\[.5em]
+&=&
+\{\,(x,y) \ \text{with}\ 2x^2{-}1\leq y\leq x^2{+}x{+}1
+	ext{ and } 0\leq x\leq 1\,\}.
+\end{array}
+      ]]></md></p>
+
+      <figure xml:id="fig-5-1-parabolas-1-placeholder">
+        <caption>Placeholder for 5-1-Parabolas-1.</caption>
+        <image width="75%">
+          <shortdescription>Boilerplate TikZ placeholder for 5-1-Parabolas-1.png.</shortdescription>
+          <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=11cm, minimum height=4.8cm, font=\small] {5-1-Parabolas-1};
+\end{tikzpicture}
+          ]]></latex-image>
+        </image>
+      </figure>
+
+      <p>Here <m>y=g(x)=2x^2{-}1</m> is a standard parabola shifted downward, with minimum point <m>x=0</m>.
+      The curve <m>y=f(x)=x^2{+}x{+}1</m> is roughly like its leading term <m>y=x^2</m>,
+      a parabola opening upward;
+      its minimum point satisfies <m>(x^2{+}x{+}1)' = 2x{+}1 = 0</m>, i.e. <m>x=-\frac12</m>.</p>
+
+      <p>To compute the area of <m>R</m>, we use the same geometric-numerical strategy as for the region under a single curve: split <m>R</m> into <m>n</m> thin vertical slices of width <m>\Delta x =\frac1n</m>, each approximately a rectangle;
+      then add up the rectangle areas and take the limit
+      as <m>n</m> becomes larger and larger.
+      In the interval <m>x\in[0,1]</m>, we take sample points <m>x_1,\ldots, x_n</m>, one in each <m>\Delta x</m> increment.
+      The slice at position <m>x_i</m> has height equal to the ceiling minus the floor,
+      <m>f(x_i)-g(x_i)</m>, so:</p>
+
+      <p><md><![CDATA[
+	ext{area of slice} \ \approx\ \text{(height)$\times$(width)} \ =\  (f(x_i)-g(x_i))\,\Delta x,
+      ]]></md></p>
+
+      <p>and the total area is:</p>
+
+      <p><md><![CDATA[
+A_{[0,1]} \ = \ \lim_{n\to\infty} \sum_{i=1}^n (f(x_i)-g(x_i))\,\Delta x
+\ =\ \int_0^1\! (f(x)-g(x))\,dx
+      ]]></md></p>
+
+      <p><md><![CDATA[
+\ =\
+\int_0^1 (x^2{+}x{+}1)-(2x^2{-}1)\,dx \ =\ \left[\vphantom{\sum}2x{+}\tfrac12x^2{-}\tfrac13x^3\right]_{x=0}^{x=1} \ =\ \tfrac{13}6\,.
+      ]]></md></p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-5-1-two-parabolas-interval-1-3">
+    <statement>
+      <p>Next, consider the region between the same curves
+      <m>y=f(x) =x^2{+}x{+}1</m> and <m>y=g(x)=2x^2{-}1</m>,
+      but above the interval <m>x\in[1,3]</m>.
+      To picture the region without a calculator,
+      we determine the intersection points where the curves cross:</p>
+
+      <p><md><![CDATA[
+f(x) = g(x)
+\quad\Longleftrightarrow\quad
+x^2{+}x{+}1 = 2x^2{-}1
+\quad\Longleftrightarrow\quad
+      ]]></md></p>
+
+      <p><md><![CDATA[
+x^2{-}x{-}2 = 0
+\quad\Longleftrightarrow\quad
+x = \tfrac{1\pm\sqrt{1^2{-}4(1)(-2)}}{2(1)}= \tfrac{1\pm3}2
+= -1\text{ or }2
+      ]]></md></p>
+
+      <p>by the Quadratic Formula. Only <m>x=2</m> is relevant for our region above <m>x\in[1,3]</m>.
+      At <m>x=1</m> we have <m>g(1)&lt;f(1)</m>,
+      so to the left of <m>x=2</m>, our region is defined by <m>g(x)\leq y\leq f(x)</m>.
+      At <m>x=3</m>, we have <m>f(3)&lt;g(3)</m>,
+      so to the right of <m>x=2</m>, it is <m>f(x)\leq y\leq g(x)</m>:</p>
+
+      <figure xml:id="fig-5-1-parabolas-2-placeholder">
+        <caption>Placeholder for 5-1-Parabolas-2.</caption>
+        <image width="75%">
+          <shortdescription>Boilerplate TikZ placeholder for 5-1-Parabolas-2.png.</shortdescription>
+          <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=11cm, minimum height=4.8cm, font=\small] {5-1-Parabolas-2};
+\end{tikzpicture}
+          ]]></latex-image>
+        </image>
+      </figure>
+
+      <p>Repeating our previous area formula for the two parts of our region gives:</p>
+
+      <p><md><![CDATA[
+A_{[1,3]} \ = \  A_{[1,2]} + A_{[2,3]}
+\ = \
+\int_1^2 (f(x)-g(x))\,dx + \int_2^3 (g(x)-f(x))\,dx
+      ]]></md></p>
+
+      <p><md><![CDATA[
+\ =\ \int_1^2 (2{+}x{-}x^2) \,dx \,+ \int_2^3 (-2{-}x{+}x^2)\,dx
+\ =\
+	frac76 + \tfrac{11}6 \ =\ 3.
+      ]]></md></p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-5-1-two-parabolas-full-region">
+    <statement>
+      <p>Finally, we consider the same curves
+      <m>y=f(x) =x^2{+}x{+}1</m> and <m>y=g(x)=2x^2{-}1</m>,
+      but we take the entire finite region between
+      them: <m>R'=\{(x,y)\text{ with } g(x)\leq y\leq f(x)\}.</m></p>
+
+      <figure xml:id="fig-5-1-parabolas-3-placeholder">
+        <caption>Placeholder for 5-1-Parabolas-3.</caption>
+        <image width="72%">
+          <shortdescription>Boilerplate TikZ placeholder for 5-1-Parabolas-3.png.</shortdescription>
+          <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=10.8cm, minimum height=4.8cm, font=\small] {5-1-Parabolas-3};
+\end{tikzpicture}
+          ]]></latex-image>
+        </image>
+      </figure>
+
+      <p>Here the top boundary is <m>y=x^2+x+1</m> and the bottom boundary is <m>y=2x^2-1</m>,
+      but we have not specified an <m>x</m> interval. However, we have already computed
+      the intersection points <m>x=-1</m> and <m>x=2</m>, and the curves
+      do not enclose any finite regions beyond these points. Thus:</p>
+
+      <p><md><![CDATA[
+A_{[-1,2]} \ =\ \int_{-1}^2 (f(x)-g(x))\,dx = \tfrac92\,.
+      ]]></md></p>
+    </statement>
+  </example>
+
+  <p>We can generalize the above examples in:</p>
+
+  <blockquote>
+    <p>Theorem: The area of the region enclosed between <m>f(x)</m> and <m>g(x)</m> for <m>x\in[a,b]</m>
+    is:
+    <m>
+    A\ =\
+    \int_a^b \left|\vphantom{\tfrac AA}f(x)-g(x)\right|\,dx\,.
+    </m></p>
+  </blockquote>
+
+  <p>The absolute value signs ensure we take the integral of top minus bottom, regardless of
+  which is which.
+  In practice, we must find the intersection points where <m>f(x)=g(x)</m>,
+  which split the integral into intervals where <m>g(x)\leq f(x)</m> versus
+  <m>f(x)\leq g(x)</m>.</p>
+
+  <p><alert>Integrating with respect to <m>y</m>.</alert>
+  Consider the region:</p>
+
+  <p><md><![CDATA[
+R \ =\ \{(x,y) \text{ with }  y^2 \leq x  \leq y{+}1\}\,.
+  ]]></md></p>
+
+  <p>Here the boudary curves are naturally graphs in which <m>y</m> is the independent variable:
+  the right boundary is the line <m>x=f(y)=y{+}1</m>;
+  and the left boundary is <m>x = g(y) = y^2</m>, a parabola opening to the right.</p>
+
+  <figure xml:id="fig-5-1-y-function-placeholder">
+    <caption>Placeholder for 5-1-Y-Function.</caption>
+    <image width="42%">
+      <shortdescription>Boilerplate TikZ placeholder for 5-1-Y-Function.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=5.8cm, minimum height=4.6cm, font=\small] {5-1-Y-Function};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>Understand: it is merely by habit that we consider <m>y</m> as a function of <m>x</m>.
+  We can make <m>x</m> a function of <m>y</m> instead if it is more convenient,
+  and the same formulas will work if we switch the roles of <m>x</m> and <m>y</m>.
+  Thus, we find the intersection points:
+  <m>y{+}1 = y^2</m> when <m>y=\frac{1{\pm}\sqrt5}2</m> by the Quadratic Formula.
+  The area as:</p>
+
+  <p><md><![CDATA[
+A  \ =\ \int_{\frac{1{-}\sqrt5}2}^{\frac{1{+}\sqrt5}2} (y{+}1) - (y^2)\,dy
+\ = \ \left[\vphantom{\int}\tfrac12 y^2 + y - \tfrac13y^3 \right]_{y=\frac{1{-}\sqrt5}2}^{y=\frac{1{+}\sqrt5}2}
+\ =\  \tfrac56\sqrt5.
+  ]]></md></p>
+
+  <p>Here <m>((y{+}1)- (y^2))\,dy</m> represents the area of the horizontal slice of the region at height <m>y</m>,
+  with thickness <m>dy</m>.</p>
+
+  <p>To check this, we re-do it from our usual perspective, using <m>x</m> as the independent variable. This makes it more complicated, since we must consider the
+  region as having three boundary graphs:
+  upper boundary <m>y=\sqrt x</m>, lower right boundary <m>y=x{-}1</m>,
+  and lower left boundary <m>y=-\sqrt x</m>. The intersection points are:</p>
+
+  <p><ul>
+    <li>Between <m>y=\sqrt x</m> and <m>y=x{-}1</m>: <m>x = \frac{3{+}\sqrt5}{2}</m> (upper right corner)</li>
+    <li>Between <m>y=-\sqrt x</m> and <m>y=x{-}1</m>: <m>x = \frac{3{-}\sqrt5}{2}</m> (lower middle corner)</li>
+    <li>Between <m>y=\sqrt x</m> and <m>y=-\sqrt x</m>: <m>x=0</m> (left end)</li>
+  </ul></p>
+
+  <p>These split the region into left and right parts:</p>
+
+  <figure xml:id="fig-5-1-x-function-placeholder">
+    <caption>Placeholder for 5-1-X-Function.</caption>
+    <image width="42%">
+      <shortdescription>Boilerplate TikZ placeholder for 5-1-X-Function.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=5.8cm, minimum height=4.6cm, font=\small] {5-1-X-Function};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>The area is:</p>
+
+  <p><md><![CDATA[
+A \ =\ \int_{0}^{\frac{3{-}\sqrt5}{2}} (\sqrt x) - (-\sqrt x)\,dx
++ \int_{\frac{3{-}\sqrt5}{2}}^{\frac{3{+}\sqrt5}{2}} (\sqrt x) - (x{-}1)\,dx\,,
+  ]]></md></p>
+
+  <p>which after much algebra gives the same answer as before: <m>\tfrac56\sqrt5</m>.</p>
 
 </section>

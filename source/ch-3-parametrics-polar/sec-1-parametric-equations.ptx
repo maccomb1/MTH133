@@ -3,6 +3,461 @@
 <section xml:id="sec-1-parametric-equations" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Defining and Differentiating Parametric Equations</title>
 
-  <p> Text of section. </p>
+  <p><alert>Back to pictures!</alert> Recall our four conceptual levels,
+  points of view on mathematics: physical, geometric, numerical, algebraic.
+  The physical view is Applied Mathematics, including
+  engineering and the hard sciences: distilling key features of the real world
+  into highly simplified mathematical models allows us
+  to predict and control what happens (if nothing goes wrong).
+  The numerical view, called Analysis,
+  deals with approximations, error-control, and convergence of limits.
+  It guides our reasoning through the perplexities of
+  infinite processes, but it is a special taste even among mathematicians.
+  Algebra, my favorite, is concerned with formulas
+  to consisely construct and transform complicated quantities by
+  symbolic operations, often giving amazingly simple answers.</p>
+
+  <p>But deep down, what we really love in math is Geometry: pictures!
+  In this section, we will learn to handle the simplest geometric objects: curves.
+  So far, we have dealt with curves as graphs of functions <m>y=f(x)</m>,
+  in which we imagine the independent variable <m>x</m> moving horizontally along its axis while <m>f(x)</m> controls the height <m>y</m>.</p>
+
+  <p><alert>Parametric lines.</alert>
+  A more general model for a curve is to consider it as the path of a particle moving in the plane in any fashion. We specify its coordinates as functions of time:
+  at time <m>t</m>, the particle is at position <m>(x(t),y(t))</m>.
+  We call the controlling variable <m>t</m> the parameter,
+  and the trajectory traced out is a parametric curve.</p>
+
+  <p>Any graph <m>y=f(x)</m> can immediately be written parametrically as
+  <m>(x(t),y(t))=(t, f(t))</m>, meaning at time <m>t</m> the particle is above the point
+  <m>x=t</m> with height <m>y=f(t)</m>.</p>
+
+  <example xml:id="ex-10-1-line-segment">
+    <statement>
+      <p>Suppose a particle starts at time <m>t=0</m>
+      at the point <m>(x(0),y(0)) = (1,2)</m> ,
+      and moves with constant velocity until time <m>t=1</m> to the point
+      <m>(x(1),y(1)) = (4,6)</m>. The horizontal velocity is <m>\frac{\Delta x}{\Delta t}=\frac{4-1}{1-0} = 3</m>,
+      the vertical velocty is <m>\frac{\Delta x}{\Delta t}=\frac{6-2}{1-0}=4</m>,<fn>
+      The two-dimensional velocity <m>\vec v = (3,4)</m> is called the velocity vector,
+      pictured as an arrow from <m>(0,0)</m> to <m>(3,4)</m>, or any arrow with the same direction
+      and length, such as from the start point <m>(1,2)</m> to the end point <m>(4,6)</m>.
+      It points in the direction of motion,
+      and its length is the overall speed <m>|\vec v|=\sqrt{3^2+4^2} = 5</m>.
+      </fn>
+      and the position at time <m>t</m>, moving along the thick line segment below. will be:</p>
+
+      <p><md><![CDATA[
+(x(t), y(t)) \ = \ (1,2) + (3t,4t) \ = \ (1+3t,\, 2+4t)\quad\text{for}\quad t\in[0,1]\,,
+      ]]></md></p>
+
+      <figure xml:id="fig-10-1-line-segment-placeholder">
+        <caption>Placeholder for 10-1-Line-Segment.</caption>
+        <image width="35%">
+          <shortdescription>Boilerplate TikZ placeholder for 10-1-Line-Segment.png.</shortdescription>
+          <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=5cm, minimum height=3.2cm, font=\small] {10-1-Line-Segment};
+\end{tikzpicture}
+          ]]></latex-image>
+        </image>
+      </figure>
+
+      <p>If we keep the same velocity for all <m>t\in(-\infty,\infty)</m>, we get the
+      thin infinite line.</p>
+    </statement>
+  </example>
+
+  <p>Given any parametric curve, writing it in terms of an equation in <m>x</m> and <m>y</m>
+  (with no <m>t</m>) is called deparametrizing:
+  in this case, we want the graph of a linear function <m>y=mx+b</m>.
+  A general method is to solve for <m>t</m> in terms of <m>x</m>,
+  then plug in to the equation for <m>y</m>:</p>
+
+  <p><md><![CDATA[
+\left\{ \begin{array}{c}
+x=1+3t\\
+y=2+4t
+\end{array}\right.
+\quad\Longrightarrow\quad
+\left\{ \begin{array}{c}
+t=\tfrac13(x{-}1)\\[.4em]
+y=2+4\!\left(\tfrac13(x{-}1)\right)
+\end{array}\right.
+\quad\Longrightarrow\quad
+\ y \ =\ \tfrac43x+\tfrac23\,.
+  ]]></md></p>
+
+  <p>Indeed, we could have immediately seen that the slope is the vertical velocity
+  over the horizontal velocity: <m>m=\frac43</m>.</p>
+
+  <p><alert>Parametric circles.</alert> Given the unit circle defined by the equation <m>x^2+y^2 =1</m>,
+  we would like to parametrize it: to trace the curve by a particle moving
+  according to <m>(x(t),y(t))</m>.
+  One way is to let the particle make an angle of <m>t</m> radians at time <m>t</m>, meaning:</p>
+
+  <p><md><![CDATA[
+(x(t), y(t)) = (\cos(t), \sin(t)) \quad\text{for}\quad t\in[0,2\pi]\,.
+  ]]></md></p>
+
+  <figure xml:id="fig-10-1-circle-placeholder">
+    <caption>Placeholder for 10-1-Circle.</caption>
+    <image width="55%">
+      <shortdescription>Boilerplate TikZ placeholder for 10-1-Circle.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=8cm, minimum height=4.6cm, font=\small] {10-1-Circle};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>If we keep the same motion for all <m>t</m>, the particle
+  travels around and around the circle.
+  We can check that this formula does trace the circle, because
+  the coordinates do satisfy the known equation:</p>
+
+  <p><md><![CDATA[
+x(t)^2 + y(t)^2 \ =\ \cos^2(t) + \sin^2(t) = 1\,.
+  ]]></md></p>
+
+  <p>Our standard circular motion has center <m>(0,0)</m>, radius <m>r=1</m>,
+  starting at <m>(1,0)</m> for <m>t=0</m>,
+  with 1 counterclockwise rotation during <m>t\in[0,2\pi]</m>.
+  We can modify each part of this:</p>
+
+  <p><ul>
+    <li>Stretch the radius to <m>r=5</m>:
+    <m>(x(t), y(t)) = (5\cos(t), 5\sin(t))</m>.</li>
+    <li>Move the center of the circle to <m>(6,7)</m>:
+    <m>(x(t), y(t)) = (6+\cos(t), 7+\sin(t))</m>.</li>
+    <li>Start from the bottom point <m>(0,-1)</m> at <m>t=0</m>:
+    <m>(x(t), y(t)) = (\cos(t{-}\frac\pi2), \sin(t{-}\frac\pi2))</m>.</li>
+    <li>Make the rotation clockwise:<fn>
+    In general, to reverse the motion of <m>(x(t),y(t))</m>, take <m>(x(-t), y(-t))</m>
+    making time go backwards.
+    </fn>
+    <m>(x(t), y(t)) = (\cos(-t), \sin(-t))</m>.</li>
+    <li>Do 10 rotations over <m>t\in[0,1]</m>: <m>(x(t),y(t))= (\cos(10{\cdot}2\pi t),\sin(10{\cdot}2\pi  t))</m>.</li>
+  </ul></p>
+
+  <p>Combining all the above modifications (from the top of the list down):</p>
+
+  <p><md><![CDATA[
+(x(t), y(t)) \ =\ \left(\,6+5\cos\!\left(-10 {\cdot}2\pi t {-} \tfrac\pi2\right)\!, 7+5\sin\!\left(-10 {\cdot}2\pi t {-} \tfrac\pi2 \right) \right)\,.
+  ]]></md></p>
+
+  <example xml:id="ex-10-1-ellipse">
+    <statement>
+      <p>We parametrize an ellipse, which is a circle stretched horizontally and/or vertically. For example, here is a parametric equation for
+      the ellipse centered at <m>(0,0)</m>, with extreme points <m>(\pm 3,0)</m> and <m>(0,\pm2)</m>:</p>
+      <p><md><![CDATA[
+(x(t),y(t)) \ =\ (3\cos(t), 2\sin(t))
+      ]]></md></p>
+      <p>Because of the uneven stretching, the particle will not travel at constant speed,
+      and the central angle at time <m>t</m> will not be proportional to <m>t</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-10-1-rational-circle-param">
+    <statement>
+      <p>A tricky way to parametrize the unit circle
+      is the rational parametrization which we derived in <m>\S7.3</m>
+      to reduce trig integrals to rational functions:</p>
+      <p><md><![CDATA[
+(x(t), \, y(t)) = \left(\frac{1-t^2}{1+t^2}\ , \ \frac{2t}{1+t^2}\right)\,.
+      ]]></md></p>
+      <p>We can tell that each point <m>(x(t),y(t))</m> lies on the circle because:</p>
+      <p><md><![CDATA[
+\begin{array}{rcl}
+x(t)^2 + y(t)^2  &=&
+\left(\frac{1-t^2}{1+t^2}\right)^{\!2}
++
+\left(\frac{2t}{1+t^2}\right)^{\!2}
+\\[1.5em]
+&=&
+\frac{1 - 2t^2 + t^4}{(1+t^2)^2}
+ + \frac{4t^2}{(1+t^2)^2}
+\\[1.5em]
+&=&
+\frac{1 + 2t^2 + t^4}{(1+t^2)^2}
+\ =\
+\frac{(1+t^2)^2}{(1+t^2)^2}
+\ =\ 1\,.
+\end{array}
+      ]]></md></p>
+      <p>It is not easy to find any points on the circle with both coordinates
+      rational numbers: if we start with rational <m>x</m>,
+      we expect irrational <m>y=\sqrt{1{-}x^2}</m>.
+      Amazingly, the rational parametrization
+      produces infinitely many rational points:
+      just plug in any fraction for <m>t</m>, for example
+      <m>(x(\tfrac12),\,y(\tfrac12)) = (\tfrac35, \tfrac45)</m>
+      and
+      <m>(x(\tfrac23),\,y(\tfrac23)) = (\tfrac{5}{13}, \tfrac{12}{13})</m>.
+      For each point <m>(x,y)=(\frac ac, \frac bc)</m>,
+      clearing denominators in the equation <m>x^2+y^2=1</m>
+      gives <m>a^2+b^2=c^2</m>. This defines a Pythagorean triple:
+      a right triangle in which all three sides <m>a,b,c</m> are whole numbers!
+      For example <m>a=5</m>, <m>b=12</m>, <m>c=13</m> satisfy <m>5^2+12^2 = 13^2</m>.
+      This is a sample of the mathematical field of Algebraic Geometry.</p>
+    </statement>
+  </example>
+
+  <p><alert>Cycloid curve.</alert> This famous curve
+  traces the path of a particle on the rim of a rolling wheel
+  (a unit circle rolling over the <m>x</m>-axis at unit speed).</p>
+
+  <figure xml:id="fig-10-1-cycloid-placeholder">
+    <caption>Placeholder for 10-1-Cycloid.</caption>
+    <image width="85%">
+      <shortdescription>Boilerplate TikZ placeholder for 10-1-Cycloid.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=12cm, minimum height=4.8cm, font=\small] {10-1-Cycloid};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>As the wheel rolls by <m>t</m> radians, its circumference traces an
+  equal distance <m>t</m> along the <m>x</m>-axis,
+  so the wheel's center moves to <m>(t,1)</m>.
+  If the center were fixed at the origin, the particle
+  on the rim would start at <m>(-1,0)</m> and
+  turn clockwise once over <m>t\in[0,2\pi]</m>,
+  so its position would be:</p>
+
+  <p><md><![CDATA[
+(\cos(-t{-}\tfrac\pi2), \sin(-t{-}\tfrac\pi2))
+\ =\
+(-\sin(t), -\cos(t))\,.
+  ]]></md></p>
+
+  <p>Adding the linear motion of the center and the circular motion
+  around the center gives the parametric equation of the cycloid curve:</p>
+
+  <p><md><![CDATA[
+(x(t), y(t)) \ =\
+(t-\sin(t), \, 1-\cos(t))\,.
+  ]]></md></p>
+
+  <p>These equations allow us (or a computer) to easily plot the cycloid.</p>
+
+  <p>Let us deparametrize this to get an <m>xy</m>-equation for the cycloid.
+  We solve for <m>t</m> in terms of one variable (in this case <m>y</m>), and plug into the other variable (in this case <m>x</m>):<fn>Strictly, <m>\sin(t)=\pm\sqrt{1-\cos^2(t)}</m>, but the minus sign just gives an extraneous upside-down cycloid.</fn></p>
+
+  <p><md><![CDATA[
+\left\{ \begin{array}{c}
+x = t-\sin(t)
+\\
+y = 1-\cos(t)
+\end{array}\right.
+\quad\Longrightarrow\quad
+\left\{ \begin{array}{rcl}
+\cos(t) &=& 1-y
+\\[.3em]
+\sin(t) &=& \sqrt{1{-}(1{-}y)^2} \ = \ \sqrt{2y{-}y^2}
+\\[.3em]
+t &=& \arccos(1{-}y)
+\\[.3em]
+x &=& \arccos(1{-}y)-\sqrt{2y{-}y^2}
+\end{array}\right.
+  ]]></md></p>
+
+  <p>Simplifying:</p>
+
+  <p><md><![CDATA[
+\cos\!\left(x+\sqrt{y(2{-}y)}\right) + y \ =\ 1\,.
+  ]]></md></p>
+
+  <p>This weird <m>xy</m>-equation lets us easily check if a given point <m>(x,y)</m> lies on the cycloid.
+  The parametric form, on the other hand, allows us to produce points on the curve.</p>
+
+  <p><alert>Epicycloids.</alert>
+  One variant of the cycloid is the epicycloid, in which
+  the wheel rolls around a fixed circle. The curve varies
+  depending on the relative size of the two circles.
+  From the perspective of a fixed central Earth, the trajectories
+  of the other planets are very close to epicycloids,
+  and the classical astronomers in the tradition of Ptolemy
+  attempted to find an exact model for planetary motion by adding
+  further epicycles, wheels rolling on wheels like a gigantic clockwork.
+  But starting with Copernicus, we interpret the apparent
+  epicycloid as an illusion based on combining
+  the separate orbits of Earth and the other planet around a
+  fixed central Sun.</p>
+
+  <p>Here is a compound epicycloid with a central circle of radius 1,
+  a wheel of radius <m>\frac16</m> rolling around it, and a wheel of radius
+  <m>\frac16</m> rolling around that (assuming the circles can pass through each other):</p>
+
+  <figure xml:id="fig-10-1-epicycloid-placeholder">
+    <caption>Placeholder for 10-1-Epicycloid.</caption>
+    <image width="85%">
+      <shortdescription>Boilerplate TikZ placeholder for 10-1-Epicycloid.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=12cm, minimum height=4.8cm, font=\small] {10-1-Epicycloid};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p><alert>Tangents of a parametric curve.</alert> We have learned how to write a curve parametrically, as the path of a particle whose position at time <m>t</m> is
+  given by two coordinate functions <m>(x(t),y(t))</m> over a time interval <m>t\in[a,b]</m>.</p>
+
+  <p>Considering the curve as a track on which the particle runs,
+  the tangent line at a point <m>(x(c),y(c))</m>
+  is the path the particle would take if
+  it were suddenly released from the track at time <m>t=c</m>,
+  keeping a constant velocity from that moment.
+  The velocity at <m>t=c</m> has horizontal and vertical components
+  <m>(x'(c), y'(c))</m>, giving the parametric line:</p>
+
+  <p><md><![CDATA[
+(x(c)+x'(c)\,t, \, y(c) +y'(c)\,t)\,.
+  ]]></md></p>
+
+  <p>This is the line which best approximates the curve near the point of tangency <m>(x(c),y(c))</m>, with the time set so that the line passes through the point at <m>t=0</m>.</p>
+
+  <p>We can convert this parametric line into an <m>xy</m>-equation as in <m>\S10.1</m>.
+  The slope is the horizontal over the vertical velocity: <m>m=\frac{y'(c)}{x'(c)}</m>, and we know the line passes through <m>(x(c),y(c))</m>, so we have
+  the point-slope equation:</p>
+
+  <p><md><![CDATA[
+y = \tfrac{y'(c)}{x'(c)}(x{-}x(c))+ y(c)\,.
+  ]]></md></p>
+
+  <p>Here <m>(x,y)</m> is a general point of the line,
+  but <m>x(c),y(c), x'(c),y'(c)</m> are constants
+  computed from the coordinate functions of the original curve.</p>
+
+  <p>To further explain this,
+  we imagine the original curve as the graph of a function
+  <m>y=f(x)</m>, meaning <m>y(t)=f(x(t))</m> for all <m>t</m>.
+  The Chain Rule gives:</p>
+
+  <p><md><![CDATA[
+y'(t)  \ =\ f'(x(t))\cdot x'(t)
+\qquad\Longleftrightarrow\qquad
+\frac{dy}{dt} \ =\ \frac{dy}{dx}\cdot\frac{dx}{dt}\ .
+  ]]></md></p>
+
+  <p>At time <m>t=c</m> and <m>x=x(c)</m>, this gives our previous slope formula:</p>
+
+  <p><md><![CDATA[
+f'(x(c))=\frac{y'(c)}{x'(c)}
+\qquad\Longleftrightarrow\qquad
+\frac{dy}{dx}  \ =\
+\frac {\ \ \frac{dy}{dt}\ \ } {\frac{dx}{dt}}\,.
+  ]]></md></p>
+
+  <example xml:id="ex-10-2-circle-tangent">
+    <statement>
+      <p><alert>Tangents of a circle.</alert> We find the tangent line to
+      <m>(x(t),y(t)) = (2\sin(\pi t),2\cos(\pi t))</m> at the point <m>(\sqrt 2,\sqrt 2)</m>.
+      First, to picture the curve, we note:</p>
+      <p><ul>
+        <li>Since the components are <m>2\sin</m> and <m>2\cos</m> of the
+        same quantity, the curve is a circle of radius 2.</li>
+        <li>The full circle is traced by <m>\pi t\in[0,2\pi]</m>, i.e. <m>t\in[0,2]</m>.</li>
+        <li>The curve starts at <m>(x(0), y(0)) = (0,2)</m>
+        on the <m>y</m>-axis; it moves clockwise, since the <m>x</m>-coordinate
+        <m>2\sin(\pi t)</m> increases for small <m>t\geq0</m>.</li>
+      </ul></p>
+
+      <figure xml:id="fig-10-2-circle-placeholder">
+        <caption>Placeholder for 10-2-Circle.</caption>
+        <image width="60%">
+          <shortdescription>Boilerplate TikZ placeholder for 10-2-Circle.png.</shortdescription>
+          <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=8.5cm, minimum height=4.8cm, font=\small] {10-2-Circle};
+\end{tikzpicture}
+          ]]></latex-image>
+        </image>
+      </figure>
+
+      <p>To apply our formulas, we need to know the value <m>t=c</m> at which
+      the curve passes through the given point:
+      <m>(x(t),y(t))=(\sqrt 2,\sqrt 2)</m>. That is, we must solve the
+      system of equations:</p>
+
+      <p><md><![CDATA[
+\left\{
+\begin{array}{c}
+2\sin(\pi t) = \sqrt 2\\
+2\cos(\pi t) = \sqrt 2
+\end{array}
+\right.
+\qquad\Longleftrightarrow\qquad
+t = \tfrac14\,.
+      ]]></md></p>
+
+      <p>We can find a simultaneous solution to both equations precisely because the point
+      lies on the curve. We have <m>(x'(c),y'(c)) = (2\pi\cos(\frac\pi4), -2\pi\sin(\frac\pi4)) = (\sqrt 2\pi, -\sqrt 2\pi)</m>,
+      so the tangent line is:</p>
+
+      <p><md><![CDATA[
+(x(c)+ x'(c)t, y(c) + y'(c)t) \ =\ (\sqrt 2 + \sqrt 2\pi t, \sqrt 2 -\sqrt2\pi t)
+      ]]></md></p>
+
+      <p><md><![CDATA[
+y \ =\
+\tfrac{y'(c)}{x'(c)}(x{-}x(c))+ y(c)
+\ =\
+\tfrac{\sqrt 2\pi}{-\sqrt 2\pi}(x{-}\sqrt 2) + \sqrt 2
+\qquad\Longleftrightarrow\qquad
+y = -x+2\sqrt2\,.
+      ]]></md></p>
+
+      <p>Note that each tangent to the circle is perpendicular to the corresponding radius.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-10-2-poly-tangent">
+    <statement>
+      <p><alert>Tangents of a polynomial curve.</alert> Find the tangent to <m>(x(t),y(t))=(t^2, t^3-3t)</m> at the point <m>(3,0)</m>.
+      This is not a familiar curve, so to picture it, we must plot points by plugging in various
+      values of <m>t</m>:</p>
+
+      <figure xml:id="fig-10-2-poly-placeholder">
+        <caption>Placeholder for 10-2-Poly.</caption>
+        <image width="60%">
+          <shortdescription>Boilerplate TikZ placeholder for 10-2-Poly.png.</shortdescription>
+          <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=8.5cm, minimum height=4.8cm, font=\small] {10-2-Poly};
+\end{tikzpicture}
+          ]]></latex-image>
+        </image>
+      </figure>
+
+      <p>We see that the curve passes twice through the given point <m>(3,0)</m>. Algebraically:</p>
+
+      <p><md><![CDATA[
+\left\{
+\begin{array}{c}
+t^2 = 3\\
+t^3-3t = 0
+\end{array}
+\right.
+\qquad\Longleftrightarrow\qquad
+t = \sqrt3 \ \ \text{or}\ \ t = -\sqrt3\,.
+      ]]></md></p>
+
+      <p>Note that <m>t^3-3t=0</m> by itself has the solutions <m>t=0,\pm\sqrt3</m>, but
+      <m>t=0</m> does not satisfy the first equation <m>t^2=3</m>:
+      for time <m>t=0</m>, the curve is at <m>(0,0)</m>, not <m>(3,0)</m>.</p>
+
+      <p>Now we can easily find the two tangent lines: <m>(3+2\sqrt 3 t,  6t)</m> and
+      <m>(3-2\sqrt 3 t,  6t)</m>.</p>
+
+      <p><alert>example:</alert> Which points of this curve have horizontal tangents?
+      The tangent is horizontal when the vertical velocity is zero: <m>(t^3-3t)' = 3t^2-3 =0
+      \ \Longleftrightarrow\ t=\pm1</m>, corresponding to the points <m>(1, -2)</m> and <m>(1,2)</m>.</p>
+    </statement>
+  </example>
 
 </section>

@@ -4,7 +4,14 @@
   <title>Sequences and Series</title>
 
   <introduction>
-    <p> Text before the first section. </p>
+    <p> Does <m>.99999\dots = 1</m>? Perhaps you have even heard <m>1+2+3+\dots = -\frac{1}{12}</m>, but 
+      is that actually true? In any case, how can we make sense of infinite sums in the first place? To begin answering 
+      these questions, we need to develop a solid understanding of sequences and series. We will develop the notion of 
+      convergence, and learn a variety of tests to determine whether a given infinite sequence or series converges or diverges.
+      This will begin to answer the initial questions posed, but amazingly our insights will lead to the power series representation
+      of functions. This is one of the most useful applications of this course, and it will give us insight into how calculators are able to
+      compute stuff like <m>\sin(7^{\circ})</m> or <m>e^{2.27}</m>.
+    </p>
   </introduction>
 
   <!-- include sections -->

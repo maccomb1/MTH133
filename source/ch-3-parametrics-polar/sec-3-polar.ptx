@@ -1,8 +1,368 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <section xml:id="sec-3-polar" xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>Defining Polar Coordinates and Plotting Polar Curves</title>
+  <title>Polar Coordinates</title>
 
-  <p> Text of section. </p>
+  <p><alert>Points in polar coordinates.</alert> The first and greatest achievement of modern mathematics
+  was Descartes' description of geometric objects by numbers, using a system of coordinates.
+  In the simplest example, Cartesian or rectangular coordinates on the plane
+  locate a point <m>P</m> in terms of two coordinate measurements <m>x</m> and <m>y</m>:
+  how far over and how far up the point is, moving parallel to the marked axes.
+  We loosely say that <m>P</m> "is" the pair <m>(x,y)</m>, because the coordinates
+  tell how to get there from the origin.
+  The name <m>P</m> is like identifying a house as "the Jones place",
+  whereas the coordinates are like saying "the third house to the
+  right on the second street down".</p>
+
+  <p>In this section, we learn how to locate the point <m>P</m> using a different pair of measurements,
+  the polar coordinates <m>(r,\theta)</m>.
+  The radius <m>r</m> is the distance from the origin.
+  The angle <m>\theta</m> is measured couterclockwise in radians,
+  from the positive <m>x</m>-axis ray to the ray from orgin through the point <m>P</m>.
+  This is like pointing to "the house 500 yards in that direction".</p>
+
+  <figure xml:id="fig-10-3-polar-point-placeholder">
+    <caption>Polar point diagram placeholder.</caption>
+    <image width="40%">
+      <shortdescription>Placeholder for 10-3-Polar-Point.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=6cm, minimum height=4cm, font=\small] {10-3-Polar-Point};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>Unlike rectangular coordinates, the polar coordinates of a point
+  are multivalent, having many equivalent versions because of the ambiguity of angles.
+  For example, the point <m>(x,y)=(0,1)</m> on the positive <m>y</m>-axis
+  corresponds to <m>(r,\theta)=(1,\frac\pi2)</m>,
+  where <m>\theta=\frac\pi2</m> means a <m>\frac14</m> turn counterclockwise
+  from the positive <m>x</m>-axis.
+  However, we could equally well get to this point by a <m>\frac34</m> turn clockwise,
+  giving <m>(r,\theta)=(1,-\frac{3\pi}2)</m>.
+  In fact, we could get to the point by <m>1\frac14</m> turns counterclockwise,
+  <m>1\frac34</m> clockwise, etc.
+  In general, we must consider all angles that differ by a multiple of a full turn <m>2\pi</m> as the same,
+  meaning they define the same point:</p>
+
+  <p><md><![CDATA[
+  (r,\theta) = (r,\,\theta{+}2n\pi) \quad\text{for any integer $n$.}
+  ]]></md></p>
+
+  <p>It is also useful to allow negative radius: <m>(-r,\theta)</m> means to move
+  out along the line at angle <m>\theta</m>, but in the opposite direction from the positive ray,
+  along the ray <m>\theta\pm\pi</m>; thus:</p>
+
+  <p><md><![CDATA[
+  (-r, \theta) = (r,\,\theta\pm\pi)\,.
+  ]]></md></p>
+
+  <p>There is even more ambiguity for the origin <m>(x,y)=(0,0)</m>,
+  which can be written as <m>(r,\theta)=(0,\theta)</m> for any angle at all.</p>
+
+  <p>Both types of coordinates completely locate a point,
+  so given either <m>(x,y)</m> or <m>(r,\theta)</m>,
+  we can find the other by simple trigonometric formulas:</p>
+
+  <p><md><![CDATA[
+\begin{array}{lcl}
+    ext{Given $(r,\theta)$}
+&\quad\Longrightarrow\quad&
+    ext{find $(x,y)$ with}\ 
+\left\{\begin{array}{rcl}
+x &=& r\cos(\theta)
+\\[.3em]
+y &=& r\sin(\theta)\,.
+\end{array}\right.
+\\[2em]
+    ext{Given $(x,y)$}
+&\quad\Longrightarrow\quad&
+    ext{find $(r,\theta)$ with}\ 
+\left\{\begin{array}{rcl}
+r &=& \sqrt{x^2+y^2}
+\\[.3em]
+    heta &=& \arctan(\tfrac yx)\,.
+\end{array}\right.
+\end{array}
+  ]]></md></p>
+
+  <p>Here we get <m>\theta</m> from the defining formula <m>\tan(\theta)=\frac yx</m>,
+  and we could equally well use <m>\sin(\theta) =\frac{y}{\sqrt{x^2{+}y^2}}</m>, etc.,
+  always remembering we can change <m>\theta</m> to
+  <m>\theta{+}2n\pi</m>.
+  Also, since <m>-\frac\pi2&lt;\arctan(\theta)&lt;\frac\pi2</m>,
+  we must define <m>\arctan(\infty)=\frac\pi2</m>,
+  <m>\arctan(-\infty)=-\frac\pi2</m>;
+  and we must adjust the angle by <m>\pm\pi</m> if the point lies left of the <m>y</m>-axis.<fn>
+  Summarizing:
+  <m>\theta = \arcsin\!\left(\!\frac{y}{\sqrt{x^2{+}y^2}}\!\right)
+  = \arccos\!\left(\!\frac{x}{\sqrt{x^2{+}y^2}}\!\right)
+  = \left\{\!\!\begin{array}{cl}
+  \arctan\left(\frac yx\right) &amp;\text{if $x\geq 0$}\\[.5em]
+  \arctan\left(\frac yx\right) +\mathrm{sgn}(y)\pi &amp;\text{if $x&lt; 0$}
+  \end{array}\right.</m>
+  The function after the last equality is called <c>atan2(y,x)</c> in computer languages.
+  </fn></p>
+
+  <p><alert>Curves in polar coordinates.</alert>
+  Any geometric object in the plane is a set (collection) of points,
+  so we can describe it by a set of coordinate pairs.
+  For example, the unit circle <m>C</m> is the set of all points at distance 1 from the origin;<fn>
+  There is no separate curve "connecting" the points: the curve is just all the points.
+  </fn>
+  the coordinates of these points form the set of all pairs <m>(x,y)</m> which satisfy the Pythagorean equation <m>x^2 + y^2=1</m>:</p>
+
+  <p><md><![CDATA[
+  C \ = \ \{(x,y)\text{ such that } x^2+y^2=1\}\,.
+  ]]></md></p>
+
+  <p>Again, the equality of these sets is meant loosely: a pair of numbers
+  like <m>(x,y)=(\frac35,\frac45)</m> is not literally a geometric point on the circle,
+  but it identifies a point by means of the rectangular coordinate system.
+  Now, polar coordinates are specially adapted to describe round,
+  turny shapes centered at the origin,
+  and they make the equation of the circle as simple as possible:</p>
+
+  <p><md><![CDATA[
+  C \ = \ \{(r,\theta)\text{ such that } r=1\}\,.
+  ]]></md></p>
+
+  <p>We also have the parametric forms <m>(r(t),\theta(t))=(1,t)</m> and
+  <m>(x(t),y(t))= (1\cos(t),1\sin(t))</m>.</p>
+
+  <example xml:id="ex-10-3-line-polar">
+    <statement>
+      <p>The line <m>x+y=1</m> is not at all circular or centered at the origin, and its equation becomes complicated
+      in polar coordinates:</p>
+      <p><md><![CDATA[
+x+y=1
+\ \ \Longleftrightarrow\ \
+r\cos(\theta) + r\sin(\theta) \ =\  1
+      ]]></md></p>
+      <p><md><![CDATA[
+\ \ \Longleftrightarrow\ \
+r \ =\ \frac{1}{\cos(\theta){+}\sin(\theta)}
+\ =\ 
+\tfrac1{\sqrt2}\sec(\theta{-}\tfrac\pi4)\,.
+      ]]></md></p>
+      <p>The last equality follows from the identity
+      <m>\cos(\theta{-}\frac{\pi}4) = \cos(\theta)\cos(-\frac\pi4) - \sin(\theta)\sin(-\frac\pi4)
+      =\frac1{\sqrt2}(\cos(\theta)+\sin(\theta))</m>.
+      Parametrically, <m>(r(t),\theta(t))=(\frac{1}{\sqrt 2}\sec(t{-}\frac{\pi}4),t)</m>, <m>t\in (-\frac{\pi}4,\frac{3\pi}4)</m>;
+      also <m>(x(t),y(t))=\frac{1}{\sqrt 2}\sec(t{-}\frac{\pi}4)(\cos(t), \sin(t))</m>,
+      a trajectory with constant angular velocity.</p>
+    </statement>
+  </example>
+
+  <p>Similar reasoning gives the polar form of a general linear equation.
+  For <m>ax + by=0</m>, we get <m>\theta=\alpha+\frac\pi2</m> for the constant angle <m>\alpha=\arctan(\frac ba)</m>.
+  For constant term <m>c\neq 0</m>:</p>
+
+  <p><md><![CDATA[
+ax + by = c
+\quad\Longleftrightarrow\quad
+r \ = \ \frac{c}{a\cos(\theta)+b\sin(\theta)}
+\ =\
+\frac{c}{\sqrt{a^2+b^2}}\, \sec(\theta{-}\alpha)\,.
+  ]]></md></p>
+
+  <example xml:id="ex-10-3-spiral">
+    <statement>
+      <p>Consider Archimedes' spiral,
+      the shape of the groove on an old vinyl record (solid blue line).</p>
+
+      <figure xml:id="fig-10-3-spiral-placeholder">
+        <caption>Archimedes' spiral placeholder.</caption>
+        <image width="55%">
+          <shortdescription>Placeholder for 10-3-Spiral.</shortdescription>
+          <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=8cm, minimum height=4.5cm, font=\small] {10-3-Spiral};
+\end{tikzpicture}
+          ]]></latex-image>
+        </image>
+      </figure>
+
+      <p>This is defined by a point moving steadily outward
+      as it turns around the origin: in parametric polar coordinates,
+      <m>(r(t),\theta(t))= (t,t)</m> for <m>t\geq 0</m>,
+      meaning at time <m>t</m> the radius and angle are both <m>t</m>.
+      Converting into rectangular coordinates:</p>
+
+      <p><md><![CDATA[
+(x(t),y(t))\ =\
+(r(t)\cos \theta(t), r(t)\sin\theta(t))
+\ =\
+(t\cos(t), t\sin(t))\,, \quad t\geq 0.
+      ]]></md></p>
+
+      <p>Deparametrizing gives the <m>r\theta</m> and <m>xy</m>-equations:</p>
+
+      <p><md><![CDATA[
+r \ =\ \theta + 2n\pi \ \ \text{for integer $n$}
+\quad\Longrightarrow\quad
+\sqrt{x^2+y^2} \ =\ \arctan\!\left(\frac yx\right)+2\pi n
+      ]]></md></p>
+
+      <p><md><![CDATA[
+\quad\Longrightarrow\quad
+y \ = \ x\,\tan\!\sqrt{x^2+y^2}\,.
+      ]]></md></p>
+
+      <p>For example, we can tell the points <m>(x,y) = (2n\pi, 0)</m> are on the spiral, because
+      <m>0 = 2n\pi\tan\sqrt{(2n\pi)^2+0^2}</m>.
+      Actually, this <m>xy</m>-equation defines the spiral together with
+      its <m>180^\circ</m> rotation (dashed red line);
+      note that this is different from the continuation of the <m>r\theta</m>-equation
+      <m>r=\theta</m> for <m>\theta&lt;0</m>, which is the left-to-right reflection of the spiral.</p>
+    </statement>
+  </example>
+
+  <p><alert>Sketching polar graphs.</alert> Remember that a function <m>f</m>
+  is just a rule taking input numbers to output numbers.
+  It does not care what letters we use for inputs and outputs,
+  or how we interpret those letters geometrically.
+  We usually illustrate the function by drawing its rectangular graph
+  <m>y=f(x)</m>, in which <m>f</m> controls the height <m>y</m> above each point on the
+  <m>x</m>-axis. But another way to illustrate this function is the polar graph
+  <m>r=f(\theta)</m>, in which <m>f</m> controls the radius <m>r</m> along each
+  ray <m>\theta</m>.</p>
+
+  <p>You can sketch the polar graph <m>r=f(\theta)</m> by plotting points,
+  just as for a rectangular graph. For example, consider the polar curve:</p>
+
+  <p><md><![CDATA[
+r = \sin(\theta)\,.
+  ]]></md></p>
+
+  <p>Imagine the plane as a field, with you standing at the origin.
+  Look along the positive <m>x</m>-axis in direction <m>\theta=0</m>,
+  and draw a point at radius <m>r=\sin(0)=0</m>, namely the origin itself.
+  As you increase <m>\theta&gt;0</m>, turning slowly to the left,
+  you increase the radius as <m>\sin(\theta)</m> increases.
+  The radius tops out at 1 when <m>\theta=\frac\pi2</m> along the positive <m>y</m>-axis;
+  and as you continue to turn, the point comes back in to the origin when <m>\theta=\pi</m>.
+  After that, as you turn toward negative <m>y</m> directions
+  the radius becomes negative, so you draw points behind you,
+  in fact retracing the original curve.</p>
+
+  <figure xml:id="fig-10-3-sin-theta-placeholder">
+    <caption>Computer plot placeholder for <m>r=\sin(\theta)</m>.</caption>
+    <image width="55%">
+      <shortdescription>Placeholder for 10-3-Sin-Theta.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=8cm, minimum height=4.5cm, font=\small] {10-3-Sin-Theta};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>This is a computer plot to turn the qualitative story above into an accurate graph.
+  But you really could do this by hand, by plotting <m>r</m> for some standard <m>\theta</m>:</p>
+
+  <p><md><![CDATA[
+\begin{array}{|c||c|c|c|c|c|c|c|c|c|}
+\hline &&&&&&&&& \\[-.8em]
+	ext{deg}&\ 0^{\circ} & 30^{\circ}\!\! & 45^{\circ}\!\! & 60^{\circ}\!\! & 90^{\circ}\!\! & \!\!120^{\circ}\!\!\! &\!\! 135^{\circ}\!\!\! &\!\! 150^{\circ}\!\!\! &\!\!  180^{\circ}\!\!\!
+\\[.3em] \hline&&&&&&&&& \\[-.8em]
+	heta & 0 & \frac{\pi}6 & \frac{\pi}4 & \frac{\pi}3 & \frac{\pi}2 & \frac{2\pi}3 & \frac{3\pi}4 & \frac{5\pi}6 & \pi
+\\[.3em] \hline&&&&&&&&& \\[-.8em]
+r & 0 & 0.5 & 0.7 &  0.9 &  1 & 0.9 & 0.7 &  0.5 & 0
+\\[.3em]  \hline
+\end{array}
+  ]]></md></p>
+
+  <figure xml:id="fig-10-3-sin-theta-sample-placeholder">
+    <caption>Sample plotting points placeholder for <m>r=\sin(\theta)</m>.</caption>
+    <image width="85%">
+      <shortdescription>Placeholder for 10-3-Sin-Theta-Sample.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=12cm, minimum height=4.5cm, font=\small] {10-3-Sin-Theta-Sample};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>As we said, the angles <m>\pi\leq\theta\leq 2\pi</m> give negative radius and re-plot the same points.</p>
+
+  <p>From the sketch, we may guess this curve is a circle, which we verify by converting
+  to an <m>xy</m>-equation, and simplifying by completing the square:</p>
+
+  <p><md><![CDATA[
+r =\sin(\theta)
+\quad\Longrightarrow\quad
+\sqrt{x^2+y^2} \ =\ \,\frac{y}{\sqrt{x^2+y^2}}
+\quad\Longrightarrow\quad
+x^2+y^2-y = 0
+  ]]></md></p>
+
+  <p><md><![CDATA[
+\quad\Longrightarrow\quad
+x^2+y^2-2(\tfrac12)y +(\tfrac12)^2 = (\tfrac12)^2
+\quad\Longrightarrow\quad
+x^2+(y{-}\tfrac12)^2 = (\tfrac12)^2\,.
+  ]]></md></p>
+
+  <p>Indeed, this is a circle of radius <m>\frac12</m> centered at <m>(x,y)=(0,\frac12)</m>.</p>
+
+  <p><alert>More sketching.</alert> We sketch the curve:</p>
+
+  <p><md><![CDATA[
+r = 1+\sin(2\theta)\,.
+  ]]></md></p>
+
+  <p>This is more complicated, so instead of computing a table of <m>\theta</m> and <m>r</m> values,
+  we start by drawing the function <m>r = f(\theta)=1+\sin(2\theta)</m> in our usual way as a rectangular graph,
+  labeling the horizontal and vertical axes by <m>r</m> and <m>\theta</m> because
+  that is how we intend to draw them later in the polar graph.</p>
+
+  <figure xml:id="fig-10-3-sin-2theta-rect-placeholder">
+    <caption>Rectangular graph placeholder for <m>r=1+\sin(2\theta)</m>.</caption>
+    <image width="85%">
+      <shortdescription>Placeholder for 10-3-Sin-2Theta-Rect.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=12cm, minimum height=4.5cm, font=\small] {10-3-Sin-2Theta-Rect};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>Even without precise values, we can sketch the polar graph
+  by adjusting the radius according to the heights of the rectangular graph
+  (dotted lines).<fn>
+  Graphically, we crush the entire horizontal <m>\theta</m>-axis in the rectangular graph
+  to the origin in the polar graph, spreading out the radial lines like a fan.
+  </fn>
+  The blue lobe is traced by <m>\theta\in[-\frac{\pi}4, \frac{3\pi}4]</m>;
+  then the green lobe is for <m>\theta\in[\frac{3\pi}4, \frac{7\pi}4]</m>.</p>
+
+  <figure xml:id="fig-10-3-sin-2theta-placeholder">
+    <caption>Polar graph placeholder for <m>r=1+\sin(2\theta)</m>.</caption>
+    <image width="60%">
+      <shortdescription>Placeholder for 10-3-Sin-2Theta.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=8cm, minimum height=4.5cm, font=\small] {10-3-Sin-2Theta};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>We have <m>r=0</m> at <m>\theta=\frac{3\pi}4</m>, so the tangent line
+  through the origin has slope <m>\tan \frac{3\pi}4=-1</m>, i.e. <m>y = -x</m>.
+  Converting the original curve to rectangular coordinates gives:</p>
+
+  <p><md><![CDATA[
+r \ = \ 1+\sin(2\theta) \ =\ 1 + 2\sin(\theta)\cos(\theta)
+\quad\Longrightarrow\quad
+\sqrt{x^2{+}y^2} \ =\ 1 +2\tfrac{y}{\sqrt{x^2{+}y^2}}\tfrac{x}{\sqrt{x^2{+}y^2}}
+ \ = \ \tfrac{(x{+}y)^2}{x^2{+}y^2},
+  ]]></md></p>
+
+  <p>or <m>(x^2+y^2)^3=(x+y)^4</m>. The polar form is much more informative about the shape!</p>
 
 </section>

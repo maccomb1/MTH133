@@ -3,6 +3,342 @@
 <section xml:id="sec-2-volumes" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Computation of Volumes</title>
 
-  <p> Text of section. </p>
+  <p><alert>Geometry of integrals.</alert> In this section, we will learn how to compute volumes
+  using integrals defined by slice analysis. First, we recall from Calculus I how to compute the area
+  under a graph as the cumulative effect (the integral) of the height of the graph.
+  Given the region under <m>y=f(x)</m> and above an interval <m>[a,b]</m> on the <m>x</m>-axis,
+  we slice up the interval into <m>n</m> increments (small parts) of width <m>\Delta x=\frac{b-a}{n}</m>,
+  with division points:</p>
+
+  <p><md><![CDATA[
+a < a{+}\Delta x <a{+}2\Delta x<\cdots < a{+}n\Delta x=b,
+  ]]></md></p>
+
+  <p>and we take sample points <m>x_1,\ldots, x_n</m>, one in each increment.
+  This slices the area into increments <m>\Delta A_1,\ldots, \Delta A_n</m>,
+  each approximately a rectangle:</p>
+
+  <figure xml:id="fig-5-2-area-placeholder">
+    <caption>Placeholder for 5-2-Area.</caption>
+    <image width="45%">
+      <shortdescription>Boilerplate TikZ placeholder for 5-2-Area.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=6.5cm, minimum height=4.2cm, font=\small] {5-2-Area};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>The area of an increment is approximately:</p>
+
+  <p><md><![CDATA[
+\Delta A_i \ \approx\ \text{(height)$\times$(width)} \ =\ f(x_i)\,\Delta x\,,
+  ]]></md></p>
+
+  <p>so the total area is the Riemann sum (see <m>\S4.1</m> Pt 1):</p>
+
+  <p><md><![CDATA[
+A\ \ =\ \sum_{i=1}^n \Delta A_i
+\approx
+\sum_{i=1}^n f(x_i)\Delta x\,.
+  ]]></md></p>
+
+  <p>Taking the limit of very many thin slices gives the exact area as the integral:</p>
+
+  <p><md><![CDATA[
+A
+\ =\ \lim_{n\to\infty} \sum_{i=1}^n f(x_i)\Delta x\ =\ \int_a^b\! f(x)\,dx\,.
+  ]]></md></p>
+
+  <p>But this only gives approximate numerical answers to our question,
+  unless we can determine the limit, which is very difficult directly (<m>\S4.1</m> Pt 2).</p>
+
+  <p>No really surprising ideas so far:
+  for thousands of years, mathematicians used similar methods to compute areas,
+  with very limited success.
+  The genius of Newton shines in three ideas which solve the problem,
+  easily computing almost any area (<m>\S4.3</m>).
+  The first idea is to make area into a function: <m>A(x)=\int_a^x\! f(t)\,dt</m> is the area
+  over a variable interval <m>t\in [a,x]</m>.
+  Second, since area is the cumulative effect of the height <m>y=f(x)</m>,
+  the rate of change of area is the height at the moving endpoint:
+  <m>A'(x) = f(x)</m>.
+  This is the First Fundamental Theorem of Calculus: <m>A(x)</m> is an antiderivative of <m>f(x)</m>.</p>
+
+  <p>The third and clinching idea is the algebra of differentiation.
+  If we can reverse the derivative rules to find another antiderivative,
+  a known function <m>F(x)</m> with <m>F'(x)=f(x)</m>,
+  then the Uniqueness Theorem (<m>\S3.2</m>) tells us
+  that the two antiderivatives are the same,
+  except for adding a constant:
+  <m>A(x) = \int_a^x\! f(t)\,dt \ =\ F(x)+C</m>.
+  Since <m>0=A(a)=F(a)+C</m>, we have <m>C=-F(a)</m>, and <m>A(x)=F(x)-F(a)</m>,
+  This is the Second Fundamental Theorem:</p>
+
+  <p><md><![CDATA[
+A = A(b) = \int_a^b\! f(x)\,dx \ =\ F(b)-F(a).
+  ]]></md></p>
+
+  <p>That is, the area is the integral of a rate of change <m>f(x) = F'(x)</m>, which is
+  is equal to the total change in <m>F(x)</m> over <m>x\in[a,b]</m>.<fn>
+  The indefinite integral <m>\int f(x)\,dx = F(x)+C</m> is
+  the general antiderivative function, also called the primitive function.
+  The definite integral <m>\int_a^b\! f(x) = F(b)-F(a)</m> is a number.
+  </fn></p>
+
+  <p>These three brilliant ideas, working perfectly together, make it easy to compute the areas of most shapes, provided we are skillful enough at reversing derivative rules to find indefinite integrals.</p>
+
+  <example xml:id="ex-5-2-x-cos-x2-area">
+    <statement>
+      <p>Find the area of the leftmost region enclosed below the curve <m>y=x \cos(x^2)</m> and above the line <m>y=-x</m>.</p>
+
+      <figure xml:id="fig-5-2-xcosx2-placeholder">
+        <caption>Placeholder for 5-2-XCosX2.</caption>
+        <image width="30%">
+          <shortdescription>Boilerplate TikZ placeholder for 5-2-XCosX2.png.</shortdescription>
+          <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=4.8cm, minimum height=4.0cm, font=\small] {5-2-XCosX2};
+\end{tikzpicture}
+          ]]></latex-image>
+        </image>
+      </figure>
+
+      <p>The left corner of the region is at <m>x=0</m>.
+      To find the right corner, we set <m>x\cos(x^2)=-x</m> with <m>x&gt;0</m>, so <m>\cos(x^2)=-1</m>,
+      and the smallest positive solution is <m>x^2=\pi</m>, <m>x=\sqrt{\pi}\approx 1.77</m>.</p>
+
+      <p>To compute the area, we consider thin slices from the top curve to the bottom line, with height <m>x\cos(x^2)-(-x)=x\cos(x^2)+x</m>, and take a limit of Riemann sums to get:</p>
+
+      <p><md><![CDATA[
+A
+\ =
+\int_0^{\!\sqrt{\pi}}\!\! \left(x\cos(x^2)+x\right)dx
+\ =\ \int_0^{\!\sqrt{\pi}}\!\!  x\cos(x^2)\,dx\ +\
+\int_0^{\!\sqrt{\pi}}\!\!  x\,dx.
+      ]]></md></p>
+
+      <p>We can evaluate the first term using the substitution <m>u=x^2</m>, <m>du=2x\,dx</m>, so
+      <m>\int\! x\cos(x^2)\,dx=\frac12\int\cos(x^2)\, 2x\,dx=\frac12\int \cos(u)\,du=\frac12\sin(u)=\frac12 \sin(x^2)</m>.</p>
+
+      <p><md><![CDATA[
+A
+\ =\
+\left[\vphantom{\sum}\tfrac12\sin(x^2) + \tfrac12 x^2\right]_{x=0}^{x=\sqrt{\pi}}
+\ = \
+	frac12{\pi}\ \approx\ 1.57\,.
+      ]]></md></p>
+
+      <p>This is the same as the area of a semi-circle of radius 1, which looks about right from the picture. Not a result you could get from elementary geometry!</p>
+    </statement>
+  </example>
+
+  <p><alert>Solids of revolution.</alert> The integral is a very powerful tool to compute the total of many small parts, such as the thin slices which fill up an area.
+  A similar method allows us to compute volumes.
+  We start with a solid of revolution
+  which is formed by rotating a region in the plane around the <m>x</m>-axis, sweeping out a kind of barrel shape.</p>
+
+  <figure xml:id="fig-5-2-region-placeholder">
+    <caption>Placeholder for 5-2-Region.</caption>
+    <image width="42%">
+      <shortdescription>Boilerplate TikZ placeholder for 5-2-Region.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=6.2cm, minimum height=4.0cm, font=\small] {5-2-Region};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <figure xml:id="fig-5-2-rotated-region-placeholder">
+    <caption>Placeholder for 5-2-Rotated-Region.</caption>
+    <image width="42%">
+      <shortdescription>Boilerplate TikZ placeholder for 5-2-Rotated-Region.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=6.2cm, minimum height=4.0cm, font=\small] {5-2-Rotated-Region};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>The total volume is the sum of <m>n</m> disk slices at sample points <m>x_1,\ldots,x_n</m> in <m>[a,b]</m>, each with radius <m>f(x_i)</m> and thickness <m>\Delta x=\frac{b-a}{n}</m>.</p>
+
+  <figure xml:id="fig-5-2-rotated-disk-placeholder">
+    <caption>Placeholder for 5-2-Rotated-Disk.</caption>
+    <image width="50%">
+      <shortdescription>Boilerplate TikZ placeholder for 5-2-Rotated-Disk.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=7.5cm, minimum height=4.2cm, font=\small] {5-2-Rotated-Disk};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>The volume of each slice is approximately:</p>
+
+  <p><md><![CDATA[
+\Delta V_i \ \approx\ \text{(circle area)$\times$(thickness)}
+\ =\ \pi f(x_i)^2\, \Delta x\,,
+  ]]></md></p>
+
+  <p>and taking the limit as <m>n\to\infty</m> gives the exact volume as an integral:</p>
+
+  <p><md><![CDATA[
+V \ =\ \lim_{n\to\infty} \sum_{i=1}^n \pi f(x_i)^2\,\Delta x
+\ =\ \int_a^b \pi f(x)^2\,dx\,.
+  ]]></md></p>
+
+  <p>Once we express our answer as an integral, we no longer consider its geometric motivation: finding an antiderivative and determining the value is a purely algebraic problem.</p>
+
+  <p>This analysis should not be surprising:
+  we expect our answer to converge to an integral as soon as we can slice up the problem into small increments.</p>
+
+  <example xml:id="ex-5-2-trumpet-volume">
+    <statement>
+      <p>Find the volume of the trumpet solid obtained by rotating around the <m>x</m>-axis the region defined by:
+      <m>0\leq y\leq \frac1x</m> and <m>1\leq x\leq 2</m>.
+      This is the solid of revoltion of the curve <m>y=\frac1x</m> over the interval <m>x\in[a,b]</m>.</p>
+
+      <figure xml:id="fig-5-2-trumpet-placeholder">
+        <caption>Placeholder for 5-2-Trumpet.</caption>
+        <image width="42%">
+          <shortdescription>Boilerplate TikZ placeholder for 5-2-Trumpet.png.</shortdescription>
+          <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=6.0cm, minimum height=4.0cm, font=\small] {5-2-Trumpet};
+\end{tikzpicture}
+          ]]></latex-image>
+        </image>
+      </figure>
+
+      <p>Applying our formula:</p>
+
+      <p><md><![CDATA[
+V
+\ =
+\int_1^2\pi\left(\tfrac1x\right)^2\,dx
+\ =
+\int_1^2\pi x^{-2}\,dx
+      ]]></md></p>
+
+      <p><md><![CDATA[
+\ =
+\left[-\pi x^{-1}\right]_{x=1}^{x=2}
+\ =
+(-\pi 2^{-1})-(-\pi 1^{-1})
+\ = \ \tfrac{\pi}{2}\,.
+      ]]></md></p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-5-2-y-axis-rotation">
+    <statement>
+      <p>Find the volume of the solid obtained by rotating
+      the region defined by
+      <m>x^2\leq y\leq 2</m> and <m>x\geq 1</m>,
+      around the vertical axis <m>x=1</m>.</p>
+
+      <figure xml:id="fig-5-2-y-rotation-placeholder">
+        <caption>Placeholder for 5-2-Y-Rotation.</caption>
+        <image width="60%">
+          <shortdescription>Boilerplate TikZ placeholder for 5-2-Y-Rotation.png.</shortdescription>
+          <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=9.0cm, minimum height=4.5cm, font=\small] {5-2-Y-Rotation};
+\end{tikzpicture}
+          ]]></latex-image>
+        </image>
+      </figure>
+
+      <p>The setup is different from the <m>x</m>-axis rotation, so
+      we must repeat our slice analysis.
+      Since we rotate around the vertical line <m>x=1</m>,
+      we should take horizontal slices positioned by their height <m>y</m>,
+      and we should write our region as lying next to the interval
+      <m>y\in [1,2]</m> between the curves <m>x=1</m> and <m>x=\sqrt y</m>.</p>
+
+      <p>Our slices are thin horizontal disks at sample heights
+      <m>y_1,\ldots, y_n</m> in the interval <m>y\in[1,2]</m>.
+      The thickness of each disk is <m>\Delta y</m>.
+      The radius at height <m>y_i</m> is the horizontal distance
+      from the axis <m>x=1</m> to the curve <m>x=\sqrt y</m>;
+      this distance is <m>\sqrt{y_i}-1</m>. The volume of each disk is
+      <m>\Delta V_i\approx\pi (\sqrt{y_i}{-}1)^2\,\Delta y</m>, and:</p>
+
+      <p><md><![CDATA[
+V
+\ =
+\int_1^2\!\!\pi\!\left(\sqrt{y}{-}1\right)^2\,dy
+\ =
+\int_1^2\!\!\pi(y{-}2\sqrt{y}{+}1)\,dy
+\ =
+\left[\pi\!\left(\tfrac12 y^2{-}\tfrac43y^{3/2}{+}y\right)\right]_{y=1}^{y=2}
+\ =\ \pi\! \left(\tfrac{23}{6}{-}\tfrac{8\sqrt2}3\right)\!.
+      ]]></md></p>
+    </statement>
+  </example>
+
+  <p><alert>Solids with specified cross sections.</alert> Consider a solid rather like the sail
+  of the man-o-war jellyfish. It has a horizontal base outlined by the circle
+  <m>x^2+y^2= 1</m> in the <m>xy</m>-plane, and its vertical cross section above each line <m>x=c</m>
+  is an isosceles right triangle, with height equal to half its base length.</p>
+
+  <figure xml:id="fig-5-2-man-o-war-placeholder">
+    <caption>Placeholder for 5-2-Man-O-War.</caption>
+    <image width="55%">
+      <shortdescription>Boilerplate TikZ placeholder for 5-2-Man-O-War.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=8.5cm, minimum height=4.4cm, font=\small] {5-2-Man-O-War};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>The slices are defined over <m>x\in[-1,1]</m>, and each slice at <m>x=x_i</m> has a base segment
+  reaching from <m>y=-\sqrt{1-x^2}</m> to <m>y=\sqrt{1-x^2}</m>, a thickness <m>\Delta x</m>,
+  and an area <m>\frac12</m>(base)<m>\times</m>(height) <m>= \tfrac12\!\left(\!2\sqrt{1{-}x_i^2}\,\right)\!\!\left(\!\sqrt{1{-}x_i^2}\,\right)</m>.
+  Thus:</p>
+
+  <p><md><![CDATA[
+V
+\ =
+\int_{-1}^1\!\tfrac12\!\left(\!2\sqrt{1{-}x^2}\right)\!\!\left(\!\sqrt{1{-}x^2}\right)\,dx
+\ =
+\int_{-1}^1\!\! 1{-}x^2\,dx
+\ =
+\left[\vphantom{\sum}x {-} \tfrac13x^3\right]_{x=-1}^{x=1}
+ =\ \tfrac43.
+  ]]></md></p>
+
+  <p><alert>Method of slice analysis.</alert>
+  The goal is to compute the size or bulk <m>S</m> of a geometric object:
+  its length, area, volume, mass, energy, etc.</p>
+
+  <p><ol>
+    <li>Cut the object into thin slices whose position is determined by
+    some variable <m>x\in[a,b]</m>, often slices perpendicular to the <m>x</m>-axis.</li>
+    <li>Compute the approximate size of the slice with thickness <m>\Delta x</m>
+    near a particular value of <m>x</m> as: <m>\Delta S \approx f(x)\,\Delta x</m>.
+    Summing up slices gives the total size, and the limit of thinner slices gives the integral:
+    <md><![CDATA[
+S  =\ \int_a^b\!\! f(x)\,dx\,.
+    ]]></md>
+    The size is the accumulation of the slice measurement <m>f(x)</m>:
+    e.g. area is accumulation of slice height, volume is accumulation of slice area.</li>
+    <li>Evaluate the integral <m>S=\int_a^b\!f(x)\,dx</m> algebraically or numerically.</li>
+  </ol></p>
+
+  <p><alert>challenge problem:</alert> Consider the solid of revolution around the <m>x</m>-axis of the curve <m>y=f(x)</m>
+  over the interval <m>x\in[a,b]</m>. Explain the following formula for the surface area of
+  this solid:
+  <m>S \ =\ \int_a^b 2\pi f(x)\sqrt{1{+}(f'(x))^2\,}\, dx\,.</m>
+  Hint:
+  <m>\sqrt{(\Delta x)^2 + (\Delta y)^2\,}
+  \ =\ \sqrt{1+(\frac{\Delta y}{\Delta x})^2\,}\ \Delta x
+  \ \approx\ \sqrt{1+(\frac{dy}{dx})^2\, }\ \Delta x</m>.</p>
 
 </section>
