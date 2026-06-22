@@ -1,8 +1,473 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <section xml:id="sec-3-population-modeling-logistic" xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>Population Modeling and the Logistic Equation</title>
+  <title>Synthesis: Differential Equations</title>
 
-  <p> Text of section. </p>
+  <p><alert>Differential equations.</alert> In science and engineering, the solution of differential equations is the main application of calculus, allowing precise quantitative predictions of complicated dynamical behavior.
+  Here we continue the analysis of exponential growth from <m>\S6.5</m>,
+  introducing some interesting differential equations
+  and solving them by combining an array of techniques from the course.</p>
+
+  <p><alert>Logistic equation.</alert> Consider a process of self-reproduction constrained by an environmental ceiling. That is, the rate of growth of the population <m>P(t)</m> is proportional to the population level, but also to the shortfall between the environmental capacity <m>E</m> (a constant) and the population level:</p>
+
+  <p><md><![CDATA[
+\frac{dP}{dt} \ = \ kP\,(E{-}P).
+  ]]></md></p>
+
+  <p>At first, when <m>P(t)</m> stays small and <m>E{-}P(t)</m> stays near <m>E</m>,
+  we expect <m>P(t)</m> to grow about exponentially;
+  but as <m>P(t)</m> approaches the capacity <m>E</m>,
+  the shrinking value of <m>E{-}P(t)</m> will slow down the growth,
+  making <m>P(t)</m> asymptotically approach <m>E</m>.</p>
+
+  <p>We solve by separation of variables (<m>\S6.5</m>):</p>
+
+  <p><md><![CDATA[
+\int \frac{dP}{P(E{-}P)} \ =\ \int k\,dt \ =\ kt + C.
+  ]]></md></p>
+
+  <p>We integrate the left side by a partial fraction decomposition (<m>\S7.4</m>):
+  <m>\frac{1}{P(E{-}P)} \ =\ \frac{A}{P} + \frac{B}{E{-}P}</m>.
+  Clearing denominators gives <m>1=A(E{-}P)+BP</m>,
+  and substituting <m>P=0</m> and <m>P=E</m> allows us to solve for the coefficients:
+  <m>A = 1/E</m> and <m>B=1/E</m>. Thus:</p>
+
+  <p><md><![CDATA[
+\int \frac{dP}{P(E{-}P)} \ =\
+\frac 1E \int \frac{1}{P} + \frac{1}{E{-}P}\ dP
+\ =\
+\frac 1E(\ln(P) - \ln(E{-}P)) \ =\
+\frac 1E\ln\!\left(\frac{P}{E{-}P}\right).
+  ]]></md></p>
+
+  <p>Hence <m>\frac 1E\ln\!\left(\frac{P}{E{-}P}\right)=kt + C</m>, which we can solve for <m>P</m> to get a <em>logistic function</em>:<fn>
+  This is closely related to the hyperbolic tangent <m>\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}</m>
+  (<m>\S6.7</m>).
+  </fn></p>
+
+  <p><md><![CDATA[
+P \ =\ \frac{E
+}{1+ Me^{-Ekt}}\ ,
+  ]]></md></p>
+
+  <p>where <m>M=e^{-EC} = \tfrac{E}{P(0)}-1</m>.</p>
+  <p>For <m>E=1</m>, <m>k=1</m>, <m>P(0)=0.1</m>, this looks as expected:</p>
+
+  <figure xml:id="fig-synth-3-placeholder">
+    <caption>Placeholder for Synth-3.</caption>
+    <image width="72%">
+      <shortdescription>Boilerplate TikZ placeholder for Synth-3.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=11cm, minimum height=5cm, font=\small] {Synth-3};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p><em>example:</em> We model the population of the United States from 1800 to 1900
+  by a logistic function fitted to the three census values (in millions of people):</p>
+
+  <p><md><![CDATA[
+P(1800) = 5.3, \qquad P(1850) = 23.3, \qquad P(1900) = 76.2,
+  ]]></md></p>
+
+  <p>which produces the function:</p>
+
+  <p><md><![CDATA[
+P(t) \ =\ \frac{182.9}{1 + 33.5\,(0.969)^{t-1800}}\,.
+  ]]></md></p>
+
+  <p>Comparing this graph (red) with the actual decennial census data (black) gives good agreement
+  even beyond 1900 until the 1950 census.</p>
+
+  <figure xml:id="fig-us-population-logistic-placeholder">
+    <caption>Placeholder for USPopulationLogistic.</caption>
+    <image width="90%">
+      <shortdescription>Boilerplate TikZ placeholder for USPopulationLogistic.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=13cm, minimum height=5.5cm, font=\small] {USPopulationLogistic};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>That is, regardless of territorial expansion, economic booms and depressions, plagues,
+  and waves of immigration, the population dynamics from 1800-1940 is remarkably well described
+  by the constrained self-reproduction model,
+  tending toward an eventual population of 183 million.
+  But the Second World War, which made the United States
+  the world's richest and most powerful country
+  (and introduced antibiotics and vaccination) fundamentally changed US society,
+  which is now at 330 million people and growing roughly linearly.
+  Perhaps this is due to annual immigration quotas?</p>
+
+  <p>This is typical of how scientists use calculus to construct and test mathematical models.
+  The failure of a model can be just as instructive as its success.</p>
+
+  <p><alert>Catenary curve.</alert> A flexible chain hanging by its own weight forms a familiar curve:</p>
+
+  <figure xml:id="fig-synth-2-placeholder">
+    <caption>Placeholder for Synth-2.</caption>
+    <image width="72%">
+      <shortdescription>Boilerplate TikZ placeholder for Synth-2.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=11cm, minimum height=5cm, font=\small] {Synth-2};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>To determine the equation <m>y=f(x)</m> of this curve, consider
+  a segment stretching from the lowest point <m>(0,0)</m>
+  to an arbitrary point <m>(x,y)</m>.
+  The external forces on this segment are:
+  a constant horizontal tension <m>-T_0</m> pulling on the left end; gravity pulling
+  downward with force <m>-g L(x)</m>, proportional
+  to the arclength <m>L(x)</m>; and the tangential tension
+  vector <m>T(x)</m> at the right end, decomposing into components
+  <m>T_1(x)</m> and <m>T_2(x)</m>.</p>
+
+  <p>With the chain in the equilibrium position, the above forces must cancel:
+  <m>T_1(x)=T_0</m> and <m>T_2(x) = g L(x)</m>.
+  Thus the tangent slope of the curve at <m>(x,y)</m> is:
+  <m>\frac{dy}{dx} = \frac{T_2(x)}{T_1(x)}= k L(x)</m>,
+  where <m>k=g/T_0</m>. Applying the formula for arclength of a graph,
+  (<m>\S8.1</m>), we get:</p>
+
+  <p><md><![CDATA[
+\frac{dy}{dx} \ =\ k\int_0^x\!\!  \sqrt{\vphantom{|^M}\smash{
+1\,{+}\,(\tfrac{dy(t)}{dt})^{2}}}\ dt.
+  ]]></md></p>
+
+  <p>Differentiating both sides by <m>\frac{d}{dx}</m> and using the First Fundamental Theorem (<m>\S4.3</m>)
+  gives
+  <m>\frac{d^2y}{dx^2} \ =\ k  \sqrt{\vphantom{m^2}\smash{1\,{+}\,(\tfrac{dy}{dx})^{2}}}</m>,
+  a second order differential equation for <m>y=f(x)</m>.
+  Since only the derivatives of <m>y</m> appear in the equation, not <m>y</m> itself,
+  we can rewrite it in terms of a new variable <m>z=\frac{dy}{dx}=f'(x)</m>, as:
+  <m>\frac{dz}{dx} \ =\ k\sqrt{1{+}z^2}</m>. This is a separable equation (<m>\S6.5</m>):</p>
+
+  <p><md><![CDATA[
+\int\! \frac{dz}{\sqrt{1{+}z^2}} \ =\ \int k\, dx \ =\  k x + C\,.
+  ]]></md></p>
+
+  <p>The left-hand integral can be determined using the trigonometric substitution (<m>\S7.3</m>)
+  <m>z = \tan\theta</m>, <m>\sqrt{1{+}z^2}=\sec\theta</m>, <m>dz=\sec^2\!\theta\,d\theta</m>,
+  then <m>\int\!\sec\theta</m> (<m>\S7.2</m>):</p>
+
+  <p><md><![CDATA[
+\int\! \frac{dz}{\sqrt{1{+}z^2}} \ =\ \int\frac{\sec^2\!\theta}{\sec\theta}\ d\theta
+\ =\ \int\sec\theta\ d\theta \ =\ \ln(\tan\theta + \sec\theta)
+\ =\ \ln(z+\sqrt{1{+}z^2}).
+  ]]></md></p>
+
+  <p>Solving <m>\ln(z+\sqrt{1{+}z^2}) = kx + C</m> gives: <m>\frac{dy}{dx}=z = \frac12(e^{kx+C}-e^{-kx-C})</m>. Integrating:</p>
+
+  <p><md><![CDATA[
+y \ =\ \frac12\int e^{kx+C}{-}e^{-kx-C}\,dx \ =\
+\frac{e^{kx+C}+e^{-kx-C}}{2k}+B
+\ =\ \frac1k \cosh(kx{+}C) + B,
+  ]]></md></p>
+
+  <p>where we use the hyperbolic cosine <m>\cosh(x) = \frac12(e^x+e^{-x})</m> from <m>\S6.7</m>.
+  We can choose <m>k,C,B</m> to adjust the curve to any given endpoints and length of chain.</p>
+
+  <p><em>exercise:</em> Imitate the above arguments
+  to work out the shape of a suspension bridge,
+  in which the chain has negligeable weight,
+  but the gravitational force on a segment
+  is proportional to the length of the roadway
+  suspended beneath: i.e. proportional to <m>x</m>.</p>
+
+  <p><alert>Terminal velocity.</alert> In the standard model of air resistance for a falling object
+  or a speeding car, the drag force is proportional to the square of the velocity <m>v</m>:</p>
+
+  <p><md><![CDATA[
+F_d \ =\  \tfrac12 C_d A\rho v^2,
+  ]]></md></p>
+
+  <p>where <m>C_d</m> is the coefficient of drag, <m>A</m> is cross-sectional area,
+  and <m>\rho</m> is air density.
+  In a mass <m>m</m>, this force produces the deceleration:</p>
+
+  <p><md><![CDATA[
+a_d \ =\ \frac{C_d A\rho}{2m} v^2 \ =\ cv^2.
+  ]]></md></p>
+
+  <p>If we drop an object as in <m>\S2.7</m>,
+  we let <m>s(t)</m> denote its height, <m>v(t)=s'(t)</m> its velocity.
+  Its total acceleration <m>a(t)=s''(t)</m> combines
+  the constant acceleration <m>-g</m> due to gravity with the above drag
+  deceleration: <m>a \ =\ -g + cv^2</m>. This gives the differential equation:</p>
+
+  <p><md><![CDATA[
+s''(t) \ =\ -g + c(s'(t))^2.
+  ]]></md></p>
+
+  <p>We can simplify this by writing it in terms of <m>v(t)=s'(t)</m> and <m>\frac{dv}{dt}=v'(t) = s''(t)</m>:</p>
+
+  <p><md><![CDATA[
+ \frac{dv}{dt} \ = \ -g+c v^2.
+  ]]></md></p>
+
+  <p>As before, this can be solved by separation of variables (<m>\S6.5</m>):</p>
+
+  <p><md><![CDATA[
+\int \frac{dv}{g-cv^2} \ =\ \int dt \ =\ -t + C.
+  ]]></md></p>
+
+  <p>The substitution <m>u=\sqrt{\frac cg}\,v</m> leads to an inverse hyperbolic integral (<m>\S6.7</m>):</p>
+
+  <p><md><![CDATA[
+\begin{array}{rcl}
+\int \frac{dv}{g-cv^2} &=&
+\frac 1g\int \frac{dv}{1-(\sqrt{\frac cg}\, v)^2} \ =\
+\frac 1{\sqrt{cg}} \int \frac{du}{1-u^2}
+\\[1.3em]
+&=&  \frac 1{\sqrt{cg}}\tanh^{-1}(u)
+\ = \ \frac 1{\sqrt{cg}}\tanh^{-1}(\sqrt{\frac cg}\,v),
+\end{array}
+  ]]></md></p>
+
+  <p>where <m>\tanh^{-1}(u) = \ln\!\sqrt{\frac{1+u}{1-u}}</m>. Equating this with <m>-t+C</m> and solving for <m>v</m> gives:</p>
+
+  <p><md><![CDATA[
+ v(t) \ = \ -\sqrt{\tfrac gc}\tanh(\sqrt{gc}\, t +K),
+  ]]></md></p>
+
+  <p>where <m>\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}</m>. Integrating <m>v=\tfrac{dy}{dt}</m> gives (<m>\S6.7</m>):</p>
+
+  <p><md><![CDATA[
+\begin{array}{rcl}
+s(t) &=& -\sqrt{\tfrac gc}\int \tanh(\sqrt{gc}\,t+K)\,dt
+\\[.5em]
+&=&  -\tfrac1c \ln \cosh(\sqrt{gc}\, t + K) + L,
+\\[.5em]
+&=&   -\tfrac1c \ln(e^{\sqrt{gc}\, t + K} + e^{-\sqrt{gc}\, t - K}) + M,
+\end{array}
+  ]]></md></p>
+
+  <p>where <m>K,M</m> are arbitrary constants, and
+  <m>\cosh(x) = \frac{e^x+e^{-x}}{2}</m>.</p>
+
+  <p>If we assume the initial conditions <m>y(0)=0</m>, <m>y'(0)=0</m>,
+  this gives <m>K=0</m>, <m>M=\frac 1c\ln(2)</m>.
+  Near <m>t=0</m>, this has Taylor series (<m>\S11.10</m>)
+  <m>s(t)=-\tfrac12 g t^2 + \tfrac1{12} c g^2 t^4 +\cdots</m>.
+  Thus at first, for small <m>t&gt;0</m>, the falling object closely
+  follows the expected ballistic trajectory
+  without air resistance, <m>s \approx -\frac12 g t^2</m>.</p>
+
+  <p>But eventually, for large <m>t\to\infty</m>, we get:</p>
+
+  <p><md><![CDATA[
+s(t) \ \approx\  -\tfrac1c \ln(e^{\sqrt{c g}\, t})
+\ =\ -\sqrt{\tfrac gc}\, t \,. 
+  ]]></md></p>
+
+  <p>This means the terminal velocity is <m>v_{\infty}=-\sqrt{\tfrac gc}=-\sqrt{\frac{2mg}{C_d A\rho}}</m>.
+  This velocity would be doubled by shrinking cross-section area <m>A</m> by a factor of <m>\frac14</m>,
+  or by dropping 4 times the mass <m>m</m> with the same cross-section.
+  In the equivalent situation of a car with a constant engine force
+  instead of the gravitional force <m>mg</m>,
+  it means 4 times the horsepower is required to double the top speed.</p>
+
+  <p><alert>Financial DE: Cumulative inflation.</alert>
+  Suppose inflation is recorded by the function <m>r(t)</m>,
+  the annualized inflation rate during a given month <m>t</m>.</p>
+
+  <p><em>problem:</em> What is the cumulative increase in prices up to time <m>t</m>?</p>
+
+  <p>Let <m>y(t)</m> be the price level function, the price at time <m>t</m> of an item
+  which originally cost \$1 at <m>t=0</m>. Counting <m>t</m> in fractions of a year,
+  denote the time increment by <m>\Delta t = \frac1{12}</m>,
+  we compute that every month the price undergoes
+  inflation of <m>r(t)(\frac1{12}) = r(t)\Delta t</m>, giving the new price:</p>
+
+  <p><md><![CDATA[
+y(t{+}\Delta t) = y(t)\,(1 + r(t)\Delta t) = y(t) + r(t)y(t)\Delta t,
+  ]]></md></p>
+
+  <p>We can rewrite this in terms of <m>\Delta y=y(t{+}\Delta t)-y(t)</m> as:</p>
+
+  <p><md><![CDATA[
+\frac{\Delta y}{\Delta t} = r(t)y(t).
+  ]]></md></p>
+
+  <p>For given values of <m>r(t)</m>, these equations enable us
+  to compute the exact monthly amounts <m>y(t)</m> on a spreadsheet.
+  To get an approximate algebraic solution,
+  we imagine the inflation period <m>\Delta t</m> to be
+  each day, each minute, and eventually the limit <m>\Delta t\to 0</m>,
+  making the finite difference equation into a differential equation
+  (which will not change the solution by much):</p>
+
+  <p><md><![CDATA[
+\frac{dy}{dt} = r(t)y(t).
+  ]]></md></p>
+
+  <p>Solving this separable DE gives <m>\int\! \frac{dy}{y} = \int r(t)\,dt</m> and:</p>
+
+  <p><md><![CDATA[
+\log y(t) = \int\! r(t)\, dt + C, \qquad
+y(t) = \exp\!\left( \int r(t)\,dt + C\right)  = e^C \exp(\int r(t) \,dt),
+  ]]></md></p>
+
+  <p>and the initial condition <m>y(0) = 1</m> gives:</p>
+
+  <p><md><![CDATA[
+y(t) = \exp\left(\int_0^t r(x)\,dx\right).
+  ]]></md></p>
+
+  <p>From <m>\S4.4/5.5</m>, recall that the average of a function <m>f(x)</m> over an interval <m>[a,b]</m>
+  is given by the integral <m>\frac{1}{b-a}\int_a^b f(x)\,dx</m>.
+  Thus the average rate of inflation over <m>[0,t]</m>
+  is</p>
+
+  <p><md><![CDATA[
+r_{\text{avg}} = \frac{1}{t}\int_0^t r(x)\,dx,
+  ]]></md></p>
+
+  <p>and <m>\int_0^t r(x)\,dx   = r_{\text{\!avg}}\, t</m>. Thus:</p>
+
+  <p><md><![CDATA[
+y(t) = \exp(r_{\text{\!avg}}\, t).
+  ]]></md></p>
+
+  <p>Note that the average rate of increase <m>\frac{y(t)-1}t</m> is usually
+  larger than the average inflation rate <m>r_{\text{\!avg}}</m>,
+  because of the effects of compounding:</p>
+
+  <p><md><![CDATA[
+\frac{y(t)-1}t   \ > \  r_{\text{\!avg}}.
+  ]]></md></p>
+
+  <p>In fact, using the Taylor series for <m>e^x</m>, we get
+  <m>\frac{y(t)-1}t = r_{\text{\!avg}} + \frac{1}{2!} r_{\text{\!avg}}^2 t
+  +  \frac{1}{3!} r_{\text{\!avg}}^3 t^2 +\cdots</m>.</p>
+
+  <p><em>example:</em> The inflation rate over six months is
+  8.0, 9.0, 8.5, 9.0, 8.5, 8.0 percent per year, averaging 8.5%.
+  The total price multiple is about
+  <m>y(0.5) = \exp(r_{\!\text{avg}}t) = \exp(0.085\ast 0.5) = 1.0435</m>,
+  and the average price rise of <m>0.0435/0.5 = 0.087 = 8.7\%</m> is
+  slightly more than the average inflation rate of 8.5%.</p>
+
+  <p><alert>More Financial DE: Mortgage repayment.</alert>
+  Consider a mortgage loan with a fixed annual interest rate <m>r</m>,
+  and fixed monthly payments at an annual rate of <m>p</m> percent of the loan,
+  with the current month's interest deducted from each payment. Here <m>p&gt;r&gt;0</m>.</p>
+
+  <p><em>problem:</em> How long to pay off the loan, and how much interest will be paid?</p>
+
+  <p>Let <m>y(t)</m> be the principal debt at time <m>t</m> years, with <m>y(0)=1=</m> 100% of the loan,
+  and denote the montly repayment period by <m>\Delta t = \frac{1}{12}</m>.
+  Each payment of <m>p\,\Delta t</m> has a deduction
+  of the current month's interest <m>r\,y(t)\Delta t</m>, so:</p>
+
+  <p><md><![CDATA[
+y(t{+}\Delta t) \ =\ y(t) - p\,\Delta t + r\,y(t)\Delta t,
+  ]]></md></p>
+
+  <p>which we can rewrite in terms of <m>\Delta y = y(t{+}\Delta t)- y(t)</m> as:</p>
+
+  <p><md><![CDATA[
+\frac{\Delta y}{\Delta t} \ =\  r\,y(t)- p.
+  ]]></md></p>
+
+  <p>Taking the continuous limit <m>\Delta t\to 0</m>:</p>
+
+  <p><md><![CDATA[
+\frac{dy}{dt} \ =\  r\,y(t)- p.
+  ]]></md></p>
+
+  <p>This is a first order inhomogeneous linear DE (<m>\S6.5</m>) of the form <m>\frac{dy}{dt} = a(t)y(t)+ b(t)</m>,
+  with solution:
+  <m>y = ce^{A(t)} + e^{A(t)}\!\int\! \frac{b(t)}{e^{A(t)}}\,dt</m>,
+  where <m>A(t) = \int\! a(t)\,dt = \int r \,dt = rt</m> and <m>b(t) = -p</m>:</p>
+
+  <p><md><![CDATA[
+y(t) \ =\  ce^{rt}+ e^{rt}\!\int\! \frac{-p\ }{e^{rt}}\,dt
+\ =\  ce^{rt}-p e^{rt}\!\int\! e^{-rt}\,dt
+\ =\  ce^{rt} +\frac pr.
+  ]]></md></p>
+
+  <p>Setting <m>c</m> to give the initial condition <m>y(0)=1</m> implies:</p>
+
+  <p><md><![CDATA[
+y(t) \ =\ \frac pr -\left(\!\frac{p{-}r}{r}\!\right) e^{rt} .
+  ]]></md></p>
+
+  <p>Now we can solve <m>y(t)=0</m> to get the repayment time <m>T</m>, and the total interest <m>I</m>:</p>
+
+  <p><md><![CDATA[
+T = \tfrac 1r\ln(\tfrac{p}{p-r}), \qquad\qquad
+I = \int_0^T\! r\,y(t)\,dt \ =\ \tfrac pr \ln(\tfrac{p}{p-r}) - 1 \,.
+  ]]></md></p>
+
+  <p>For example, a mortgage at <m>r = 5\%</m> interest with <m>p=10\%</m> annual payment
+  takes about <m>T=20\,\ln(2)= 14</m> years to repay, with interest <m>I =39\%</m>
+  of the loan amount.</p>
+
+  <p><alert>Continuous investment in a fluctuating asset.</alert>
+  We regularly invest in an asset whose market price fluctuates according to
+  a given function <m>p(t)</m>. We want to compute the investment's value <m>y(t)</m> at time <m>t</m>.</p>
+
+  <p>Over each period from <m>t</m> to <m>t{+}\Delta t</m>,
+  our previous value fluctuates by a factor of <m>p(t{+}\Delta t)/p(t)</m>,
+  plus an investment of <m>\Delta t</m> (assuming unit annual investment):</p>
+
+  <p><md><![CDATA[
+y(t{+}\Delta t) \ = \ \frac{p(t{+}\Delta t)}{p(t)} y(t) + \Delta t.
+  ]]></md></p>
+
+  <p>Rewriting in terms of <m>\Delta y = y(t{+}\Delta t)-y(t)</m> and <m>\Delta p = p(t{+}\Delta t)-p(t)</m>:</p>
+
+  <p><md><![CDATA[
+\Delta y + y(t) \ = \ \frac{\Delta p + p(t)}{p(t)} y(t) + \Delta t
+\quad\Longrightarrow\quad
+\frac{\Delta y}{\Delta t} \ = \ \frac{1}{p}\frac{\Delta p}{\Delta t} y(t) + 1.
+  ]]></md></p>
+
+  <p>In the limit <m>\Delta t\to 0</m>, this becomes a first order inhomogeneous linear DE:</p>
+
+  <p><md><![CDATA[
+\frac{dy}{dt} = \frac 1p \frac{dp}{dt} y + 1 \quad
+	ext{with} \quad y(0)=0.
+  ]]></md></p>
+
+  <p>By <m>\S6.5</m>, the solution is <m>y(t) = ce^{A(t)}+e^{A(t)}\!\int \frac{1}{e^{A(t)}}\,dt</m>
+  for <m>A(t) = \int \frac 1p \frac{dp}{dt}\,dt = \ln(p(t))</m>, so
+  <m>e^{A(t)} = p(t)</m>. Adjusting for the initial value <m>y(0)=0</m> gives:</p>
+
+  <p><md><![CDATA[
+y(t) \ = \ p(t)\int_0^t\!  \frac1{p(x)} \,dx.
+  ]]></md></p>
+
+  <p><em>examples:</em></p>
+  <p><ul>
+    <li>Constant <m>p(t) = k</m> gives <m>y(t) = t</m>, exactly equal to our investment, as expected.</li>
+    <li>A price spike like <m>p(t) = 1+2t-t^2</m>
+    with <m>p(0) = 1</m>, <m>p(1)=2</m>, <m>p(2)=1</m> gives:</li>
+  </ul></p>
+
+  <p><md><![CDATA[
+y(t) \ =\
+(1{+}2t{-}t^2)\int_0^t\! \frac{1}{2-(x{-}1)^2}\,dx
+\ =\ \frac{1{+}2t{-}t^2}{2\sqrt 2}
+\ln\!\left(\frac{1+t+\sqrt 2 t}{1+t-\sqrt 2 t}\right),
+  ]]></md></p>
+
+  <p>using <m>\int\!\! \frac{1}{1-x^2}\,dx = \tanh^{-1}(x) =
+  \frac12 \ln(\frac{1+x}{1-x})</m> (<m>\S6.7</m>)
+  or partial fractions (<m>\S7.4</m>).</p>
+
+  <p>Thus <m>y(2)\approx 1.25&lt;2</m>, a loss from our investment:
+  the appreciation at the beginning
+  acts on a smaller asset base than the depreciation at the end.
+  A price dip would have the opposite effect.</p>
 
 </section>

@@ -1,0 +1,396 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.65in}
+\addtolength{\textheight}{1.1in}
+\addtolength{\oddsidemargin}{-.4in}
+\addtolength{\textwidth}{.8in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 133\hspace{1.5em} \hfill{\Large\bf
+Exponential Growth and Decay}\hfill Stewart \S6.5}
+\vspace{1em}
+
+\noindent 
+{\bf Differential equations.} An algebra equation involves a variable representing an unknown number, often denoted by $x$; 
+and to solve the equation means to find the numerical values of $x$ which make the equation true.
+ A {\it differential equation} (DE) involves an {\it unknown function}, often $y=f(x)$, and its derivatives 
+$\frac{dy}{dx}=f'(x)$, $\frac{d^2\!y}{dx^2}= f''(x)$, etc.
+To solve the DE means to find the explicit functions $f(x)$ 
+which make the equation true.
+For example, the differential equation $f'(x) = 2x$ has solution functions
+$f(x)=x^2+C$ for any constant $C$.
+ 
+ Scientific laws attempt to give simple explanations of complicated phenomena. Some, such as the principle of evolution through natural selection, are {\it qualitative} laws, stated in ordinary language.  Those laws which are {\it quantitative}, precisely explaining numerical measurements, are usually stated in terms of simple differential equations: the complication arises from the solutions of these equations. The theory of differential equations is one of the richest, most extensive fields of mathematics: in fact, the most important equations, such as those describing fluid flow, are each large areas of study all by themselves. Here we will consider only a few very elementary, easy-to-solve examples.
+\\[1em]
+{\bf Equations solved by immediate integration.} The very simplest DE's are those of the form $f'(x)=a(x)$, where $y=f(x)$ is the unknown and $a(x)$ is some given, known function. The solution is just the indefinite integral (anti-derivative) with $A'(x)=a(x)$:
+$$
+f'(x) = a(x) \quad\Longrightarrow\quad
+f(x)  = \int \!a(x)\,dx = A(x)+C\,.
+$$
+Here $A(x)$ is found by reversing the derivative rules; but if this is not possible, 
+we can always write $A(x)=\int_c^x a(t)\,dt$, 
+a definite integral which can be approximated by Riemann sums. 
+The constant $C$ is often determined by an intitial condition on $f(0)$.
+\\[.5em]
+{\sc example:} Suppose your car starts at a standstill, and you press the accelerator very slowly so that after 1 second you are gaining 1 mph each sec, after 2 seconds you are gaining 2 mph each sec, etc. How far have you traveled in $t$ seconds, and how many seconds until you travel 1000 ft?
+
+Here the unknown function $y=f(t)$ is the distance traveled (the position past the starting point) in feet; the velocity is $\frac{dy}{dt}=f'(t)$; and the acceleration $\frac{d^2\!y}{dt^2}=f''(t)$ is given as $t$ mph per sec.
+Converting to consistent units, 1 mph =  $\frac{5280 \text{ ft}}{3600\text{ sec}}\approx 1.5$ ft/sec, so 1 mph per sec $\approx 1.5 $ ft/sec$^2$. Thus:
+$$
+f''(t) \ =\ 1.5\, t,\quad
+\text{initial conditions }
+f(0)  =  0, \ f'(0) = 0.
+$$
+Initial distance traveled is zero; initial velocity is zero because we start at a standstill.
+We call this a {\it second order} differential equation because it involves 
+the second derivative $f''(x)$. 
+To solve, we integrate twice:
+$$
+f'(t) \ =\ \int 1.5\, t\,dt \ =\ 0.75\, t^2 + C_1\,,
+\qquad
+f(t) \ =\ \int 0.75\, t^2 + C_1\ dt 
+\ =\  0.25\, t^3 + C_1t + C_2\,.
+$$ 
+As usual with second-order equations,
+ we obtain a family of solutions with two arbitrary constants  $C_1, C_2$.
+(First-order quations with only $f'(t)$ will have only one constant 
+in their solution.)
+The initial conditions determine the constants: $$0=f'(0)=0.75 (0^2) + C_1=C_1
+\quad\text{and}\quad
+0=f(0)=0.25 (0^3) + C_1(0) + C_2=C_2\,.
+$$
+Therefore: $f(t) = 0.25\, t^3$. 
+Finally, solving $f(t) = 0.25\, t^3=1000$ answers the original question: 
+it takes $t=\sqrt[3]{4000}\approx 16$ sec to travel 1000 ft.
+\\[.5em]
+{\bf Exponential growth from self-reproduction.} The three qualitative mechanisms
+of evolution are {\it self-reproduction}; 
+{\it variation} via genetic mutation and sexual recombination; 
+and {\it selection} for reproductive capacity. 
+To quantify self-reproduction, we first consider the simple situation 
+of constant fertility without constraints: on average, each individual produces 
+a certain number of offspring per unit time. 
+Thus, if $P(t)$ is the population at time $t$, and 
+$k$ is the observed constant reproduction rate per individual, 
+we get the DE:
+$$
+\frac{dP}{dt} \ =\ kP\,.
+$$
+
+To predict the population, we must solve for the unknown function $P(t)$.
+This time, integrating both sides will not help, since the right side 
+is just as unknown as the left side. 
+However, it is easy to guess a solution function: $P(t)=e^{kt}$, with $P'(t)=e^{kt}\cdot(kt)'
+= P(t)\, k$. Notice that the solution (an exponential function with the weird constant $e$) is considerably more complicated than the original equation.
+
+Is this the only solution, the only population function consistent with the equation?
+In fact, any multiple of this will also work:
+$$P(t)=c e^{kt}.$$
+I claim that this is the most general solution of the differential equation.
+In fact, if $P(t)$ is any solution function with $P'(t)= k\,P(t)$, then the Quotient Rule (\S2.3) says:
+$$
+\left(\frac{P(t)}{e^{kt}}\right)^{\!\prime}
+\ =\ 
+\frac{ P'(t) e^{kt}-P(t) (e^{kt})'}{(e^{kt})^2}
+\ =\ 
+\frac{k\, P(t)\, e^{kt}-P(t) \,k\,e^{kt}}{e^{2kt}}
+\ =\  0.
+$$
+Since $\frac{P(t)}{e^{kt}}$ has zero derivative, it must be a constant function 
+(\S3.2):
+$$
+\left(\frac{P(t)}{e^{kt}}\right)^{\!\prime} \ =\ 0
+\qquad\Longrightarrow\qquad
+\frac{P(t)}{e^{kt}} \ =\ c
+\qquad\Longrightarrow\qquad
+P(t) \ =\ c\, e^{kt}\,.
+$$
+That is, any solution $P(t)$ must have the desired form.
+
+Exponential growth is so explosive that any self-reproducing population 
+will very quickly fill its environment, no matter how large. 
+For example, if we started with a single cell one micrometer across and 
+repeatedly doubled it every hour, we would fill the entire volume of 
+the ocean (about $10^{18}\, \mathrm{m}^3$) within 120 generations,
+or 5 days. 
+That is, as soon as a new trait produces a selective advantage
+which allows exponential reproduction even at a low rate, 
+it will almost immediately populate all the livable space, at which point
+growth must stop for lack of resources (the net fertility rate $k$ drops to zero).
+
+Conversely, wherever we find exponential growth, we expect it to be caused by 
+self-reproduction. For example Moore's Law 
+predicts that the amount of computing power available at a fixed price
+will double every 18 months.
+This is possible because the key tools needed to design and manufacture
+better computers are our current computers.
+
+\newpage
+
+\noindent
+{\bf Exponential growth doubling problem.}
+Here is a common type of problem which needs no calculus,
+apart from the general exponential formula found above.
+Let $P(t)$ grams be the population of bacteria in a tank at $t$ hours. Suppose the population doubles every 3 hours, and $P(1)=2$. Find $P(t)$.
+
+We must translate all the words of the problem (physical level) into equations (algebraic level). First, doubling in constant time means exponential growth: $P(t)=c\, e^{kt}$; but here it is easier to write $a=e^k$, so that $P(t)=ca^t$. We need only find the unknown constants $c,a$. For a given population $P(t)$, the population 3 hours later will be twice as much:
+$$
+P(t{+}3) = 2 P(t) 
+\quad \Longrightarrow \quad
+c\,a^{t+3} = 2c\,a^t
+\quad \Longrightarrow \quad
+a^t a^3 = 2a^t
+\quad \Longrightarrow \quad
+a= \sqrt[3]{2} \approx 1.26\ .
+$$ 
+The initial condition becomes: $P(1)=c\,a^1=2$, so that $c = 2/a = 2/\sqrt[3]2 = 2^{2/3}\approx 1.59$.
+$$
+P(t) \ =\ 2^{2/3}\, 2^{(1/3)t} \ =\ 2^{(t+2)/3}.
+$$
+Beware: any exponential model will break down when the population outgrows its available resources. After that time, our prediction is invalid.
+
+The reciprocal of exponential growth is {\it exponential decay}: a process in which,  instead of doubling in constant time, a quantity shrinks by half, meaning $k<0$ or $a=e^k<1$.
+%
+%
+\\[1em]
+{\bf Separation of variables method.} Certain easy DE's can be reduced to an integration problem by a simple trick. 
+For some given functions $a(x),b(x)$, 
+we want to find the unknown $f(x)$ satisfying:
+$$
+ f'(x)\ =\  a(x)\,b(f(x))\,.
+$$
+Here the second factor is an expression in the unknown $f(x)$.
+Moving $f(x)$ to the left side, 
+and taking the integral of both sides gives:
+$$
+\int\! \frac{1}{b(f(x))}\,f'(x)\,dx \ =\ \int\! a(x)\,dx.
+$$
+The left-hand integral can be simplified by the substitution $y=f(x)$,
+$dy = f'(x)\,dx$, giving $\int\! \frac1{b(y)}\,dy$. 
+(Here $f(x)$ is unknown, but it is {\it some} function, so it can be used in a substitution.) 
+Assuming we can find antiderivatives $\int\!\! \frac1{b(y)}\,dy=B(y)$ and
+$\int\! a(x)\,dx=A(x)+C$, our equation becomes:
+$$
+\hspace{-1em}
+\int\! \frac{1}{b(y)}\,dy = \int\! a(x)\,dx
+\quad\Longrightarrow\quad
+B(y) = B(f(x))  = A(x)\,+\,C
+\quad\Longrightarrow\quad
+f(x) = B^{-1}(A(x)+C)\,,
+$$
+assuming we can find an inverse function $B^{-1}$ to solve $B(y)=A(x)+C$.
+
+This reasoning looks especially natural in Leibnitz notation,
+letting $y=f(x)$:
+$$\hspace{0in}
+\frac{dy}{dx} = a(x)\,b(y)
+\quad\Longrightarrow\quad
+ \frac{1}{b(y)}\,\frac{dy}{dx} = a(x)
+\quad\Longrightarrow\quad
+\int  \frac{1}{b(y)}\,\frac{dy}{dx}\,dx = \int a(x)\,dx
+$$
+$$\hspace{0in}
+\quad\Longrightarrow\quad
+\int  \frac{1}{b(y)}\,dy = \int a(x)\,dx
+\quad\Longrightarrow\quad
+B(y) = A(x)\,+\,C
+\quad\Longrightarrow\quad
+y\ =\ B^{-1}(A(x)+C).
+$$
+
+\pagebreak
+
+\noindent
+{\sc example:} Applying the method to the exponential growth equation from before:
+$$
+\frac{dP}{dt} = kP
+\quad\Longrightarrow\quad
+\int \frac{1}{P}\, \frac{dP}{dt}\,dt = \int k\,dt
+\quad\Longrightarrow\quad
+\int \frac{1}{P}\, dP = \int k\,dt
+$$
+$$
+\quad\Longrightarrow\quad
+\log\!|P| = kt + C
+\quad\Longrightarrow\quad
+P = \pm e^{kt+C} = \pm e^Ce^{kt}\,.
+$$
+This is  our previous answer, except the arbtrary coefficient is $\pm e^C$ instead of $c$.\footnote{
+The form of the constant is irrelevant. For example, if we had put constants in both general antiderivatives, $\log|P|+C_1=kt + C_2$, it would lead to $P= \pm e^{C_1-C_2} e^{kt}$, where $C_1,C_2$ are arbitrary constants. But this does not give a more general solution than $\pm e^C$ for a single arbitrary $C$, or just a simple constant coefficient $c$.}
+\\[.5em]
+{\sc example:} Solve
+$f'(x) = \frac{\sin(x)}{f(x)}$. That is, the derivative of the unknown function $y=f(x)$ 
+must be equal to $\sin(x)$ divided by $f(x)$ itself. The method gives:
+$$
+\frac{dy}{dx} = \frac{\sin(x)}{y}
+\quad\Longrightarrow\quad
+\int y\,\frac{dy}{dx}\,dx = \int\sin(x)\,dx
+\quad\Longrightarrow\quad
+\int y\, dy = \int\sin(x)\,dx
+$$
+$$
+\quad\Longrightarrow\quad
+\tfrac12 y^2 = -{\cos(x)} + C
+\quad\Longrightarrow\quad
+y = \pm\sqrt{2C {-} 2\cos(x)}\,.
+$$
+We can check our solution by plugging it into the original differential equation.
+Indeed, by the Chain Rule, $f'(x) = \frac12(2C{-}2\cos(x))^{-1/2}\cdot 2\sin(x)= \frac{\sin(x)}{f(x)}$.
+\\[1.5em]
+{\bf Newton's Law of Cooling.} This is a toy example of how scientific laws are expressed by DE's.  Newton proposed a simple rule for the temperature $T(t)$ of a hot body as it cools down to a constant environmental temperature $E$: 
+the rate of cooling is proportional to the difference between the body's temperature
+and the environment. The DE is:
+$$
+\frac{dT}{dt} \ =\ -k\,(T{-}E)\,.
+$$
+Here $k>0$, so  a high temperature cools quickly.
+Separating variables gives:
+$$
+\int \!\frac{1}{T{-}E}\,\frac{dT}{dt} \, dt \ = \ -\int\! k\,dt
+\quad\Longrightarrow\quad
+\int \!\frac{1}{T{-}E}\ dT \ = \ -\int\! k\,dt
+$$
+$$
+\quad\Longrightarrow\quad
+\ln\!|T{-}E| = -kt+C
+\quad\Longrightarrow\quad
+T = E\pm e^Ce^{-kt}
+=E+ ce^{-kt}.
+$$
+That is, $T(t)$ approaches the horizontal asymptote $E$ by exponential decay.
+\\[.5em]
+{\sc example:} In a room at $20^\circ$C, a cup of boiling tea ($100^\circ$C) cools to $80^\circ$C in 1 minute. 
+How long until it is sippable at $50^\circ$C? 
+To answer, we assume $T(t)=E+ce^{-kt}=20 + ce^{-kt}$ according to Newton's Law. 
+The two intial conditions determine the parameters:
+$$
+T(0) = 100 = 20+c\quad\Longrightarrow\quad c = 80.
+$$
+$$
+T(1) = 80 = 20 + 80e^{-k}\quad\Longrightarrow\quad
+e^{-k} = \tfrac{60}{80} =\tfrac34\,.
+$$
+Thus $T(t)=20 + 80\!\left(\tfrac34\right)^{\!t}$, and solving $T(t)=50$ gives $t\approx 3.4$ min.
+\\[1em]
+A few more examples of differential equations are solved in the \emph{Synthesis} lecture notes.
+
+\newpage
+
+\noindent
+{\bf First order linear DE.}
+Another general method solves differential equations of type:
+$$
+y'(x) \ =\ a(x)y(x) + b(x),
+$$
+for given $a(x),b(x)$.
+The corresponding {\it homgeneous} equation, with unknown $z(x)$, is:
+$$\hspace{-1.5em}
+z'(x)\ =\ a(x)z(x)
+\quad\Longrightarrow\quad
+\int \frac{1}{z}\,dz \ = \ \int\! a(x)\,dx
+\quad\Longrightarrow\quad
+\ln\!|z| \,=\, A(x) \,+\, C
+\quad\Longrightarrow\quad
+z \,=\, ce^{A(x)},
+$$
+where $A(x) = \int a(x)\,dx$, and $c=\pm e^C$ is an arbitrary constant.
+
+We can solve the original equation $y' = ay+b$ 
+using the trick of writing a solution in the form $y(x)=z(x)\,m(x)$,
+where $z(x)=e^{A(x)}$ is a solution of $z' = az$,
+and $m(x)$ is an unknown function known as  the {\it integrating factor}.
+Then:
+$$\hspace{-0.5em}
+m' \ =\ (y/z)' =
+\frac{y' z - y z'}{z^2}
+\ =\ \frac{(ay+b)z - y\,az}{z^2}
+\ =\ b/z \ =\ b/e^{A(x)}
+\quad\Longrightarrow\quad
+m \ =\ \int\! \frac{b(x)}{e^{A(x)}}\,dx + C.
+$$
+\\[-1.4em]
+$$
+y(x)\ =\ z(x)\,m(x) \ =\ e^{A(x)}\left(\!\int\! \frac{b(x)}{e^{A(x)}}\,dx + C\right).
+$$
+\\[-0em]
+In fact, this $y(x)$ is the most general solution. 
+Indeed, if $\tilde y(x)$ is an arbitrary solution, we have
+$(\tilde y-y)'= (a\tilde y +b)-(a y+b) = a(\tilde y-y)$;
+that is, $\tilde y-y$ satisfies the homogeneous equation,
+so $\tilde y-y = \tilde Ce^{A(x)}$ and $\tilde y =y+\tilde Ce^{A(x)}$,
+which is included in the family $y(x)$.
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

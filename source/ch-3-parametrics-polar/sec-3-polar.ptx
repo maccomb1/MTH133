@@ -365,4 +365,46 @@ r \ = \ 1+\sin(2\theta) \ =\ 1 + 2\sin(\theta)\cos(\theta)
 
   <p>or <m>(x^2+y^2)^3=(x+y)^4</m>. The polar form is much more informative about the shape!</p>
 
+  <p><alert>Slope in polar coordinates.</alert>
+  We have seen that round, turny shapes are more simply described by polar <m>r\theta</m>-equations
+  than by rectangular <m>xy</m>-equations. In this section, we use
+  polar equations to compute geometric information.</p>
+
+  <p>Thus, we consider a polar curve <m>r=f(\theta)</m> over <m>\theta\in[a,b]</m>.
+  We split the interval <m>\theta\in[a,b]</m> into a large number <m>n</m> of increments,
+  each of length <m>\Delta\theta=\frac{b-a}n</m>,
+  with sample points <m>\theta_1,\ldots,\theta_n</m>.
+  Here is a typical increment of the curve over <m>\theta\in[\theta_i, \theta_{i{+}1}]</m>,
+  showing the corresponding increments in the coordinates:</p>
+
+  <figure xml:id="fig-10-4-delta-y-placeholder">
+    <caption>Placeholder for 10-4-Delta-Y.</caption>
+    <image width="45%">
+      <shortdescription>Boilerplate TikZ placeholder for 10-4-Delta-Y.png.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=6.5cm, minimum height=4cm, font=\small] {10-4-Delta-Y};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>Our first problem is to find the slope of this curve at a given <m>\theta</m>.
+  It is <em>not</em> the derivative <m>f'(\theta)=\frac{dr}{d\theta}</m>,
+  which is the rate of change of the radius with respect to the angle.
+  Rather, slope is the rate of change of <m>y = r\,\sin(\theta) = f(\theta)\,\sin(\theta)</m>
+  with respect to <m>x = r\,\cos(\theta) = f(\theta)\,\cos(\theta)</m>. That is:</p>
+
+  <p><md><![CDATA[
+\text{(slope at $\theta$)}
+\ =\
+\frac{dy}{dx}
+\ =\
+\frac{\ \ \frac{dy}{d\theta}\ \ }{ \frac{dx}{d\theta} }
+\ =\
+\frac{(f(\theta)\,\sin(\theta))'}{( f(\theta)\,\cos(\theta))' }
+\ =\ \frac{f'(\theta)\,\sin(\theta) + f(\theta)\,\cos(\theta)}
+{f'(\theta)\,\cos(\theta) - f(\theta)\,\sin(\theta)}\,.
+  ]]></md></p>
+
 </section>

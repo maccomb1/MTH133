@@ -1,8 +1,354 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <section xml:id="sec-1-modeling-with-differential-equations" xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>Modeling Situations with Differential Equations - Exponential Growth</title>
+  <title>Exponential Growth and Decay</title>
 
-  <p> Text of section. </p>
+  <p><alert>Differential equations.</alert> An algebra equation involves a variable representing an unknown number, often denoted by <m>x</m>;
+  and to solve the equation means to find the numerical values of <m>x</m> which make the equation true.
+  A <em>differential equation</em> (DE) involves an <em>unknown function</em>, often <m>y=f(x)</m>, and its derivatives
+  <m>\frac{dy}{dx}=f'(x)</m>, <m>\frac{d^2\!y}{dx^2}= f''(x)</m>, etc.
+  To solve the DE means to find the explicit functions <m>f(x)</m>
+  which make the equation true.
+  For example, the differential equation <m>f'(x) = 2x</m> has solution functions
+  <m>f(x)=x^2+C</m> for any constant <m>C</m>.</p>
+
+  <p>Scientific laws attempt to give simple explanations of complicated phenomena. Some, such as the principle of evolution through natural selection, are <em>qualitative</em> laws, stated in ordinary language. Those laws which are <em>quantitative</em>, precisely explaining numerical measurements, are usually stated in terms of simple differential equations: the complication arises from the solutions of these equations. The theory of differential equations is one of the richest, most extensive fields of mathematics: in fact, the most important equations, such as those describing fluid flow, are each large areas of study all by themselves. Here we will consider only a few very elementary, easy-to-solve examples.</p>
+
+  <p><alert>Equations solved by immediate integration.</alert> The very simplest DE's are those of the form <m>f'(x)=a(x)</m>, where <m>y=f(x)</m> is the unknown and <m>a(x)</m> is some given, known function. The solution is just the indefinite integral (anti-derivative) with <m>A'(x)=a(x)</m>:</p>
+
+  <p><md><![CDATA[
+f'(x) = a(x) \quad\Longrightarrow\quad
+f(x)  = \int \!a(x)\,dx = A(x)+C\,.
+  ]]></md></p>
+
+  <p>Here <m>A(x)</m> is found by reversing the derivative rules; but if this is not possible,
+  we can always write <m>A(x)=\int_c^x a(t)\,dt</m>,
+  a definite integral which can be approximated by Riemann sums.
+  The constant <m>C</m> is often determined by an intitial condition on <m>f(0)</m>.</p>
+
+  <p><em>example:</em> Suppose your car starts at a standstill, and you press the accelerator very slowly so that after 1 second you are gaining 1 mph each sec, after 2 seconds you are gaining 2 mph each sec, etc. How far have you traveled in <m>t</m> seconds, and how many seconds until you travel 1000 ft?</p>
+
+  <p>Here the unknown function <m>y=f(t)</m> is the distance traveled (the position past the starting point) in feet; the velocity is <m>\frac{dy}{dt}=f'(t)</m>; and the acceleration <m>\frac{d^2\!y}{dt^2}=f''(t)</m> is given as <m>t</m> mph per sec.
+  Converting to consistent units, 1 mph = <m>\frac{5280 \text{ ft}}{3600\text{ sec}}\approx 1.5</m> ft/sec, so 1 mph per sec <m>\approx 1.5</m> ft/sec<m>^2</m>. Thus:</p>
+
+  <p><md><![CDATA[
+f''(t) \ =\ 1.5\, t,\quad
+  ext{initial conditions }
+f(0)  =  0, \ f'(0) = 0.
+  ]]></md></p>
+
+  <p>Initial distance traveled is zero; initial velocity is zero because we start at a standstill.
+  We call this a <em>second order</em> differential equation because it involves
+  the second derivative <m>f''(x)</m>.
+  To solve, we integrate twice:</p>
+
+  <p><md><![CDATA[
+f'(t) \ =\ \int 1.5\, t\,dt \ =\ 0.75\, t^2 + C_1\,,
+\qquad
+f(t) \ =\ \int 0.75\, t^2 + C_1\ dt
+\ =\  0.25\, t^3 + C_1t + C_2\,.
+  ]]></md></p>
+
+  <p>As usual with second-order equations,
+  we obtain a family of solutions with two arbitrary constants <m>C_1, C_2</m>.
+  (First-order quations with only <m>f'(t)</m> will have only one constant
+  in their solution.)
+  The initial conditions determine the constants:</p>
+
+  <p><md><![CDATA[
+0=f'(0)=0.75 (0^2) + C_1=C_1
+\quad\text{and}\quad
+0=f(0)=0.25 (0^3) + C_1(0) + C_2=C_2\,.
+  ]]></md></p>
+
+  <p>Therefore: <m>f(t) = 0.25\, t^3</m>.
+  Finally, solving <m>f(t) = 0.25\, t^3=1000</m> answers the original question:
+  it takes <m>t=\sqrt[3]{4000}\approx 16</m> sec to travel 1000 ft.</p>
+
+  <p><alert>Exponential growth from self-reproduction.</alert> The three qualitative mechanisms
+  of evolution are <em>self-reproduction</em>;
+  <em>variation</em> via genetic mutation and sexual recombination;
+  and <em>selection</em> for reproductive capacity.
+  To quantify self-reproduction, we first consider the simple situation
+  of constant fertility without constraints: on average, each individual produces
+  a certain number of offspring per unit time.
+  Thus, if <m>P(t)</m> is the population at time <m>t</m>, and
+  <m>k</m> is the observed constant reproduction rate per individual,
+  we get the DE:</p>
+
+  <p><md><![CDATA[
+\frac{dP}{dt} \ =\ kP\,.
+  ]]></md></p>
+
+  <p>To predict the population, we must solve for the unknown function <m>P(t)</m>.
+  This time, integrating both sides will not help, since the right side
+  is just as unknown as the left side.
+  However, it is easy to guess a solution function: <m>P(t)=e^{kt}</m>, with <m>P'(t)=e^{kt}\cdot(kt)'
+  = P(t)\, k</m>. Notice that the solution (an exponential function with the weird constant <m>e</m>) is considerably more complicated than the original equation.</p>
+
+  <p>Is this the only solution, the only population function consistent with the equation?
+  In fact, any multiple of this will also work:</p>
+
+  <p><md><![CDATA[
+P(t)=c e^{kt}.
+  ]]></md></p>
+
+  <p>I claim that this is the most general solution of the differential equation.
+  In fact, if <m>P(t)</m> is any solution function with <m>P'(t)= k\,P(t)</m>, then the Quotient Rule (<m>\S2.3</m>) says:</p>
+
+  <p><md><![CDATA[
+\left(\frac{P(t)}{e^{kt}}\right)^{\!\prime}
+\ =\
+\frac{ P'(t) e^{kt}-P(t) (e^{kt})'}{(e^{kt})^2}
+\ =\
+\frac{k\, P(t)\, e^{kt}-P(t) \,k\,e^{kt}}{e^{2kt}}
+\ =\  0.
+  ]]></md></p>
+
+  <p>Since <m>\frac{P(t)}{e^{kt}}</m> has zero derivative, it must be a constant function
+  (<m>\S3.2</m>):</p>
+
+  <p><md><![CDATA[
+\left(\frac{P(t)}{e^{kt}}\right)^{\!\prime} \ =\ 0
+\qquad\Longrightarrow\qquad
+\frac{P(t)}{e^{kt}} \ =\ c
+\qquad\Longrightarrow\qquad
+P(t) \ =\ c\, e^{kt}\,.
+  ]]></md></p>
+
+  <p>That is, any solution <m>P(t)</m> must have the desired form.</p>
+
+  <p>Exponential growth is so explosive that any self-reproducing population
+  will very quickly fill its environment, no matter how large.
+  For example, if we started with a single cell one micrometer across and
+  repeatedly doubled it every hour, we would fill the entire volume of
+  the ocean (about <m>10^{18}\, \mathrm{m}^3</m>) within 120 generations,
+  or 5 days.
+  That is, as soon as a new trait produces a selective advantage
+  which allows exponential reproduction even at a low rate,
+  it will almost immediately populate all the livable space, at which point
+  growth must stop for lack of resources (the net fertility rate <m>k</m> drops to zero).</p>
+
+  <p>Conversely, wherever we find exponential growth, we expect it to be caused by
+  self-reproduction. For example Moore's Law
+  predicts that the amount of computing power available at a fixed price
+  will double every 18 months.
+  This is possible because the key tools needed to design and manufacture
+  better computers are our current computers.</p>
+
+  <p><alert>Exponential growth doubling problem.</alert>
+  Here is a common type of problem which needs no calculus,
+  apart from the general exponential formula found above.
+  Let <m>P(t)</m> grams be the population of bacteria in a tank at <m>t</m> hours. Suppose the population doubles every 3 hours, and <m>P(1)=2</m>. Find <m>P(t)</m>.</p>
+
+  <p>We must translate all the words of the problem (physical level) into equations (algebraic level). First, doubling in constant time means exponential growth: <m>P(t)=c\, e^{kt}</m>; but here it is easier to write <m>a=e^k</m>, so that <m>P(t)=ca^t</m>. We need only find the unknown constants <m>c,a</m>. For a given population <m>P(t)</m>, the population 3 hours later will be twice as much:</p>
+
+  <p><md><![CDATA[
+P(t{+}3) = 2 P(t)
+\quad \Longrightarrow \quad
+c\,a^{t+3} = 2c\,a^t
+\quad \Longrightarrow \quad
+a^t a^3 = 2a^t
+\quad \Longrightarrow \quad
+a= \sqrt[3]{2} \approx 1.26\ .
+  ]]></md></p>
+
+  <p>The initial condition becomes: <m>P(1)=c\,a^1=2</m>, so that <m>c = 2/a = 2/\sqrt[3]2 = 2^{2/3}\approx 1.59</m>.</p>
+
+  <p><md><![CDATA[
+P(t) \ =\ 2^{2/3}\, 2^{(1/3)t} \ =\ 2^{(t+2)/3}.
+  ]]></md></p>
+
+  <p>Beware: any exponential model will break down when the population outgrows its available resources. After that time, our prediction is invalid.</p>
+
+  <p>The reciprocal of exponential growth is <em>exponential decay</em>: a process in which, instead of doubling in constant time, a quantity shrinks by half, meaning <m>k&lt;0</m> or <m>a=e^k&lt;1</m>.</p>
+
+  <p><alert>Separation of variables method.</alert> Certain easy DE's can be reduced to an integration problem by a simple trick.
+  For some given functions <m>a(x),b(x)</m>,
+  we want to find the unknown <m>f(x)</m> satisfying:</p>
+
+  <p><md><![CDATA[
+ f'(x)\ =\  a(x)\,b(f(x))\,.
+  ]]></md></p>
+
+  <p>Here the second factor is an expression in the unknown <m>f(x)</m>.
+  Moving <m>f(x)</m> to the left side,
+  and taking the integral of both sides gives:</p>
+
+  <p><md><![CDATA[
+\int\! \frac{1}{b(f(x))}\,f'(x)\,dx \ =\ \int\! a(x)\,dx.
+  ]]></md></p>
+
+  <p>The left-hand integral can be simplified by the substitution <m>y=f(x)</m>,
+  <m>dy = f'(x)\,dx</m>, giving <m>\int\! \frac1{b(y)}\,dy</m>.
+  (Here <m>f(x)</m> is unknown, but it is <em>some</em> function, so it can be used in a substitution.)
+  Assuming we can find antiderivatives <m>\int\!\! \frac1{b(y)}\,dy=B(y)</m> and
+  <m>\int\! a(x)\,dx=A(x)+C</m>, our equation becomes:</p>
+
+  <p><md><![CDATA[
+\int\! \frac{1}{b(y)}\,dy = \int\! a(x)\,dx
+\quad\Longrightarrow\quad
+B(y) = B(f(x))  = A(x)\,+\,C
+\quad\Longrightarrow\quad
+f(x) = B^{-1}(A(x)+C)\,,
+  ]]></md></p>
+
+  <p>assuming we can find an inverse function <m>B^{-1}</m> to solve <m>B(y)=A(x)+C</m>.</p>
+
+  <p>This reasoning looks especially natural in Leibnitz notation,
+  letting <m>y=f(x)</m>:</p>
+
+  <p><md><![CDATA[
+\frac{dy}{dx} = a(x)\,b(y)
+\quad\Longrightarrow\quad
+ \frac{1}{b(y)}\,\frac{dy}{dx} = a(x)
+\quad\Longrightarrow\quad
+\int  \frac{1}{b(y)}\,\frac{dy}{dx}\,dx = \int a(x)\,dx
+  ]]></md></p>
+
+  <p><md><![CDATA[
+\quad\Longrightarrow\quad
+\int  \frac{1}{b(y)}\,dy = \int a(x)\,dx
+\quad\Longrightarrow\quad
+B(y) = A(x)\,+\,C
+\quad\Longrightarrow\quad
+y\ =\ B^{-1}(A(x)+C).
+  ]]></md></p>
+
+  <p><em>example:</em> Applying the method to the exponential growth equation from before:</p>
+
+  <p><md><![CDATA[
+\frac{dP}{dt} = kP
+\quad\Longrightarrow\quad
+\int \frac{1}{P}\, \frac{dP}{dt}\,dt = \int k\,dt
+\quad\Longrightarrow\quad
+\int \frac{1}{P}\, dP = \int k\,dt
+  ]]></md></p>
+
+  <p><md><![CDATA[
+\quad\Longrightarrow\quad
+\log\!|P| = kt + C
+\quad\Longrightarrow\quad
+P = \pm e^{kt+C} = \pm e^Ce^{kt}\,.
+  ]]></md></p>
+
+  <p>This is our previous answer, except the arbtrary coefficient is <m>\pm e^C</m> instead of <m>c</m>.<fn>
+  The form of the constant is irrelevant. For example, if we had put constants in both general antiderivatives, <m>\log|P|+C_1=kt + C_2</m>, it would lead to <m>P= \pm e^{C_1-C_2} e^{kt}</m>, where <m>C_1,C_2</m> are arbitrary constants. But this does not give a more general solution than <m>\pm e^C</m> for a single arbitrary <m>C</m>, or just a simple constant coefficient <m>c</m>.
+  </fn></p>
+
+  <p><em>example:</em> Solve
+  <m>f'(x) = \frac{\sin(x)}{f(x)}</m>. That is, the derivative of the unknown function <m>y=f(x)</m>
+  must be equal to <m>\sin(x)</m> divided by <m>f(x)</m> itself. The method gives:</p>
+
+  <p><md><![CDATA[
+\frac{dy}{dx} = \frac{\sin(x)}{y}
+\quad\Longrightarrow\quad
+\int y\,\frac{dy}{dx}\,dx = \int\sin(x)\,dx
+\quad\Longrightarrow\quad
+\int y\, dy = \int\sin(x)\,dx
+  ]]></md></p>
+
+  <p><md><![CDATA[
+\quad\Longrightarrow\quad
+  \frac12 y^2 = -{\cos(x)} + C
+\quad\Longrightarrow\quad
+y = \pm\sqrt{2C {-} 2\cos(x)}\,.
+  ]]></md></p>
+
+  <p>We can check our solution by plugging it into the original differential equation.
+  Indeed, by the Chain Rule, <m>f'(x) = \frac12(2C{-}2\cos(x))^{-1/2}\cdot 2\sin(x)= \frac{\sin(x)}{f(x)}</m>.</p>
+
+  <p><alert>Newton's Law of Cooling.</alert> This is a toy example of how scientific laws are expressed by DE's. Newton proposed a simple rule for the temperature <m>T(t)</m> of a hot body as it cools down to a constant environmental temperature <m>E</m>:
+  the rate of cooling is proportional to the difference between the body's temperature
+  and the environment. The DE is:</p>
+
+  <p><md><![CDATA[
+\frac{dT}{dt} \ =\ -k\,(T{-}E)\,.
+  ]]></md></p>
+
+  <p>Here <m>k&gt;0</m>, so a high temperature cools quickly.
+  Separating variables gives:</p>
+
+  <p><md><![CDATA[
+\int \!\frac{1}{T{-}E}\,\frac{dT}{dt} \, dt \ = \ -\int\! k\,dt
+\quad\Longrightarrow\quad
+\int \!\frac{1}{T{-}E}\ dT \ = \ -\int\! k\,dt
+  ]]></md></p>
+
+  <p><md><![CDATA[
+\quad\Longrightarrow\quad
+\ln\!|T{-}E| = -kt+C
+\quad\Longrightarrow\quad
+T = E\pm e^Ce^{-kt}
+=E+ ce^{-kt}.
+  ]]></md></p>
+
+  <p>That is, <m>T(t)</m> approaches the horizontal asymptote <m>E</m> by exponential decay.</p>
+
+  <p><em>example:</em> In a room at <m>20^\circ\text{C}</m>, a cup of boiling tea (<m>100^\circ\text{C}</m>) cools to <m>80^\circ\text{C}</m> in 1 minute.
+  How long until it is sippable at <m>50^\circ\text{C}</m>?
+  To answer, we assume <m>T(t)=E+ce^{-kt}=20 + ce^{-kt}</m> according to Newton's Law.
+  The two intial conditions determine the parameters:</p>
+
+  <p><md><![CDATA[
+T(0) = 100 = 20+c\quad\Longrightarrow\quad c = 80.
+  ]]></md></p>
+
+  <p><md><![CDATA[
+T(1) = 80 = 20 + 80e^{-k}\quad\Longrightarrow\quad
+e^{-k} = \tfrac{60}{80} =\tfrac34\,.
+  ]]></md></p>
+
+  <p>Thus <m>T(t)=20 + 80\!\left(\tfrac34\right)^{\!t}</m>, and solving <m>T(t)=50</m> gives <m>t\approx 3.4</m> min.</p>
+
+  <p>A few more examples of differential equations are solved in the <em>Synthesis</em> lecture notes.</p>
+
+  <p><alert>First order linear DE.</alert>
+  Another general method solves differential equations of type:</p>
+
+  <p><md><![CDATA[
+y'(x) \ =\ a(x)y(x) + b(x),
+  ]]></md></p>
+
+  <p>for given <m>a(x),b(x)</m>.
+  The corresponding <em>homgeneous</em> equation, with unknown <m>z(x)</m>, is:</p>
+
+  <p><md><![CDATA[
+z'(x)\ =\ a(x)z(x)
+\quad\Longrightarrow\quad
+\int \frac{1}{z}\,dz \ = \ \int\! a(x)\,dx
+\quad\Longrightarrow\quad
+\ln\!|z| \,=\, A(x) \,+\, C
+\quad\Longrightarrow\quad
+z \,=\, ce^{A(x)},
+  ]]></md></p>
+
+  <p>where <m>A(x) = \int a(x)\,dx</m>, and <m>c=\pm e^C</m> is an arbitrary constant.</p>
+
+  <p>We can solve the original equation <m>y' = ay+b</m>
+  using the trick of writing a solution in the form <m>y(x)=z(x)\,m(x)</m>,
+  where <m>z(x)=e^{A(x)}</m> is a solution of <m>z' = az</m>,
+  and <m>m(x)</m> is an unknown function known as the <em>integrating factor</em>.
+  Then:</p>
+
+  <p><md><![CDATA[
+m' \ =\ (y/z)' =
+\frac{y' z - y z'}{z^2}
+\ =\ \frac{(ay+b)z - y\,az}{z^2}
+\ =\ b/z \ =\ b/e^{A(x)}
+\quad\Longrightarrow\quad
+m \ =\ \int\! \frac{b(x)}{e^{A(x)}}\,dx + C.
+  ]]></md></p>
+
+  <p><md><![CDATA[
+y(x)\ =\ z(x)\,m(x) \ =\ e^{A(x)}\left(\!\int\! \frac{b(x)}{e^{A(x)}}\,dx + C\right).
+  ]]></md></p>
+
+  <p>In fact, this <m>y(x)</m> is the most general solution.
+  Indeed, if <m>\tilde y(x)</m> is an arbitrary solution, we have
+  <m>(\tilde y-y)'= (a\tilde y +b)-(a y+b) = a(\tilde y-y)</m>;
+  that is, <m>\tilde y-y</m> satisfies the homogeneous equation,
+  so <m>\tilde y-y = \tilde Ce^{A(x)}</m> and <m>\tilde y =y+\tilde Ce^{A(x)}</m>,
+  which is included in the family <m>y(x)</m>.</p>
 
 </section>

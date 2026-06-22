@@ -1,0 +1,541 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+%\usepackage{xcolor}
+%\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+%\usepackage[bookmarks=true, pdfborder={0 0 .5}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+\addtolength{\topmargin}{-.9in}
+\addtolength{\textheight}{2in}
+\addtolength{\oddsidemargin}{-.4in}
+\addtolength{\textwidth}{.8in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\tZ}{\tilde{\Z}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyar@math.msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf\hfill{\Large\bf
+Synthesis: Differential Equations}\hfill }
+\vspace{1em}
+
+\noindent 
+{\bf Differential equations.} In science and engineering, the solution of differential equations is the main application of calculus, allowing precise quantitative predictions of complicated dynamical behavior.
+Here we continue the analysis of exponential growth from \S6.5,
+introducing some interesting differential equations 
+and solving them by combining an array of techniques from the course. 
+\\[.5em]
+{\bf Logistic equation.} Consider a process of self-reproduction constrained by an environmental ceiling. That is, the rate of growth of the population $P(t)$ is proportional to the population level, but also to the shortfall between the environmental capacity $E$ (a constant) and the population level: 
+$$
+\frac{dP}{dt} \ = \ kP\,(E{-}P).
+$$
+At first, when $P(t)$ stays small and $E{-}P(t)$ stays near $E$, 
+we expect $P(t)$ to grow about exponentially;
+but as $P(t)$ approaches the capacity $E$,
+the shrinking value of $E{-}P(t)$ will slow down the growth, 
+making $P(t)$ asymptotically approach $E$.
+
+We solve by separation of variables (\S6.5):
+$$
+\int \frac{dP}{P(E{-}P)} \ =\ \int k\,dt \ =\ kt + C.
+$$
+We integrate the left side by a partial fraction decomposition (\S7.4):
+$ \frac{1}{P(E{-}P)} \ =\ \frac{A}{P} + \frac{B}{E{-}P}$.
+Clearing denominators gives $1=A(E{-}P)+BP$,
+ and substituting $P=0$ and $P=E$ allows us to solve for the coefficients:
+$A = 1/E$ and $B=1/E$. Thus:
+$$
+\int \frac{dP}{P(E{-}P)} \ =\
+\frac 1E \int \frac{1}{P} + \frac{1}{E{-}P}\ dP 
+\ =\ 
+\frac 1E(\ln(P) - \ln(E{-}P)) \ =\
+\frac 1E\ln\!\left(\frac{P}{E{-}P}\right).
+$$
+Hence $\frac 1E\ln\!\left(\frac{P}{E{-}P}\right)=kt + C$, which we can solve for $P$ to get a {\it logistic function}:\footnote{
+This is closely related to the hyperbolic tangent $\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$
+\,(\S6.7).
+}
+$$
+P \ =\ \frac{E
+}{1+ Me^{-Ekt}}\ ,
+$$
+where $M=e^{-EC} = \tfrac{E}{P(0)}-1$\,.
+For $E=1$, $k=1$, $P(0)=0.1$, this looks as expected:
+\\[1em]
+\centerline{
+\includegraphics[width=4.5in]
+{Synth-3.png}
+%\qquad \qquad 
+%\includegraphics[width=2in]{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\pagebreak
+
+\noindent
+{\sc example:} We model the population of the United States from 1800 to 1900 
+by a logistic function fitted to the three census values (in millions of people):
+$$
+P(1800) = 5.3, \qquad P(1850) = 23.3, \qquad P(1900) = 76.2,
+$$
+which produces the function:
+$$
+P(t) \ =\ \frac{182.9}{1 + 33.5\,(0.969)^{t-1800}}\,.
+$$
+Comparing this graph (red) with the actual decennial census data (black) gives good agreement
+even beyond 1900 until the 1950 census. 
+\\[1em]
+\centerline{
+\includegraphics[width=6in]{USPopulationLogistic.png} 
+}
+\vspace{0em}
+
+\noindent
+That is, regardless of territorial expansion, economic booms and depressions, plagues, 
+and waves of immigration, the population dynamics from 1800-1940 is remarkably well described 
+by the constrained self-reproduction model,
+tending toward an eventual population of 183 million.
+But the Second World War, which made the United States 
+the world's richest and most powerful country
+(and introduced antibiotics and vaccination) fundamentally changed US society, 
+which is now at 330 million people and growing roughly linearly.
+Perhaps this is due to annual immigration quotas?
+
+This is typical of how scientists use calculus to construct and test mathematical models. 
+The failure of a model can be just as instructive as its success.
+
+\pagebreak
+
+\noindent
+{\bf Catenary curve.} A flexible chain hanging by its own weight forms a familiar curve:
+\\[1em]
+\centerline{
+\includegraphics[width=4.5in]
+{Synth-2.png}
+%\qquad \qquad 
+%\includegraphics[width=2in]{1-8-Discont-v.png} 
+}
+\\[1em]
+To determine the equation $y=f(x)$ of this curve, consider 
+a segment stretching from the lowest point $(0,0)$
+ to an arbitrary point $(x,y)$. 
+ The external forces on this segment are:
+a constant horizontal tension $-T_0$ pulling on the left end; gravity pulling
+downward with force $-g L(x)$, proportional
+to the arclength $L(x)$; and the tangential tension
+vector $T(x)$ at the right end, decomposing into components 
+$T_1(x)$ and $T_2(x)$.  
+
+With the chain in the equilibrium position,  the above forces must cancel:
+$T_1(x)=T_0$ and $T_2(x) = g L(x)$. 
+Thus the tangent slope of the curve at $(x,y)$ is:
+$
+\frac{dy}{dx} = \frac{T_2(x)}{T_1(x)}= k L(x),
+$
+where $k=g/T_0$.  Applying the formula for arclength of a graph,
+(\S8.1), we get:
+$$
+\frac{dy}{dx} \ =\ k\int_0^x\!\!  \sqrt{\vphantom{|^M}\smash{
+1\,{+}\,(\tfrac{dy(t)}{dt})^{2}}}\ dt.
+$$
+Differentiating both sides by $\frac{d}{dx}$ and using the First Fundamental Theorem (\S4.3) 
+gives
+$
+\frac{d^2y}{dx^2} \ =\ k  \sqrt{\vphantom{m^2}\smash{
+1\,{+}\,(\tfrac{dy}{dx})^{2}}},
+$
+a second order differential equation for $y=f(x)$.
+Since only the derivatives of $y$ appear in the equation, not $y$ itself,
+we can rewrite it in terms of a new variable $z=\frac{dy}{dx}=f'(x)$, as:
+$\frac{dz}{dx} \ =\ k\sqrt{1{+}z^2}$. This is a separable equation (\S6.5):
+$$
+\int\! \frac{dz}{\sqrt{1{+}z^2}} \ =\ \int k\, dx \ =\  k x + C\,.
+$$
+The left-hand integral can be determined using the trigonometric substitution (\S7.3)
+$z = \tan\theta$, $\sqrt{1{+}z^2}=\sec\theta$, $dz=\sec^2\!\theta\,d\theta$, 
+then $\int\!\sec\theta$\, (\S7.2):
+$$
+\int\! \frac{dz}{\sqrt{1{+}z^2}} \ =\ \int\frac{\sec^2\!\theta}{\sec\theta}\ d\theta
+\ =\ \int\sec\theta\ d\theta \ =\ \ln(\tan\theta + \sec\theta)
+\ =\ \ln(z+\sqrt{1{+}z^2}).
+$$
+Solving $\ln(z+\sqrt{1{+}z^2}) = kx + C$ gives: $\frac{dy}{dx}=z = \frac12(e^{kx+C}-e^{-kx-C})$. Integrating:
+$$
+y \ =\ \frac12\int e^{kx+C}{-}e^{-kx-C}\,dx \ =\ 
+\frac{e^{kx+C}+e^{-kx-C}}{2k}+B
+\ =\ \frac1k \cosh(kx{+}C) + B,
+$$
+where we use the hyperbolic cosine $\cosh(x) = \frac12(e^x+e^{-x})$ from \S6.7.
+We can choose $k,C,B$ to adjust the curve to any given endpoints and length of chain.
+\\[.5em]
+{\sc exercise:} Imitate the above arguments 
+to work out the shape of a suspension bridge, 
+in which the chain has negligeable weight, 
+but the gravitational force on a segment 
+is proportional to the length of the roadway
+suspended beneath: i.e.~proportional to $x$.
+
+\pagebreak
+
+\noindent
+{\bf Terminal velocity.} In the standard model of air resistance for a falling object 
+or a speeding car, the drag force is proportional to the square of the velocity $v$:
+$$
+F_d \ =\  \tfrac12 C_d A\rho v^2,
+$$
+where $C_d$ is  the coefficient of drag, $A$ is cross-sectional area,
+and $\rho$ is air density.
+In a mass $m$, this force produces the deceleration: 
+$$a_d \ =\ \frac{C_d A\rho}{2m} v^2 \ =\ cv^2.$$
+
+If we drop an object as in \S2.7, 
+we let $s(t)$ denote its height, $v(t)=s'(t)$ its velocity.
+Its total acceleration $a(t)=s''(t)$ combines 
+the constant acceleration $-g$ due to gravity with the above drag
+deceleration: $a \  =\ -g + cv^2$. This gives the differential equation:
+$$
+s''(t) \ =\ -g + c(s'(t))^2.
+$$
+We can simplify this by writing it in terms of $v(t)=s'(t)$ and $\frac{dv}{dt}=v'(t) = s''(t)$:
+$$
+ \frac{dv}{dt} \ = \ -g+c v^2.
+$$
+As before, this can be solved by separation of variables (\S6.5):
+$$
+\int \frac{dv}{g-cv^2} \ =\ \int dt \ =\ -t + C.
+$$
+The substitution $u=\sqrt{\frac cg}\,v$ leads to an inverse hyperbolic integral (\S6.7):
+$$\begin{array}{rcl}
+\int \frac{dv}{g-cv^2} &=& 
+\frac 1g\int \frac{dv}{1-(\sqrt{\frac cg}\, v)^2} \ =\ 
+\frac 1{\sqrt{cg}} \int \frac{du}{1-u^2}
+\\[1.3em]
+&=&  \frac 1{\sqrt{cg}}\tanh^{-1}(u)
+\ = \ \frac 1{\sqrt{cg}}\tanh^{-1}(\sqrt{\frac cg}\,v),
+\end{array}$$
+where $\tanh^{-1}(u) = \ln\!\sqrt{\frac{1+u}{1-u}}$. Equating this with $-t+C$ and solving for $v$ gives:
+$$
+ v(t) \ = \ -\sqrt{\tfrac gc}\tanh(\sqrt{gc}\, t +K),
+$$
+where $\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$. Integrating $v=\tfrac{dy}{dt}$ gives (\S6.7):
+$$\begin{array}{rcl}
+s(t) &=& -\sqrt{\tfrac gc}\int \tanh(\sqrt{gc}\,t+K)\,dt
+\\[.5em]
+&=&  -\tfrac1c \ln \cosh(\sqrt{gc}\, t + K) + L,
+\\[.5em]
+&=&   -\tfrac1c \ln(e^{\sqrt{gc}\, t + K} + e^{-\sqrt{gc}\, t - K}) + M,
+\end{array}$$
+where $K,M$ are arbitrary constants, and 
+$\cosh(x) = \frac{e^x+e^{-x}}{2}$.
+
+If we assume the initial conditions $y(0)=0$, $y'(0)=0$,
+this gives $K=0$, $M=\frac 1c\ln(2)$.
+Near $t=0$, this has Taylor series (\S11.10) \
+$
+s(t)=-\tfrac12 g t^2 + \tfrac1{12} c g^2 t^4 +\cdots
+$.
+Thus at first, for small $t>0$, the falling object closely 
+follows the expected ballistic trajectory 
+ without air resistance, $s \approx -\frac12 g t^2$.
+
+But eventually, for large $t\to\infty$, we get:
+$$
+s(t) \ \approx\  -\tfrac1c \ln(e^{\sqrt{c g}\, t}) 
+\ =\ -\sqrt{\tfrac gc}\, t \,.
+$$
+This means the terminal velocity is $v_{\infty}=-\sqrt{\tfrac gc}=-\sqrt{\frac{2mg}{C_d A\rho}}$.
+This velocity would be doubled by shrinking cross-section area $A$ by a factor of $\frac14$,
+or by dropping 4 times the mass $m$ with the same cross-section.
+In the equivalent situation of a car with a constant engine force 
+instead of the gravitional force $mg$, 
+it means 4 times the horsepower is required to double the top speed.
+
+\newpage
+
+\noindent
+{\bf Financial DE: Cumulative inflation.} 
+Suppose inflation is recorded by the function $r(t)$,
+the annualized inflation rate during a given month $t$.
+\\[.5em]
+{\sc problem:} What is the cumulative increase in prices up to time $t$? 
+\\[.5em] 
+Let $y(t)$ be the price level function, the price at time $t$ of an item 
+which originally cost \$1 at $t=0$. Counting $t$ in fractions of a year,
+denote the time increment by $\Delta t = \frac1{12}$, 
+we compute that every month the price undergoes 
+inflation of $r(t)(\frac1{12}) = r(t)\Delta t$, giving the new price:
+$$
+y(t{+}\Delta t) = y(t)\,(1 + r(t)\Delta t) = y(t) + r(t)y(t)\Delta t,
+$$
+We can rewrite this in terms of $\Delta y=y(t{+}\Delta t)-y(t)$ as:
+$$
+\frac{\Delta y}{\Delta t} = r(t)y(t).
+$$
+For given values of $r(t)$, these equations enable us 
+to compute the exact monthly amounts $y(t)$ on a spreadsheet.
+To get an approximate algebraic solution, 
+we imagine the inflation period $\Delta t$ to be
+each day, each minute, and eventually the limit $\Delta t\to 0$,
+making the finite difference equation into a differential equation 
+(which will not change the solution by much):
+$$
+\frac{dy}{dt} = r(t)y(t).
+$$             
+Solving this separable DE gives $\int\! \frac{dy}{y} = \int r(t)\,dt$ and:
+$$\textstyle
+\log y(t) = \int\! r(t)\, dt + C, \qquad 
+y(t) = \exp\!\left( \int r(t)\,dt + C\right)  = e^C \exp(\int r(t) \,dt),
+$$
+and the initial condition $y(0) = 1$ gives:
+$$
+y(t) = \exp\left(\int_0^t r(x)\,dx\right).
+$$
+From \S4.4/5.5, recall that the average of a function $f(x)$ over an interval $[a,b]$
+is given by the integral $\frac{1}{b-a}\int_a^b f(x)\,dx$. 
+Thus the average rate of inflation over $[0,t]$
+is 
+$$
+r_{\text{avg}} = \frac{1}{t}\int_0^t r(x)\,dx,
+$$
+and $\int_0^t r(x)\,dx   = r_{\text{\!avg}}\, t$. Thus:
+$$
+y(t) = \exp(r_{\text{\!avg}}\, t).
+$$
+Note that the average rate of increase $\frac{y(t)-1}t$ is usually 
+larger than the average inflation rate  $r_{\text{\!avg}}$, 
+because of the effects of compounding:
+$$
+\frac{y(t)-1}t   \ > \  r_{\text{\!avg}}.
+$$
+In fact, using the Taylor series for $e^x$, we get
+$\frac{y(t)-1}t = r_{\text{\!avg}} + \frac{1}{2!} r_{\text{\!avg}}^2 t
++  \frac{1}{3!} r_{\text{\!avg}}^3 t^2 +\cdots$.
+\\[.5em]
+{\sc example:} The inflation rate over six months is 
+$8.0, 9.0, 8.5, 9.0, 8.5, 8.0$ percent per year, averaging $8.5\%$.
+The total price multiple is about 
+$y(0.5) = \exp(r_{\!\text{avg}}t) = \exp(0.085\ast 0.5) = 1.0435$,
+and the average price rise of $0.0435/0.5 = 0.087 = 8.7\%$ is 
+slightly more than the average inflation rate of $8.5\%$.
+
+\newpage
+
+\footnotesize
+
+\noindent
+{\bf More Financial DE: Mortgage repayment.} 
+Consider a mortgage loan with a fixed annual interest rate $r$, 
+and fixed monthly payments at an annual rate of $p$ percent of the loan,
+with the current month's interest deducted from each payment. Here $p>r>0$.
+\\[.5em]
+{\sc problem:} How long to pay off the loan, and how much interest will be paid?
+\\[.5em]
+Let $y(t)$ be the principal debt at time $t$ years, with $y(0)=1=$ 100\% of the loan,
+and denote the montly repayment period by $\Delta t = \frac{1}{12}$. 
+Each payment of $p\,\Delta t$ has a deduction 
+of the current month's interest $r\,y(t)\Delta t$, so:
+$$
+y(t{+}\Delta t) \ =\ y(t) - p\,\Delta t + r\,y(t)\Delta t,
+$$
+which we can rewrite in terms of $\Delta y = y(t{+}\Delta t)- y(t)$ as:
+$$
+\frac{\Delta y}{\Delta t} \ =\  r\,y(t)- p.
+$$
+Taking the continuous limit $\Delta t\to 0$:
+$$
+\frac{dy}{dt} \ =\  r\,y(t)- p.
+$$
+This is a first order inhomogeneous linear DE (\S6.5) of the form $\frac{dy}{dt} = a(t)y(t)+ b(t)$, 
+with solution: 
+$y = ce^{A(t)} + e^{A(t)}\!\int\! \frac{b(t)}{e^{A(t)}}\,dt$, 
+where $A(t) = \int\! a(t)\,dt = \int r \,dt = rt$ and $b(t) = -p$:
+$$
+y(t) \ =\  ce^{rt}+ e^{rt}\!\int\! \frac{-p\ }{e^{rt}}\,dt
+\ =\  ce^{rt}-p e^{rt}\!\int\! e^{-rt}\,dt
+\ =\  ce^{rt} +\frac pr.
+$$
+Setting $c$ to give the initial condition $y(0)=1$ implies:
+$$
+y(t) \ =\ \frac pr -\left(\!\frac{p{-}r}{r}\!\right) e^{rt} .
+$$
+Now we can solve $y(t)=0$ to get the repayment time $T$, and the total interest $I$:
+$$
+T = \tfrac 1r\ln(\tfrac{p}{p-r}), \qquad\qquad
+I = \int_0^T\! r\,y(t)\,dt \ =\ \tfrac pr \ln(\tfrac{p}{p-r}) - 1 \,.
+$$
+For example, a mortgage at $r = 5\%$ interest with $p=10\%$ annual payment 
+takes about $T=20\,\ln(2)= 14$ years to repay, with interest $I =39\%$
+of the loan amount.
+
+\medskip
+
+% \newpage
+
+\noindent
+{\bf Continuous investment in a fluctuating asset.} 
+We regularly invest in an asset whose market price fluctuates according to 
+a given function $p(t)$. We want to compute the investment's value $y(t)$ at time $t$.
+
+Over each period from $t$ to $t{+}\Delta t$, 
+our previous value fluctuates by a factor of $p(t{+}\Delta t)/p(t)$,
+plus an investment of $\Delta t$ (assuming unit annual investment):
+$$
+y(t{+}\Delta t) \ = \ \frac{p(t{+}\Delta t)}{p(t)} y(t) + \Delta t.
+$$
+Rewriting in terms of $\Delta y = y(t{+}\Delta t)-y(t)$ and $\Delta p = p(t{+}\Delta t)-p(t)$:
+$$
+\Delta y + y(t) \ = \ \frac{\Delta p + p(t)}{p(t)} y(t) + \Delta t
+\quad\Longrightarrow\quad
+\frac{\Delta y}{\Delta t} \ = \ \frac{1}{p}\frac{\Delta p}{\Delta t} y(t) + 1.
+$$
+In the limit $\Delta t\to 0$, this becomes a first order inhomogeneous linear DE:
+$$
+\frac{dy}{dt} = \frac 1p \frac{dp}{dt} y + 1 \quad
+\text{with} \quad y(0)=0.
+$$
+By \S6.5, the solution is $y(t) = ce^{A(t)}+e^{A(t)}\!\int \frac{1}{e^{A(t)}}\,dt$
+for $A(t) = \int \frac 1p \frac{dp}{dt}\,dt = \ln(p(t))$, so 
+$e^{A(t)} = p(t)$. Adjusting for the initial value $y(0)=0$ gives:
+$$
+y(t) \ = \ p(t)\int_0^t\!  \frac1{p(x)} \,dx.
+$$
+{\sc examples:}
+\begin{itemize}
+\item Constant $p(t) = k$ gives $y(t) = t$, exactly equal to our investment,  as expected.
+
+\item A price spike like $p(t) = 1+2t-t^2$ 
+with $p(0) = 1$, $p(1)=2$, $p(2)=1$ gives:
+$$
+y(t) \ =\  
+(1{+}2t{-}t^2)\int_0^t\! \frac{1}{2-(x{-}1)^2}\,dx
+\ =\ \frac{1{+}2t{-}t^2}{2\sqrt 2}
+\ln\!\left(\frac{1+t+\sqrt 2 t}{1+t-\sqrt 2 t}\right),$$
+using  $\int\!\! \frac{1}{1-x^2}\,dx = \tanh^{-1}(x) =
+\frac12 \ln(\frac{1+x}{1-x})$ (\S6.7)
+or partial fractions (\S7.4).
+
+Thus $y(2)\approx 1.25<2$, a loss from our investment: 
+the appreciation at the beginning
+acts on a smaller asset base than the depreciation at the end.
+A price dip would have the opposite effect.
+ 
+%\item A price dip like $p(t) = 2-2t+t^2$ with $p(0) = 2$, $p(1) = 1$, $p(2)=2$ gives:
+%$$
+%y(t)\ =\  
+%(2{-}2t{+}t^2)\int_0^t\! \frac{1}{1+(x{-}1)^2}\,dx
+%\ =\ (2{-}2t{+}t^2)(\arctan(t{-}1) +\tfrac 14 {\pi}),
+%$$
+%an integral using the reverse trig substitution $x{-}1 = \tan\theta$ (\S7.3).
+%
+%Thus $y(2) = \pi \approx 3.14 > 2$, a profit from our investment,
+%reversing the dynamics of the previous example.
+
+\end{itemize}
+
+\end{document}
+
+
+\noindent   % Moved to Substitution section 
+{\bf Medical Math: Heart Flow Rate.} 
+In a standard test to measure the rate of blood pumped by the heart, $r$ liters/min, 
+doctors inject a colored dye into a vein flowing toward the heart, 
+then measure the concentration of dye in arterial blood as it is
+pumped out from the heart, $c(t)$ mg/liter after $t$ minutes. 
+\\[.5em]
+{\sc Problem:} Given the dye concentration function $c(t)$, determine the flow rate $r$.
+\\[.5em]
+Let the variable $\ell$ denote the liters of blood which have flowed 
+through the artery since the start time. 
+Assuming the (unknown) flow rate $r$ is constant, we have $\ell=rt$.
+Let $C(\ell)$ be the dye concentration after $\ell$ liters have flowed,
+so that $C(\ell) = C(rt) = c(t)$.
+ 
+Now, the integral $\int_0^\infty C(\ell)\,d\ell$ sums up:
+$$
+(\text{mg/liter concentration}) \times (\text{liter increments})
+= (\text{mg increments of dye}), 
+$$
+which computes the total amount of dye, $D$ mg:
+$$
+D \ =\ \int_0^\infty C(\ell)\,d\ell.
+$$
+Performing the substitution $\ell=rt$, $d\ell=r\,dt$, we have:
+$$
+D \ =\ \int_0^\infty C(rt)\,r\,dt \ =\ r\,\int_0^\infty c(t)\,dt.
+$$
+Then we may compute $r$ as:
+$$
+r \ = \ \frac{D}{\int_0^\infty c(t)\,dt}.
+$$
+Since the total dye $D$ is known (the amount injected),
+$c(t)$ is measured by the test, and $\int_0^\infty c(t)\,dt$ can
+be computed by Riemann sums,\footnote{
+Since $c(t)=0$ after all the dye has passed, 
+$\int_0^\infty c(t)\,dt$ can be cut off to a finite integral.
+}
+we obtain flow rate $r$.
+
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[0em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{0em}
+
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+In fact, we get the following derivatives:
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline &&&&&& \\[-.9em] 
+f(x) & \sin(x) & \cos(x) & \tan(x)  & \sec(x) & \csc(x) & \cot(x)
+\\[.2em] \hline &&&&&& \\[-.9em]
+f'(x) &\cos(x) & -\sin(x) & \sec^2(x) & \tan(x)\sec(x) & -\cot(x)\csc(x) & -\csc^2(x)
+\\[.1em] \hline
+\end{array}$$
+\\[1em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
