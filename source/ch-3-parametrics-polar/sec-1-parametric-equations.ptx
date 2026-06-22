@@ -57,7 +57,7 @@
           <shortdescription>Boilerplate TikZ placeholder for 10-1-Line-Segment.png.</shortdescription>
           <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=5cm, minimum height=3.2cm, font=\small] {10-1-Line-Segment};
+  \node[draw, minimum width=5cm, minimum height=3.4cm, font=\small] {10-1-Line-Segment};
 \end{tikzpicture}
           ]]></latex-image>
         </image>
@@ -106,7 +106,7 @@ y=2+4\!\left(\tfrac13(x{-}1)\right)
       <shortdescription>Boilerplate TikZ placeholder for 10-1-Circle.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8cm, minimum height=4.6cm, font=\small] {10-1-Circle};
+  \node[draw, minimum width=8cm, minimum height=4.2cm, font=\small] {10-1-Circle};
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -138,7 +138,8 @@ x(t)^2 + y(t)^2 \ =\ \cos^2(t) + \sin^2(t) = 1\,.
     making time go backwards.
     </fn>
     <m>(x(t), y(t)) = (\cos(-t), \sin(-t))</m>.</li>
-    <li>Do 10 rotations over <m>t\in[0,1]</m>: <m>(x(t),y(t))= (\cos(10{\cdot}2\pi t),\sin(10{\cdot}2\pi  t))</m>.</li>
+    <li>Do 10 rotations over <m>t\in[0,1]</m>:
+    <m>(x(t),y(t))= (\cos(10{\cdot}2\pi t),\sin(10{\cdot}2\pi  t))</m>.</li>
   </ul></p>
 
   <p>Combining all the above modifications (from the top of the list down):</p>
@@ -159,7 +160,7 @@ x(t)^2 + y(t)^2 \ =\ \cos^2(t) + \sin^2(t) = 1\,.
     </statement>
   </example>
 
-  <example xml:id="ex-10-1-rational-circle-param">
+  <example xml:id="ex-10-1-rational-param-circle">
     <statement>
       <p>A tricky way to parametrize the unit circle
       is the rational parametrization which we derived in <m>\S7.3</m>
@@ -214,7 +215,7 @@ x(t)^2 + y(t)^2  &=&
       <shortdescription>Boilerplate TikZ placeholder for 10-1-Cycloid.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=12cm, minimum height=4.8cm, font=\small] {10-1-Cycloid};
+  \node[draw, minimum width=12cm, minimum height=4.2cm, font=\small] {10-1-Cycloid};
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -298,7 +299,7 @@ x &=& \arccos(1{-}y)-\sqrt{2y{-}y^2}
       <shortdescription>Boilerplate TikZ placeholder for 10-1-Epicycloid.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=12cm, minimum height=4.8cm, font=\small] {10-1-Epicycloid};
+  \node[draw, minimum width=12cm, minimum height=4.2cm, font=\small] {10-1-Epicycloid};
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -358,6 +359,7 @@ f'(x(c))=\frac{y'(c)}{x'(c)}
       <p><alert>Tangents of a circle.</alert> We find the tangent line to
       <m>(x(t),y(t)) = (2\sin(\pi t),2\cos(\pi t))</m> at the point <m>(\sqrt 2,\sqrt 2)</m>.
       First, to picture the curve, we note:</p>
+
       <p><ul>
         <li>Since the components are <m>2\sin</m> and <m>2\cos</m> of the
         same quantity, the curve is a circle of radius 2.</li>
@@ -369,11 +371,11 @@ f'(x(c))=\frac{y'(c)}{x'(c)}
 
       <figure xml:id="fig-10-2-circle-placeholder">
         <caption>Placeholder for 10-2-Circle.</caption>
-        <image width="60%">
+        <image width="58%">
           <shortdescription>Boilerplate TikZ placeholder for 10-2-Circle.png.</shortdescription>
           <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8.5cm, minimum height=4.8cm, font=\small] {10-2-Circle};
+  \node[draw, minimum width=8.5cm, minimum height=4.2cm, font=\small] {10-2-Circle};
 \end{tikzpicture}
           ]]></latex-image>
         </image>
@@ -405,9 +407,9 @@ t = \tfrac14\,.
 
       <p><md><![CDATA[
 y \ =\
-\tfrac{y'(c)}{x'(c)}(x{-}x(c))+ y(c)
+    	frac{y'(c)}{x'(c)}(x{-}x(c))+ y(c)
 \ =\
-\tfrac{\sqrt 2\pi}{-\sqrt 2\pi}(x{-}\sqrt 2) + \sqrt 2
+    	frac{\sqrt 2\pi}{-\sqrt 2\pi}(x{-}\sqrt 2) + \sqrt 2
 \qquad\Longleftrightarrow\qquad
 y = -x+2\sqrt2\,.
       ]]></md></p>
@@ -428,7 +430,7 @@ y = -x+2\sqrt2\,.
           <shortdescription>Boilerplate TikZ placeholder for 10-2-Poly.png.</shortdescription>
           <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8.5cm, minimum height=4.8cm, font=\small] {10-2-Poly};
+  \node[draw, minimum width=8.8cm, minimum height=4.4cm, font=\small] {10-2-Poly};
 \end{tikzpicture}
           ]]></latex-image>
         </image>
