@@ -468,7 +468,7 @@
   </example>
 
   <subsection xml:id = "ssec-4-w-sub">
-    <title> Details of the Half-Angle Substitution </title>
+    <title> Details of the Tangent Half-Angle Substitution </title>
 
     <p>Here is some esoteric knowledge for the hard-core students.
     Consider any integral in which trig functions are combined
@@ -492,16 +492,46 @@
     As <m>(0,t)</m> moves along the <m>y</m>-axis, the point <m>(x,y)</m> moves around the
     entire circle, leaving out only the fixed point <m>(-1,0)</m>.</p>
 
-    <figure xml:id="fig-7-3-rat-param-placeholder">
+    <figure xml:id="fig-7-3-rat-param">
       <caption>Rational parametrization of the unit circle via line <m>L</m> from <m>(-1,0)</m> through <m>(0,t)</m>.</caption>
       <image width="60%">
         <shortdescription>Placeholder for diagram of the rational parametrization of the unit circle.</shortdescription>
         <latex-image>
-          <![CDATA[
-\begin{tikzpicture}
-  \node[draw, minimum width=4cm, minimum height=4cm, font=\small] {7-3-Rat-Param-2};
-\end{tikzpicture}
-          ]]>
+          \begin{tikzpicture}[scale=3]
+            %axes
+            \draw[->] (-1.5,0) -- (1.5,0);
+            \draw (1.5,0) node [anchor=north]{$x$};
+            \draw[->] (0,-1.5) -- (0,1.5);
+            \draw (0,1.5) node [anchor=east]{$y$};
+
+            %unit circle
+            \draw[blue] (0,0) circle [radius=1cm];
+
+            %triangle
+            \draw (0,0) -- (.6,0) [color=red];
+            \draw (.6,0) -- (.6,.8) [color=red];
+            \draw (0,0) -- (.6,.8) [color=red];
+            \draw (.3,0) node [anchor=north]{$x$};
+            \draw (.6,.4) node [anchor=west]{$y$};
+            \draw (.3,.4) node [anchor=south]{$1$};
+
+            %line L
+            \draw (-1.2,-.1) -- (1.2,1.1) [color=green];
+            \draw (.9,1.2) node [anchor=south]{$L$};
+            \draw (-1,.1) node [anchor=east]{$(-1,0)$};
+            \draw (0,.55) node [anchor=east]{$(0,t)$};
+            \draw (.6,.85) node [anchor=south]{$(x,y)$};
+
+            %angles
+            \draw (.3,0) arc [start angle=0, end angle=53.13, radius=3mm];
+            \draw (-.65,0) arc [start angle=0, end angle=26.57, radius=3mm];
+            \draw (.2,0) node [anchor=south]{$\theta$};
+            \draw (-.55,0) node [anchor=south]{$\frac{\theta}{2}$};
+
+            %other labels
+            \draw (-.5,0) node [anchor=north]{$1$};
+            \draw (-.8,.85) node [anchor=south]{$x^2+y^2=1$};
+          \end{tikzpicture}
         </latex-image>
       </image>
     </figure>

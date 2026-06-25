@@ -1,8 +1,279 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <section xml:id="sec-1-known-integrals" xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>Known Integrals</title>
+  <title>Review of MTH 132 Integration</title>
 
-  <p> Text of section. </p>
+  <subsection xml:id="ssec-review-of-integration">
+    <title>Review of Integration</title>
 
+    <p> The definite integral gives the cumulative total of many small
+    parts, such as the slivers which add up to the area under a graph. Numerically, it is a 
+    limit of Riemann sums 
+    <md> \int_a^b f(x) dx \ = \lim_{n \to \infty} \sum_{i=1}^n f(x_i)\ \Delta x</md>
+    where we divide the interval <m> x \in [a,b] </m> into <m>n</m> increments
+    of size <m>\Delta x=\frac{b-a}{n}</m> with division points <m>a &lt; a + \Delta x &lt; a + 2\Delta x &lt; \cdots &lt; a + n\Delta x = b</m>, 
+    and <m>x_1,\ldots x_n</m> are sample points from each increment.  This definition is not a theoretical curiosity: it is the reason integrals
+    are relevant to physical problems, and it is the only way to evaluate most integrals: there is no algebraic way.
+    </p>
+
+    <p>However, for sufficiently simple functions <m>f(x)</m>, we can evaluate integrals algebraically by the shortcut of the Second 
+      Fundamental Theorem of Calculus. This says that if <m>f(x)</m> is the rate of change of some known antiderivative <m>F(x)</m>, 
+      then the integral of <m>f(x)</m> is the cumulative total change of <m>F(x)</m>:
+      <md> F'(x)=f(x) \qquad\Longrightarrow\qquad \int_a^b f(x)\,dx \ =\ \left.F(x)\right|_{x=a}^{x=b}\ =\ F(b)-F(a)\,.</md>
+
+      (The First Fundamental Theorem says that the definite integral gives an antiderivative even if there is no formula <m>F(x)</m>:
+      defining <m>I(x)= \int_a^x f(t)\,dt</m>, we have <m>I'(x)  = f(x)</m>.)
+    </p>
+  </subsection>
+
+  <subsection xml:id="ssec-fundamental-integrals">
+    <title>Fundamental Integrals</title>
+    
+    <p>
+      Algebraic integration is the process of finding antiderivative formulas, denoted as indefinite integrals <m>\int\! f(x)\,dx=F(x)+C</m>. 
+      The most direct method is to reverse Basic Derivatives, such as <m>(x^p)' = px^{p-1}</m> reversing to <md>\int\! x^p\,dx =\frac{x^{p+1}}{p+1}.</md> 
+      Similarly, since
+      <md>
+        <mrow> (\sin x)' = \cos x, \qquad (\cos x)' = -\sin x, \qquad (\tan x)' = \sec^2 x </mrow>
+        <mrow> (e^x)' = e^x, \qquad (\ln x)' = \frac{1}{x} </mrow>
+      </md>
+      we learn that 
+      
+      <md>
+        <mrow> \int \cos x dx = \sin x, \qquad \int \sin x dx = -\cos x, \qquad \int \sec^2 x dx = \tan x </mrow>
+        <mrow> \int e^x dx = e^x, \qquad \int \frac{1}{x} dx = \ln |x|. </mrow>
+      </md>
+      
+      By using implicit differentiation to find derivatives of inverse functions, we saw that
+
+      <md>
+        <mrow>\frac{d}{dx} \arcsin x = \frac{1}{\sqrt{1-x^2}}, \qquad \frac{d}{dx} \arccos x = -\frac{1}{\sqrt{1-x^2}}, \qquad \frac{d}{dx} \arctan x = \frac{1}{1+x^2}, </mrow>
+        <mrow>\frac{d}{dx} \sec^{-1} x = \frac{1}{|x|\sqrt{x^2-1}}, \qquad \frac{d}{dx} \csc^{-1} x = -\frac{1}{|x|\sqrt{x^2-1}}, \qquad \frac{d}{dx} \cot^{-1} x = -\frac{1}{1+x^2}. </mrow>
+      </md>
+
+      Therefore, we obtain the following antiderivative formulas:
+
+      <md>
+        <mrow> \int \frac{1}{\sqrt{1-x^2}} dx = \arcsin x, \qquad \int -\frac{1}{\sqrt{1-x^2}} dx = \arccos x, \qquad \int \frac{1}{1+x^2} dx = \arctan x </mrow>
+        <mrow> \int \frac{1}{|x|\sqrt{x^2-1}} dx = \sec^{-1} x, \qquad \int -\frac{1}{|x|\sqrt{x^2-1}} dx = \csc^{-1} x, \qquad \int -\frac{1}{1+x^2} dx = \cot^{-1} x. </mrow>
+      </md>
+
+      Our only other integration method so far is the Substitution Method, which reverses the Chain Rule:
+      <md> \int\! f(g(x))\,g'(x)\,dx \ =\ \int \! f(u)\,du\ =\ F(u) +C\ =\ F(g(x)) + C, </md> 
+      where <m>u=g(x)</m>, <m>du=g'(x)\,dx</m>, and <m>F'(u)=f(u)</m>.
+
+      Using the substitution method, and some of the known integrals above, we can also derive the following:
+      
+      <md>
+        \int \tan x \, dx = \ln |\sec x| \qquad \text{ and } \qquad \int \cot x \, dx = \ln |\csc x|.
+      </md>
+      
+      We can conclude that since 
+      <md>
+        <mrow> \int \tan x \, dx \amp = \int \frac{\sin x}{\cos x} \, dx \qquad u= \cos x,\, du = -\sin x \,dx </mrow>
+        <mrow> \amp = -\int \frac{1}{u} du = -\ln |u|</mrow>
+        <mrow> \amp = -\ln |\cos x| = = \ln |\cos x|^{-1} = \ln |\sec x| </mrow>
+      </md>
+
+      and similarly
+
+      <md>
+        <mrow> \int \cot x \, dx \amp = \int \frac{\cos x}{\sin x} \, dx \qquad u= \sin x,\, du = \cos x \,dx </mrow>
+        <mrow> \amp = \int \frac{1}{u} du = \ln |u|</mrow>
+        <mrow> \amp= \ln |\sin x| = \ln |\sin x|^{-1} = \ln |\csc x|. </mrow>
+      </md>
+    </p>
+  </subsection>
+
+
+  <subsection xml:id="ssec-linear-scaling">
+    <title>Linear Scaling</title>
+    <p>
+      While this is a consequence of the Substitution Method, it is worth explicitly showing how the integral of
+      functions like <m>e^{3x}</m> or <m>\sin(5x)</m> are related to the integrals of <m>e^x</m> and <m>\sin x</m> respectively.
+
+      Starting with the exponential example, recall that by the chain rule, for any constant <m>a</m>
+      <md>
+        \frac{d}{dx} e^{ax} = a e^{ax}.
+      </md>
+      So for any <m>a \neq 0</m>, we have <m>\frac{d}{dx} \frac{1}{a} e^{ax} = e^{ax}</m>. By undoing the differentiation to get an antiderivative formula, we have
+      <md>
+        \int e^{ax} \, dx = \frac{1}{a} e^{ax} + C
+      </md>
+      for any constant <m>a \neq 0</m>. Similarly, for any constant <m>a</m>, we have
+      <md>
+        \frac{d}{dx} \sin(ax) = a \cos(ax).
+      </md>
+      Hence, in a similar way, we find out that for any <m>a \neq 0</m>
+      <md>
+        \int \cos(ax) \, dx = \frac{1}{a} \sin(ax) + C.
+      </md>
+      
+      To see one more example, and to make things slightly more general, notice that by the chain rule, for any constants <m>a,b</m>, we have that 
+      <md>
+        \frac{d}{dx} \tan(ax+b) = a\sec^2(ax+b).
+      </md>
+      When <m>a \neq 0</m>, we can rearrange to say <m>\frac{d}{dx} \frac{1}{a} \tan(ax+b) = \sec^2(ax+b)</m>. Hence, we can conclude that for any constants 
+      <m>a,b</m> with <m>a \neq 0</m>, we have
+      <md>
+        \int \sec^2(ax+b) \, dx = \frac{1}{a} \tan(ax+b) + C.
+      </md>
+
+      The purpose of these examples is to illustrate that if we know the antiderivative of a function <m>f(x)</m> is <m>F(x)</m>, then the
+      antiderivative of <m>f(ax+b)</m> is <m>\frac{1}{a} F(ax+b)</m> for any constants <m>a,b</m> with <m>a \neq 0</m>. We can see this rigorously by the substitution rule, since
+      
+      <md> 
+        <mrow> \int f(ax+b) \, dx = \int f(u) \frac{du}{a} \qquad \text{where } u=ax+b, \, du = a dx </mrow>
+        <mrow> = \frac{1}{a} \int f(u) du = \frac{1}{a} F(u) + C = \frac{1}{a} F(ax+b) + C. </mrow>
+      </md>
+
+      This means that we can generalize every integral we have learned so far to include a linear scaling of the variable <m>x</m> in the integrand.
+
+      <em>Warning</em> This method only works for linear scalings. For example, 
+      <md>
+        \frac{d}{dx} e^{x^2} = 2x e^{x^2}, 
+      </md>
+      but
+      <md>\int e^{x^2} \, dx \neq \frac{1}{2x} e^{x^2} + C.</md>
+
+      Indeed, 
+      <md>
+        \frac{d}{dx} \frac{1}{2x} e^{x^2} =  e^{x^2} - \frac{1}{2x^2} e^{x^2} \neq e^{x^2}.
+      </md>
+      
+    </p>
+  </subsection>
+
+  <subsection xml:id="ssec-ch-0-examples">
+    <title>Examples</title>
+    <p>
+      With all of these techniques, we can now evaluate a good number of integrals, especially when we combine these techniques
+      with other algebraic techniques. 
+
+      <example xml:id="ex-exp-1">
+        <p> 
+          Evaluate <m>\int (3e^2x)^3 \, dx</m>.
+        </p>
+        <solution>
+          <p> 
+            As it stands, the integral is not in a form that we have discussed so far. However, we can use exponent rules to
+            help us rewrite the integrand as
+            <md>
+              (3e^2x)^3 = 3^3 e^{2x \cdot 3} = 27 e^{6x}.
+            </md>
+            Now we can use linear scaling to evaluate the integral:
+
+            <md>
+              \int (3e^2x)^3 \, dx = \int 27 e^{6x} \, dx = 27 \int e^{6x} \, dx = 27 \cdot \frac{1}{6} e^{6x} + C = \frac{9}{2} e^{6x} + C.
+            </md>
+          </p>
+        </solution>
+        </example>
+
+        <example xml:id="ex-exp-2">
+          <p> 
+            Evaluate <m>\int \frac{1}{e^{2x-1}} \, dx</m>.
+          </p>
+          <solution>
+            <p> 
+              Similar to <xref ref="ex-exp-1"/>, we can use exponent rules to rewrite the integrand as
+              <md>
+                \frac{1}{e^{2x-1}} = e^{-(2x-1)} = e^{-2x+1}.
+              </md>
+              Now we can use linear scaling to evaluate the integral:
+              <md>
+                \int \frac{1}{e^{2x-1}} \, dx = \int e^{-2x+1} \, dx = \frac{e^{-2x+1}}{-2} + C = -\frac{1}{2} e^{-2x+1} + C.
+              </md>
+            </p>
+          </solution>
+        </example>
+        
+        <example xml:id = "ex-exp-3">
+          <p>
+            Evaluate <m>(e^x + e^{-x})^2</m>
+          </p>
+          <solution>
+            <p>
+              Similar to <xref ref="ex-exp-1"/> and <xref ref="ex-exp-2"/>, the integrand is not in a form that we have discussed, so
+              we hope to use algebraic techniques to rewrite the integrand. In this case, we can use the expand and distribute the inside to find that
+              <md>
+                (e^x+e^{-x})^2 = (e^x)^2 + 2e^x e^{-x} + (e^{-x})^2 = e^{2x} + 2 + e^{-2x}.
+              </md>
+              Now that we can integrate each term individually, we can evaluate the integral:
+              <md>
+                \int (e^x + e^{-x})^2 \, dx = \int e^{2x} \, dx + \int 2 \, dx + \int e^{-2x} \, dx = \frac{1}{2} e^{2x} + 2x - \frac{1}{2} e^{-2x} + C.
+              </md>
+            </p>
+          </solution>
+        </example>
+
+        <example xml:id="ex-exp-4">
+          <p>
+            Evaluate <m>\int \sqrt{e^x} \, dx</m>.
+          </p>
+          <solution>
+            <p>
+              Here, it is important to recall that the square root of a number is the same as raising that number to the one-half power. 
+              So we can rewrite the integrand as
+              <md>
+                \sqrt{e^x} = (e^x)^{1/2} = e^{x/2}.
+              </md>
+              Now we can use linear scaling to evaluate the integral:
+              <md>
+                \int \sqrt{e^x} \, dx = \int e^{x/2} \, dx = \frac{e^{x/2}}{1/2} + C = 2 e^{x/2} + C.
+              </md>
+            </p>
+          </solution>
+        </example>
+
+        <example xml:id="ex-substitution">
+        <p>
+          Evaluate <m>\int x(x-1)^{100} \, dx</m>.
+        </p>
+        <solution>
+          <p>
+            In principle, we could approach this problem by expanding the integrand and integrating each term individually. 
+            However, this would be a very tedious process, and even doing it as efficiently as possible with the binomial theorem would 
+            result in an expression with 101 terms! 
+            
+            Instead, we can use the substitution method to evaluate the integral. The difficultly we have is that we would prefer to have
+            one term raised to the hundredth power, which would allow us to apply our known rules. We can do that by calling that inside bit
+            <m>u</m> and rewriting everything from there. So let <m>u = x-1</m>, so that <m>du = dx</m>. Since we need to write everything from the 
+            original integral in terms of the new variable <m>u</m>, it is helpful to notice that since <m>u = x-1</m>, we have <m>x = u+1</m>. 
+            Then, by substituting these new expressions into the original integral and expanding, we have
+            <md>
+              <mrow> \int x(x-1)^{100} \, dx \amp = \int (u+1)u^{100} \, du = \int u^{101} + u^{100} \, du </mrow>
+              <mrow> \amp = \frac{1}{102} u^{102} + \frac{1}{101} u^{101} + C. </mrow>
+            </md>
+            But, our answer is not complete until we substitute back in the original variable <m>x</m> to get
+            <md>
+              \int x(x-1)^{100} \, dx = \frac{1}{102} (x-1)^{102} + \frac{1}{101} (x-1)^{101} + C.
+            </md>
+          </p>
+        </solution>
+      </example>
+
+      <example xml:id="ex-sub-2">
+        <p>
+          Evaluate <m>\int \frac{5e^{2x}}{1+e^{4x}} \, dx</m>.
+        </p>
+
+        <solution>
+          <p>
+            Similar to our stategy in <xref ref="ex-substitution"/>, we can use a substitution to rewrite the integrand in a 
+            more manageable form. In this case, we can use the substitution <m>u = e^{2x}</m> (this would make the denominator <m>1+u^2</m>, 
+            and its derivative is a constant multiple of the numerator) and hence <m>du = 2e^{2x} dx = 2u du</m>. 
+            Then, we can rewrite the integral as
+            <md>
+              <mrow>\int \frac{5e^{2x}}{1+e^{4x}} \, dx \amp = \int \frac{5u}{1+u^2} \cdot \frac{du}{2u} </mrow>
+              <mrow> \amp = \frac{5}{2} \int \frac{1}{1+u^2} \, du = \frac{5}{2} \arctan u + C </mrow>
+              <mrow> \amp = \frac{5}{2} \arctan(e^{2x}) + C.</mrow>
+            </md>
+          </p>
+        </solution>
+
+      </example>
+
+    </p>
+  </subsection>
 </section>

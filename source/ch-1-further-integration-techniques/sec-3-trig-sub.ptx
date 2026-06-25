@@ -137,28 +137,28 @@
           Let <m>3x=2\tan(\theta)</m>, <m>dx = \frac23\sec^2(\theta)\,d\theta</m>,
           <m>\sqrt{9x^2{+}4}=\sqrt{(3x)^2+2^2}=\sqrt{(2\tan(\theta))^2+2^2}=
           2\sqrt{\tan^2(\theta)+1}= 2\sec(\theta)</m>:
-          <md><![CDATA[
-\int\!\!\frac{1}{\sqrt{9x^2{+}4}}\,dx
-\ =\
-\int\!\!\frac{1}{2\sec(\theta)}\cdot \tfrac23\sec^2(\theta)\,d\theta
-\ =\
-  frac13\!\int\!\sec(\theta)\,d\theta
-\ =\ \tfrac13\ln\!\left|\vphantom{M^2}\!\tan(\theta) + \sec(\theta)\right|
-\ =\
-  frac13\ln\!\left|\tfrac32x +\tfrac12\sqrt{9x^2{+}4}\right|\,.
-          ]]></md>
+          <md>
+            \int\!\!\frac{1}{\sqrt{9x^2{+}4}}\,dx
+            \ =\
+            \int\!\!\frac{1}{2\sec(\theta)}\cdot \tfrac23\sec^2(\theta)\,d\theta
+            \ =\
+              frac13\!\int\!\sec(\theta)\,d\theta
+            \ =\ \tfrac13\ln\!\left|\vphantom{M^2}\!\tan(\theta) + \sec(\theta)\right|
+            \ =\
+              frac13\ln\!\left|\tfrac32x +\tfrac12\sqrt{9x^2{+}4}\right|\,. </md>
+          
           Alternatively, we could use hyperbolic functions (<m>\S6.7</m>),
           satisfying <m>\cosh^2(t)=\sinh^2(t)+1</m>.
           Thus <m>x = \frac23\sinh(t)</m>, <m>dx = \frac23 \cosh(t)\,dt</m> and
           <m>\sqrt{9x^2+4} = 2\sqrt{\sinh^2(t) + 1} = 2 \cosh(t)</m> gives:
-          <md><![CDATA[
+          <md>
 \int\! \frac{1}{\sqrt{9x^2+4}}\,dx
 \ =\  \int\! \frac{1}{2\cosh(t)}\tfrac23 \cosh(t)\,dt
 \ =\  \tfrac13 t
 \ =\ \tfrac13\sinh^{-1}(\tfrac32 x)
 \ =\
   frac13\ln\!\left(\tfrac32 x {+} \sqrt{ \tfrac94 x^2 {+} 1 }\,\right).
-          ]]></md>
+          </md>
           A third method is to substitute <m>u=\frac32x</m>
           to get <m>\frac13\int \frac1{\sqrt{u^2+1}}\,du=\frac13\sinh^{-1}(u)=\frac13\sinh^{-1}(\frac32 x)</m>.
         </p>
@@ -175,7 +175,7 @@
         <p>
           Let <m>x=5\sec(\theta)</m>, <m>dx = 5\tan(\theta)\sec(\theta)\,d\theta</m>,
           <m>\sqrt{(5\sec(\theta))^2{-}25}= 5\tan(\theta)</m>:
-          <md><![CDATA[
+          <md>
 \int\!\!\frac{\sqrt{x^2{-}25}}x\,dx
 \ =\
 \int\!\!\frac{5\tan(\theta)}{5\sec(\theta)}\cdot 5\tan(\theta)\sec(\theta)\,d\theta
@@ -187,7 +187,7 @@
 5\tan(\theta) - 5\theta
 \ =\
 \sqrt{x^2{-}25} - 5\,\sec^{-1}(\tfrac 15 x)\,.
-          ]]></md>
+          </md>
           Rewriting <m>\sec^{-1}(u) = \tan^{-1}\!\sqrt{u^2{-}1}</m> as in <m>\S6.6</m>, this becomes:
           <m>\sqrt{x^2{-}25} \,-\, 5\tan^{-1}(\frac15\sqrt{x^2{-}25})</m>.
         </p>
@@ -204,7 +204,7 @@
         <p>
           Let <m>x=2\sec(\theta)</m>, <m>dx = 2\tan(\theta)\sec(\theta)\,d\theta</m>,
           <m>((2\sec(\theta))^2{-}4)^{3/2}=8\tan^3(\theta)</m>:
-          <md><![CDATA[
+          <md>
 \int\!\!\!\frac{1}{(x^2{-}4)^{3/2}}\,dx
 \ =\
 \int\!\!\frac{1}{8\tan^3(\theta)}\cdot 2\tan(\theta)\sec(\theta)\,d\theta
@@ -215,7 +215,7 @@
 -\tfrac14\,\frac{\frac12x}{\sqrt{\!(\frac12x)^2{-}1}}
 \ =\
 -\,\frac{x}{4\sqrt{x^2{-}4}}\,.
-          ]]></md>
+          </md>
           Or: <m>x=2\cosh(t)</m>, <m>x^2{-}4=4\sinh^2(t)</m> produces
           <m>\frac14\int \operatorname{csch}^2(t)\,dt=-\frac14\coth(t)=-\frac{\cosh(t)}{4\sinh(t)}</m>.
         </p>
@@ -232,20 +232,20 @@
         <p>
           Let <m>x = \cosh(t)</m>, <m>dx = \sinh(t)\,dt</m>,
           <m>x^2{-}1=\cosh^2(t){-}1=\sinh^2(t)</m>:
-          <md><![CDATA[
-\begin{array}{rcl}
-\displaystyle\int\!\sqrt{x^2-1}\,dx &=& \displaystyle
-\int\!\sqrt{\cosh^2(t){-}1\,}\,\sinh(t)\,dt
-\\[.8em]
-&=& \displaystyle
-\int\sinh^2(t)\,dt
-\ =\  \tfrac12\cosh(t)\sinh(t) - \tfrac12 t
-\\[.8em]
-&=&  \frac12 x\sqrt{x^2-1} - \frac12 \cosh^{-1}(x),
-\\[.8em]
-&=& \frac12 x\sqrt{x^2-1} - \frac12 \ln(x+\sqrt{x^2-1}),
-\end{array}
-          ]]></md>
+          <md>
+          \begin{array}{rcl}
+          \int\!\sqrt{x^2-1}\,dx &amp; = &amp;
+          \int\!\sqrt{\cosh^2(t){-}1\,}\,\sinh(t)\,dt
+          \\[.8em]
+          &amp;=&amp; 
+          \int\sinh^2(t)\,dt
+          \ =\  \tfrac12\cosh(t)\sinh(t) - \tfrac12 t
+          \\[.8em]
+          &amp;=&amp;  \frac12 x\sqrt{x^2-1} - \frac12 \cosh^{-1}(x),
+          \\[.8em]
+          &amp;=&amp; \frac12 x\sqrt{x^2-1} - \frac12 \ln(x+\sqrt{x^2-1}),
+          \end{array}
+          </md>
           using the formulas for <m>\int\!\sinh^2(t)\,dt</m> and <m>\cosh^{-1}(x)</m> from <m>\S6.7</m>.
         </p>
       </solution>
@@ -261,19 +261,19 @@
         <p>
           Let <m>x = \tanh(t)</m>, <m>dx = \operatorname{sech}^2(t)\,dt</m>,
           <m>1{-}x^2=1{-}\tanh^2(t)=\operatorname{sech}^2(t)</m>:
-          <md><![CDATA[
+          <md>
 \begin{array}{rcl}
-\displaystyle\int\!\sqrt{1-x^2}\,dx &=& \displaystyle
+\displaystyle\int\!\sqrt{1-x^2}\,dx &amp;=&amp; \displaystyle
 \int\!\operatorname{sech}^3(t)\,dt
 \ =\
 \frac12 \left(\tanh(t)\,\operatorname{sech}(t)+\int\operatorname{sech}(t)\,dt\right)
 \\[1.2em]
-&=& \displaystyle
+&amp;=&amp; \displaystyle
 \tfrac12\tanh(t)\,\operatorname{sech}(t)+\tan^{-1}(e^t)
 \ =\
 \tfrac12 x\sqrt{1{-}x^2} + \tan^{-1}\!\sqrt{\tfrac{1+x}{1-x}},
 \end{array}
-          ]]></md>
+          </md>
           via <m>\S6.7</m>, 7.2. This simplifies to the previous
           <m>\int\! \sqrt{1{-}x^2}\,dx \ =\  \tfrac12x\sqrt{1{-}x^2}+\tfrac12\sin^{-1}(x)+\frac\pi4</m>.
         </p>
@@ -292,12 +292,12 @@
           since the denominator will still contain the factor <m>x=\frac 1a u-b</m>.
           Rather, write <m>x^2+x=x^2(1+\frac1x)</m> and do a linear fractional substitution
           <m>u=1+\frac1x</m>, <m>du=-\frac{1}{x^2}\,dx</m>:
-          <md><![CDATA[
+          <md>
 \int\!\!\frac{1}{x\sqrt{x^2+x}}\,dx \ =\
 \int\!\!\frac{1}{x^2\sqrt{1+\frac1x}}\,dx \ =\
 -\int\!\!\frac{1}{\sqrt u}\,du \ =\
 -2 \sqrt{u} \ = \ -2\sqrt{1+\tfrac1x}.
-          ]]></md>
+          </md>
         </p>
       </solution>
     </example>
@@ -313,24 +313,24 @@
           Using the strategy of the previous example,
           we rewrite as a quadratic in <m>\frac1x</m> and
           complete the square in terms of <m>u=\frac ax +b</m>:
-          <md><![CDATA[
+          <md>
 \begin{array}{rcl}
-3x^2-2x-1 &=& x^2 (3-\frac2x - \frac1{x^2})
+3x^2-2x-1 &amp;=&amp; x^2 (3-\frac2x - \frac1{x^2})
 \\[1em]
-&=& x^2 \left(3+1^2-1^2- 2(1)\frac1x
+&amp;=&amp; x^2 \left(3+1^2-1^2- 2(1)\frac1x
 -\tfrac{1}{x^2}\right)
 \\[1em]
-&=& x^2 \left(4-(1 {+} \frac1x)^2\right)
+&amp;=&amp; x^2 \left(4-(1 {+} \frac1x)^2\right)
 \ =\  4x^2 \left(1-(\frac12 {+} \frac1{2x})^2\right).
 \end{array}
-          ]]></md>
+          </md>
           Then <m>u=\frac1{2x} +\frac12</m>, <m>du = -\frac1{2x^2}\,dx</m> gives:
-          <md><![CDATA[
+          <md>
 \int\!\!\frac{1}{x\sqrt{3x^2{-}2x{-}1}}\,dx
 \ =\ \int\!\! \frac{1}{2x^2\,\sqrt{1-(\frac12 {+} \frac1{2x})^2}}\,dx
 \ =\ \!\int\!\! \frac{\!\!-1}{\sqrt{1{-}u^2}}\,du
 \ =\  -\sin^{-1\!}(u) \ = \ -\sin^{-1\!}(\tfrac1{2x} {+}\tfrac12).
-          ]]></md>
+          </md>
         </p>
       </solution>
     </example>
@@ -345,14 +345,14 @@
         <p>
           It turns out best to substitute
           <m>u=\sqrt{x{-}1}</m>, <m>x=u^2{+}1</m>, <m>dx = 2u\,du</m>:
-          <md><![CDATA[
+          <md>
 \int\!\!\sqrt{\frac{x}{x{-}1}}\,dx \ = \
 \int\!\frac{\sqrt{u^2{+}1}}u\,2u\,du \ =\
 \int 2\sqrt{u^2{+}1}\,du
 \ = \ u\sqrt{u^2{+}1} + \sinh^{-1}(u)
 \ = \ \sqrt{x(x{-}1)} + \sinh^{-1}\!\sqrt{x{-}1}
 \ =\ \sqrt{x(x{-}1)} +\ln(\sqrt x + \sqrt{x{-}1})
-          ]]></md>
+          </md>
         </p>
       </solution>
     </example>
@@ -369,7 +369,7 @@
           <m>\cosh^{-1}(2x{+}1)=\ln(2x{+}1{+}2\sqrt{x^2{+}x})</m>,
           but sneaky substitution gives a surprise equivalent answer:
           <m>z=\sqrt{x}</m>, <m>x=z^2</m>, <m>dx=2z\,dz</m>:
-          <md><![CDATA[
+          <md>
 \int\!\!\frac{1}{\sqrt{x^2+x}}\,dx
 \ =\
 \int\!\!\frac{1}{\sqrt{z^4+z^2}}\,2z\,dz
@@ -378,7 +378,7 @@
 \ =\
 2\sinh^{-1}(z)
 \ = \ 2\sinh^{-1}\!\!\sqrt x\,.
-          ]]></md>
+          </md>
         </p>
       </solution>
     </example>
@@ -391,47 +391,55 @@
       which produce inverse trig and hyperbolic functions (omitting <m>+C</m>).
     </p>
 
-    <p><md><![CDATA[
-\int\!\! \frac1{\sqrt{1-x^2}}\,dx \ =\ \sin^{-1}(x) \ =\ \tfrac\pi 2 - \cos^{-1}(x)
-\qquad\quad
-\int\!\! \frac1{\sqrt{x^2-1}}\,dx \ =\ \cosh^{-1}(x) \ =\ \ln(x+\sqrt{x^2-1})
-    ]]></md></p>
+    <p><md>
+      \int\!\! \frac1{\sqrt{1-x^2}}\,dx \ =\ \sin^{-1}(x) \ =\ \tfrac\pi 2 - \cos^{-1}(x)
+    </md></p>
 
-    <p><md><![CDATA[
-\int\!\! \frac1{\sqrt{1+x^2}}\,dx \ =\ \sinh^{-1}(x) \ =\ \ln(x+\sqrt{1+x^2})
-    ]]></md></p>
+    <p><md>
+      \int\!\! \frac1{\sqrt{x^2-1}}\,dx \ =\ \cosh^{-1}(x) \ =\ \ln(x+\sqrt{x^2-1})
+    </md></p>
 
-    <p><md><![CDATA[
-\int\!\! \frac{1}{x\sqrt{x^2{-}1}}\,dx \ =\ \sec^{-1}(x) \ =\ \tan^{-1}\!\!\sqrt{x^2{-}1}
-\qquad\quad
-\int\!\! \frac{1}{x\sqrt{1{-}x^2}}\,dx \ =\  -\text{sech}^{-1}(x)
-\ =\
-\ln(x)\,-\,\ln(1+\sqrt{1{-}x^2})
-    ]]></md><fn>
+    <p><md>
+      \int\!\! \frac1{\sqrt{1+x^2}}\,dx \ =\ \sinh^{-1}(x) \ =\ \ln(x+\sqrt{1+x^2})
+    </md></p>
+
+    <p><md>
+      \int\!\! \frac{1}{x\sqrt{x^2{-}1}}\,dx \ =\ \sec^{-1}(x) \ =\ \tan^{-1}\!\!\sqrt{x^2{-}1}
+    </md></p>
+
+    <p><md>
+      \int\!\! \frac{1}{x\sqrt{1{-}x^2}}\,dx \ =\  -\text{sech}^{-1}(x)
+      \ =\
+      \ln(x)\,-\,\ln(1+\sqrt{1{-}x^2})
+    </md><fn>
       Equality holds for <m>x\geq 1</m>; for <m>x\leq-1</m>, see end of <m>\S6.6</m>.
     </fn></p>
 
-    <p><md><![CDATA[
-\int\!\! \frac1{x\sqrt{1+x^2}}\,dx \ =\ -\text{csch}^{-1}(x)
-\ =\
-\ln(x)-\ln(1+\sqrt{1+x^2})
-    ]]></md></p>
+    <p><md>
+      \int\!\! \frac1{x\sqrt{1+x^2}}\,dx \ =\ -\text{csch}^{-1}(x)
+      \ =\
+      \ln(x)-\ln(1+\sqrt{1+x^2})
+    </md></p>
 
-    <p><md><![CDATA[
-\int\!\! \frac1{1+x^2}\,dx \ =\ \tan^{-1}(x)
-\qquad\quad
-\int\!\! \frac1{1-x^2}\,dx \ =\ \tanh^{-1}(x) \ =\ \tfrac12\ln(1+x) - \tfrac12\ln(1-x)
-    ]]></md></p>
+    <p><md>
+      \int\!\! \frac1{1+x^2}\,dx \ =\ \tan^{-1}(x)
+    </md></p>
 
-    <p><md><![CDATA[
-\int\!\! \sqrt{1 - x^2}\, dx \ =\ \tfrac12 x\sqrt{1 - x^2}\, +\, \tfrac12\sin^{-1}(x)
-\qquad\quad
-\int\!\! \sqrt{x^2-1}\,dx \ =\ \tfrac12 x\sqrt{x^2 - 1} \,-\, \tfrac12\cosh^{-1}(x)
-    ]]></md></p>
+    <p><md>
+      \int\!\! \frac1{1-x^2}\,dx \ =\ \tanh^{-1}(x) \ =\ \tfrac12\ln(1+x) - \tfrac12\ln(1-x)
+    </md></p>
 
-    <p><md><![CDATA[
-\int\!\! \sqrt{x^2+1}\,dx \ =\ \tfrac12 x\sqrt{x^2 + 1} + \tfrac12\sinh^{-1}(x)
-    ]]></md></p>
+    <p><md>
+      \int\!\! \sqrt{1 - x^2}\, dx \ =\ \tfrac12 x\sqrt{1 - x^2}\, +\, \tfrac12\sin^{-1}(x)
+    </md></p>
+
+    <p><md>
+      \int\!\! \sqrt{x^2-1}\,dx \ =\ \tfrac12 x\sqrt{x^2 - 1} \,-\, \tfrac12\cosh^{-1}(x)
+    </md></p>
+
+    <p><md>
+      \int\!\! \sqrt{x^2+1}\,dx \ =\ \tfrac12 x\sqrt{x^2 + 1} + \tfrac12\sinh^{-1}(x)
+    </md></p>
   </subsection>
 
 </section>

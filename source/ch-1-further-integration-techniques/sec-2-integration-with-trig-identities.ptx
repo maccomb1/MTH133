@@ -297,7 +297,7 @@
   <md> \sin(x) =  \frac{2t}{1+t^2}\,,\quad \ \ \cos(x) = \frac{1-t^2}{1+t^2}\,, \quad \ \ dx = \frac{2}{1+t^2}\,dt\,,\quad \ \ t =\tan(\tfrac12 x) = \frac{\sin(x)}{1+\cos(x)}\,. </md>
   
   This reduces the trig integral to the integral of a rational function, which can be done by Partial Fractions <xref ref = "sec-4-partial-fractions"/>. 
-  For the geometry of this substitution, as well as some examples, see <xref ref="ssec-4-w-sub"/>
+  For the geometry of this substitution, as well as some examples, see <xref ref="ssec-4-w-sub"> Details of the Tangent Half-Angle Substitution</xref>.
   </p>
 
   </subsection>
