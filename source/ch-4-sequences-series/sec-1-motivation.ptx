@@ -3,6 +3,87 @@
 <section xml:id="sec-1-motivation" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Motivation for Sequences and Series</title>
 
-  <p> Text of section. </p>
+  <p> 
+    In this chapter we will be working towards one of the most important ideas from calculus: approximating functions via power series.
+    To see why this is such an important idea, let us start with the following question: How can we compute <m>\sin(7^{circ})</m>? The angle here
+    is mostly irrelevant, but so far we only know how to compute standard trigonometric functions for a couple of angles, and only because we know the angles
+    for 3 right triangles (the <m>30-60-90</m>, the <m>45-45-90</m>, and a degenerate triangle). Admittedly, there are also clever tricks to compute 
+    some other quantities (such as <m>\sin(15^{circ})</m>) by using angle sum and difference formulas, but this is incredibly difficult, and does not help us 
+    answer the original question. 
+  </p>
+  <p>
+    So what approaches can we take? Perhaps you might recall that <m>\lim_{x \to 0}\frac{\sin x}{x} = 1</m>, where <m>x</m> is measured in radians. 
+    Another way to state this is that for small angles, <m>\sin x \approx x</m>, represented graphically below.
+
+    <figure xml:id="fig-sin-x-approx">
+      <caption></caption>
+      <image>
+        <shortdescription></shortdescription>
+        <latex-image>
+          \begin{tikzpicture}
+            \draw[->] (-3, 0) -- (3, 0) node[right] {$x$}; % x-axis
+            \draw[->] (0, -3) -- (0, 3) node[above] {$y$}; % y-axis
+            %\draw[smooth, domain=-3:3, samples=100] plot (\x, {\sin \x}); % plot y = sin x
+            %\draw[color=red,smooth, domain=-3:3, samples=100] plot (\x, {\x}); % plot y = x
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    Also, since <m>\sin(0)=0</m> and <m>\sin'(0)=\cos(0)=1</m>, the line  <m>y = x</m> is the best linear approximation to <m>y = \sin x</m> at <m>x=0</m>.
+    With this in mind, we might hope that by considering more general polynomial approximations, we could get a better approximation than just a line. If you try and do this yourself, 
+    you may end up finding the polynomial <m>x-\frac{1}{6}x^3</m>, which is graphed below.
+
+    <figure xml:id="fig-sin-x-approx-3rd-order">
+      <caption></caption>
+      <image>
+        <shortdescription></shortdescription>
+        <latex-image>
+          \begin{tikzpicture}
+            \draw[->] (-3, 0) -- (3, 0) node[right] {$x$}; % x-axis
+            \draw[->] (0, -3) -- (0, 3) node[above] {$y$}; % y-axis
+            %\draw[smooth, domain=-3:3, samples=100] plot (\x, {\sin \x}); % plot y = sin x
+            %\draw[color=red,smooth, domain=-3:3, samples=100] plot (\x, {\x-\x^3/6}); % plot y = x - x^3/6
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    As we can see above, this approximates <m>\sin x</m> well for even longer than before. We can imagine continuing the process, and in this
+    case we can add arbitrarily many terms and get arbitrarily good approximations to <m>\sin x</m> for any <m>x</m>.
+
+    #insert desmos GIF and interactive showing successive polynomial approximations to <m>\sin x</m>
+  </p>
+
+  <p>
+    Does the process above work just for <m>\sin x</m>? Absolutely not! In fact, we can use the same idea to approximate many other functions by polynomials, and
+    these approximations are known as Taylor (or Maclaurin) series. To see another example, let us look at the function <m>e^x</m>. As a first approximation, we
+    can resort to the tangent line at <m>x=0</m>. Since <m>e^0 = 1</m> and <m>(e^x)'\big|_{x=0} = e^0 = 1</m>, the tangent line is <m>y = 1 + x</m>. 
+    
+    #insert image
+
+    By doing this same procedure as we did for <m>\sin x</m>, the sixth degree polynomial that we get is:
+    <md>1 + x + \frac{1}{2}x^2 + \frac{1}{6}x^3+\frac{1}{24}x^4+\frac{1}{120}x^5+\frac{1}{720}x^6.</md>
+
+    #insert image showing how it compares to <m>e^x</m>, linking to an interactive Desmos graph
+
+    Note that pulling in <m>x=1</m> in the above polynomial gives us <m>\frac{1957}{720}</m> as an approximation to <m>e^1 = e</m>. In fact,
+    <m>\frac{1957}{720} \approx 2.7181</m>, which is an approximation for <m>e</m> that is accurate to 3 decimal places!
+  </p>
+
+  <p>
+    Before we get too excited, we should note that this procedure that we will develop does not work this well for all functions. For instance, the 
+    approximations for the functions <m>\frac{1}{1-x}</m> look like <md>1 + x + x^2 + x^3 + x^4 + \cdots</md>. In fact, if we graph these
+    successive approximations, we get the following:
+
+    #insert GIF showing successive polynomial approximations to <m>\frac{1}{1-x}</m>, and link to interactive Desmos graph
+
+    What notice about this is that while adding on more terms does improve the approximations, it only does so for <m>x</m> between <m>-1</m> and <m>1</m>.
+  </p>
+
+  <p>
+    In order to answer questions about how to obtain these approximations, when they are valid, and the errors associated with them, we
+    need to develop a general theory of sequences and series. 
+  </p>
 
 </section>

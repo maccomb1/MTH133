@@ -3,6 +3,346 @@
 <section xml:id="sec-3-convergence-nth-term" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Convergence and the N-th Term Test</title>
 
-  <p> Text of section. </p>
+  <p><alert>Sequences and series.</alert> To any sequence <m>\{a_n\}_{n=1}^\infty</m>
+  we associate another sequence <m>\{s_n\}_{n=1}^\infty</m>,
+  called the <em>series</em> of sums of <m>\{a_n\}</m>, defined by:</p>
+
+  <p><md>
+    s_n \ =\ a_1 + a_2 + \cdots + a_n
+    \ =\ \sum_{i=1}^n a_i\,.
+  </md></p>
+
+  <p>That is, <m>s_1=a_1</m>, <m>s_2=a_1+a_2</m>, <m>s_3=a_1+a_2+a_3</m>, and in general <m>s_n</m> is the sum of the first <m>n</m> entries of <m>\{a_n\}</m>. The sigma notation <m>\sum\limits_{i=1}^n a_i</m> is a convenient shorthand for taking each integer value <m>i=1, 2,\ldots, n</m>, substituting it into the expression <m>a_i</m>, and adding all the resulting quantities (see <m>\S4.1</m> Pt 2). We can change the index letters arbitrarily: <m>s_N=\sum\limits_{n=1}^N a_n</m> defines the same series as <m>s_n=\sum\limits_{i=1}^n a_i</m>.</p>
+
+  <example xml:id="ex-series-harmonic-partial-sums">
+    <p>If <m>a_n= \frac1n</m>, then <m>s_1=1</m>, <m>s_2=1+\frac12=\frac32</m>, <m>s_3=1+\frac12+\frac13=\frac{11}6</m>, etc. The general term <m>s_n=\sum\limits\limits_{i=1}^n \frac1i = \frac11+\frac12+\frac13+\cdots+\frac1n</m> has no elementary formula, which is typical for series, even when <m>a_n</m> is quite simple. Geometrically, <m>s_n</m> is the area under the bar graph of <m>\{a_n\}</m> above the interval <m>[0,n]</m>.</p>
+  </example>
+
+  <figure xml:id="fig-11-2-bar-graph-placeholder">
+    <caption>Bar graph placeholder for the sequence <m>a_n=\frac1n</m>.</caption>
+    <image width="50%">
+      <shortdescription>Placeholder for 11-2-Bar-Graph.</shortdescription>
+      <latex-image><![CDATA[
+\begin{tikzpicture}
+  \node[draw, minimum width=5.2cm, minimum height=3.2cm, font=\small] {11-2-Bar-Graph};
+\end{tikzpicture}
+      ]]></latex-image>
+    </image>
+  </figure>
+
+  <p>We can also take the infinite sum, which is defined as a limit of finite sums:</p>
+
+  <p><md>
+    \sum_{i=1}^\infty a_i
+    \ =\ \lim_{n\to\infty} \sum_{i=1}^n a_i
+    \ =\ \lim_{n\to\infty} s_n\,.
+  </md></p>
+
+  <p>This limit, converging or diverging, is the total area under the bar graph of <m>\{a_n\}_{n=1}^\infty</m>.</p>
+
+  <example xml:id="ex-decimal-notation-series">
+    <p>The general purpose of a series is to express a complicated quantity as an infinite sum of simple quantities, <m>s=\sum\limits_{i=1}^\infty a_i</m>, so that the finite sums <m>s_n =\sum\limits_{i=1}^n a_i</m> are approximations. A familiar example of this is decimal notation: an irrational real number is a complicated quantity with an infinite amount of detail in its digits, which are equivalent to the sum of a certain series.</p>
+
+    <p>Given a sequence of digits <m>\{d_n\}_{n=1}^\infty</m> with <m>d_n\in\{0,1,\ldots, 9\}</m>, we have the number:</p>
+
+    <p><md>
+      s \ =\ 0.d_1d_2d_3\cdots\ =\  \frac{d_1}{10^1} + \frac{d_2}{10^2} + \frac{d_3}{10^3} + \cdots
+      \ =\ \sum\limits_{n=1}^\infty \frac{d_n}{10^n}\,.
+    </md></p>
+
+    <p>By definition, an infinite decimal is the limit of its finite decimal approximations, the number approached as we add more digits. A trivial example is the repeating decimal <m>s=0.999\cdots</m>, which clearly gets as close as desired to 1 as we take more digits, so <m>s=1</m>. For a more complicated pattern of digits, the series converges to some complicated real number (see <m>\S11.4</m>).</p>
+  </example>
+
+  <example xml:id="ex-famous-series-formulas">
+    <p>We will eventually (<m>\S11.9, 11.10</m>) develop powerful methods to write familiar numbers and functions as infinite series. Two outstanding formulas are:</p>
+
+    <p><md>
+      \pi \ =\ 4(1 - \tfrac13 + \tfrac 15 -\tfrac17+\cdots)\,,
+      \qquad\ \ 
+      \sin(x) \ =\
+      x -\tfrac1{3!}x^3 +\tfrac1{5!}x^5 -\tfrac1{7!}x^7 +\cdots.
+    </md></p>
+
+    <p>It is formulas like these that allow machines to compute complicated transcendental quantities using only the four arithmetic operations (which are all that can easily be  built into a logic circuit).</p>
+  </example>
+
+  <p><alert>Geometric progression on a chessboard.</alert> A classic puzzle says: if we put one kernel of wheat on the first square of a chessboard, then two kernels on the second square, then four on the third square, and we keep doubling until the <m>64</m>th square, how many kernels on the whole board?</p>
+
+  <p>We start with the sequence <m>a_n</m> = number of kernels on the <m>n</m>th square, defined recursively by <m>a_1=1</m>, <m>a_n=2a_{n-1}</m>, which leads to the explicit formula <m>a_n=2^{n-1}</m>. This is called an exponential sequence or <em>geometric sequence</em>.<fn>Geometric progression: 2 = length of a segment, <m>2^2</m> = area of a square, <m>2^3</m> = volume of cube.</fn> The associated <em>geometric series</em> is <m>s_n</m> = total number of kernels on the first <m>n</m> squares:</p>
+
+  <p><md>
+    s_n \ =\  \sum_{i=1}^n 2^{i-1}
+    \ =\
+    1 + 2^1 + 2^2 + \cdots + 2^{n-2} + 2^{n-1}.
+  </md></p>
+
+  <p>Surprisingly, we can find a simple formula for <m>s_n</m> as follows:</p>
+
+  <p><md>
+    \begin{array}{rcccccccccc}
+    2 s_n &amp;=&amp; &amp; &amp;2^1&amp;+&amp; 2^2&amp;+\cdots + &amp;2^{n-1}&amp;+&amp;2^n\\[.5em]
+    -s_n&amp;=&amp; -1 &amp; - &amp;2^1 &amp; - &amp;2^2 &amp;-\cdots- &amp;2^{n-1}&amp;
+    \end{array}
+  </md></p>
+
+  <p>Adding these, the two sides become:</p>
+
+  <p><md>
+    (2-1)s_n \ =\ 2a_n-a_1 \ =\ 2^n-1
+    \qquad\Longrightarrow\qquad
+    s_n \ =\ \frac{2^n-1}{2-1} \ =\ 2^n-1\,.
+  </md></p>
+
+  <p>Therefore, the answer to our puzzle is <m>s_{64}=2^{64}-1</m> kernels, which is enough wheat to fill the bowl of Spartan Stadium.</p>
+
+  <p>Now we change the problem: we put one ounce of gold on the first square, half an ounce on the second square, a quarter ounce on the third square, and so on until the 64th. What is the total weight of gold on the board?</p>
+
+  <p>The weight on the <m>n</m>th square is given by another geometric (i.e. exponential) sequence <m>a_n=\left(\frac12\right)^{\!n-1}</m>, and the total weight on the first <m>n</m> squares is the geometric series <m>s_n=\sum\limits_{i=1}^n \left(\frac12\right)^{\!i-1}</m>. We use the same trick as before:</p>
+
+  <p><md>
+    \begin{array}{rcccccccccc}
+    s_n &amp;=&amp;1&amp; + &amp;\frac12&amp;+&amp; \left(\frac12\right)^{\!2}&amp;+\cdots + &amp;\left(\frac12\right)^{\!n-1}\\[.5em]
+    -\frac12s_n&amp;=&amp; &amp; - &amp;\frac12 &amp; - &amp;\left(\frac12\right)^{\!2} &amp;-\cdots- &amp;\left(\frac12\right)^{\!n-1}&amp;-&amp; \left(\frac12\right)^{\!n}
+    \end{array}
+  </md></p>
+
+  <p><md>
+    (1-\tfrac12)s_n  \ =\ a_1 -\tfrac12 a_n\ =\ 1-\left(\tfrac12\right)^{\!n}
+    \qquad\Longrightarrow\qquad
+    s_n \ =\ \frac{\ \ 1-\left(\frac12\right)^{\!n}}{1-\frac12} \,.
+  </md></p>
+
+  <p>Thus, the total weight is <m>s_{64} = \frac{\ \ 1-\left(\frac12\right)^{\!64}}{1-\frac12}</m>. Since <m>\left(\frac12\right)^{\!64}</m> is a tiny, negligeable quantity, this is very close to <m>\frac{1}{1-\frac12}=2</m>, meaning the first square has just about the same total weight as the other 63 squares. In fact, adding more squares would barely change the total, since the limit is:</p>
+
+  <p><md>
+    \sum_{i=1}^\infty \left(\tfrac12\right)^{\!i-1}
+    \ =\
+    \lim_{n\to\infty} s_n
+    \ =\
+    \lim_{n\to\infty} \frac{1-\left(\frac12\right)^{\!n}}{1-\frac12}
+    \ = \ \frac{1-0}{1-\frac12}\ =\ 2\,.
+  </md></p>
+
+  <p><alert>Geometric sequences and series.</alert> A general geometric sequence starts with an initial value <m>a_1=c</m>, and subsequent terms are multiplied by the ratio <m>r</m>, so that <m>a_n = ra_{n-1}</m>; explicitly, <m>a_n = cr^{n-1}</m>. The same trick as above gives a formula for the corresponding geometric series. We have <m>s_n-rs_n = c-cr^n</m>, so:</p>
+
+  <p><md>
+    \boxed{
+    \ \ 
+    s_n \ =\
+    \sum_{i=1}^n cr^{i-1}
+    \ =\
+    c + cr + cr^2 +\cdots +cr^{n-1}
+    \ =\
+    c\,\frac{\ 1-r^n}{1-r}\,. \ \
+    }
+  </md></p>
+
+  <p>(Notice that the power <m>r^n</m> is one larger than in the last term <m>cr^{n-1}</m>.) This ingenious formula is known as the <em>sum of a finite geometric series</em>; the limit is the <em>sum of an infinite geometric series</em>:</p>
+
+  <p><md>
+    \boxed{\ \ 
+    \lim_{n\to\infty} s_n
+    \ =\
+    \sum_{i=1}^\infty c r^{i-1}
+    \ = \ c\,\frac{1}{1-r}\,, \quad\text{provided $|r|&lt;1$.}
+    \ \ }
+  </md></p>
+
+  <p>Of couse, the infinite series diverges if <m>|r|\geq 1</m>. These formulas are needed again and again in practical problems, especially those involving financal interest rates.</p>
+
+  <p><alert>Manipulating sigma notation.</alert> The geometric series formulas allow us to evaluate any series whose terms involve only exponential functions like <m>2^n</m> or <m>2^{-n}</m>, but not power functions like <m>n</m> or <m>n^2</m>. To evaluate, we rearrange and manipulate the terms into the form of the geometric sequences which we know.</p>
+
+  <example xml:id="ex-manipulating-sigma-notation">
+    <p>Evaluate the finite sum <m>\sum\limits\limits_{i=1}^n \frac{2^i-1}{3^{i+1}}</m>, and the infinite sum <m>\sum\limits\limits_{i=1}^\infty \frac{2^i-1}{3^{i+1}}\,</m>.</p>
+
+    <solution>
+      <p>First, we work this out in dot-dot-dot notation:</p>
+
+      <p><md>
+        \frac{2^1-1}{3^{1+1}} + \cdots + \frac{2^n-1}{3^{n+1}}
+        \ =\
+        \left(\frac{2^1}{3^{1+1}} + \cdots + \frac{2^n}{3^{n+1}}\right)
+        -
+        \left(\frac{1}{3^{1+1}} + \cdots + \frac{1}{3^{n+1}}\right)
+      </md></p>
+
+      <p><md>
+        \ =\
+        \left(\frac{2}{\ 3^2}\frac{2^{0}}{3^{0}} + \cdots + \frac{2}{\ 3^2}\frac{2^{n-1}}{3^{n-1}}\right)
+        -
+        \left(\frac{1}{\ 3^2}\frac{1}{3^{0}} + \cdots + \frac{1}{\ 3^2}\frac{1}{3^{n-1}}\right)
+      </md></p>
+
+      <p><md>
+        \ =\
+        \left(\frac{2}{\ 3^2}\left(\frac23\right)^{\!0} + \cdots + \frac{2}{\ 3^2}\left(\frac23\right)^{\!n-1}\right)
+        -
+        \left(\frac{1}{\ 3^2}\left(\frac13\right)^{\!0} + \cdots + \frac{1}{\ 3^2}\left(\frac13\right)^{\!n-1}\right)
+      </md></p>
+
+      <p><md>
+        \ =\
+          \frac2{\ 3^2}\,\frac{\ \ 1-\left(\frac23\right)^{\!n}}{1-\frac23}
+        \ \ -\ \ 
+          \frac1{\ 3^2}\,\frac{\ \ 1-\left(\frac13\right)^{\!n}}{1-\frac13}
+      </md></p>
+
+      <p>Here we factored out <m>\frac2{\ 3^2}</m> and <m>\frac{1}{3^2}</m> so the remaining factor would be <m>r^{i-1}</m> for some <m>r</m> and <m>i=1,\ldots,n</m>, which we can then evaluate using the geometric series formula.</p>
+
+      <p>This computation can be written more compactly in sigma notation:</p>
+
+      <p><md>
+        \begin{array}{rcl}
+        \sum\limits_{i=1}^n \frac{2^i-1}{3^{i+1}}
+        &amp;=&amp;
+        \sum\limits_{i=1}^n \left(\frac{2^i}{3^{i+1}}-\frac{1}{3^{i+1}}\right)
+        \\[1.2em]
+        &amp;=&amp;
+        \sum\limits_{i=1}^n \frac{2^i}{3^{i+1}}\ -\ \sum\limits_{i=1}^n\frac{1}{3^{i+1}}
+        \\[1.2em]
+        &amp;=&amp;
+        \sum\limits_{i=1}^n \frac{2}{\ 3^2}\frac{2^{i-1}}{3^{i-1}}\ -\
+        \sum\limits_{i=1}^n\frac1{\ 3^2}\frac{1}{3^{i-1}}
+        \\[1.2em]
+        &amp;=&amp;
+        \sum\limits_{i=1}^n \frac{2}{\ 3^2}\left(\frac23\right)^{\!i-1}\ -\
+        \sum\limits_{i=1}^n\frac{1}{\ 3^2}\left(\frac13\right)^{\!i-1}
+        \\[1.2em]
+        &amp;=&amp;
+        \frac2{\ 3^2}\,\dfrac{\ \ 1-\left(\frac23\right)^{\!n}}{1-\frac23}
+        \ \ -\ \ 
+        \frac1{\ 3^2}\,\dfrac{\ \ 1-\left(\frac13\right)^{\!n}}{1-\frac13}\,.
+        \end{array}
+      </md></p>
+
+      <p>To get the infinite sum, we just remove the terms <m>(\frac23)^n</m> and <m>(\frac13)^n</m>, since these go to zero as <m>n\to\infty</m>.</p>
+    </solution>
+  </example>
+
+  <p><alert>Repeating decimals.</alert> An important application of geometric series is to write repeating infinite decimals as fractions. For example, consider:</p>
+
+  <p><md>
+    s \ =\ 0.0626262\cdots  \ =\  0.0\overline{62}
+  </md></p>
+
+  <p>We can apply the ratio-multiplication trick to cancel the infinite tail of digits:</p>
+
+  <p><md>
+    s\ =\  0.0626262\cdots, \qquad
+    	frac{1}{100}s \ =\ 0.0006262\cdots
+  </md></p>
+
+  <p><md>
+    (1-\tfrac{1}{100})s \ = \ 0.062
+    \qquad\Longrightarrow\quad
+    	frac{99}{100}s  \ =\ \tfrac{62}{1000}
+    \qquad\Longrightarrow\quad
+    s  \ =\ \tfrac{62}{990}\,.
+  </md></p>
+
+  <p>It is no coincidence that we can use the same trick as before: in fact, this infinite decimal is the sum of a geometric series:</p>
+
+  <p><md>
+    \begin{array}{rcl}
+    s &amp;=&amp; \frac{6}{10^2} + \frac{2}{10^3} + \frac{6}{10^4} + \frac{2}{10^5}
+     + \frac{6}{10^6} + \frac{2}{10^7} +\cdots
+    \ =\  \frac{62}{10^3} \ +\ \frac{62}{10^5} \ +\  \frac{62}{10^7}\ +\ \cdots
+    \\[1em]
+    &amp;=&amp;
+    \sum\limits_{i=1}^\infty \frac{62}{10^{2i+1}}
+    \ =\
+    \sum\limits_{i=1}^\infty \frac{62}{10^1}\frac{1}{(10^2)^i}
+    \ =\
+    \sum\limits_{i=1}^\infty \frac{62}{10^3}\left(\!\frac1{100}\!\right)^{\!\!i-1}
+    \\[1.8em]
+    &amp;=&amp;
+    \frac{62}{10^3}\,\dfrac{1}{1-\frac{1}{100}}
+    \ \ =\ \
+    \frac{62}{1000}\,\frac{100}{99}
+    \ \ =\ \
+    \frac{62}{990}.
+    \end{array}
+  </md></p>
+
+  <p>Another example: <m>1.5626262\cdots \ =\ 1.5 + 0.0626262\cdots \ =\ \frac{15}{10} +\frac{62}{990} \ =\ \frac{1547}{990}</m>.</p>
+
+  <p>We can carry out such reasoning for any infinite decimal which starts with arbitrary digits, then becomes repeating. Conversely, for any fraction <m>a/b</m>, the long division <m>b\,)\hspace{-.35em}\overline{\ \vphantom{A}a\,}</m> will produce a repeated remainder after at most <m>b{-}1</m> steps, leading to a repeating decimal with a period of at most <m>b{-}1</m>. E.g. <m>1/7 = 0.\overline{142857}</m> has remainders <m>3,2,6,4,5,1,3,2, \ldots</m>.</p>
+
+  <p>Thus, any infinite decimal represents a real number, and the repeating decimals represent precisely the rational numbers (fractions)! For example, since we know <m>\sqrt 2 = 1.4142135623730950488\cdots</m> is an irrational number, not equal to any fraction, its decimal digits will never settle into an infinitely repeating pattern.</p>
+
+  <p><alert>Geometric power series.</alert> We can take the ratio in a geometric series to be a variable, obtaining a function called a <em>power series</em>:</p>
+
+  <p><md>
+    g(x)\ =\ \sum_{n=0}^\infty x^n \ =\ 1 + x+ x^2 + x^3+\cdots
+  </md></p>
+
+  <p>(Traditionally, the index starts at <m>n=0</m>, so the first term is <m>x^0=1</m>.) By definition, this means that for the input <m>x=r</m>, the output is:</p>
+
+  <p><md>
+    g(r)
+    \ =\
+    \sum_{n=0}^\infty r^n
+    \ =\
+    \lim_{N\to\infty} \sum_{n=0}^N r^n\,,
+  </md></p>
+
+  <p>whenever this limit exists. Our formula for the sum of a geometric series can be rewritten: <m>\sum\limits_{n=0}^\infty cr^n = c\,\frac{1}{1-r}</m> for <m>|r|&lt;1</m>. This means:</p>
+
+  <p><md>
+    \boxed{\quad
+    g(x) \ =\ \sum_{n=0}^\infty x^n
+    \ =\ \left\{\begin{array}{cl}
+    \dfrac1{1-x} &amp; \text{if $|x|&lt;1$}
+    \\[1em]
+    	ext{undefined} &amp;\text{if $|x|\geq1$}.
+    \end{array}\right.
+    \quad}
+  </md></p>
+
+  <p>The set of <m>x</m> for which the series converges is called the <em>interval of convergence</em>: in this case it is <m>-1&lt;x&lt;1</m>, i.e. <m>x\in(-1,1)</m>.</p>
+
+  <p>Another example:</p>
+
+  <p><md>
+    g(x)
+    \ =\
+    \sum_{n=0}^\infty 3^{n-1}x^{n+1}
+    \ =\
+    \sum_{n=0}^\infty \frac{x}{3} (3x)^n
+    \ =\
+    \frac{x}{3}\,\frac{1}{1-3x}
+    \ = \
+    \frac{x}{3-9x}\,,
+  </md></p>
+
+  <p>provided <m>|3x|&lt;1</m>. The interval of convergence is thus <m>x\in(-\frac13,\frac13)</m>.</p>
+
+  <p><alert>Testing convergence.</alert> We usually cannot find a neat formula for the sum of an infinite series <m>\sum\limits_{i=1}^\infty a_i=\lim_{n\to\infty}\sum\limits_{i=1}^n a_i</m>, but we still wish to know whether the series converges to some finite value. 
+    The most obvious way to analyze this is:</p>
+
+  <theorem xml:id="thm-nth-term-non-vanishing-test">
+    <statement>
+      <p><term>Nth Term Non-vanishing Test:</term> If <m>\lim\limits_{n\to\infty} a_n \neq 0</m>, then the series <m>\sum\limits_{i=1}^\infty a_i</m> diverges. If <m>\lim\limits_{n\to\infty} a_n = 0</m>, then the series might converge or diverge.</p>
+    </statement>
+  </theorem>
+
+  <p><alert>Examples.</alert> Use the Non-Vanishing Test to detect divergence.</p>
+
+  <p><ul>
+    <li>
+      <p><m>\sum\limits_{n=0}^\infty 3^{n-1}x^{n+1}</m> from the previous example. For the Non-vanishing Test, we want to know if the limit of the terms vanishes, <m>\lim\limits_{n\to\infty} 3^{n-1}x^{n+1} \stackrel{?}= 0</m>. Here <m>3^{n-1}x^{n+1} = (3x)^{n-1}x^2</m>, and <m>x</m> is fixed while <m>n</m> gets bigger. We see the limit is non-zero provided <m>|3x|\geq1</m>, or <m>|x|\geq\frac13</m>: in this case the series diverges.</p>
+
+      <p>For <m>|x|&lt;\frac13</m>, the terms do approach zero, but in this case the Non-vanishing Test cannot determine convergence or divergence (though we know from our analysis of geometric series that it really does converge).</p>
+    </li>
+    <li>
+      <p><m>\sum\limits_{n=1}^\infty \frac1n = 1 + \frac12 + \frac 13 +\frac14+\cdots</m>. Here <m>\lim\limits_{n\to\infty} a_n = \lim\limits_{n\to\infty} \frac1n = 0</m>, so the Non-vanishing Test cannot determine whether the series converges.<fn>We will see in <m>\S11.3</m> that it diverges by the Integral Test. Or estimate by grouping terms: <m>1 + \underbrace{\tfrac12}_1 + \underbrace{\tfrac13 + \tfrac14}_2 + \underbrace{\tfrac15 + \tfrac16+\tfrac17+\tfrac18}_4 +\cdots &gt; 1 + \tfrac12 + 2\cdot\tfrac14 + 4\cdot\tfrac18 +\cdots=1+ \tfrac12+ \tfrac12+ \tfrac12+\cdots</m>.</fn></p>
+    </li>
+    <li>
+      <p><m>\sum\limits_{n=1}^\infty (-1)^n n^2 = 1^2 - 2^2 + 3^2 - 4^2 + \cdots</m>. Clearly <m>\lim_{n\to\infty} n^2 =\infty\neq 0</m>, so the series diverges by the Non-vanishing Test. This is intuitively clear: instead of zeroing in on a limiting value, each additional term makes the sum oscillate wildly up or down.</p>
+    </li>
+    <li>
+      <p><m>\sum\limits_{n=1}^\infty (-1)^n  = 1 - 1 + 1 - 1 + \cdots</m>. The limit of the sequence <m>\lim\limits_{n\to\infty} (-1)^n</m> does not exist, so the series diverges. Indeed, the finite sum <m>s_N=\sum\limits_{n=1}^N (-1)^n = 1</m> if <m>N</m> is odd and <m>0</m> if <m>N</m> is even, and <m>\{s_N\}_{N=1}^\infty = 1,0,1,0,\ldots</m> does not converge to a single value.</p>
+    </li>
+  </ul></p>
 
 </section>
