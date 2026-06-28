@@ -127,20 +127,20 @@
         <p>
           A sequence <m>a_n</m> is said to asymptotically dominate a sequence <m>b_n</m> if 
           <md>\lim\limits_{n \to \infty} \frac{b_n}{a_n} = 0.</md>
-          We sometimes say that the terms of <m>a_n</m> are <em>dominant</em>.
+          We sometimes say that the <m>a_n</m> <em>dominates</em> <m>b_n</m>, the terms of <m>a_n</m> are <em>dominant</em>, or even that the sequence <m>b_n</m> is <em>negligible</em> (compared to <m>a_n</m>).
         </p>
       </statement>
     </definition>
 
     <p>
-      What this means is that the sequence <m>a_n</m> grows much faster (or decays much slower)than <m>b_n</m> in the long run. For some perspective, imagine that <m>\lim\limits_{n\to\infty}\frac{b_n}{a_n} \ge .01</m>. 
+      What this means is that the sequence <m>a_n</m> grows much faster (or decays much slower) than <m>b_n</m> in the long run. For instance, imagine that <m>\lim\limits_{n\to\infty}\frac{b_n}{a_n} \ge .01</m>. 
       That would mean that no matter how large <m>n</m> gets, <m>b_n</m> is (roughly) always within at least one percent of <m>a_n</m>. Similarly, if <m>\lim\limits_{n\to\infty}\frac{b_n}{a_n} \ge .00001</m>,
       then <m>b_n</m> is still staying at least the one hundred-thousandth fraction of <m>a_n</m> in the long run. But since <m>\lim\limits_{n\to\infty}\frac{b_n}{a_n} = 0</m>, this means that <m>b_n</m> can not
       keep up with any vanishingly small percentage of <m>a_n</m> in the long run.
     </p>
 
     <example xml:id="ex-asymptotic-domination">
-      <p>Show that the sequence <m>a_n = n^2</m> <em>asymptotically dominates</em> the sequence <m>b_n = n</m>.</p>
+      <p>Show that the sequence <m>a_n = n^2</m> asymptotically dominates the sequence <m>b_n = n</m>.</p>
       <solution>
         <p>
           We compute <m>\lim\limits_{n \to \infty} \frac{b_n}{a_n} = \lim\limits_{n \to \infty} \frac{n}{n^2} = \lim\limits_{n \to \infty} \frac{1}{n} = 0</m>. 
@@ -153,10 +153,10 @@
       While asymptotic domination tells us that one sequence grows much faster than another, it is perhaps even more useful to know when two sequences grow at essentially the same rate.
     </p>
 
-    <definition xml:id="def-asyptotic-equiv">
+    <definition xml:id="def-asymptotic-equiv">
       <statement>
-        <p> The sequences <m>a_n</m> and <m>b_n</m> are called asymptotically equivalent, denoted <m>a_n \sim b_n</m>, if
-          <md>\lim\limits_{n \to \infty} \frac{a_n}{b_n} = 1</md>.
+        <p> The sequences <m>a_n</m> and <m>b_n</m> are called asymptotically equivalent, denoted <m>a_n \sim b_n</m>, if <fn>The above limit is also equivalent to <m>\lim\limits_{n \to \infty} \frac{b_n}{a_n} = 1</m>.</fn>
+          <md>\lim\limits_{n \to \infty} \frac{a_n}{b_n} = 1.</md>
         </p>
       </statement>
     </definition>
@@ -251,11 +251,76 @@
     </example>
   </subsection>
 
-  <subsection xml:id="subsec-">
+  <subsection xml:id="subsec-growth-hierarchy">
     <title>Growth Ratio and Hierarchy</title>
     <p>
-      
+      While the previous section hints at a hierarchy of growth rates for sequences, we want to introduce one more important sequence.
     </p>
+
+    <definition xml:id="def-factorial">
+      <statement>
+        <p>
+          For a natural number <m>n</m>, the <em>factorial</em> of <m>n</m>, written <m>n!</m>, is defined as 
+          <md>n! = n\cdot (n-1)\cdot (n-2)\cdots 3\cdot 2\cdot 1.</md>
+          By convention, <m>0! = 1</m>.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      The factorial has a nice interpretation: namely it counts the number of ways to arrange <m>n</m> distinct objects into a sequence. For instance, 
+      if you are putting <m>5</m> books on a shelf, there are <m>5! = 120</m> ways to order them, since there are 5 choices for the first book, 
+      4 for the second, 3 for the third, 2 for the fourth, and 1 for the last.
+    </p>
+
+    <example xml:id="ex-factorial-computation">
+      <p>
+        Compute each of the following:
+        <ol>
+          <li><m>4!</m></li>
+          <li><m>6!</m></li>
+          <li><m>\frac{5!}{3!}</m></li>
+        </ol>
+      </p>
+      <solution>
+        <p>
+          We use the definition to see that 
+          <ol>
+            <li>
+              <p>
+                <m>4! = 4\cdot 3\cdot 2\cdot 1 = 24</m>
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>6! = 6\cdot 5\cdot 4\cdot 3\cdot 2\cdot 1 = 720</m>
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>\frac{5!}{3!} = \frac{5\cdot 4\cdot 3\cdot 2\cdot 1}{3\cdot 2\cdot 1} = 5\cdot 4 = 20</m>
+              </p>
+            </li>
+          </ol>
+          In the last item, we should take a note of the cancellation that is occurs. Since <m>3! = 3\cdot 2\cdot 1</m> is contained in <m>5!=5\cdot 4\cdot 3\cdot 2\cdot 1</m>, 
+          the only terms remaining are the ones in <m>5!</m> that are not in 3!; that is, <m>5\cdot 4</m>. In particular, due to the recursive nature of
+          factorials, expressions like
+          <ul>
+            <li>
+              <p>
+                <m>(n+1)! = (n+1)\cdot n!,</m>
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>(n+2)! = (n+2)\cdot (n+1)\cdot n!</m>
+              </p>
+            </li>
+          </ul>
+          will appear frequently when working with factorials.
+        </p>
+      </solution>
+    </example>
 
     <definition xml:id="def-growth-rate">
       <statement>
@@ -265,6 +330,56 @@
         </p>
       </statement>
     </definition>
+
+    <p>
+      Let's start by computing a couple of examples!
+    </p>
+
+    <p>
+    <example xml:id="ex-growth-rate-computation">
+      <p>
+        Compute the growth rate for the following sequences:
+        <ol>
+          <li><m>a_n = 2^n</m></li>
+          <li><m>a_n = n!</m></li>
+          <li><m>a_n = n^3</m></li>
+          <li><m>a_n = \frac{n}{3^n}</m></li>
+        </ol>
+      </p>
+
+      <solution>
+        <p>
+          <ol>
+            <li>Using the definition and that <m>a_n=2^n</m>, we have
+            <md>
+              \lim\limits_{n\to\infty}\left| \frac{a_{n+1}}{a_n}\right| = \lim\limits_{n\to\infty}\left| \frac{2^{n+1}}{2^n}\right| = \lim\limits_{n\to\infty}\left| 2\right| = 2.
+            </md>
+            </li>
+            <li>Using the definition and that <m>a_n=n!</m>, we have
+            <md>
+              \lim\limits_{n\to\infty}\left| \frac{a_{n+1}}{a_n}\right| = \lim\limits_{n\to\infty}\left| \frac{(n+1)!}{n!}\right| = \lim\limits_{n\to\infty}\left| n+1\right| = \infty.
+            </md>
+            </li>
+            <li>Using the definition and that <m>a_n=n^3</m>, we have
+            <md>
+              \lim\limits_{n\to\infty}\left| \frac{a_{n+1}}{a_n}\right| = \lim\limits_{n\to\infty}\left| \frac{(n+1)^3}{n^3}\right| = \lim\limits_{n\to\infty}\left| \frac{n+1}{n}\right|^3 = 1.
+            </md>
+            </li>
+            <li>Using the definition and that <m>a_n=\frac{n}{3^n}</m>, we have
+            <md>
+              \lim\limits_{n\to\infty}\left| \frac{a_{n+1}}{a_n}\right| = \lim\limits_{n\to\infty}\left| \frac{\frac{n+1}{3^{n+1}}}{\frac{n}{3^n}}\right| = \lim\limits_{n\to\infty}\left| \frac{n+1}{n}\cdot \frac{3^n}{3^{n+1}}\right| = \frac{1}{3}.
+            </md>
+            </li>
+          </ol>
+        </p>
+      </solution>
+    </example>
+    </p>
+
+
+
+
+
 
     <proposition xml:id="prop-growth-hierarchy">
       <statement>
@@ -304,6 +419,36 @@
         </p>
       </statement>
     </proposition>
+
+    <remark xml:id="rmk-growth-hierarchy">
+      <p>
+        In categories 3 and 4, the growth rate is <m>1</m>, and for the final category the growth rate is <m>\leq 1</m>. In fact, when the growth rate is <m>\lt 1</m>, the sequence decays to zero.
+      </p>
+    </remark>
+
+    <example xml:id="ex-growth-hierarchy">
+      <p>
+        Determine the growth type for each of the sequences below.
+        <ol>
+          <li><m>a_n = 10!</m></li>
+          <li><m>a_n = 2^n + n</m></li>
+          <li><m>a_n = 3n + n!</m></li>
+          <li><m>a_n = 5n^2 + \sqrt{n}</m></li>
+        </ol>
+      </p>
+
+      <solution>
+        <p>
+          In each problem, the <xref ref="prop-growth-hierarchy"> Growth Hierarchy Proposition</xref> tells us that it suffices to only consider the most dominant term.
+          <ol>
+            <li>Despite the factorial, this is a <em>constant sequence</em></li>
+            <li>Since the <m>2^n</m> term is highest in the hierarchy, this sequence exhibits <em>exponential growth</em></li>
+            <li>Since the <m>n!</m> term is highest in the hierarchy, this sequence exhibits <em>superexponential growth</em></li>
+            <li>Since both terms are in the polynomial growth category (though ultimately the <m>5n^2</m> term dominates), this sequence exhibits <em>polynomial growth</em></li>
+          </ol>
+        </p>
+      </solution>
+    </example>
 
   </subsection>
 

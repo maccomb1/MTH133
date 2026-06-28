@@ -16,15 +16,15 @@
     Another way to state this is that for small angles, <m>\sin x \approx x</m>, represented graphically below.
 
     <figure xml:id="fig-sin-x-approx">
-      <caption></caption>
+      <caption>A Linear Approximation to <m>\sin x</m></caption>
       <image>
         <shortdescription></shortdescription>
         <latex-image>
           \begin{tikzpicture}
             \draw[->] (-3, 0) -- (3, 0) node[right] {$x$}; % x-axis
             \draw[->] (0, -3) -- (0, 3) node[above] {$y$}; % y-axis
-            %\draw[smooth, domain=-3:3, samples=100] plot (\x, {\sin \x}); % plot y = sin x
-            %\draw[color=red,smooth, domain=-3:3, samples=100] plot (\x, {\x}); % plot y = x
+            \draw[smooth, domain=-3:3, samples=100] plot (\x, {sin (\x r)}); % plot y = sin x
+            \draw[color=red,smooth, domain=-3:3, samples=100] plot (\x, {\x}); % plot y = x
           \end{tikzpicture}
         </latex-image>
       </image>
@@ -35,15 +35,15 @@
     you may end up finding the polynomial <m>x-\frac{1}{6}x^3</m>, which is graphed below.
 
     <figure xml:id="fig-sin-x-approx-3rd-order">
-      <caption></caption>
+      <caption>A Third Order Approximation to <m>\sin x</m></caption>
       <image>
         <shortdescription></shortdescription>
         <latex-image>
           \begin{tikzpicture}
             \draw[->] (-3, 0) -- (3, 0) node[right] {$x$}; % x-axis
             \draw[->] (0, -3) -- (0, 3) node[above] {$y$}; % y-axis
-            %\draw[smooth, domain=-3:3, samples=100] plot (\x, {\sin \x}); % plot y = sin x
-            %\draw[color=red,smooth, domain=-3:3, samples=100] plot (\x, {\x-\x^3/6}); % plot y = x - x^3/6
+            \draw[smooth, domain=-3:3, samples=100] plot (\x, {sin (\x r)}); % plot y = sin x
+            \draw[color=red,smooth, domain=-3:3, samples=100] plot (\x, {\x-\x^3/6}); % plot y = x - x^3/6
           \end{tikzpicture}
         </latex-image>
       </image>
@@ -51,21 +51,47 @@
 
     As we can see above, this approximates <m>\sin x</m> well for even longer than before. We can imagine continuing the process, and in this
     case we can add arbitrarily many terms and get arbitrarily good approximations to <m>\sin x</m> for any <m>x</m>.
-
-    #insert desmos GIF and interactive showing successive polynomial approximations to <m>\sin x</m>
   </p>
+
+  <interactive desmos="8fj7gtqwy2" width="60%" aspect="2:3" />
 
   <p>
     Does the process above work just for <m>\sin x</m>? Absolutely not! In fact, we can use the same idea to approximate many other functions by polynomials, and
     these approximations are known as Taylor (or Maclaurin) series. To see another example, let us look at the function <m>e^x</m>. As a first approximation, we
     can resort to the tangent line at <m>x=0</m>. Since <m>e^0 = 1</m> and <m>(e^x)'\big|_{x=0} = e^0 = 1</m>, the tangent line is <m>y = 1 + x</m>. 
     
-    #insert image
+    <figure xml:id="fig-e-x-approx-1st-order">
+      <caption>Graph of <m>e^x</m> and its tangent line approximation at <m>x=0</m>.</caption>
+      <image>
+        <shortdescription></shortdescription>
+        <latex-image>
+          \begin{tikzpicture}
+            \draw[->] (-3, 0) -- (3, 0) node[right] {$x$}; % x-axis
+            \draw[->] (0, -3) -- (0, 3) node[above] {$y$}; % y-axis
+            \draw[smooth, domain=-3:1.1, samples=100] plot (\x, {exp(\x)}); % plot y = e^x
+            \draw[color=red,smooth, domain=-3:3, samples=100] plot (\x, {1 + \x}); % plot tan line for e^x
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
 
     By doing this same procedure as we did for <m>\sin x</m>, the sixth degree polynomial that we get is:
     <md>1 + x + \frac{1}{2}x^2 + \frac{1}{6}x^3+\frac{1}{24}x^4+\frac{1}{120}x^5+\frac{1}{720}x^6.</md>
 
-    #insert image showing how it compares to <m>e^x</m>, linking to an interactive Desmos graph
+    <figure xml:id="fig-e-x-approx-6th-order">
+      <caption>Graph of <m>e^x</m> and its sixth degree Taylor polynomial approximation at <m>x=0</m>.</caption>
+      <image>
+        <shortdescription></shortdescription>
+        <latex-image>
+          \begin{tikzpicture}
+          \draw[->] (-3, 0) -- (3, 0) node[right] {$x$}; % x-axis
+          \draw[->] (0, -3) -- (0, 3) node[above] {$y$}; % y-axis
+          \draw[smooth, domain=-3:1.1, samples=100] plot (\x, {exp(\x)}); % plot y = e^x
+          \draw[color=red,smooth, domain=-3:1.1, samples=100] plot (\x, {1 + \x + \x*\x/2 + \x*\x*\x/6+\x*\x*\x*\x/24+\x*\x*\x*\x*\x/120+\x*\x*\x*\x*\x*\x/720}); % plot 6th order approx for e^x
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
 
     Note that pulling in <m>x=1</m> in the above polynomial gives us <m>\frac{1957}{720}</m> as an approximation to <m>e^1 = e</m>. In fact,
     <m>\frac{1957}{720} \approx 2.7181</m>, which is an approximation for <m>e</m> that is accurate to 3 decimal places!
@@ -75,12 +101,14 @@
     Before we get too excited, we should note that this procedure that we will develop does not work this well for all functions. For instance, the 
     approximations for the functions <m>\frac{1}{1-x}</m> look like <md>1 + x + x^2 + x^3 + x^4 + \cdots</md>. In fact, if we graph these
     successive approximations, we get the following:
-
-    #insert GIF showing successive polynomial approximations to <m>\frac{1}{1-x}</m>, and link to interactive Desmos graph
-
-    What notice about this is that while adding on more terms does improve the approximations, it only does so for <m>x</m> between <m>-1</m> and <m>1</m>.
   </p>
 
+  <interactive desmos="ilpy56egwt" width="60%" aspect="2:3" />
+
+  <p>
+    What we notice about this is that while adding on more terms does improve the approximations, it only does so for <m>x</m> between <m>-1</m> and <m>1</m>.
+  </p>
+  
   <p>
     In order to answer questions about how to obtain these approximations, when they are valid, and the errors associated with them, we
     need to develop a general theory of sequences and series. 
