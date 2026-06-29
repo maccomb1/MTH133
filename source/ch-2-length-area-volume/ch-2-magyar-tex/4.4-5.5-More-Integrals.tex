@@ -1,0 +1,326 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\definecolor{gray}{rgb}{.75,.75,.75}
+%\usepackage[landscape]{geometry}
+%\usepackage{hyperref}
+\usepackage[bookmarks=true, pdfborder={0 0 0}, urlbordercolor=gray]{hyperref}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{.8in}
+\addtolength{\oddsidemargin}{-.3in}
+\addtolength{\textwidth}{.6in}
+\pagestyle{empty}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\tZ}{\tilde{\Z}}
+\newcommand{\sgn}{\mathrm{sgn}}
+
+\newcommand{\Sym}{\mathrm{Sym}}
+\newcommand{\tu}{\textunderscore}
+
+\renewcommand{\circle}[1]{{\bigcirc\hspace{-.75em}#1}}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\st}{\mbox{\footnotesize$\sqrt3$}}
+
+\newcommand{\ul}{\underline}
+
+\begin{document}
+
+\footnote[0]{Notes by Peter Magyar \ {\tt magyarp@msu.edu}}
+\vspace{-1em}
+
+\centerline{\bf Math 132\hspace{1.5em} \hfill{\Large\bf More Uses for Integrals}\hfill \S4.4, 5.5}
+\vspace{1em}
+
+\noindent
+{\bf Review.} 
+The integral $\int_a^b f(x)\,dx$ has four levels of meaning.
+\begin{itemize}
+\item Numerical. 
+To compute the {\it cumulative effect} of an influence function $y=f(x)$
+over an interval $x\in [a,b]$, we define the {\it integral}.
+Divide $x\in[a,b]$ into $n$ increments 
+of width $\Delta x=\frac{b-a}{n}$, 
+and choose sample points $x_1,\ldots, x_n$ inside each increment. 
+Then the integral is the limit of Riemann sum approximations,
+the total of the approximate contributions of each interval as $n\to\infty$, $\Delta x\to 0$:
+$$
+\int_a^b \!\!f(x) \,dx \ = \ 
+\lim_{n\to\infty} \sum_{i=1}^n f(x_i)\, \Delta x
+\ = \ 
+\lim_{n\to\infty}
+f(x_1)\Delta x +\cdots + f(x_n)\Delta x\,.
+$$
+\vspace{-1.3em}
+
+\item Geometric. The integral is the {\it area} between the graph $y=f(x)$
+and the interval $x\in[a,b]$, counting area above the $x$-axis as
+positive, area below as negative.
+The area  is the cumulative effect of the height function $f(x)$.
+
+\item Physical. Take physical variables $y,z$ depending on an independent variable $x$, 
+so that $y=f(x)$ and $z=F(x)$ for continuous functions $f$ and $F$.
+We have two equivalent relationships between $y$ and $z$. 
+First, $y$ is the rate of change of $z$:
+$$y=\frac{dz}{dx} \qquad\text{and}\qquad f(x)=F'(x).$$
+Second, the cumulative effect of $y$ is the change in $z$ over an interval $x\in[a,b]$.
+For example, velocity $v$ is the rate of change of position $s$ per unit time, 
+and the cumulative effect of velocity is change in position (distance traveled, displacement, $\Delta s$) 
+over a time interval.
+This is the {\it Second Fundamental Theorem of Calculus},
+written in Leibnitz and Newton notation as:\footnote{
+In Leibnitz notation, a function is denoted by its output variable, such as $z=F(x)$,
+and its derivative function is $\frac{dz}{dx} = F'(x)$.
+A particular output value of the function is denoted: $\left.\vphantom{\sum}z\right|_{x=a}=F(a)$;
+and the change in the value over an interval $x\in[a,b]$
+is denoted: $\left.\vphantom{\sum}z\right|_{x=a}^{x=b} = F(b)-F(a)$.
+}
+$$
+\int_a^b\! y\ dx \ =\ \left.\vphantom{\sum}z\,\right|_{x=a}^{x=b}\ =\ \Delta z 
+\qquad\text{and}\qquad
+\int_a^b\! f(x)\,dx \ =\ F(b)-F(a)\,.
+$$
+Conversely, the rate of change of a cumulative effect up to a point
+is equal to the strength of the effect at that point.
+This is the {\it First Fundamental Theorem of Calculus}: 
+the integral of $y=f(x)$ produces an antiderivative $z=I(x)$:
+$$
+I(x) = \int_a^x f(t)\,dt
+\qquad\Longrightarrow\qquad
+I'(x) \ =\ \frac{d}{dx} \int_a^x\! f(t)\,dt \ =\ f(x)\,.
+$$
+How to combine physical units of variables is clear in Leibnitz notation: $dy$ has the same units as $y$,
+and the units factor out of derivatives and integrals. E.g.~for 
+time $t$ in sec, velocity $v$ in meters/sec, we get acceleration and displacement as:
+$$
+\frac{dv}{dt} \,\frac{\text{ m/sec}}{\text{ sec}} = a \ \frac{\text{m}}{\text{sec}^2}
+\quad,\quad \int_a^b \left(v(t)\frac{\text{m}}{\text{sec}}\right)\!(dt\text{ sec}) \,=\,  
+\ \Delta s\, \frac{\text{m}}{\text{sec}}\text{sec}\ =\ \Delta s \text{ m}.
+$$
+\\[.8em]
+
+\item Algebraic: Given $f(x)$, we can often reverse derivative formulas to find 
+an antiderivative $F(x)$ with $F'(x)=f(x)$. 
+Then the Second Fundamental Theorem immediately computes the integral $\int_a^b f(x)\,dx = F(b)-F(a)$. 
+Later, we will develop techniques for finding $F(x)$, 
+such as the Substitution Method which reverses the Chain Rule.
+
+\end{itemize}
+
+\noindent
+{\bf Indefinite integral notation.} 
+Since antiderivatives are so closely related to integrals by the
+ Fundamental Theorems, we adopt the integral sign as a notation for the most general antiderivative of a function:
+$$
+\int f(x)\,dx \ = \ F(x)+C \quad\text{for all $C$.}
+$$
+Here $F(x)$ is a particular antiderivative: $F'(x)=f(x)$;
+and $F(x)+C$ means the family of all antiderivatives, one
+for every constant $C$ (\S3.9). This family is called the
+{\it indefinite integral}, with no specific limits of integration
+next to the $\int$ sign.
+\\[.5em]
+{\sc example:} Since $\frac{d}{dx}(x^3)=3x^2$ 
+and $\frac{d}{dx}(\frac13x^3)=x^2$, we have the indefinite integral:
+$$
+\int x^2\,dx \ =\ \tfrac13x^3 + C\,.
+$$
+{\sc example:} Suppose a car with position function $s(t)$ 
+lurches forward with velocity $v(t) =10t + 10\sin(\pi t)$ m/sec. 
+How far does it travel ($\Delta s$) from $t=0$ to $t=3$ sec?
+Using the antiderivative table in \S3.9, we first find
+the indefinite integral:
+$$
+\int 10t+ 10\sin(\pi t)\,dt \ = \ 5t^2 -\tfrac{10}{\pi}\cos(\pi t)+C.
+$$
+Velocity is the rate of change of position, so total change in position is
+the integral:
+$$
+\Delta s\ =\ s(3)-s(0) \ =\ \int_0^3 10t+ 10\sin(\pi t)\,dt
+ \ = \ \left.5t^2 -\tfrac{10}{\pi}\cos(\pi t)\,\right|_{t=0}^{t=3}
+$$
+$$
+\ =\ \left(5(3^2) -\tfrac{10}{\pi}\cos(\pi{\cdot} 3)\right)
+- \left(5(0^2) -\tfrac{10}{\pi}\cos(\pi{\cdot} 0)\right)
+\ =\ 45 + \tfrac{20}{\pi}
+\ \approx\  51.4 \text{ meters.}
+$$
+\\[0em] 
+{\bf Average of a function.} We can rewrite a Riemann sum with $\Delta x = \frac{b-a}n$  as:
+$$
+\sum_{i=1}^n f(x_i)\,\Delta x
+\ = \ 
+ \sum_{i=1}^n f(x_i)\,\frac{b{-}a}{n}
+\ = \ 
+(b{-}a)\,\frac{f(x_1)+\cdots +f(x_n)}{n}\,.
+$$
+This is just the interval length $(b{-}a)$
+times the {\it average} of sample values $f(x_1),\ldots,f(x_n)$.
+The integral is the limit of this as $n\to\infty$, which
+becomes $(b{-}a)$ times the average of 
+a denser and denser set of sample values:
+$$
+\int_a^b f(x)\,dx
+\ =\ 
+(b{-}a)\, \lim_{n\to\infty} \frac{f(x_1)+\cdots+f(x_n)}{n}\,.
+$$
+
+\addtolength{\textheight}{4em}
+
+\pagebreak 
+
+\addtolength{\topmargin}{-1em}
+
+\noindent
+We define the limit at right to be the continuous average of $f(x)$ over all $x\in[a,b]$:
+$$
+f_{\text{avg}} 
+\ \ \stackrel{\text{def}}=\ \ 
+\lim_{n\to\infty} \frac{f(x_1)+\cdots+f(x_n)}{n}
+\ =\ 
+\frac{1}{b{-}a}\,\int_a^b f(x)\,dx\,.
+$$
+
+
+\noindent
+{\sc example:} Find the average value of $f(x) = \sqrt{x}$ over 
+$x\in[0,4]$. The indefinite integral is: $\int \sqrt{x}\,dx = \int x^{1/2}\,dx
+= \frac23 x^{3/2}+C$. The average is thus:
+$$
+\frac{1}{4{-}0}\,\int_0^4 \sqrt{x}\,dx
+\ =\ \frac{1}{4}\,\left.\frac23 x^{\frac32}\,\right|_{x=0}^{x=4}
+\ =\ \frac{4}{3}
+\ \approx\ 1.3\ .
+$$
+Over $x\in[0,4]$ the function varies between $0\leq f(x) \leq 2$, 
+but $f_{\text{avg}}\approx 1.3$  is above the midpoint 1.0,
+because the graph bulges above the straight line from $(0,0)$ to $(4,2)$.
+\\[1em]
+\centerline{
+\includegraphics[width=2.2in]
+{4-4-Average.png}
+}
+\\[.3em]
+A geometric way to picture the average is to think of the area under the curve as a fluid.
+If we remove the curve $y=\sqrt x$ and contain the fluid between walls $x=0$ and $x=4$, 
+then it drops to a horizontal level which is the average.
+In the picture, the fluid under the straight line would
+fill the container to the midpoint level $y=1$; but with 
+extra fluid under $y=\sqrt x$ and above the line,  the average is higher: $y=\frac43$\,.
+\\[.7em]
+{\small 
+{\sc example:} In  \S1.4, we intuitively took average velocity as distance traveled per time elapsed,
+then defined instantaneous velocity as the short-time limit of this, leading to the definition of derivative. 
+To check the validity of our definition, we reverse this reasoning:
+starting with position and velocity functions $s(t)$ and $v(t)=s'(t)$, 
+we compute the average velocity using the definition of average and the Second Fundamental Theorem:
+$$\textstyle
+v_{\text{avg}} \ =\  \frac{1}{b-a} \int_a^b v(t)\, dt 
+ \ =\ \frac{1}{b-a} (s(b)-s(a))
+ \ =\ \frac{s(b)-s(a)}{b-a}.
+$$
+That is, the average of $v(t)$ is indeed
+distance traveled $s(b)-s(a)$ divided by the time elapsed $b-a$.
+This expected result confirms that our axiomatic theory captures
+the physical intuition that motivated it, making us more confident in 
+applying the theory to make physical predictions beyond our intuition.
+}
+\\[1em]
+{\small 
+{\bf Mean Value Theorem for Integrals} 
+\begin{quote}
+If $f(x)$ is continuous for $x\in[a,b]$,
+then there is some $c\in(a,b)$ where $f(c)$ equals 
+the average of $f(x)$ over the interval:
+$f(c)=  f_{\text{avg}}=$~$\frac{1}{b{-}a}\,\int_a^b f(x)\,dx$.
+\end{quote}
+
+\noindent
+{\it Proof:} Take $I(x) =\int_a^x f(x)\,dx$. The Mean Value Theorem for Derivatives 
+(\S3.2) says there is a value $c\in(a,b)$ where the tangent line for $I(x)$ 
+is parallel to the secant line over the interval: $I'(c) = \frac{I(b)-I(a)}{b-a}$. By the First Fundamental Theorem, the 
+left side is $I'(c) = f(c)$; and since $I(a) = 0$, the right side is $\frac{I(b)}{b-a} =\frac{1}{b-a}\int_a^b f(x)\,dx$, as desired.
+\\[0em]
+
+\noindent
+In our example $f(x) = \sqrt{x}$, there is $c\in(0,4)$ with 
+$f(c)=\sqrt c = f_{\text{avg}}=\frac43$: i.e.~$c=\frac{16}{9}$.
+}
+
+
+
+
+
+\end{document}
+
+%%%%%%%%%%%  Picture  %%%%%%%%%%
+\\[1em]
+\centerline{
+%\includegraphics[width=2in]
+{1-8-Discont-iv.png}
+\qquad \qquad 
+%\includegraphics[width=2in]
+{1-8-Discont-v.png} 
+}
+\vspace{1em}
+
+\noindent
+
+%%%%%%%%%%%  Table  %%%%%%%%%%
+$$\begin{array}{|c|c|}
+A & B
+\\ \hline && \\[-1.1em]
+C & D
+\end{array}$$
+
+
+{\bf Review.} The integral of $y=f(x)$ has four levels of meaning:
+\begin{itemize}
+\item Physical: If $y=\frac{dz}{dx}$ is the rate of change of some other quantity $z$, 
+then $\int_a^b f(x)\,dx$ is the total change in $z$ 
+from $x=a$ to $x=b$.
+
+For example, if $v=\frac{ds}{dt}$ is a velocity, then the integral is the total change in position $s$, 
+which is the distance traveled: $\int_a^b v(t)\,dt = s(b)-s(a)$.
+
+\item Geometric: $\int_a^b f(x)\,dx$ is the area between the curve $y=f(x)$ and the
+interval $[a,b]$ on the $x$-axis, provided $f(x)\geq 0$.\footnote{
+We shall see that this remains valid for $f(x)\leq 0$ if we count area below the $x$-axis as {\it negative}.}
+
+\item Numerical: To define the integral as a limit of approximations, we split the interval $x\in[a,b]$ into $n$ increments of size $\Delta x=\frac{b-a}{n}$, and choose a sample point in each increment:
+$x_1,x_2,\ldots, x_n$ can be the left or right endpoints, or anywhere between. Then:
+$$
+\int_a^b f(x)\,dx\ \ =\ \lim_{\Delta x\to 0} f(x_1)\Delta x + f(x_2)\Delta x+\cdots +f(x_n)\Delta x.
+$$
+{\it First Fundamental Theorem:} If we fix $a$, and we define $F(x)$ for $x=b\geq a$ by $F(b)\ =\ \int_a^b f(x)\,dx$, then $F(x)$ is
+an antiderivative of $f(x)$ with $F(a)=0$.\footnote{
+We shall see that this remains valid for $b\leq a$ if we define $\int_a^b f(x)\,dx$ as $-\int_b^a f(x)\,dx$.
+}
+\item Algebraic: If we can reverse differentiation rules to get $f(x)$ as the derivative of a known function $F(x)$,
+then $\int_a^b f(x)\,dx=F(b)-F(a)$, the change in $F(x)$ from $x=a$ to $x=b$.
+This is known as  the {\it Second Fundamental Theorem}.
+\end{itemize}
+
+\begin{quote}
+{\it First Fundamental Theorem of Calculus.} Given a continuous function $f(x)$, 
+fix some $x=a$, and define $F(x)$ for any $x=b\geq a$ as:
+$$
+F(b) \ =\ \int_a^b\! f(x) \,dx\,.
+$$
+Then $F'(x)=f(x)$, and $F(x)$ is an antiderivative of $f(x)$ with initial value $F(a)=0$.
+\end{quote}
+%
+We will discuss this Theorem in detail later, but it should be clear that we defined
+the integral just so as to make it true. 
+\\[1em]
+
+
+
+

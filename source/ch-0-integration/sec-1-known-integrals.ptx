@@ -45,18 +45,39 @@
       </md>
       
       By using implicit differentiation to find derivatives of inverse functions, we saw that
-
-      <md>
-        <mrow>\frac{d}{dx} \arcsin x = \frac{1}{\sqrt{1-x^2}}, \qquad \frac{d}{dx} \arccos x = -\frac{1}{\sqrt{1-x^2}}, \qquad \frac{d}{dx} \arctan x = \frac{1}{1+x^2}, </mrow>
-        <mrow>\frac{d}{dx} \sec^{-1} x = \frac{1}{|x|\sqrt{x^2-1}}, \qquad \frac{d}{dx} \csc^{-1} x = -\frac{1}{|x|\sqrt{x^2-1}}, \qquad \frac{d}{dx} \cot^{-1} x = -\frac{1}{1+x^2}. </mrow>
-      </md>
+      <sbsgroup widths="48% 48%">
+        <sidebyside>
+          <p><md>\frac{d}{dx} \arcsin x = \frac{1}{\sqrt{1-x^2}}+C,</md></p>
+          <p><md>\frac{d}{dx} \csc^{-1} x = -\frac{1}{|x|\sqrt{x^2-1}} + C,</md></p>
+        </sidebyside>
+        <sidebyside>
+          <p><md>\frac{d}{dx} \arccos x = -\frac{1}{\sqrt{1-x^2}}+C,</md></p>
+          <p><md>\frac{d}{dx} \sec^{-1} x = \frac{1}{|x|\sqrt{x^2-1}} + C,</md></p>
+        </sidebyside>
+        <sidebyside>
+          <p><md>\frac{d}{dx} \arctan x = \frac{1}{1+x^2} + C,</md></p>
+          <p><md>\frac{d}{dx} \cot^{-1} x = -\frac{1}{1+x^2} + C.</md></p>
+        </sidebyside>
+      </sbsgroup>
 
       Therefore, we obtain the following antiderivative formulas:
 
-      <md>
-        <mrow> \int \frac{1}{\sqrt{1-x^2}} dx = \arcsin x, \qquad \int -\frac{1}{\sqrt{1-x^2}} dx = \arccos x, \qquad \int \frac{1}{1+x^2} dx = \arctan x </mrow>
-        <mrow> \int \frac{1}{|x|\sqrt{x^2-1}} dx = \sec^{-1} x, \qquad \int -\frac{1}{|x|\sqrt{x^2-1}} dx = \csc^{-1} x, \qquad \int -\frac{1}{1+x^2} dx = \cot^{-1} x. </mrow>
-      </md>
+      <sbsgroup widths="48% 48%">
+        <sidebyside>
+          <p><md> \int \frac{1}{\sqrt{1-x^2}} dx = \arcsin x + C,</md></p>
+          <p><md>\int -\frac{1}{|x|\sqrt{x^2-1}} dx = \csc^{-1} x + C,</md></p>
+        </sidebyside>
+
+        <sidebyside>
+          <p><md> \int -\frac{1}{\sqrt{1-x^2}} dx = \arccos x + C,</md></p>
+          <p><md> \int \frac{1}{|x|\sqrt{x^2-1}} dx = \sec^{-1} x + C,</md></p>
+        </sidebyside>
+
+        <sidebyside>
+          <p><md> \int \frac{1}{1+x^2} dx = \arctan x + C,</md></p>
+          <p><md> \int -\frac{1}{1+x^2} dx = \cot^{-1} x + C.</md></p>
+        </sidebyside>
+      </sbsgroup>
 
       Our only other integration method so far is the Substitution Method, which reverses the Chain Rule:
       <md> \int\! f(g(x))\,g'(x)\,dx \ =\ \int \! f(u)\,du\ =\ F(u) +C\ =\ F(g(x)) + C, </md> 
@@ -65,14 +86,14 @@
       Using the substitution method, and some of the known integrals above, we can also derive the following:
       
       <md>
-        \int \tan x \, dx = \ln |\sec x| \qquad \text{ and } \qquad \int \cot x \, dx = \ln |\csc x|.
+        \int \tan x \, dx = \ln |\sec x| + C \qquad \text{ and } \qquad \int \cot x \, dx = \ln |\csc x| + C.
       </md>
       
       We can conclude that since 
       <md>
         <mrow> \int \tan x \, dx \amp = \int \frac{\sin x}{\cos x} \, dx \qquad u= \cos x,\, du = -\sin x \,dx </mrow>
         <mrow> \amp = -\int \frac{1}{u} du = -\ln |u|</mrow>
-        <mrow> \amp = -\ln |\cos x| = = \ln |\cos x|^{-1} = \ln |\sec x| </mrow>
+        <mrow> \amp = -\ln |\cos x| = \ln |\cos x|^{-1} = \ln |\sec x| + C </mrow>
       </md>
 
       and similarly
@@ -128,20 +149,26 @@
       </md>
 
       This means that we can generalize every integral we have learned so far to include a linear scaling of the variable <m>x</m> in the integrand.
-
-      <em>Warning</em> This method only works for linear scalings. For example, 
-      <md>
-        \frac{d}{dx} e^{x^2} = 2x e^{x^2}, 
-      </md>
-      but
-      <md>\int e^{x^2} \, dx \neq \frac{1}{2x} e^{x^2} + C.</md>
-
-      Indeed, 
-      <md>
-        \frac{d}{dx} \frac{1}{2x} e^{x^2} =  e^{x^2} - \frac{1}{2x^2} e^{x^2} \neq e^{x^2}.
-      </md>
-      
     </p>
+
+    <remark xml:id="rmk-linear-scaling">
+      <title>A Linear Scaling Warning</title>
+      
+      <p>
+        This method only works for linear scalings. For example, 
+        <md>
+          \frac{d}{dx} e^{x^2} = 2x e^{x^2}, 
+        </md>
+        but
+        <md>\int e^{x^2} \, dx \neq \frac{1}{2x} e^{x^2} + C.</md>
+
+        Indeed, 
+        <md>
+          \frac{d}{dx} \left(\frac{1}{2x} e^{x^2}\right) =  e^{x^2} - \frac{1}{2x^2} e^{x^2} \neq e^{x^2}.
+        </md>
+        
+      </p>
+    </remark>
   </subsection>
 
   <subsection xml:id="ssec-ch-0-examples">
@@ -159,12 +186,13 @@
             As it stands, the integral is not in a form that we have discussed so far. However, we can use exponent rules to
             help us rewrite the integrand as
             <md>
-              (3e^2x)^3 = 3^3 e^{2x \cdot 3} = 27 e^{6x}.
+              (3e^2x)^3 = 3^3 \cdot e^{2x \cdot 3} = 27 e^{6x}.
             </md>
             Now we can use linear scaling to evaluate the integral:
 
             <md>
-              \int (3e^2x)^3 \, dx = \int 27 e^{6x} \, dx = 27 \int e^{6x} \, dx = 27 \cdot \frac{1}{6} e^{6x} + C = \frac{9}{2} e^{6x} + C.
+              <mrow>\int (3e^2x)^3 \, dx = \int 27 e^{6x} \, dx = \amp 27 \int e^{6x} \, dx </mrow>
+              <mrow>\amp = 27 \cdot \frac{1}{6} e^{6x} + C = \frac{9}{2} e^{6x} + C.</mrow>
             </md>
           </p>
         </solution>
@@ -201,7 +229,8 @@
               </md>
               Now that we can integrate each term individually, we can evaluate the integral:
               <md>
-                \int (e^x + e^{-x})^2 \, dx = \int e^{2x} \, dx + \int 2 \, dx + \int e^{-2x} \, dx = \frac{1}{2} e^{2x} + 2x - \frac{1}{2} e^{-2x} + C.
+                <mrow>\int (e^x + e^{-x})^2 \, dx \amp = \int e^{2x} \, dx + \int 2 \, dx + \int e^{-2x} \, dx </mrow>
+                <mrow>\amp = \frac{1}{2} e^{2x} + 2x - \frac{1}{2} e^{-2x} + C.</mrow>
               </md>
             </p>
           </solution>
@@ -238,7 +267,7 @@
             
             Instead, we can use the substitution method to evaluate the integral. The difficultly we have is that we would prefer to have
             one term raised to the hundredth power, which would allow us to apply our known rules. We can do that by calling that inside bit
-            <m>u</m> and rewriting everything from there. So let <m>u = x-1</m>, so that <m>du = dx</m>. Since we need to write everything from the 
+            <m>u</m> and rewriting everything from there. So let <m>u = x-1</m>, which makes <m>du = dx</m>. Since we need to write everything from the 
             original integral in terms of the new variable <m>u</m>, it is helpful to notice that since <m>u = x-1</m>, we have <m>x = u+1</m>. 
             Then, by substituting these new expressions into the original integral and expanding, we have
             <md>
@@ -261,11 +290,11 @@
         <solution>
           <p>
             Similar to our stategy in <xref ref="ex-substitution"/>, we can use a substitution to rewrite the integrand in a 
-            more manageable form. In this case, we can use the substitution <m>u = e^{2x}</m> (this would make the denominator <m>1+u^2</m>, 
-            and its derivative is a constant multiple of the numerator) and hence <m>du = 2e^{2x} dx = 2u du</m>. 
+            more manageable form. In this case, we can use the substitution <m>u = e^{2x}</m> (this makes the denominator <m>1+u^2</m>, and
+            the numerator looks like <m>du</m>) and hence <m>du = 2e^{2x} dx</m> and so <m>\frac{du}{2} = e^{2x} dx</m>.
             Then, we can rewrite the integral as
             <md>
-              <mrow>\int \frac{5e^{2x}}{1+e^{4x}} \, dx \amp = \int \frac{5u}{1+u^2} \cdot \frac{du}{2u} </mrow>
+              <mrow>\int \frac{5e^{2x}}{1+e^{4x}} \, dx \amp = \int \frac{5}{1+u^2} \cdot \frac{du}{2} </mrow>
               <mrow> \amp = \frac{5}{2} \int \frac{1}{1+u^2} \, du = \frac{5}{2} \arctan u + C </mrow>
               <mrow> \amp = \frac{5}{2} \arctan(e^{2x}) + C.</mrow>
             </md>

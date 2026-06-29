@@ -2,7 +2,131 @@
 
 <section xml:id="sec-3-avg-value" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Average Value of a Function</title>
+  <p>We can rewrite a Riemann sum with <m>\Delta x = \frac{b-a}n</m> as:</p>
 
-  <p> Text of section. </p>
+  <p><md>
+    \sum_{i=1}^n f(x_i)\,\Delta x
+    \ = \
+    \sum_{i=1}^n f(x_i)\,\frac{b{-}a}{n}
+    \ = \
+    (b{-}a)\,\frac{f(x_1)+\cdots +f(x_n)}{n}\,.
+  </md></p>
+
+  <p>This is just the interval length <m>(b{-}a)</m>
+  times the <em>average</em> of sample values <m>f(x_1),\ldots,f(x_n)</m>.
+  The integral is the limit of this as <m>n\to\infty</m>, which
+  becomes <m>(b{-}a)</m> times the average of
+  a denser and denser set of sample values:</p>
+
+  <p><md>
+    \int_a^b f(x)\,dx
+    \ =\
+    (b{-}a)\, \lim_{n\to\infty} \frac{f(x_1)+\cdots+f(x_n)}{n}\,.
+  </md></p>
+
+  <definition xml:id="def-average-value">
+    <statement>
+      <p>We define the limit at right to be the continuous average of <m>f(x)</m> over all <m>x\in[a,b]</m>:</p>
+
+      <md>
+        f_{\text{avg}}
+        \ \ \stackrel{\text{def}}=\ \
+        \lim_{n\to\infty} \frac{f(x_1)+\cdots+f(x_n)}{n}
+        \ =\
+        \frac{1}{b{-}a}\,\int_a^b f(x)\,dx\,.
+      </md>
+    </statement>
+  </definition>
+
+  <example xml:id="ex-average-sqrt-x">
+    <p>Find the average value of <m>f(x) = \sqrt{x}</m> over
+    <m>x\in[0,4]</m>. The indefinite integral is: <m>\int \sqrt{x}\,dx = \int x^{1/2}\,dx
+    = \frac23 x^{3/2}+C</m>. The average is thus:</p>
+
+    <p><md>
+      \frac{1}{4{-}0}\,\int_0^4 \sqrt{x}\,dx
+      \ =\ \frac{1}{4}\,\left.\frac23 x^{\frac32}\,\right|_{x=0}^{x=4}
+      \ =\ \frac{4}{3}
+      \ \approx\ 1.3\ .
+    </md></p>
+
+    <p>Over <m>x\in[0,4]</m> the function varies between <m>0\leq f(x) \leq 2</m>,
+    but <m>f_{\text{avg}}\approx 1.3</m> is above the midpoint 1.0,
+    because the graph bulges above the straight line from <m>(0,0)</m> to <m>(4,2)</m>.
+  </p>
+
+  <figure xml:id="fig-4-4-average-placeholder">
+    <caption>Placeholder for the average-value figure.</caption>
+    <image width="50%">
+      <shortdescription>Placeholder for 4-4-Average image.</shortdescription>
+      <latex-image>
+        \begin{tikzpicture}
+          \draw[->] (0, 0) -- (4.1, 0) node[right] {$x$}; % x-axis
+          \draw[->] (0, 0) -- (0, 2.1) node[above] {$y$}; % y-axis
+
+          \fill [gray!30, domain=0:4, samples=100] plot    ({\x}, {sqrt(\x)}) |- (0,0);
+          \draw[color=red, smooth, domain=0:4, samples=100,->] plot (\x, {sqrt(\x)});
+          \draw[blue, dashed, domain=0:4, samples=100,->] plot (\x, \x/2);
+          \draw (2,1.75) node {$y=\sqrt{x}$};
+        \end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>
+    A geometric way to picture the average is to think of the area under the curve as a fluid.
+    If we remove the curve <m>y=\sqrt x</m> and contain the fluid between walls <m>x=0</m> and <m>x=4</m>,
+    then it drops to a horizontal level which is the average. In the picture, the fluid under the straight 
+    line would fill the container to the midpoint level <m>y=1</m>; but with extra fluid under <m>y=\sqrt x</m> 
+    and above the line, the average is higher: <m>y=\frac43</m>.
+  </p>
+  </example>
+
+  <example xml:id="ex-average-velocity-check">
+    <p>In <m>\S1.4</m>, we intuitively took average velocity as distance traveled per time elapsed,
+    then defined instantaneous velocity as the short-time limit of this, leading to the definition of derivative.
+    To check the validity of our definition, we reverse this reasoning:
+    starting with position and velocity functions <m>s(t)</m> and <m>v(t)=s'(t)</m>,
+    we compute the average velocity using the definition of average and the Second Fundamental Theorem:</p>
+
+    <p><md>
+      v_{\text{avg}} \ =\  \frac{1}{b-a} \int_a^b v(t)\, dt
+      \ =\ \frac{1}{b-a} (s(b)-s(a))
+      \ =\ \frac{s(b)-s(a)}{b-a}.
+    </md></p>
+
+    <p>
+      That is, the average of <m>v(t)</m> is indeed
+      distance traveled <m>s(b)-s(a)</m> divided by the time elapsed <m>b-a</m>.
+      This expected result confirms that our axiomatic theory captures
+      the physical intuition that motivated it, making us more confident in
+      applying the theory to make physical predictions beyond our intuition.
+    </p>
+  </example>
+
+  <theorem xml:id="thm-mean-value-theorem-integrals">
+    <title>Mean Value Theorem for Integrals</title>
+    <statement>
+      <p>
+        If <m>f(x)</m> is continuous for <m>x\in[a,b]</m>,
+        then there is some <m>c\in(a,b)</m> where <m>f(c)</m> equals
+        the average of <m>f(x)</m> over the interval:
+        <md>f(c)=  f_{\text{avg}}=\frac{1}{b{-}a}\,\int_a^b f(x)\,dx.</md>
+    </p>
+    </statement>
+  </theorem>
+
+  <proof>
+    <p>
+      Take <m>I(x) =\int_a^x f(x)\,dx</m>. The Mean Value Theorem for Derivatives
+      (<m>\S3.2</m>) says there is a value <m>c\in(a,b)</m> where the tangent line for <m>I(x)</m>
+      is parallel to the secant line over the interval: <m>I'(c) = \frac{I(b)-I(a)}{b-a}</m>. By the First Fundamental Theorem, the
+      left side is <m>I'(c) = f(c)</m>; and since <m>I(a) = 0</m>, the right side is <m>\frac{I(b)}{b-a} =\frac{1}{b-a}\int_a^b f(x)\,dx</m>, as desired.
+    </p>
+  </proof>
+
+  <p>
+    In our example <m>f(x) = \sqrt{x}</m>, there is <m>c\in(0,4)</m> with <m>f(c)=\sqrt c = f_{\text{avg}}=\frac43</m>: i.e. <m>c=\frac{16}{9}</m>.
+  </p>
 
 </section>
