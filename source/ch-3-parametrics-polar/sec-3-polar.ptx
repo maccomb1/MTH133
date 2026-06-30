@@ -27,7 +27,22 @@
       <shortdescription>Placeholder for 10-3-Polar-Point.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=6cm, minimum height=4cm, font=\small] {10-3-Polar-Point};
+  \begin{scope}[x=1.35cm,y=1.35cm]
+    \def\rr{1.6}
+    \def\th{38}
+    \pgfmathsetmacro\px{\rr*cos(\th)}
+    \pgfmathsetmacro\py{\rr*sin(\th)}
+
+    \draw[->] (-0.2,0) -- (2.35,0) node[right] {$x$};
+    \draw[->] (0,-0.2) -- (0,2.1) node[above] {$y$};
+    \draw[thick,blue!70!black] (0,0) -- (\px,\py);
+    \fill (\px,\py) circle (1.3pt);
+    \draw[dashed] (\px,0) -- (\px,\py) -- (0,\py);
+    \draw[->,orange!80!black] (0.45,0) arc[start angle=0,end angle=\th,radius=0.45];
+    \node[right] at (\px,\py) {$P$};
+    \node[above] at ({0.5*\px},{0.5*\py}) {$r$};
+    \node[right] at (0.52,0.3) {$\theta$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -178,7 +193,19 @@ r \ = \ \frac{c}{a\cos(\theta)+b\sin(\theta)}
           <shortdescription>Placeholder for 10-3-Spiral.</shortdescription>
           <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8cm, minimum height=4.5cm, font=\small] {10-3-Spiral};
+  \begin{scope}[x=0.95cm,y=0.95cm]
+    \draw[->] (-4.2,0) -- (4.4,0) node[right] {$x$};
+    \draw[->] (0,-4.0) -- (0,4.2) node[above] {$y$};
+
+    \draw[thick,blue!70!black,domain=0:12.566,samples=420,smooth]
+      plot ({\x*cos(\x r)},{\x*sin(\x r)});
+
+    \draw[thick,red!70!black,dashed,domain=0:12.566,samples=420,smooth]
+      plot ({-\x*cos(\x r)},{-\x*sin(\x r)});
+
+    \node[blue!70!black] at (2.9,2.9) {$r=\theta$};
+    \node[red!70!black] at (-3.0,2.9) {rotation by $\pi$};
+  \end{scope}
 \end{tikzpicture}
           ]]></latex-image>
         </image>
@@ -253,7 +280,18 @@ r = \sin(\theta)\,.
       <shortdescription>Placeholder for 10-3-Sin-Theta.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8cm, minimum height=4.5cm, font=\small] {10-3-Sin-Theta};
+  \begin{scope}[x=1.6cm,y=1.6cm]
+    \draw[->] (-1.2,0) -- (1.2,0) node[right] {$x$};
+    \draw[->] (0,-0.2) -- (0,1.25) node[above] {$y$};
+    \draw[gray!50] (0,0) circle (0.5);
+
+    \draw[thick,blue!70!black,domain=0:6.28318,samples=300,smooth]
+      plot ({sin(\x r)*cos(\x r)},{sin(\x r)*sin(\x r)});
+
+    \fill (0,0) circle (1.0pt);
+    \node[right] at (0.1,0.52) {center $(0,\tfrac12)$};
+    \node[above] at (0.02,1.03) {$r=\sin\theta$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -280,7 +318,29 @@ r & 0 & 0.5 & 0.7 &  0.9 &  1 & 0.9 & 0.7 &  0.5 & 0
       <shortdescription>Placeholder for 10-3-Sin-Theta-Sample.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=12cm, minimum height=4.5cm, font=\small] {10-3-Sin-Theta-Sample};
+  \begin{scope}[x=1.0cm,y=1.0cm]
+    \begin{scope}[shift={(-3.0,0)}]
+      \draw[->] (-1.4,0) -- (1.4,0) node[right] {$x$};
+      \draw[->] (0,-0.2) -- (0,1.35) node[above] {$y$};
+      \draw[thick,blue!70!black,domain=0:6.28318,samples=320,smooth]
+        plot ({sin(\x r)*cos(\x r)},{sin(\x r)*sin(\x r)});
+      \foreach \ang in {0,30,45,60,90,120,135,150,180} {
+        \pgfmathsetmacro\rad{sin(\ang)}
+        \fill ({\rad*cos(\ang)},{\rad*sin(\ang)}) circle (1.2pt);
+      }
+      \node[below] at (0,-0.2) {polar points};
+    \end{scope}
+
+    \begin{scope}[shift={(2.9,0)}]
+      \draw[->] (-0.2,0) -- (3.5,0) node[right] {$\theta$};
+      \draw[->] (0,-0.1) -- (0,1.35) node[above] {$r$};
+      \draw[thick,domain=0:3.14159,samples=180,smooth] plot (\x,{sin(\x r)});
+      \foreach \xx in {0,0.5236,0.7854,1.0472,1.5708,2.0944,2.3562,2.6180,3.1416} {
+        \fill (\xx,{sin(\xx r)}) circle (1.1pt);
+      }
+      \node[below] at (1.7,-0.1) {table values};
+    \end{scope}
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -325,7 +385,17 @@ r = 1+\sin(2\theta)\,.
       <shortdescription>Placeholder for 10-3-Sin-2Theta-Rect.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=12cm, minimum height=4.5cm, font=\small] {10-3-Sin-2Theta-Rect};
+  \begin{scope}[x=1.0cm,y=1.0cm]
+    \draw[->] (-0.2,0) -- (7.0,0) node[right] {$\theta$};
+    \draw[->] (0,-0.2) -- (0,2.35) node[above] {$r$};
+    \draw[thick,blue!70!black,domain=0:6.28318,samples=260,smooth]
+      plot (\x,{1+sin(2*\x r)});
+    \draw[densely dotted] (2.3562,0) -- (2.3562,{1+sin(2*2.3562 r)});
+    \draw[densely dotted] (5.4978,0) -- (5.4978,{1+sin(2*5.4978 r)});
+    \node[below] at (2.3562,0) {$\tfrac{3\pi}4$};
+    \node[below] at (5.4978,0) {$\tfrac{7\pi}4$};
+    \node[right] at (5.4,2.0) {$r=1+\sin(2\theta)$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -346,7 +416,21 @@ r = 1+\sin(2\theta)\,.
       <shortdescription>Placeholder for 10-3-Sin-2Theta.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8cm, minimum height=4.5cm, font=\small] {10-3-Sin-2Theta};
+  \begin{scope}[x=1.25cm,y=1.25cm]
+    \draw[->] (-1.9,0) -- (1.9,0) node[right] {$x$};
+    \draw[->] (0,-1.9) -- (0,1.9) node[above] {$y$};
+
+    \draw[thick,blue!70!black,domain=-0.7854:2.3562,samples=260,smooth]
+      plot ({(1+sin(2*\x r))*cos(\x r)},{(1+sin(2*\x r))*sin(\x r)});
+    \draw[thick,green!60!black,domain=2.3562:5.4978,samples=260,smooth]
+      plot ({(1+sin(2*\x r))*cos(\x r)},{(1+sin(2*\x r))*sin(\x r)});
+
+    \draw[dashed,red!70!black] (-1.6,1.6) -- (1.6,-1.6);
+    \fill (0,0) circle (1.1pt);
+    \node[blue!70!black] at (1.0,1.2) {blue lobe};
+    \node[green!60!black] at (-1.1,-1.2) {green lobe};
+    \node[red!70!black] at (1.1,-1.45) {$y=-x$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -383,7 +467,38 @@ r \ = \ 1+\sin(2\theta) \ =\ 1 + 2\sin(\theta)\cos(\theta)
       <shortdescription>Boilerplate TikZ placeholder for 10-4-Delta-Y.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=6.5cm, minimum height=4cm, font=\small] {10-4-Delta-Y};
+  \begin{scope}[x=1.35cm,y=1.35cm]
+    \def\thA{28}
+    \def\thB{43}
+    \def\rA{1.2}
+    \def\rB{1.45}
+    \pgfmathsetmacro\xA{\rA*cos(\thA)}
+    \pgfmathsetmacro\yA{\rA*sin(\thA)}
+    \pgfmathsetmacro\xB{\rB*cos(\thB)}
+    \pgfmathsetmacro\yB{\rB*sin(\thB)}
+
+    \draw[->] (-0.2,0) -- (2.1,0) node[right] {$x$};
+    \draw[->] (0,-0.2) -- (0,2.0) node[above] {$y$};
+    \draw[thick,domain=12:72,samples=160,smooth]
+      plot ({(0.8+0.015*\x)*cos(\x)},{(0.8+0.015*\x)*sin(\x)});
+
+    \draw[dashed] (0,0) -- ({1.8*cos(\thA)},{1.8*sin(\thA)});
+    \draw[dashed] (0,0) -- ({1.8*cos(\thB)},{1.8*sin(\thB)});
+    \draw[thick,blue!70!black] (\xA,\yA) -- (\xB,\yB);
+    \draw[densely dotted] (\xA,\yA) -- (\xB,\yA) -- (\xB,\yB);
+    \draw[->,orange!80!black] (0.55,0) arc[start angle=0,end angle=\thA,radius=0.55];
+    \draw[->,orange!80!black] (0.75,0) arc[start angle=0,end angle=\thB,radius=0.75];
+
+    \fill (\xA,\yA) circle (1.1pt);
+    \fill (\xB,\yB) circle (1.1pt);
+    \node[right] at (\xA,\yA) {$(x_i,y_i)$};
+    \node[right] at (\xB,\yB) {$(x_{i+1},y_{i+1})$};
+    \node[below] at ({0.5*(\xA+\xB)},\yA) {$\Delta x$};
+    \node[right] at (\xB,{0.5*(\yA+\yB)}) {$\Delta y$};
+    \node[left] at (0.62,0.26) {$\theta_i$};
+    \node[left] at (0.87,0.53) {$\theta_{i+1}$};
+    \node[above] at ({0.5*(\xA+\xB)},{0.5*(\yA+\yB)}) {$\Delta L_i$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>

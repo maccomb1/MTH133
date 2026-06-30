@@ -57,7 +57,22 @@
           <shortdescription>Boilerplate TikZ placeholder for 10-1-Line-Segment.png.</shortdescription>
           <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=5cm, minimum height=3.4cm, font=\small] {10-1-Line-Segment};
+  \begin{scope}[x=0.95cm,y=0.58cm]
+    \draw[->] (0,0) -- (5.2,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,7.1) node[above] {$y$};
+
+    \draw[thin] (0.1,0.8) -- (4.9,7.2);
+    \draw[very thick,blue!70!black] (1,2) -- (4,6);
+
+    \fill (1,2) circle (1.4pt);
+    \fill (4,6) circle (1.4pt);
+    \node[below left] at (1,2) {$(1,2)$};
+    \node[above right] at (4,6) {$(4,6)$};
+
+    \draw[->,orange!80!black,thick] (1,2) -- (2.2,3.6);
+    \node[right] at (2.2,3.6) {$\vec v=(3,4)$};
+    \node[below] at (2.5,0) {$t\in[0,1]$};
+  \end{scope}
 \end{tikzpicture}
           ]]></latex-image>
         </image>
@@ -106,7 +121,25 @@ y=2+4\!\left(\tfrac13(x{-}1)\right)
       <shortdescription>Boilerplate TikZ placeholder for 10-1-Circle.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8cm, minimum height=4.2cm, font=\small] {10-1-Circle};
+  \begin{scope}[x=1.1cm,y=1.1cm]
+    \def\tt{0.95}
+    \pgfmathsetmacro\cx{cos(\tt r)}
+    \pgfmathsetmacro\cy{sin(\tt r)}
+
+    \draw[->] (-1.45,0) -- (1.45,0) node[right] {$x$};
+    \draw[->] (0,-1.35) -- (0,1.35) node[above] {$y$};
+
+    \draw[thick] (0,0) circle (1);
+    \fill (\cx,\cy) circle (1.3pt);
+    \draw[thick,blue!70!black] (0,0) -- (\cx,\cy);
+    \draw[->,orange!80!black] (0.45,0) arc[start angle=0,end angle=54,x radius=0.45,y radius=0.45];
+
+    \node[above right] at (\cx,\cy) {$(\cos t,\sin t)$};
+    \node[right] at (0.57,0.27) {$t$};
+    \node[below left] at (0,0) {$O$};
+    \node[below] at (1,0) {$(1,0)$};
+    \node[right] at (0.5,-1.15) {$x^2+y^2=1$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -215,7 +248,31 @@ x(t)^2 + y(t)^2  &=&
       <shortdescription>Boilerplate TikZ placeholder for 10-1-Cycloid.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=12cm, minimum height=4.2cm, font=\small] {10-1-Cycloid};
+  \begin{scope}[x=0.75cm,y=0.75cm]
+    \def\t0{4.2}
+    \pgfmathsetmacro\px{\t0-sin(\t0 r)}
+    \pgfmathsetmacro\py{1-cos(\t0 r)}
+
+    \draw[->] (-0.4,0) -- (13.1,0) node[right] {$x$};
+    \draw[->] (0,-0.3) -- (0,3.1) node[above] {$y$};
+
+    \draw[thick,blue!70!black,domain=0:12.566,samples=320,smooth]
+      plot (\x,{1-cos(\x r)});
+    \draw[thick,blue!70!black,domain=0:12.566,samples=320,smooth]
+      plot (\x,{\x-sin(\x r)});
+
+    \draw[thick] (\t0,1) circle (1);
+    \fill (\px,\py) circle (1.3pt);
+    \fill (\t0,1) circle (1.1pt);
+    \draw[dashed] (\t0,0) -- (\t0,1);
+    \draw[thick,orange!80!black] (\t0,1) -- (\px,\py);
+
+    \node[below] at (\t0,0) {$t$};
+    \node[above] at (\t0,1) {center $(t,1)$};
+    \node[above right] at (\px,\py) {$P(t)$};
+    \node[below] at (6.2,0) {$y=0$};
+    \node[above] at (8.4,2.2) {$x=t-\sin t,\ y=1-\cos t$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -299,7 +356,29 @@ x &=& \arccos(1{-}y)-\sqrt{2y{-}y^2}
       <shortdescription>Boilerplate TikZ placeholder for 10-1-Epicycloid.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=12cm, minimum height=4.2cm, font=\small] {10-1-Epicycloid};
+  \begin{scope}[x=1.6cm,y=1.6cm]
+    \def\tA{0.8}
+    \pgfmathsetmacro\xa{(7/6)*cos(\tA r)}
+    \pgfmathsetmacro\ya{(7/6)*sin(\tA r)}
+    \pgfmathsetmacro\xb{\xa + (1/6)*cos(7*\tA r)}
+    \pgfmathsetmacro\yb{\ya + (1/6)*sin(7*\tA r)}
+
+    \draw[->] (-1.9,0) -- (1.95,0) node[right] {$x$};
+    \draw[->] (0,-1.65) -- (0,1.7) node[above] {$y$};
+
+    \draw[thick] (0,0) circle (1);
+    \draw[dashed] (\xa,\ya) circle (0.1667);
+
+    \draw[thick,blue!70!black,domain=0:25.133,samples=500,smooth]
+      plot ({(7/6)*cos(\x r)+(1/6)*cos(7*\x r)},{(7/6)*sin(\x r)+(1/6)*sin(7*\x r)});
+
+    \fill (\xa,\ya) circle (0.7pt);
+    \fill (\xb,\yb) circle (0.9pt);
+    \draw[orange!80!black,thick] (\xa,\ya) -- (\xb,\yb);
+    \node[right] at (\xb,\yb) {$P(t)$};
+    \node[below] at (0,-1.03) {$R=1$};
+    \node[above] at (0.95,1.25) {$r=\tfrac16$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -375,7 +454,25 @@ f'(x(c))=\frac{y'(c)}{x'(c)}
           <shortdescription>Boilerplate TikZ placeholder for 10-2-Circle.png.</shortdescription>
           <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8.5cm, minimum height=4.2cm, font=\small] {10-2-Circle};
+  \begin{scope}[x=1.05cm,y=1.05cm]
+    \pgfmathsetmacro\s{sqrt(2)}
+
+    \draw[->] (-2.35,0) -- (2.35,0) node[right] {$x$};
+    \draw[->] (0,-2.25) -- (0,2.35) node[above] {$y$};
+
+    \draw[thick] (0,0) circle (2);
+    \fill (\s,\s) circle (1.4pt);
+    \draw[dashed] (0,0) -- (\s,\s);
+    \draw[thick,orange!80!black,domain=-0.15:2.7,samples=2]
+      plot (\x,{-\x+2*sqrt(2)});
+
+    \draw[->,blue!70!black,thick] (0,2) arc[start angle=90,end angle=40,radius=2];
+
+    \node[above right] at (\s,\s) {$(\sqrt2,\sqrt2)$};
+    \node[right] at (1.35,1.6) {$y=-x+2\sqrt2$};
+    \node[below left] at (0,0) {$O$};
+    \node[above left] at (-1.1,1.7) {$x^2+y^2=4$};
+  \end{scope}
 \end{tikzpicture}
           ]]></latex-image>
         </image>
@@ -430,7 +527,24 @@ y = -x+2\sqrt2\,.
           <shortdescription>Boilerplate TikZ placeholder for 10-2-Poly.png.</shortdescription>
           <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8.8cm, minimum height=4.4cm, font=\small] {10-2-Poly};
+  \begin{scope}[x=0.95cm,y=0.95cm]
+    \draw[->] (-0.1,0) -- (5.0,0) node[right] {$x$};
+    \draw[->] (0,-3.0) -- (0,3.0) node[above] {$y$};
+
+    \draw[thick,blue!70!black,variable=\u,domain=-2.15:2.15,samples=260,smooth]
+      plot ({\u*\u},{\u*\u*\u-3*\u});
+
+    \fill (3,0) circle (1.5pt);
+    \draw[thick,orange!80!black,domain=1.1:4.9,samples=2]
+      plot (\x,{sqrt(3)*(\x-3)});
+    \draw[thick,orange!80!black,domain=1.1:4.9,samples=2]
+      plot (\x,{-sqrt(3)*(\x-3)});
+
+    \node[above right] at (3,0) {$(3,0)$};
+    \node[right] at (3.85,1.45) {$y=\sqrt3(x-3)$};
+    \node[right] at (3.85,-1.45) {$y=-\sqrt3(x-3)$};
+    \node[left] at (1.2,2.45) {$(x(t),y(t))=(t^2,t^3-3t)$};
+  \end{scope}
 \end{tikzpicture}
           ]]></latex-image>
         </image>

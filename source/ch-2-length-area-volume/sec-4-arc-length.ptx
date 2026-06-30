@@ -18,7 +18,54 @@
       <shortdescription>Boilerplate TikZ placeholder for 8-1-Length.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=9cm, minimum height=5cm, font=\small] {8-1-Length};
+  \begin{scope}[x=1.35cm,y=1.05cm]
+    \def\a{0.5}
+    \def\b{4.0}
+
+    \draw[->] (0,0) -- (4.55,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,3.05) node[above] {$y$};
+
+    \draw[thick,domain=0.35:4.25,samples=180,smooth]
+      plot (\x,{0.3+0.45*\x+0.08*\x*\x});
+    \node[above right] at (2.6,2.2) {$y=f(x)$};
+
+    \foreach \k in {0,1,2,3,4,5} {
+      \pgfmathsetmacro\xx{0.5+0.7*\k}
+      \pgfmathsetmacro\yy{0.3+0.45*\xx+0.08*\xx*\xx}
+      \fill (\xx,\yy) circle (1.05pt);
+      \draw[densely dotted] (\xx,0) -- (\xx,\yy);
+    }
+
+    \draw[orange!75!black,thick]
+      (0.5,{0.3+0.45*0.5+0.08*0.5*0.5}) --
+      (1.2,{0.3+0.45*1.2+0.08*1.2*1.2}) --
+      (1.9,{0.3+0.45*1.9+0.08*1.9*1.9}) --
+      (2.6,{0.3+0.45*2.6+0.08*2.6*2.6}) --
+      (3.3,{0.3+0.45*3.3+0.08*3.3*3.3}) --
+      (4.0,{0.3+0.45*4.0+0.08*4.0*4.0});
+
+    \node[below] at (0.5,0) {$a=x_0$};
+    \node[below] at (1.9,0) {$x_i$};
+    \node[below] at (2.6,0) {$x_{i+1}$};
+    \node[below] at (4.0,0) {$b=x_n$};
+
+    \pgfmathsetmacro\xi{1.9}
+    \pgfmathsetmacro\xj{2.6}
+    \pgfmathsetmacro\yi{0.3+0.45*\xi+0.08*\xi*\xi}
+    \pgfmathsetmacro\yj{0.3+0.45*\xj+0.08*\xj*\xj}
+
+    \draw[blue!70!black,thick] (\xi,\yi) -- (\xj,\yj);
+    \draw[dashed] (\xi,\yi) -- (\xj,\yi);
+    \draw[dashed] (\xj,\yi) -- (\xj,\yj);
+
+    \draw[<->] (\xi,-0.2) -- (\xj,-0.2);
+    \node[below] at ({0.5*(\xi+\xj)},-0.2) {$\Delta x$};
+
+    \draw[<->] (\xj+0.12,\yi) -- (\xj+0.12,\yj);
+    \node[right] at (\xj+0.12,{0.5*(\yi+\yj)}) {$\Delta y$};
+
+    \node[above left] at ({0.5*(\xi+\xj)},{0.5*(\yi+\yj)}) {$\Delta L_i$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>

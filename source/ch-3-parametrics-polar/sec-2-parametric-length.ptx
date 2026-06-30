@@ -18,7 +18,61 @@
       <shortdescription>Boilerplate TikZ placeholder for 10-2-Length.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=10.5cm, minimum height=4.6cm, font=\small] {10-2-Length};
+  \begin{scope}[x=1.25cm,y=1.0cm]
+    \def\ta{0.45}
+    \def\tb{4.35}
+
+    \draw[->] (0,0) -- (5.3,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,3.35) node[above] {$y$};
+
+    \draw[thick,domain=0.3:4.7,samples=220,smooth]
+      plot (\x,{0.55+0.42*\x+0.22*sin((2.1*\x) r)});
+    \node[above right] at (3.05,2.45) {$(x(t),y(t))$};
+
+    \foreach \k in {0,1,2,3,4,5,6} {
+      \pgfmathsetmacro\tt{0.45+0.55*\k}
+      \pgfmathsetmacro\xx{\tt}
+      \pgfmathsetmacro\yy{0.55+0.42*\tt+0.22*sin((2.1*\tt) r)}
+      \fill (\xx,\yy) circle (1.0pt);
+      \draw[densely dotted] (\xx,0) -- (\xx,\yy);
+    }
+
+    \draw[orange!80!black,thick]
+      (0.45,{0.55+0.42*0.45+0.22*sin((2.1*0.45) r)}) --
+      (1.00,{0.55+0.42*1.00+0.22*sin((2.1*1.00) r)}) --
+      (1.55,{0.55+0.42*1.55+0.22*sin((2.1*1.55) r)}) --
+      (2.10,{0.55+0.42*2.10+0.22*sin((2.1*2.10) r)}) --
+      (2.65,{0.55+0.42*2.65+0.22*sin((2.1*2.65) r)}) --
+      (3.20,{0.55+0.42*3.20+0.22*sin((2.1*3.20) r)}) --
+      (3.75,{0.55+0.42*3.75+0.22*sin((2.1*3.75) r)});
+
+    \pgfmathsetmacro\ti{2.10}
+    \pgfmathsetmacro\tj{2.65}
+    \pgfmathsetmacro\xi{\ti}
+    \pgfmathsetmacro\xj{\tj}
+    \pgfmathsetmacro\yi{0.55+0.42*\ti+0.22*sin((2.1*\ti) r)}
+    \pgfmathsetmacro\yj{0.55+0.42*\tj+0.22*sin((2.1*\tj) r)}
+
+    \draw[blue!70!black,thick] (\xi,\yi) -- (\xj,\yj);
+    \draw[dashed] (\xi,\yi) -- (\xj,\yi);
+    \draw[dashed] (\xj,\yi) -- (\xj,\yj);
+
+    \node[below] at (0.45,0) {$t_0=a$};
+    \node[below] at (\xi,0) {$t_i$};
+    \node[below] at (\xj,0) {$t_{i+1}$};
+    \node[below] at (3.75,0) {$t_n=b$};
+
+    \draw[<->] (\xi,-0.24) -- (\xj,-0.24);
+    \node[below] at ({0.5*(\xi+\xj)},-0.24) {$\Delta t$};
+
+    \draw[<->] (\xj+0.12,\yi) -- (\xj+0.12,\yj);
+    \node[right] at (\xj+0.12,{0.5*(\yi+\yj)}) {$\Delta y$};
+
+    \draw[<->] (\xi,\yi-0.12) -- (\xj,\yi-0.12);
+    \node[below] at ({0.5*(\xi+\xj)},\yi-0.12) {$\Delta x$};
+
+    \node[above left] at ({0.5*(\xi+\xj)},{0.5*(\yi+\yj)}) {$\Delta L_i$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>

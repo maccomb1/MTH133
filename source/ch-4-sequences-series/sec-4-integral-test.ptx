@@ -74,7 +74,26 @@
       <shortdescription>Placeholder for 11-3-Integral-Divergence figure.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=5cm, minimum height=3.3cm, font=\small] {11-3-Integral-Divergence};
+  \begin{scope}[x=0.95cm,y=2.0cm]
+    \draw[->] (0,0) -- (8.8,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,1.2) node[above] {$y$};
+
+    \fill[blue!10]
+      (1,0)
+      -- plot[domain=1:8.2,samples=240,smooth] (\x,{1/\x})
+      -- (8.2,0) -- cycle;
+
+    \foreach \n in {1,2,3,4,5,6,7} {
+      \pgfmathsetmacro\h{1/\n}
+      \fill[orange!20] (\n,0) rectangle ({\n+1},\h);
+      \draw (\n,\h) -- ({\n+1},\h);
+      \node[below] at (\n,0) {\n};
+    }
+
+    \draw[thick,red!70!black,domain=1:8.2,samples=240,smooth] plot (\x,{1/\x});
+    \node[right,red!70!black] at (5.9,0.2) {$y=\tfrac1x$};
+    \node[above] at (4.8,1.02) {bars above curve};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -125,7 +144,26 @@
       <shortdescription>Placeholder for 11-3-Integral-Convergence figure.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=5cm, minimum height=3.3cm, font=\small] {11-3-Integral-Convergence};
+  \begin{scope}[x=0.95cm,y=1.9cm]
+    \draw[->] (0,0) -- (8.8,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,1.2) node[above] {$y$};
+
+    \fill[blue!10]
+      (1,0)
+      -- plot[domain=1:8.2,samples=240,smooth] (\x,{1/(\x*\x)})
+      -- (8.2,0) -- cycle;
+
+    \foreach \n in {1,2,3,4,5,6,7} {
+      \pgfmathsetmacro\h{1/((\n+1)*(\n+1))}
+      \fill[green!18] (\n,0) rectangle ({\n+1},\h);
+      \draw (\n,\h) -- ({\n+1},\h);
+      \node[below] at (\n,0) {\n};
+    }
+
+    \draw[thick,red!70!black,domain=1:8.2,samples=240,smooth] plot (\x,{1/(\x*\x)});
+    \node[right,red!70!black] at (5.8,0.08) {$y=\tfrac1{x^2}$};
+    \node[above] at (4.8,0.98) {bars under curve (from $n\ge2$)};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>

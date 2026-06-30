@@ -130,7 +130,18 @@
       <shortdescription>Placeholder for 11-6-Pos-Convergence.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=4.2cm, minimum height=3cm, font=\small] {11-6-Pos-Convergence};
+  \begin{scope}[x=0.8cm,y=0.8cm]
+    \draw[->] (0,0) -- (6.8,0) node[right] {$n$};
+    \draw[->] (0,0) -- (0,4.6) node[above] {$s_n$};
+    \draw[dashed] (0,4) -- (6.7,4);
+    \node[right] at (6.7,4) {$L$};
+
+    \draw[thick,blue!70!black]
+      plot[smooth] coordinates {(0.7,1.0) (1.4,2.1) (2.1,2.8) (2.8,3.25) (3.5,3.55) (4.2,3.74) (4.9,3.86) (5.6,3.93) (6.3,3.97)};
+    \foreach \k/\v in {1/1.0,2/2.1,3/2.8,4/3.25,5/3.55,6/3.74} {
+      \fill (0.7*\k,\v) circle (1pt);
+    }
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -142,7 +153,17 @@
       <shortdescription>Placeholder for 11-6-Pos-Infinity.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=4.2cm, minimum height=3cm, font=\small] {11-6-Pos-Infinity};
+  \begin{scope}[x=0.8cm,y=0.8cm]
+    \draw[->] (0,0) -- (6.8,0) node[right] {$n$};
+    \draw[->] (0,0) -- (0,4.8) node[above] {$s_n$};
+
+    \draw[thick,red!70!black]
+      plot[smooth] coordinates {(0.7,0.5) (1.4,1.0) (2.1,1.45) (2.8,2.0) (3.5,2.55) (4.2,3.1) (4.9,3.7) (5.6,4.2) (6.3,4.6)};
+    \foreach \k/\v in {1/0.5,2/1.0,3/1.45,4/2.0,5/2.55,6/3.1} {
+      \fill (0.7*\k,\v) circle (1pt);
+    }
+    \node[above right] at (6.15,4.45) {$\infty$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -168,7 +189,18 @@
       <shortdescription>Placeholder for 11-6-Osc-Convergence.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=4.2cm, minimum height=3cm, font=\small] {11-6-Osc-Convergence};
+  \begin{scope}[x=0.8cm,y=0.8cm]
+    \draw[->] (0,0) -- (6.8,0) node[right] {$n$};
+    \draw[->] (0,0) -- (0,4.8) node[above] {$s_n$};
+    \draw[dashed] (0,2.6) -- (6.7,2.6);
+    \node[right] at (6.7,2.6) {$L$};
+
+    \draw[thick,blue!70!black]
+      plot[smooth] coordinates {(0.7,3.6) (1.4,1.9) (2.1,3.0) (2.8,2.2) (3.5,2.8) (4.2,2.35) (4.9,2.7) (5.6,2.45) (6.3,2.62)};
+    \foreach \k/\v in {1/3.6,2/1.9,3/3.0,4/2.2,5/2.8,6/2.35} {
+      \fill (0.7*\k,\v) circle (1pt);
+    }
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -180,7 +212,17 @@
       <shortdescription>Placeholder for 11-6-Osc-Infinity.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=4.2cm, minimum height=3cm, font=\small] {11-6-Osc-Infinity};
+  \begin{scope}[x=0.8cm,y=0.8cm]
+    \draw[->] (0,0) -- (6.8,0) node[right] {$n$};
+    \draw[->] (0,0) -- (0,4.8) node[above] {$s_n$};
+
+    \draw[thick,red!70!black]
+      plot[smooth] coordinates {(0.7,1.3) (1.4,0.8) (2.1,1.9) (2.8,1.4) (3.5,2.6) (4.2,2.1) (4.9,3.4) (5.6,2.9) (6.3,4.2)};
+    \foreach \k/\v in {1/1.3,2/0.8,3/1.9,4/1.4,5/2.6,6/2.1} {
+      \fill (0.7*\k,\v) circle (1pt);
+    }
+    \node[above right] at (6.2,4.15) {$\infty$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -212,7 +254,19 @@
       <shortdescription>Placeholder for 11-6-Abs-Convergence.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=5.2cm, minimum height=3.2cm, font=\small] {11-6-Abs-Convergence};
+  \begin{scope}[x=0.72cm,y=0.72cm]
+    \draw[->] (0,0) -- (7.4,0) node[right] {$n$};
+    \draw[->] (0,0) -- (0,5.2) node[above] {$s_n,\ t_n$};
+    \draw[dashed] (0,4.5) -- (7.3,4.5);
+    \node[right] at (7.3,4.5) {$M$};
+
+    \draw[thick,blue!70!black]
+      plot[smooth] coordinates {(0.7,2.8) (1.4,1.7) (2.1,2.9) (2.8,2.2) (3.5,2.7) (4.2,2.35) (4.9,2.6) (5.6,2.45) (6.3,2.55) (7.0,2.5)};
+    \draw[thick,green!60!black]
+      plot[smooth] coordinates {(0.7,1.0) (1.4,1.8) (2.1,2.5) (2.8,3.0) (3.5,3.4) (4.2,3.7) (4.9,3.95) (5.6,4.1) (6.3,4.25) (7.0,4.35)};
+    \node[blue!70!black] at (5.6,2.9) {$s_n=\sum a_n$};
+    \node[green!60!black] at (5.6,3.7) {$t_n=\sum |a_n|$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -292,7 +346,24 @@
       <shortdescription>Placeholder for 11-6-Alt-Convergence.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=5.2cm, minimum height=3.2cm, font=\small] {11-6-Alt-Convergence};
+  \begin{scope}[x=0.75cm,y=0.75cm]
+    \draw[->] (0,0) -- (7.2,0) node[right] {$n$};
+    \draw[->] (0,0) -- (0,4.8) node[above] {$s_n$};
+    \draw[dashed] (0,2.6) -- (7.1,2.6);
+    \node[right] at (7.1,2.6) {$L$};
+
+    \draw[thick,blue!70!black]
+      plot[smooth] coordinates {(0.7,3.8) (1.4,2.0) (2.1,3.1) (2.8,2.2) (3.5,2.85) (4.2,2.35) (4.9,2.72) (5.6,2.45) (6.3,2.64) (7.0,2.53)};
+
+    \foreach \k/\v in {1/3.8,3/3.1,5/2.85,7/2.72,9/2.64} {
+      \fill[blue!70!black] ({0.35+0.7*(\k)},\v) circle (1pt);
+    }
+    \foreach \k/\v in {2/2.0,4/2.2,6/2.35,8/2.45,10/2.53} {
+      \fill[red!70!black] ({0.35+0.7*(\k)},\v) circle (1pt);
+    }
+    \node[blue!70!black] at (5.8,3.2) {odd partial sums};
+    \node[red!70!black] at (5.8,2.0) {even partial sums};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>

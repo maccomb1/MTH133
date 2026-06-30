@@ -24,7 +24,21 @@
       <shortdescription>Placeholder for 11-2-Bar-Graph.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=5.2cm, minimum height=3.2cm, font=\small] {11-2-Bar-Graph};
+  \begin{scope}[x=0.9cm,y=2.2cm]
+    \draw[->] (0,0) -- (8.6,0) node[right] {$n$};
+    \draw[->] (0,0) -- (0,1.2) node[above] {$a_n$};
+
+    \foreach \k in {1,2,3,4,5,6,7,8} {
+      \pgfmathsetmacro\h{1/\k}
+      \fill[blue!14] ({\k-0.45},0) rectangle ({\k+0.45},\h);
+      \draw[thick] ({\k-0.45},\h) -- ({\k+0.45},\h);
+      \node[below] at (\k,0) {\k};
+    }
+
+    \draw[red!70!black,thick,domain=0.8:8.2,samples=180,smooth] plot (\x,{1/\x});
+    \node[right,red!70!black] at (5.6,0.28) {$a_n=\tfrac1n$};
+    \node[above] at (3.8,0.86) {bar graph over $[0,n]$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -229,13 +243,13 @@
 
   <p><md>
     s\ =\  0.0626262\cdots, \qquad
-    	frac{1}{100}s \ =\ 0.0006262\cdots
+    	\frac{1}{100}s \ =\ 0.0006262\cdots
   </md></p>
 
   <p><md>
     (1-\tfrac{1}{100})s \ = \ 0.062
     \qquad\Longrightarrow\quad
-    	frac{99}{100}s  \ =\ \tfrac{62}{1000}
+    	\frac{99}{100}s  \ =\ \tfrac{62}{1000}
     \qquad\Longrightarrow\quad
     s  \ =\ \tfrac{62}{990}\,.
   </md></p>
@@ -266,7 +280,7 @@
 
   <p>Another example: <m>1.5626262\cdots \ =\ 1.5 + 0.0626262\cdots \ =\ \frac{15}{10} +\frac{62}{990} \ =\ \frac{1547}{990}</m>.</p>
 
-  <p>We can carry out such reasoning for any infinite decimal which starts with arbitrary digits, then becomes repeating. Conversely, for any fraction <m>a/b</m>, the long division <m>b\,)\hspace{-.35em}\overline{\ \vphantom{A}a\,}</m> will produce a repeated remainder after at most <m>b{-}1</m> steps, leading to a repeating decimal with a period of at most <m>b{-}1</m>. E.g. <m>1/7 = 0.\overline{142857}</m> has remainders <m>3,2,6,4,5,1,3,2, \ldots</m>.</p>
+  <p>We can carry out such reasoning for any infinite decimal which starts with arbitrary digits, then becomes repeating. Conversely, for any fraction <m>a/b</m>, the long division <m>b \,\, )\hspace{-.35em}\overline{\ \vphantom{A}a\,}</m> will produce a repeated remainder after at most <m>b{-}1</m> steps, leading to a repeating decimal with a period of at most <m>b{-}1</m>. E.g. <m>1/7 = 0.\overline{142857}</m> has remainders <m>3,2,6,4,5,1,3,2, \ldots</m>.</p>
 
   <p>Thus, any infinite decimal represents a real number, and the repeating decimals represent precisely the rational numbers (fractions)! For example, since we know <m>\sqrt 2 = 1.4142135623730950488\cdots</m> is an irrational number, not equal to any fraction, its decimal digits will never settle into an infinitely repeating pattern.</p>
 
@@ -294,7 +308,7 @@
     \ =\ \left\{\begin{array}{cl}
     \dfrac1{1-x} &amp; \text{if $|x|&lt;1$}
     \\[1em]
-    	ext{undefined} &amp;\text{if $|x|\geq1$}.
+    	\text{undefined} &amp;\text{if $|x|\geq1$}.
     \end{array}\right.
     \quad}
   </md></p>

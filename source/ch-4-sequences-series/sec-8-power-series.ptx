@@ -78,7 +78,27 @@
       <shortdescription>Placeholder for 11-8-Converge figure.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=5.2cm, minimum height=3.2cm, font=\small] {11-8-Converge};
+  \begin{scope}[x=2.2cm,y=0.8cm]
+    \draw[->] (-1.25,0) -- (1.25,0) node[right] {$x$};
+    \draw[->] (0,-0.4) -- (0,6.0) node[above] {$y$};
+
+    \draw[densely dotted] (-1,0) -- (-1,5.8);
+    \draw[densely dotted] (1,0) -- (1,5.8);
+    \node[below] at (-1,0) {$-1$};
+    \node[below] at (1,0) {$1$};
+
+    \draw[thick,red!70!black,domain=-0.95:0.85,samples=260,smooth]
+      plot (\x,{1/(1-\x)});
+    \draw[thick,blue!70!black,domain=-0.95:0.95,samples=220,smooth]
+      plot (\x,{1+\x+\x*\x});
+    \draw[thick,green!60!black,domain=-0.95:0.95,samples=240,smooth]
+      plot (\x,{1+\x+\x*\x+\x*\x*\x+\x*\x*\x*\x});
+
+    \node[red!70!black,right] at (0.63,4.4) {$f(x)=\frac1{1-x}$};
+    \node[blue!70!black,left] at (-0.7,0.9) {$1+x+x^2$};
+    \node[green!60!black,right] at (0.18,2.25) {$1+x+x^2+x^3+x^4$};
+    \node[above] at (0,5.7) {best approximation on $(-1,1)$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>

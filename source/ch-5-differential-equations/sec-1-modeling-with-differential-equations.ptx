@@ -33,7 +33,7 @@ f(x)  = \int \!a(x)\,dx = A(x)+C\,.
 
   <p><md><![CDATA[
 f''(t) \ =\ 1.5\, t,\quad
-  ext{initial conditions }
+  \text{initial conditions }
 f(0)  =  0, \ f'(0) = 0.
   ]]></md></p>
 

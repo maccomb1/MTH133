@@ -24,7 +24,35 @@ a < a{+}\Delta x <a{+}2\Delta x<\cdots < a{+}n\Delta x=b,
       <shortdescription>Boilerplate TikZ placeholder for 5-2-Area.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=6.5cm, minimum height=4.2cm, font=\small] {5-2-Area};
+  \begin{scope}[x=1.25cm,y=1.1cm]
+    \def\a{0.6}
+    \def\b{3.7}
+    \def\xi{2.35}
+    \def\d{0.45}
+
+    \draw[->] (0,0) -- (4.3,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,3.1) node[above] {$y$};
+
+    \fill[blue!12]
+      (\a,0)
+      -- plot[domain=\a:\b,samples=120,smooth] (\x,{0.55+0.4*\x-0.05*(\x-2.2)*(\x-2.2)})
+      -- (\b,0) -- cycle;
+
+    \draw[thick,domain=0.25:4.05,samples=140,smooth]
+      plot (\x,{0.55+0.4*\x-0.05*(\x-2.2)*(\x-2.2)});
+
+    \draw[dashed] (\a,0) -- (\a,{0.55+0.4*\a-0.05*(\a-2.2)*(\a-2.2)});
+    \draw[dashed] (\b,0) -- (\b,{0.55+0.4*\b-0.05*(\b-2.2)*(\b-2.2)});
+
+    \draw[fill=orange!18] (\xi,0) rectangle ({\xi+\d},{0.55+0.4*\xi-0.05*(\xi-2.2)*(\xi-2.2)});
+    \node[below] at (\a,0) {$a$};
+    \node[below] at (\b,0) {$b$};
+    \node[below] at ({\xi+0.5*\d},0) {$x_i$};
+    \node[right] at ({\xi+\d},{0.35*(0.55+0.4*\xi-0.05*(\xi-2.2)*(\xi-2.2))}) {$f(x_i)$};
+    \draw[<->] (\xi,-0.22) -- ({\xi+\d},-0.22);
+    \node[below] at ({\xi+0.5*\d},-0.22) {$\Delta x$};
+    \node[above right] at (2.6,2.2) {$y=f(x)$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -99,7 +127,27 @@ A = A(b) = \int_a^b\! f(x)\,dx \ =\ F(b)-F(a).
           <shortdescription>Boilerplate TikZ placeholder for 5-2-XCosX2.png.</shortdescription>
           <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=4.8cm, minimum height=4.0cm, font=\small] {5-2-XCosX2};
+  \begin{scope}[x=1.55cm,y=1.05cm]
+    \def\r{1.7724538509}
+
+    \draw[->] (-0.1,0) -- (2.05,0) node[right] {$x$};
+    \draw[->] (0,-2.05) -- (0,0.75) node[above] {$y$};
+
+    \fill[blue!14]
+      (0,0)
+      -- plot[domain=0:\r,samples=160,smooth] (\x,{\x*cos((\x*\x) r)})
+      -- plot[domain=\r:0,samples=2] (\x,{-\x})
+      -- cycle;
+
+    \draw[thick,domain=0:1.95,samples=180,smooth] plot (\x,{\x*cos((\x*\x) r)});
+    \draw[thick,domain=0:1.95,samples=2] plot (\x,{-\x});
+    \draw[densely dotted] (\r,-1.95) -- (\r,0.25);
+
+    \node[below] at (\r,0) {$\sqrt{\pi}$};
+    \node[left] at (0,0) {$0$};
+    \node[right] at (1.05,0.45) {$y=x\cos(x^2)$};
+    \node[below right] at (0.95,-1.2) {$y=-x$};
+  \end{scope}
 \end{tikzpicture}
           ]]></latex-image>
         </image>
@@ -145,7 +193,25 @@ A
       <shortdescription>Boilerplate TikZ placeholder for 5-2-Region.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=6.2cm, minimum height=4.0cm, font=\small] {5-2-Region};
+  \begin{scope}[x=1.35cm,y=1.15cm]
+    \def\a{0.8}
+    \def\b{3.7}
+
+    \draw[->] (0,0) -- (4.2,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,2.6) node[above] {$y$};
+
+    \fill[blue!12]
+      (\a,0)
+      -- plot[domain=\a:\b,samples=140,smooth] (\x,{1.9-0.27*(\x-2.2)*(\x-2.2)})
+      -- (\b,0) -- cycle;
+
+    \draw[thick,domain=0.45:3.95,samples=140,smooth] plot (\x,{1.9-0.27*(\x-2.2)*(\x-2.2)});
+    \draw[dashed] (\a,0) -- (\a,{1.9-0.27*(\a-2.2)*(\a-2.2)});
+    \draw[dashed] (\b,0) -- (\b,{1.9-0.27*(\b-2.2)*(\b-2.2)});
+    \node[below] at (\a,0) {$a$};
+    \node[below] at (\b,0) {$b$};
+    \node[above right] at (2.55,1.95) {$y=f(x)$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -157,7 +223,24 @@ A
       <shortdescription>Boilerplate TikZ placeholder for 5-2-Rotated-Region.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=6.2cm, minimum height=4.0cm, font=\small] {5-2-Rotated-Region};
+  \begin{scope}[x=1.2cm,y=0.9cm]
+    \draw[->] (0.2,0) -- (5.3,0) node[right] {$x$-axis};
+
+    \draw[thick] (1.0,0) ellipse (0.35 and 0.12);
+    \draw[thick] (4.3,0) ellipse (0.35 and 0.12);
+
+    \draw[thick] plot[smooth] coordinates {(1.0,0.12) (1.8,0.8) (2.7,1.05) (3.6,0.78) (4.3,0.12)};
+    \draw[thick] plot[smooth] coordinates {(1.0,-0.12) (1.8,-0.8) (2.7,-1.05) (3.6,-0.78) (4.3,-0.12)};
+
+    \draw[dashed] (1.0,0.12) -- (1.0,-0.12);
+    \draw[dashed] (4.3,0.12) -- (4.3,-0.12);
+    \draw[dashed] (2.7,1.05) -- (2.7,-1.05);
+    \node[below] at (1.0,-0.18) {$a$};
+    \node[below] at (4.3,-0.18) {$b$};
+
+    \draw[->,thick] (2.0,0.35) arc[start angle=40,end angle=330,x radius=0.6,y radius=0.25];
+    \node[right] at (2.55,0.62) {rotation};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -171,7 +254,28 @@ A
       <shortdescription>Boilerplate TikZ placeholder for 5-2-Rotated-Disk.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=7.5cm, minimum height=4.2cm, font=\small] {5-2-Rotated-Disk};
+  \begin{scope}[x=1.2cm,y=0.95cm]
+    \def\xi{2.9}
+    \def\dx{0.42}
+    \def\R{0.82}
+
+    \draw[->] (0.1,0) -- (5.5,0) node[right] {$x$};
+
+    \draw[thick] (1.0,0) ellipse (0.3 and 0.11);
+    \draw[thick] (4.8,0) ellipse (0.3 and 0.11);
+    \draw[thick] plot[smooth] coordinates {(1.0,0.11) (2.0,0.72) (3.0,0.95) (4.0,0.62) (4.8,0.11)};
+    \draw[thick] plot[smooth] coordinates {(1.0,-0.11) (2.0,-0.72) (3.0,-0.95) (4.0,-0.62) (4.8,-0.11)};
+
+    \draw[fill=orange!18,draw=orange!60!black] (\xi,\R) -- ({\xi+\dx},\R) -- ({\xi+\dx},-{\R}) -- (\xi,-\R) -- cycle;
+    \draw[draw=orange!60!black] (\xi,0) ellipse (0.2 and \R);
+    \draw[draw=orange!60!black] ({\xi+\dx},0) ellipse (0.2 and \R);
+
+    \draw[<->] (\xi,-1.15) -- ({\xi+\dx},-1.15);
+    \node[below] at ({\xi+0.5*\dx},-1.15) {$\Delta x$};
+    \draw[<->] ({\xi+\dx+0.35},0) -- ({\xi+\dx+0.35},\R);
+    \node[right] at ({\xi+\dx+0.35},{0.5*\R}) {$f(x_i)$};
+    \node[below] at (\xi,-0.16) {$x_i$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -208,7 +312,22 @@ V \ =\ \lim_{n\to\infty} \sum_{i=1}^n \pi f(x_i)^2\,\Delta x
           <shortdescription>Boilerplate TikZ placeholder for 5-2-Trumpet.png.</shortdescription>
           <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=6.0cm, minimum height=4.0cm, font=\small] {5-2-Trumpet};
+  \begin{scope}[x=1.45cm,y=1.35cm]
+    \draw[->] (0.6,0) -- (2.35,0) node[right] {$x$};
+    \draw[->] (0.8,0) -- (0.8,1.25) node[above] {$y$};
+
+    \fill[blue!12]
+      (1,0) -- plot[domain=1:2,samples=140,smooth] (\x,{1/\x}) -- (2,0) -- cycle;
+    \draw[thick,domain=1:2,samples=140,smooth] plot (\x,{1/\x});
+    \draw[dashed] (1,0) -- (1,1);
+    \draw[dashed] (2,0) -- (2,0.5);
+    \node[below] at (1,0) {$1$};
+    \node[below] at (2,0) {$2$};
+    \node[right] at (1.45,0.9) {$y=\tfrac1x$};
+
+    \draw[->,thick] (2.18,0.88) arc[start angle=70,end angle=415,x radius=0.14,y radius=0.28];
+    \node[right] at (2.25,0.88) {rotate};
+  \end{scope}
 \end{tikzpicture}
           ]]></latex-image>
         </image>
@@ -247,7 +366,35 @@ V
           <shortdescription>Boilerplate TikZ placeholder for 5-2-Y-Rotation.png.</shortdescription>
           <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=9.0cm, minimum height=4.5cm, font=\small] {5-2-Y-Rotation};
+  \begin{scope}[x=2.2cm,y=1.65cm]
+    \def\ys{1.55}
+
+    \draw[->] (0.85,0.6) -- (1.52,0.6) node[right] {$x$};
+    \draw[->] (0.95,0.8) -- (0.95,2.22) node[above] {$y$};
+
+    \fill[blue!12]
+      (1,1)
+      -- (1,2)
+      -- ({sqrt(2)},2)
+      -- plot[domain=sqrt(2):1,samples=120,smooth] (\x,{\x*\x})
+      -- cycle;
+
+    \draw[thick] (1,0.9) -- (1,2.1);
+    \draw[thick] (1,2) -- ({sqrt(2)},2);
+    \draw[thick,domain=1:1.48,samples=140,smooth] plot (\x,{\x*\x});
+
+    \draw[densely dotted] (1,1) -- ({sqrt(2)},1);
+    \draw[orange!70!black,thick] (1,\ys) -- ({sqrt(\ys)},\ys);
+
+    \node[below] at (1,0.6) {$1$};
+    \node[left] at (0.95,1) {$1$};
+    \node[left] at (0.95,2) {$2$};
+    \node[above right] at (1.28,1.73) {$y=x^2$};
+    \node[right] at (1.34,2.03) {$y=2$};
+    \node[above] at (1.16,\ys) {$\sqrt{y_i}-1$};
+    \node[left] at (1,1.74) {$x=1$};
+    \draw[->,thick] (1.03,1.25) arc[start angle=-20,end angle=250,x radius=0.07,y radius=0.24];
+  \end{scope}
 \end{tikzpicture}
           ]]></latex-image>
         </image>
@@ -292,7 +439,31 @@ V
       <shortdescription>Boilerplate TikZ placeholder for 5-2-Man-O-War.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8.5cm, minimum height=4.4cm, font=\small] {5-2-Man-O-War};
+  \begin{scope}[x=1.35cm,y=1.0cm]
+    \draw[->] (-1.35,0) -- (1.35,0) node[right] {$x$};
+    \draw[->] (0,-1.35) -- (0,1.35) node[above] {$y$};
+    \draw[thick] (0,0) circle (1);
+
+    \def\c{0.45}
+    \pgfmathsetmacro\s{sqrt(1-\c*\c)}
+    \draw[orange!70!black,thick] (\c,-\s) -- (\c,\s);
+    \fill (\c,-\s) circle (1.1pt);
+    \fill (\c,\s) circle (1.1pt);
+    \node[below] at (\c,0) {$x=c$};
+    \node[right] at (\c,0.5*\s) {$2\sqrt{1-c^2}$};
+
+    \begin{scope}[shift={(3.7,-0.35)}]
+      \draw[->] (-0.2,0) -- (2.5,0) node[right] {$y$};
+      \draw[->] (0,-0.2) -- (0,1.9) node[above] {$z$};
+
+      \def\b{1.8}
+      \def\h{0.9}
+      \fill[blue!10] (0,0) -- (\b,0) -- ({0.5*\b},\h) -- cycle;
+      \draw[thick] (0,0) -- (\b,0) -- ({0.5*\b},\h) -- cycle;
+      \node[below] at ({0.5*\b},0) {base $=2\sqrt{1-c^2}$};
+      \node[right] at ({0.5*\b},0.5*\h) {height $=\sqrt{1-c^2}$};
+    \end{scope}
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>

@@ -137,7 +137,29 @@
       <shortdescription>Placeholder for 11-10-Sin-Taylor.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8cm, minimum height=4cm, font=\small] {11-10-Sin-Taylor};
+  \begin{scope}[x=1.05cm,y=1.25cm]
+    \draw[->] (-3.4,0) -- (3.4,0) node[right] {$x$};
+    \draw[->] (0,-1.9) -- (0,1.9) node[above] {$y$};
+
+    \draw[thick,black,domain=-3.1416:3.1416,samples=260,smooth]
+      plot (\x,{sin(\x r)});
+    \draw[thick,red!70!black,domain=-3.1416:3.1416,samples=2]
+      plot (\x,{\x});
+    \draw[thick,green!60!black,domain=-3.1416:3.1416,samples=220,smooth]
+      plot (\x,{\x-\x*\x*\x/6});
+    \draw[thick,blue!70!black,domain=-3.1416:3.1416,samples=240,smooth]
+      plot (\x,{\x-\x*\x*\x/6 + \x*\x*\x*\x*\x/120});
+
+    \draw[densely dotted] (-0.5,0) -- (-0.5,{sin(-0.5 r)});
+    \draw[densely dotted] (0.5,0) -- (0.5,{sin(0.5 r)});
+    \draw[densely dotted] (-1.5,0) -- (-1.5,{sin(-1.5 r)});
+    \draw[densely dotted] (1.5,0) -- (1.5,{sin(1.5 r)});
+
+    \node[black] at (2.6,0.35) {$\sin(x)$};
+    \node[red!70!black] at (2.35,1.55) {$T_1=x$};
+    \node[green!60!black] at (-2.55,-1.35) {$T_3=x-\frac{x^3}{3!}$};
+    \node[blue!70!black] at (-2.25,1.35) {$T_5=x-\frac{x^3}{3!}+\frac{x^5}{5!}$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>

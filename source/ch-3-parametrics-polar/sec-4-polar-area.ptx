@@ -13,7 +13,31 @@
       <shortdescription>Boilerplate TikZ placeholder for 10-4-Delta-A.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=6.5cm, minimum height=4cm, font=\small] {10-4-Delta-A};
+  \begin{scope}[x=1.35cm,y=1.35cm]
+    \def\thA{24}
+    \def\thB{38}
+    \def\ri{1.45}
+
+    \draw[->] (-0.2,0) -- (2.0,0) node[right] {$x$};
+    \draw[->] (0,-0.2) -- (0,1.9) node[above] {$y$};
+
+    \draw[dashed] (0,0) -- ({1.8*cos(\thA)},{1.8*sin(\thA)});
+    \draw[dashed] (0,0) -- ({1.8*cos(\thB)},{1.8*sin(\thB)});
+
+    \fill[blue!14]
+      (0,0) -- ({\ri*cos(\thA)},{\ri*sin(\thA)})
+      arc[start angle=\thA,end angle=\thB,radius=\ri]
+      -- cycle;
+
+    \draw[thick] (0,0) -- ({\ri*cos(\thA)},{\ri*sin(\thA)});
+    \draw[thick] (0,0) -- ({\ri*cos(\thB)},{\ri*sin(\thB)});
+    \draw[thick] ({\ri*cos(\thA)},{\ri*sin(\thA)}) arc[start angle=\thA,end angle=\thB,radius=\ri];
+
+    \draw[<->] ({0.78*cos(\thA)},{0.78*sin(\thA)}) -- ({0.78*cos(\thB)},{0.78*sin(\thB)});
+    \node[right] at (0.66,0.43) {$\Delta\theta$};
+    \node[above] at ({0.52*\ri*cos((\thA+\thB)/2)},{0.52*\ri*sin((\thA+\thB)/2)}) {$r_i$};
+    \node[above] at ({\ri*cos((\thA+\thB)/2)},{\ri*sin((\thA+\thB)/2)}) {$\Delta A_i$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -63,7 +87,38 @@ A \ =\ \lim_{n\to\infty} \sum_{i=1}^n \Delta A_i
       <shortdescription>Boilerplate TikZ placeholder for 10-4-Delta-L.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8cm, minimum height=4.5cm, font=\small] {10-4-Delta-L};
+  \begin{scope}[x=1.35cm,y=1.35cm]
+    \def\thA{22}
+    \def\thB{36}
+    \def\ri{1.25}
+    \def\dr{0.23}
+    \pgfmathsetmacro\xA{\ri*cos(\thA)}
+    \pgfmathsetmacro\yA{\ri*sin(\thA)}
+    \pgfmathsetmacro\xB{(\ri+\dr)*cos(\thB)}
+    \pgfmathsetmacro\yB{(\ri+\dr)*sin(\thB)}
+
+    \draw[->] (-0.2,0) -- (2.1,0) node[right] {$x$};
+    \draw[->] (0,-0.2) -- (0,2.0) node[above] {$y$};
+
+    \draw[thick,domain=12:48,samples=140,smooth]
+      plot ({(1.05+0.012*\x)*cos(\x)},{(1.05+0.012*\x)*sin(\x)});
+
+    \draw[dashed] (0,0) -- ({1.8*cos(\thA)},{1.8*sin(\thA)});
+    \draw[dashed] (0,0) -- ({1.8*cos(\thB)},{1.8*sin(\thB)});
+
+    \draw[thick,blue!70!black] (\xA,\yA) -- (\xB,\yB);
+    \draw[orange!80!black,thick] (\xA,\yA) -- ({(\ri+\dr)*cos(\thA)},{(\ri+\dr)*sin(\thA)});
+    \draw[orange!80!black,thick] ({(\ri+\dr)*cos(\thA)},{(\ri+\dr)*sin(\thA)})
+      arc[start angle=\thA,end angle=\thB,radius={\ri+\dr}];
+
+    \fill (\xA,\yA) circle (1.1pt);
+    \fill (\xB,\yB) circle (1.1pt);
+    \node[right] at (\xA,\yA) {$P_i$};
+    \node[right] at (\xB,\yB) {$P_{i+1}$};
+    \node[above] at ({0.5*(\xA+\xB)},{0.5*(\yA+\yB)}) {$\Delta L_i$};
+    \node[right] at ({(\ri+0.5*\dr)*cos(\thA)},{(\ri+0.5*\dr)*sin(\thA)}) {$\Delta r$};
+    \node[above] at ({(\ri+\dr)*cos((\thA+\thB)/2)},{(\ri+\dr)*sin((\thA+\thB)/2)}) {$r_i\Delta\theta$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -107,7 +162,21 @@ L \ =\ \lim_{n\to\infty} \sum_{i=1}^n \Delta L_i
       <shortdescription>Boilerplate TikZ placeholder for 10-4-Cardioid-Rect.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=7.2cm, minimum height=4.4cm, font=\small] {10-4-Cardioid-Rect};
+  \begin{scope}[x=1.0cm,y=1.0cm]
+    \draw[->] (-0.2,0) -- (6.65,0) node[right] {$\theta$};
+    \draw[->] (0,-0.2) -- (0,2.35) node[above] {$r$};
+
+    \draw[thick,blue!70!black,domain=0:6.28318,samples=260,smooth]
+      plot (\x,{1-cos(\x r)});
+    \draw[thick,red!70!black] (0.0,0.5) -- (6.28318,0.5);
+    \draw[densely dotted] (1.0472,0) -- (1.0472,0.5);
+    \draw[densely dotted] (5.2360,0) -- (5.2360,0.5);
+
+    \node[below] at (1.0472,0) {$\tfrac\pi3$};
+    \node[below] at (5.2360,0) {$\tfrac{5\pi}3$};
+    \node[right] at (4.8,1.45) {$r=1-\cos\theta$};
+    \node[right,red!70!black] at (4.7,0.6) {$r=\tfrac12$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -121,7 +190,29 @@ L \ =\ \lim_{n\to\infty} \sum_{i=1}^n \Delta L_i
       <shortdescription>Boilerplate TikZ placeholder for 10-4-Cardioid.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=8cm, minimum height=4.6cm, font=\small] {10-4-Cardioid};
+  \begin{scope}[x=1.45cm,y=1.45cm]
+    \draw[->] (-2.1,0) -- (1.4,0) node[right] {$x$};
+    \draw[->] (0,-1.8) -- (0,1.8) node[above] {$y$};
+
+    \fill[blue!10,domain=1.0472:5.2360,samples=260,smooth]
+      (0,0)
+      -- plot ({(1-cos(\x r))*cos(\x r)},{(1-cos(\x r))*sin(\x r)})
+      -- cycle;
+
+    \fill[white,domain=1.0472:5.2360,samples=220,smooth]
+      (0,0)
+      -- plot ({0.5*cos(\x r)},{0.5*sin(\x r)})
+      -- cycle;
+
+    \draw[thick,blue!70!black,domain=0:6.28318,samples=420,smooth]
+      plot ({(1-cos(\x r))*cos(\x r)},{(1-cos(\x r))*sin(\x r)});
+    \draw[thick,red!70!black] (0,0) circle (0.5);
+
+    \draw[densely dotted] (0,0) -- ({0.5*cos(60)},{0.5*sin(60)});
+    \draw[densely dotted] (0,0) -- ({0.5*cos(300)},{0.5*sin(300)});
+    \node[right] at (-1.45,1.2) {$r=1-\cos\theta$};
+    \node[right,red!70!black] at (0.53,0.1) {$r=\tfrac12$};
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
@@ -171,7 +262,19 @@ A
       <shortdescription>Boilerplate TikZ placeholder for 10-4-Double-Spiral.png.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
-  \node[draw, minimum width=6.5cm, minimum height=4.2cm, font=\small] {10-4-Double-Spiral};
+  \begin{scope}[x=1.15cm,y=1.15cm]
+    \def\b{0.1103178001}
+    \draw[->] (-2.6,0) -- (2.6,0) node[right] {$x$};
+    \draw[->] (0,-2.3) -- (0,2.3) node[above] {$y$};
+
+    \draw[thick,blue!70!black,domain=-18.85:12.566,samples=500,smooth]
+      plot ({exp(\b*\x)*cos(\x r)},{exp(\b*\x)*sin(\x r)});
+
+    \draw[dashed] (1,0) circle (0.001);
+    \node[above left] at (1.25,0.9) {$r=e^{b\theta},\ b=\frac{\ln 2}{2\pi}$};
+    \node[below] at (1,0) {$(1,0)$};
+    \draw[->,orange!80!black,thick] (1.6,0.2) arc[start angle=10,end angle=210,x radius=0.8,y radius=0.55];
+  \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
     </image>
