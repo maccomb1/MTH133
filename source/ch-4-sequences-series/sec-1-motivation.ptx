@@ -5,11 +5,12 @@
 
   <p> 
     In this chapter we will be working towards one of the most important ideas from calculus: approximating functions via power series.
-    To see why this is such an important idea, let us start with the following question: How can we compute <m>\sin(7^{circ})</m>? The angle here
+    To see why this is such an important idea, let us start with the following question: How can we compute <m>\sin(7^{\circ})</m>? The angle here
     is mostly irrelevant, but so far we only know how to compute standard trigonometric functions for a couple of angles, and only because we know the angles
-    for 3 right triangles (the <m>30-60-90</m>, the <m>45-45-90</m>, and a degenerate triangle). Admittedly, there are also clever tricks to compute 
-    some other quantities (such as <m>\sin(15^{circ})</m>) by using angle sum and difference formulas, but this is incredibly difficult, and does not help us 
-    answer the original question. 
+    for <m>3</m> right triangles (the <m>30-60-90</m> triangle, the <m>45-45-90</m> triangle, and a degenerate triangle). Admittedly, there are also clever tricks to compute 
+    some other quantities (such as <m>\sin(15^{\circ})</m>)<fn>Since <m>\cos(2\theta) = 1 - 2\sin^2(\theta)</m>, we can rearrange this to find that <m>\sin(\theta) = \sqrt{\frac{1-\cos(2\theta)}{2}}</m> 
+    or equivalently <m>\sin(\frac{\theta}{2}) = \sqrt{\frac{1-\cos(\theta)}{2}}</m> (for <m>\theta \leq \pi)</m>. Therefore, <m>\sin(15^{\circ}) = \sin(\frac{30^{\circ}}{2}) = \sqrt{\frac{1-\cos(30^{\circ})}{2}} = \frac{\sqrt{2-\sqrt{3}}}{2}</m>.</fn> 
+    by using angle sum and difference formulas, but this is incredibly difficult, and does not help us answer the original question. 
   </p>
   <p>
     So what approaches can we take? Perhaps you might recall that <m>\lim_{x \to 0}\frac{\sin x}{x} = 1</m>, where <m>x</m> is measured in radians. 
@@ -99,19 +100,60 @@
 
   <p>
     Before we get too excited, we should note that this procedure that we will develop does not work this well for all functions. For instance, the 
-    approximations for the functions <m>\frac{1}{1-x}</m> look like <md>1 + x + x^2 + x^3 + x^4 + \cdots</md>. In fact, if we graph these
+    approximations for the function <m>\frac{1}{1-x}</m> look like <md>1 + x + x^2 + x^3 + x^4 + \cdots</md>. In fact, if we graph these
     successive approximations, we get the following:
   </p>
 
   <interactive desmos="ilpy56egwt" width="60%" aspect="2:3" />
 
   <p>
-    What we notice about this is that while adding on more terms does improve the approximations, it only does so for <m>x</m> between <m>-1</m> and <m>1</m>.
+    What we notice about this is that while adding on more terms does improve the approximations, it only does so for <m>x</m> between <m>-1</m> and <m>1</m>. While
+    one say that there is no need to approximate <m>\frac{1}{1-x}</m> at all, this function will still be vital in our studies, and its behavior is more typical
+    of what can happen with other functions we care about.
   </p>
   
   <p>
     In order to answer questions about how to obtain these approximations, when they are valid, and the errors associated with them, we
     need to develop a general theory of sequences and series. 
   </p>
+
+<figure xml:id="figure-geometric-series">
+
+  <caption>Approximation of <m>1/(1-x)</m></caption>
+
+  <!-- Aspect ratio should be 20:7, the ":8" is to avoid extra scroll bars --> 
+  <interactive xml:id="interactive-geometric-series" platform="jsxgraph" width="80%">
+
+  <slate xml:id="geometric-plot" surface="jessiecode" axis="true" grid="false">
+    n = slider([-4.5,4], [-1.5,4], [0,0,2]) 
+      &lt;&lt; 
+        name:"n",
+        snapWidth:1,
+        point1: &lt;&lt; frozen: true &gt;&gt;,
+        point2: &lt;&lt; frozen: true &gt;&gt;
+      &gt;&gt;;
+
+    fGraph = functiongraph(function(x) {
+      sum = 0;
+      for (k = 0; k &lt;= n.Value(); k++) {
+        sum += Math.pow(x,k);
+      }
+      return sum; });
+
+    fGraph = functiongraph(function(x) {
+    return 5*x^2 + 2*x + 1;
+    });
+    
+    </slate> 
+
+    <instructions>
+      <p>
+        Use the slider to set the number of terms in the approximation of <m>1/(1-x)</m>.
+      </p>
+    </instructions> 
+
+  </interactive>
+
+</figure>
 
 </section>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="ch0-additional-problems">
+<title>Additional Problems</title>
+<p>
+    Here, we provide some additional practice problems. Working through these problems is recommended for reinforcing concepts discussed in this chapter and preparing for exams!
+</p>
+
+<problem>
+    <statement>
+        <p>
+            Evaluate <md>\int \frac{e^{3x}}{e^x+e^{5x}} \, dx.</md>
+        </p>
+    </statement>
+    <solution>
+        <p>
+            In situations where it may appear that none of our strategies are helpful, we should consider possible ways to rewrite or simplify the integrand. 
+            Here, we can factor out <m>e^x</m> from the denominator to simplify the integrand. The integral becomes:
+            <md>\int \frac{e^{3x}}{e^x(1+e^{4x})} \, dx = \int \frac{e^x\cdot e^{2x}}{e^x \cdot (1+e^{4x})} \, dx = \int \frac{e^{2x}}{1+e^{4x}} \, dx.</md>
+            Now, we see that the problem is similar to <xref ref="ex-sub-2"/>, where we can let <m>u = e^{2x}</m> to simplify the integral further. The integral then becomes:
+            <md>\int \frac{e^{2x}}{1+e^{4x}} \, dx = \int \frac{du}{1+u^2} = \arctan(u) + C = \arctan(e^{2x}) + C.</md>
+        </p>
+    </solution>
+</problem>
+
+</section>

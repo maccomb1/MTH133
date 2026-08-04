@@ -82,22 +82,22 @@
 
   <p><md><![CDATA[
 \begin{array}{lcl}
-    ext{Given $(r,\theta)$}
+    \text{Given $(r,\theta)$}
 &\quad\Longrightarrow\quad&
-    ext{find $(x,y)$ with}\ 
+    \text{find $(x,y)$ with}\ 
 \left\{\begin{array}{rcl}
 x &=& r\cos(\theta)
 \\[.3em]
 y &=& r\sin(\theta)\,.
 \end{array}\right.
 \\[2em]
-    ext{Given $(x,y)$}
+    \text{Given $(x,y)$}
 &\quad\Longrightarrow\quad&
-    ext{find $(r,\theta)$ with}\ 
+    \text{find $(r,\theta)$ with}\ 
 \left\{\begin{array}{rcl}
 r &=& \sqrt{x^2+y^2}
 \\[.3em]
-    heta &=& \arctan(\tfrac yx)\,.
+    \theta &=& \arctan(\tfrac yx)\,.
 \end{array}\right.
 \end{array}
   ]]></md></p>

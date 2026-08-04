@@ -433,45 +433,11 @@ V
   <m>x^2+y^2= 1</m> in the <m>xy</m>-plane, and its vertical cross section above each line <m>x=c</m>
   is an isosceles right triangle, with height equal to half its base length.</p>
 
-  <figure xml:id="fig-5-2-man-o-war-placeholder">
-    <caption>Placeholder for 5-2-Man-O-War.</caption>
-    <image width="55%">
-      <shortdescription>Boilerplate TikZ placeholder for 5-2-Man-O-War.png.</shortdescription>
-      <latex-image><![CDATA[
-\begin{tikzpicture}
-  \begin{scope}[x=1.35cm,y=1.0cm]
-    \draw[->] (-1.35,0) -- (1.35,0) node[right] {$x$};
-    \draw[->] (0,-1.35) -- (0,1.35) node[above] {$y$};
-    \draw[thick] (0,0) circle (1);
-
-    \def\c{0.45}
-    \pgfmathsetmacro\s{sqrt(1-\c*\c)}
-    \draw[orange!70!black,thick] (\c,-\s) -- (\c,\s);
-    \fill (\c,-\s) circle (1.1pt);
-    \fill (\c,\s) circle (1.1pt);
-    \node[below] at (\c,0) {$x=c$};
-    \node[right] at (\c,0.5*\s) {$2\sqrt{1-c^2}$};
-
-    \begin{scope}[shift={(3.7,-0.35)}]
-      \draw[->] (-0.2,0) -- (2.5,0) node[right] {$y$};
-      \draw[->] (0,-0.2) -- (0,1.9) node[above] {$z$};
-
-      \def\b{1.8}
-      \def\h{0.9}
-      \fill[blue!10] (0,0) -- (\b,0) -- ({0.5*\b},\h) -- cycle;
-      \draw[thick] (0,0) -- (\b,0) -- ({0.5*\b},\h) -- cycle;
-      \node[below] at ({0.5*\b},0) {base $=2\sqrt{1-c^2}$};
-      \node[right] at ({0.5*\b},0.5*\h) {height $=\sqrt{1-c^2}$};
-    \end{scope}
-  \end{scope}
-\end{tikzpicture}
-      ]]></latex-image>
-    </image>
-  </figure>
+  <image source="assets/ch-2/portuguese-man-o-war-facts.jpg" width="50%"></image>
 
   <p>The slices are defined over <m>x\in[-1,1]</m>, and each slice at <m>x=x_i</m> has a base segment
   reaching from <m>y=-\sqrt{1-x^2}</m> to <m>y=\sqrt{1-x^2}</m>, a thickness <m>\Delta x</m>,
-  and an area <m>\frac12</m>(base)<m>\times</m>(height) <m>= \tfrac12\!\left(\!2\sqrt{1{-}x_i^2}\,\right)\!\!\left(\!\sqrt{1{-}x_i^2}\,\right)</m>.
+  and an area <m>\frac12</m>(base)<m>\times</m>(height) <m>= \tfrac12!\left(!2\sqrt{1{-}x_i^2}\,\right)!\!\!\left(!\sqrt{1{-}x_i^2}\,\right)</m>.
   Thus:</p>
 
   <p><md><![CDATA[

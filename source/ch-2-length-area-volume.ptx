@@ -12,5 +12,6 @@
   <xi:include href="./ch-2-length-area-volume/sec-2-volumes.ptx" />
   <xi:include href="./ch-2-length-area-volume/sec-3-avg-value.ptx" />
   <xi:include href="./ch-2-length-area-volume/sec-4-arc-length.ptx" />
+  <xi:include href="./ch-2-length-area-volume/sec-ch2-additional-problems.ptx" />
 
 </chapter>

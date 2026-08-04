@@ -11,5 +11,6 @@
   <xi:include href="./ch-5-differential-equations/sec-1-modeling-with-differential-equations.ptx" />
   <xi:include href="./ch-5-differential-equations/sec-2-feedback-models.ptx" />
   <xi:include href="./ch-5-differential-equations/sec-3-pop-modeling-logistic.ptx" />
+  <xi:include href="./ch-5-differential-equations/sec-ch5-additional-problems.ptx" />
 
 </chapter>

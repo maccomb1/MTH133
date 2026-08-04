@@ -12,5 +12,6 @@
   <xi:include href="./ch-3-parametrics-polar/sec-2-parametric-length.ptx" />
   <xi:include href="./ch-3-parametrics-polar/sec-3-polar.ptx" />
   <xi:include href="./ch-3-parametrics-polar/sec-4-polar-area.ptx" />
+  <xi:include href="./ch-3-parametrics-polar/sec-ch3-additional-problems.ptx" />
   
 </chapter>

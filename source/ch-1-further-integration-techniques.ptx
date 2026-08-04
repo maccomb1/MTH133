@@ -21,5 +21,6 @@
   <xi:include href="./ch-1-further-integration-techniques/sec-4-partial-fractions.ptx" />
   <xi:include href="./ch-1-further-integration-techniques/sec-5-indefinite-integrals.ptx" />
   <xi:include href="./ch-1-further-integration-techniques/sec-6-what-technique-should-i-use.ptx" />
+  <xi:include href="./ch-1-further-integration-techniques/sec-ch1-additional-problems.ptx" />
 
 </chapter>

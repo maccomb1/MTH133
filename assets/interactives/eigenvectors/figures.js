@@ -1,0 +1,2 @@
+/* Placeholder utility file for the eigenvectors interactive.
+   Replace with the real figures.js implementation. */

@@ -473,7 +473,7 @@
     <example xml:id="ex-growth-hierarchy">
       <p>
         Determine the growth type for each of the sequences below.
-        <ol>
+        <ol marker="a">
           <li><m>a_n = 10!</m></li>
           <li><m>a_n = 2^n + n</m></li>
           <li><m>a_n = 3n + n!</m></li>
@@ -484,7 +484,7 @@
       <solution>
         <p>
           In each problem, the <xref ref="prop-growth-hierarchy"> Growth Hierarchy Proposition</xref> tells us that we need to identify which terms are highest in the hierarchy.
-          <ol>
+          <ol marker="a">
             <li>Despite the factorial, <m>10!</m> is ultimately just a (very large) number, so this is a <em>constant sequence</em></li>
             <li>Since the <m>2^n</m> term is highest in the hierarchy, this sequence exhibits <em>exponential growth</em></li>
             <li>Since the <m>n!</m> term is highest in the hierarchy, this sequence exhibits <em>superexponential growth</em></li>

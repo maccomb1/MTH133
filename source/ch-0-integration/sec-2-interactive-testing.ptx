@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-2-int-testing">
+    <title>Testing</title>
+
+    <figure xml:id="figure-eigenvectors">
+
+    <caption>Eigenvector demonstration</caption>
+
+    <interactive xml:id="interactive-eigenvectors" platform="javascript" width="90%" aspect="4:5" source="interactives/eigenvectors/figures.js interactives/eigenvectors/eigenvectors.js">
+
+    <slate xml:id="sliders" aspect="4:1" surface="canvas"/>
+
+    <slate xml:id="eigenvectors" aspect="4:4" surface="canvas"/>
+
+    <instructions>
+
+    <p>
+    Let <m>\vec{x}</m> be represented by the red arrow, and <m>A\vec{x}</m> by the grey arrow, for a <m>2\times 2</m> matrix <m>A</m>.  Drag the <em>tip</em> of the red arrow to see the grey arrow change.  Or drag the blue sliders to change the numerical values of the four entries of the <m>2\times 2</m> matrix <m>A</m>.  You will not see the grey vector until you change the matrix using one of the two sliders on the left.  Why is that?  What are the eigenvectors of the initial matrix?
+    </p>
+
+    </instructions>
+
+    </interactive>
+
+    </figure>
+
+
+
+
+
+    
+    <figure xml:id="figure-quadratic-slope">
+
+  <caption>Finding the Tangent Line of a Quadratic Function</caption>
+
+  <!-- Aspect ratio should be 20:7, the ":8" is to avoid extra scroll bars --> <interactive xml:id="interactive-quadratic-tangent" platform="jsxgraph" width="80%">
+
+  <slate xml:id="quadratic-tangent-plot" surface="jessiecode" axis="true" grid="false">
+    a = slider([-4.5,4], [-1.5,4], [-2,1,2])
+    &lt;&lt;
+    name:"a",
+    snapWidth:0.25,
+    point1: &lt;&lt; frozen: true &gt;&gt;,
+    point2: &lt;&lt; frozen: true &gt;&gt;
+    &gt;&gt;;
+    b = slider([-4.5,3.5], [-1.5,3.5], [-4,-1,4])
+    &lt;&lt;
+    name:"b",
+    snapWidth:0.5,
+    point1: &lt;&lt; frozen: true &gt;&gt;,
+    point2: &lt;&lt; frozen: true &gt;&gt;
+    &gt;&gt;;
+    c = slider([-4.5,3], [-1.5,3], [-4,0,4])
+    &lt;&lt;
+    name:"c",
+    snapWidth:0.5,
+    point1: &lt;&lt; frozen: true &gt;&gt;,
+    point2: &lt;&lt; frozen: true &gt;&gt;
+    &gt;&gt;;
+    fGraph = functiongraph(function(x) {
+    return a.Value()*x^2 + b.Value()*x + c.Value();
+    });
+    P = glider(1,0, fGraph);
+    Q = point(2,2)
+    &lt;&lt; name:"P" &gt;&gt;;
+    secant = line(P,Q)
+    &lt;&lt; color: (function() {
+    m = (Q.Y() - P.Y())/(Q.X() - P.X());
+    dydx = 2*a.Value()*P.X() + b.Value();
+    cVal = "red";
+    if (abs(m-dydx) &lt; 0.001) {
+    cVal = "blue";
+    }
+    return cVal;
+    })
+    &gt;&gt;;
+    dydxValue = text(-4, 1.5, function() {
+    m = 2*a.Value()*P.X() + b.Value();
+    return ("dy/dx = " + trunc(m,3));
+    })
+    &lt;&lt; frozen: true &gt;&gt;;
+    mValue = text(-4, 1, function() {
+    m = (Q.Y() - P.Y())/(Q.X() - P.X());
+    return ("m = " + trunc(m,3));
+    })
+    &lt;&lt; frozen: true &gt;&gt;;
+  </slate> <instructions>
+
+  <p>
+Use the sliders to set the parameters of the quadratic <m>f(x)=ax^2+bx+c</m>. Drag the point <m>A</m> on the graph and the point <m>P</m> to define a line. Try to make the line tangent at the point at <m>A</m> and observe the resulting slope of the tangent line.
+  </p>
+
+  </instructions> </interactive>
+
+</figure>
+    
+    
+</section>

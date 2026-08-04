@@ -16,65 +16,65 @@
     <caption>Placeholder for 10-2-Length.</caption>
     <image width="72%">
       <shortdescription>Boilerplate TikZ placeholder for 10-2-Length.png.</shortdescription>
-      <latex-image><![CDATA[
-\begin{tikzpicture}
-  \begin{scope}[x=1.25cm,y=1.0cm]
-    \def\ta{0.45}
-    \def\tb{4.35}
+      <latex-image>
+        \begin{tikzpicture}
+          \begin{scope}[x=1.25cm,y=1.0cm]
+            \def\ta{0.45}
+            \def\tb{4.35}
 
-    \draw[->] (0,0) -- (5.3,0) node[right] {$x$};
-    \draw[->] (0,0) -- (0,3.35) node[above] {$y$};
+            \draw[->] (0,0) -- (5.3,0) node[right] {$x$};
+            \draw[->] (0,0) -- (0,3.35) node[above] {$y$};
 
-    \draw[thick,domain=0.3:4.7,samples=220,smooth]
-      plot (\x,{0.55+0.42*\x+0.22*sin((2.1*\x) r)});
-    \node[above right] at (3.05,2.45) {$(x(t),y(t))$};
+            \draw[thick,domain=0.3:4.7,samples=220,smooth]
+              plot (\x,{0.55+0.42*\x+0.22*sin((2.1*\x) r)});
+            \node[above right] at (3.05,2.45) {$(x(t),y(t))$};
 
-    \foreach \k in {0,1,2,3,4,5,6} {
-      \pgfmathsetmacro\tt{0.45+0.55*\k}
-      \pgfmathsetmacro\xx{\tt}
-      \pgfmathsetmacro\yy{0.55+0.42*\tt+0.22*sin((2.1*\tt) r)}
-      \fill (\xx,\yy) circle (1.0pt);
-      \draw[densely dotted] (\xx,0) -- (\xx,\yy);
-    }
+            \foreach \k in {0,1,2,3,4,5,6} {
+              \pgfmathsetmacro\tt{0.45+0.55*\k}
+              \pgfmathsetmacro\xx{\tt}
+              \pgfmathsetmacro\yy{0.55+0.42*\tt+0.22*sin((2.1*\tt) r)}
+              \fill (\xx,\yy) circle (1.0pt);
+              \draw[densely dotted] (\xx,0) -- (\xx,\yy);
+            }
 
-    \draw[orange!80!black,thick]
-      (0.45,{0.55+0.42*0.45+0.22*sin((2.1*0.45) r)}) --
-      (1.00,{0.55+0.42*1.00+0.22*sin((2.1*1.00) r)}) --
-      (1.55,{0.55+0.42*1.55+0.22*sin((2.1*1.55) r)}) --
-      (2.10,{0.55+0.42*2.10+0.22*sin((2.1*2.10) r)}) --
-      (2.65,{0.55+0.42*2.65+0.22*sin((2.1*2.65) r)}) --
-      (3.20,{0.55+0.42*3.20+0.22*sin((2.1*3.20) r)}) --
-      (3.75,{0.55+0.42*3.75+0.22*sin((2.1*3.75) r)});
+            \draw[orange!80!black,thick]
+              (0.45,{0.55+0.42*0.45+0.22*sin((2.1*0.45) r)}) --
+              (1.00,{0.55+0.42*1.00+0.22*sin((2.1*1.00) r)}) --
+              (1.55,{0.55+0.42*1.55+0.22*sin((2.1*1.55) r)}) --
+              (2.10,{0.55+0.42*2.10+0.22*sin((2.1*2.10) r)}) --
+              (2.65,{0.55+0.42*2.65+0.22*sin((2.1*2.65) r)}) --
+              (3.20,{0.55+0.42*3.20+0.22*sin((2.1*3.20) r)}) --
+              (3.75,{0.55+0.42*3.75+0.22*sin((2.1*3.75) r)});
 
-    \pgfmathsetmacro\ti{2.10}
-    \pgfmathsetmacro\tj{2.65}
-    \pgfmathsetmacro\xi{\ti}
-    \pgfmathsetmacro\xj{\tj}
-    \pgfmathsetmacro\yi{0.55+0.42*\ti+0.22*sin((2.1*\ti) r)}
-    \pgfmathsetmacro\yj{0.55+0.42*\tj+0.22*sin((2.1*\tj) r)}
+            \pgfmathsetmacro\ti{2.10}
+            \pgfmathsetmacro\tj{2.65}
+            \pgfmathsetmacro\xi{\ti}
+            \pgfmathsetmacro\xj{\tj}
+            \pgfmathsetmacro\yi{0.55+0.42*\ti+0.22*sin((2.1*\ti) r)}
+            \pgfmathsetmacro\yj{0.55+0.42*\tj+0.22*sin((2.1*\tj) r)}
 
-    \draw[blue!70!black,thick] (\xi,\yi) -- (\xj,\yj);
-    \draw[dashed] (\xi,\yi) -- (\xj,\yi);
-    \draw[dashed] (\xj,\yi) -- (\xj,\yj);
+            \draw[blue!70!black,thick] (\xi,\yi) -- (\xj,\yj);
+            \draw[dashed] (\xi,\yi) -- (\xj,\yi);
+            \draw[dashed] (\xj,\yi) -- (\xj,\yj);
 
-    \node[below] at (0.45,0) {$t_0=a$};
-    \node[below] at (\xi,0) {$t_i$};
-    \node[below] at (\xj,0) {$t_{i+1}$};
-    \node[below] at (3.75,0) {$t_n=b$};
+            \node[below] at (0.45,0) {$t_0=a$};
+            \node[below] at (\xi,0) {$t_i$};
+            \node[below] at (\xj,0) {$t_{i+1}$};
+            \node[below] at (3.75,0) {$t_n=b$};
 
-    \draw[<->] (\xi,-0.24) -- (\xj,-0.24);
-    \node[below] at ({0.5*(\xi+\xj)},-0.24) {$\Delta t$};
+            \draw[<->] (\xi,-0.24) -- (\xj,-0.24);
+            \node[below] at ({0.5*(\xi+\xj)},-0.24) {$\Delta t$};
 
-    \draw[<->] (\xj+0.12,\yi) -- (\xj+0.12,\yj);
-    \node[right] at (\xj+0.12,{0.5*(\yi+\yj)}) {$\Delta y$};
+            \draw[<->] (\xj+0.12,\yi) -- (\xj+0.12,\yj);
+            \node[right] at (\xj+0.12,{0.5*(\yi+\yj)}) {$\Delta y$};
 
-    \draw[<->] (\xi,\yi-0.12) -- (\xj,\yi-0.12);
-    \node[below] at ({0.5*(\xi+\xj)},\yi-0.12) {$\Delta x$};
+            \draw[<->] (\xi,\yi-0.12) -- (\xj,\yi-0.12);
+            \node[below] at ({0.5*(\xi+\xj)},\yi-0.12) {$\Delta x$};
 
-    \node[above left] at ({0.5*(\xi+\xj)},{0.5*(\yi+\yj)}) {$\Delta L_i$};
-  \end{scope}
-\end{tikzpicture}
-      ]]></latex-image>
+            \node[above left] at ({0.5*(\xi+\xj)},{0.5*(\yi+\yj)}) {$\Delta L_i$};
+          \end{scope}
+        \end{tikzpicture}
+      </latex-image>
     </image>
   </figure>
 
@@ -109,62 +109,76 @@ L  \ = \ \int_a^b\!\!\! \sqrt{x'(t)^2+y'(t)^2}\ dt\,.
 
   <example xml:id="ex-10-2-circle-circumference">
     <statement>
-      <p>Compute the circumference length of a circle of radius <m>r</m>.
-      The standard parametrization is <m>(x(t),y(t))=(r \cos(t), r\sin(t))</m> for <m>t\in[0,2\pi]</m>, with
-      derivative <m>(x'(t),y'(t)) = (-r\sin(t),r\cos(t))</m>, and length:</p>
-
-      <p><md><![CDATA[
-L \ =\ \int_0^{2\pi} \!\!\!\!\sqrt{(-r\sin(t))^2 + (r\cos(t))^2}\,dt
-\ =\ \int_0^{2\pi} \!\!r \sqrt{\sin^2(t) + \cos^2(t)}\,dt
-      ]]></md></p>
-
-      <p><md><![CDATA[
-\ =\ \int_0^{2\pi} \!\!r \,dt \ =\ \left.\vphantom{\sum}rt\,\right|_{t=0}^{t=2\pi} \ =\ 2\pi r\,.
-      ]]></md></p>
-
-      <p>The integral is so easy because the particle travels at constant speed <m>r</m>.
-      This was much harder in <m>\S8.1</m>, using our previous formula <m>L = \int_{-r}^r\! \sqrt{1{+}f'(x)^2}\ dx</m>, where <m>f(x)=\sqrt{r^2-x^2}</m>.</p>
+      <p>Compute the circumference length of a circle of radius <m>r</m> using the
+        standard parametrization <md>(x(t),y(t))=(r \cos(t), r\sin(t))</md> for <m>t\in[0,2\pi]</m>.
+      </p>
     </statement>
+    <solution>
+      <p>
+      We start by computing the derivative, which is 
+
+      <md>(x'(t),y'(t)) = (-r\sin(t),r\cos(t)).</md> 
+      Therefore, its length is:</p>
+
+      <p><md>
+        <mrow> L \amp = \int_0^{2\pi} \sqrt{(-r\sin(t))^2 + (r\cos(t))^2}\,dt </mrow>
+        <mrow> \amp = \int_0^{2\pi} r \, \sqrt{\sin^2(t) + \cos^2(t)}\,dt</mrow>
+        <mrow> \amp =\ \int_0^{2\pi} r \,dt = \left.\vphantom{\sum}rt\,\right|_{t=0}^{t=2\pi} \ =\ 2\pi r.</mrow>
+      </md></p>
+
+      <p>
+        The integral is so easy because the particle travels at constant speed <m>r</m>.
+        This was much harder in <m>\S8.1</m>, using our previous formula <m>L = \int_{-r}^r\! \sqrt{1{+}f'(x)^2}\ dx</m>, where <m>f(x)=\sqrt{r^2-x^2}</m>.
+      </p>
+      </solution>
   </example>
 
   <example xml:id="ex-10-2-cycloid-length">
     <statement>
-      <p>Find the length of one arch of the cycloid from <m>\S10.1</m>:
-      <m>(x(t),y(t))=(t{-}\sin(t), 1{-}\cos(t))</m> for <m>t\in[0,2\pi]</m>. We have <m>(x'(t),y'(t))=
-      (1{-}\cos(t),\, \sin(t))</m>, so:</p>
+      <p>Find the length of one arch of the cycloid from <m>\S10.1</m>.</p>
+    </statement>
 
-      <p><md><![CDATA[
-L
-\ =\
-\int_0^{2\pi}\!\!\! \sqrt{(1{-}\cos(t))^2+(\sin(t))^2}\,dt
-\ =\
-\int_0^{2\pi}\!\!\! \sqrt{1{-}2\cos(t)+\cos^2(t)+\sin^2(t)}\,dt
-      ]]></md></p>
+    <solution>
+      <p>
+        As in 10.1, a parameterization of the cycloid is
+      <md>(x(t),y(t))=(t{-}\sin(t), 1{-}\cos(t)).</md>
+      
+      To get just the first arch, we only consider <m>t\in[0,2\pi]</m>. We then compute the derivative which is
+       <md>(x'(t),y'(t))= (1{-}\cos(t),\, \sin(t)).</md> 
+      
+      Integrating this quantity gives the length of the arch:</p>
 
-      <p><md><![CDATA[
-\ =\
-\int_0^{2\pi}\!\!\! \sqrt{2(1{-}\cos(t))}\,dt
-\ =\
-\int_0^{2\pi}\! 2\sin(\tfrac t2)\,dt\ =\ 8\,.
-      ]]></md></p>
+      <p><md>
+        <mrow> L \amp = \int_0^{2\pi}\!\!\! \sqrt{(1{-}\cos(t))^2+(\sin(t))^2}\,dt </mrow>
+        <mrow> \amp = \int_0^{2\pi} \sqrt{1{-}2\cos(t)+\cos^2(t)+\sin^2(t)}\,dt</mrow>
+        <mrow> \amp = \int_0^{2\pi} \sqrt{2(1{-}\cos(t))}\,dt</mrow>
+        <mrow>\amp = \int_0^{2\pi} 2\sin(\tfrac t2)\,dt\ = 8.</mrow>
+      </md></p>
 
       <p>Here we used the identity <m>\sin(\frac t2) =\sqrt{\frac{1-\cos(t)}2}</m>.</p>
-    </statement>
+    </solution>
   </example>
 
-  <p><alert>Area.</alert> Consider a parametric curve <m>(x(t),y(t))</m> for <m>t\in [a,b]</m>
-  which closes into a loop starting and ending at the point <m>(x(a),y(a))=(x(b),y(b))</m>.
-  Then the enclosed area is:</p>
+  <subsection xml:id="ssec-parametric-area">
+    <title> Area</title>
 
-  <p><md><![CDATA[
-A \ = \ \pm \int_a^b y(t) x'(t)\,dt \ =\ \mp \int_a^b x(t) y'(t)\,dt,
-  ]]></md></p>
+    <p> 
+      Consider a parametric curve <m>(x(t),y(t))</m> for <m>t\in [a,b]</m>
+      which closes into a loop starting and ending at the point <m>(x(a),y(a))=(x(b),y(b))</m>.
+      Then the enclosed area is:
+    </p>
 
-  <p>where the signs after the two equalities are <m>+,-</m> if the loop travels clockwise around the region,
-  but <m>-,+</m> if it travels counterclockwise.</p>
+    <p><md>
+      A  = \pm \int_a^b y(t) x'(t)\,dt \ =\ \mp \int_a^b x(t) y'(t)\,dt,
+    </md></p>
 
-  <p>As an exercise, prove these formulas by slice analysis.
-  The point is that area is added while traveling in one direction,
-  then subtracted while traveling back.</p>
+    <p>where the signs after the two equalities are <m>+,-</m> if the loop travels clockwise around the region,
+    but <m>-,+</m> if it travels counterclockwise.</p>
+
+    <p>As an exercise, prove these formulas by slice analysis.
+    The point is that area is added while traveling in one direction,
+    then subtracted while traveling back.</p>
+    
+  </subsection>
 
 </section>

@@ -9,5 +9,6 @@
 
   <!-- include sections -->
   <xi:include href="./ch-0-integration/sec-1-known-integrals.ptx" />
-
+  <xi:include href="./ch-0-integration/sec-2-interactive-testing.ptx" />
+  <xi:include href="./ch-0-integration/sec-ch0-additional-problems.ptx" />
 </chapter>
