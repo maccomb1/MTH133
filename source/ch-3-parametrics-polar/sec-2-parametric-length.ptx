@@ -17,6 +17,7 @@
     <image width="72%">
       <shortdescription>Boilerplate TikZ placeholder for 10-2-Length.png.</shortdescription>
       <latex-image>
+        <![CDATA[
         \begin{tikzpicture}
           \begin{scope}[x=1.25cm,y=1.0cm]
             \def\ta{0.45}
@@ -74,6 +75,7 @@
             \node[above left] at ({0.5*(\xi+\xj)},{0.5*(\yi+\yj)}) {$\Delta L_i$};
           \end{scope}
         \end{tikzpicture}
+        ]]>
       </latex-image>
     </image>
   </figure>

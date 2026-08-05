@@ -31,7 +31,7 @@
       </md>
     </p>
 
-    <example>
+    <example xml:id="ex-summation-def">
       <statement>
         <p>
           Write out and compute <md>\sum_{k=1}^{5} k(k+1).</md>
@@ -47,7 +47,7 @@
       </solution>
     </example>
 
-    <example>
+    <example xml:id="ex-convert-to-summation">
       <statement>
         <p>
           Convert the following sum into summation notation:
@@ -69,7 +69,7 @@
       </solution>
     </example>
 
-    <example>
+    <example xml:id="ex-convert-to-summation-with-vars">
       <statement>
         <p>
           Convert the following sum into summation notation:
@@ -98,25 +98,53 @@
 
     <p><alert>Reindexing</alert></p>
     <p>
-      While summation notation can be helpful, the same sum can often be represented by different formulas or using different indicies. For instance, the following sums
+      While summation notation can be helpful, the same sum can often be represented by different formulas or using different indices. For instance, the following sums
       <md>
-        \sum_{k=1}^{5} k \quad \text{and} \quad \sum_{j=0}^{4} (j+1)
+        \sum_{i=1}^{5} i\, , \quad \sum_{j=0}^{4} (j+1)\, , \quad \text{and} \quad \sum_{k=1}^{5} (6-k)
       </md>
-      both represent the same sum, namely <m>1+2+3+4+5</m>. In this case the indicies <m>k</m> and <m>j</m> are related via the formula <m>k=j+1</m>. Once you have such a formula, 
-      one can determine how the lower bounds and upper bounds change via substituting the lowest and highest values of the new index into the relationship.
+      all represent the sum of all natural numbers between <m>1</m> and <m>5</m> inclusive (note that the last one does the sum in a reversed order). 
+      For the first two sums, the index is shifted by one, and we have the relation that <m>i=j+1</m>. To compare the first sum to the last sum, notice the first outputs the terms <m>1,2,3,4,5</m> while the last outputs the terms <m>5,4,3,2,1</m>. 
+      So the formula <m>k=6-i</m> relates these two by reversing the order of the terms <fn>To work out this formula, notice that it is a linear relation, and let <m>i</m> be the independent variable and <m>k</m> the dependent variable. Then we are looking for a line
+      that contains the points <m>(1,5)</m> and <m>(5,1)</m>. One computes that this line has slope <m>-1</m> and <m>y</m>-intercept <m>6</m>, so we obtain <md>k=-i+6=6-i</md>.</fn>
+      Once you have such a formula, one can determine how the lower bounds and upper bounds change via substituting the lowest and highest values of the old index into the formula. <fn>This works as it should always be a linear equation.</fn>
     </p>
 
     <example>
         <statement>
           <p>
-            Reindex the following sums so that the indicies run from <m>1</m> to <m>4</m>:
+            Reindex the following sums so that the indices run from <m>1</m> to <m>4</m>:
             <ol>
-              <li><p><md>\sum_{k=0}^{3} (k+1)</md></p></li>
-              <li><p><md>\sum_{k=2}^{5} \frac{3}{4^{k-2}}x^{k-1}</md></p></li>
+              <li><p><m>\sum\limits_{k=0}^{3} (k+1)</m></p></li>
+              <li><p><m>\sum\limits_{k=2}^{5} \frac{3}{4^{k-2}}x^{k-1}</m></p></li>
             </ol>
-            
           </p>
         </statement>
+        <solution>
+          <p>
+            <ol>
+              <li>
+                <p>
+                  Let us call the new index, ranging from  <m>1</m> to <m>4</m>, <em>j</em>. Compared to our original index <m>k</m>, which ranges from <m>0</m> to <m>3</m>, the possibilities for <m>j</m> are only <m>1</m> larger, 
+                  so we can<fn>There are other choices here. For instance <m>j= 4-k</m> also works since it indexes the terms in the opposite order (to help see this, notice <m>k=0</m> corresponds to <m>j=4</m> and <m>k=3</m> corresponds to <m>j=1</m>).
+                  While this is a valid choice, it makes the final answer <m>\sum\limits_{j=1}^{4} (4-j+1) = \sum\limits_{j=1}^{4} (5-j)</m>, which is more complicated than the original sum.</fn> let <m>j=k+1</m>. For a sanity check, we can see that when <m>k=0</m>, we have <m>j= 0 + 1</m>, and when <m>k=3</m>, we have <m>j=3+1=4</m>. To get the new sum in terms of <m>j</m>, we apply our formula, and get
+                  <md>
+                    \sum_{k=0}^{3} (k+1) = \sum_{j=1}^{4} j.
+                  </md>
+                </p>
+              </li>
+              <li>
+                <p>
+                  Similarly, we will call the new index <m>j</m>, and we want to find a relationship between <m>j</m> and the original index <m>k</m>. Notice that the original index <m>k</m>, since it ranges from <m>2</m> to <m>5</m>, is always exactly <m>1</m> larger than the new index <m>j</m>, so we can let <m>k=j+1</m>,
+                  or equivalently <m>j=k-1</m>. Now we can substitute our formula into the sum to get
+                  <md>
+                    \sum_{k=2}^{5} \frac{3}{4^{k-2}}x^{k-1} = \sum_{j=1}^{4} \frac{3}{4^{(j+1)-2}}x^{(j+1)-1} = \sum_{j=1}^{4} \frac{3}{4^{j-1}}x^j.
+                  </md>
+                  Notice, that due to this equivalence, the original expression (as well as many others) are correct answers to <xref ref="ex-convert-to-summation-with-vars"/>.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </solution>
     </example>
 
   </subsection>
@@ -192,28 +220,28 @@
         <cell>Integration Rule</cell>
       </row>
       <row>
-        <cell><md>\frac{d}{dx} \arcsin x = \frac{1}{\sqrt{1-x^2}}</md></cell>
-        <cell><md>\int \frac{1}{\sqrt{1-x^2}} dx = \arcsin x</md></cell>
+        <cell><m>\frac{d}{dx} \arcsin x = \frac{1}{\sqrt{1-x^2}}</m></cell>
+        <cell><m>\displaystyle\int \frac{1}{\sqrt{1-x^2}} dx = \arcsin x</m></cell>
       </row>
       <row>
-        <cell><md>\frac{d}{dx} \arccos x = -\frac{1}{\sqrt{1-x^2}}</md></cell>
-        <cell><md>\int -\frac{1}{\sqrt{1-x^2}} dx = \arccos x</md></cell>
+        <cell><m>\frac{d}{dx} \arccos x = -\frac{1}{\sqrt{1-x^2}}</m></cell>
+        <cell><m>\displaystyle \int -\frac{1}{\sqrt{1-x^2}} dx = \arccos x</m></cell>
       </row>
       <row>
-        <cell><md>\frac{d}{dx} \arctan x = \frac{1}{1+x^2}</md></cell>
-        <cell><md>\int \frac{1}{1+x^2} dx = \arctan x</md></cell>
+        <cell><m>\frac{d}{dx} \arctan x = \frac{1}{1+x^2}</m></cell>
+        <cell><m>\displaystyle \int \frac{1}{1+x^2} dx = \arctan x</m></cell>
       </row>
       <row>
-        <cell><md>\frac{d}{dx} \sec^{-1} x = \frac{1}{|x|\sqrt{x^2-1}}</md></cell>
-        <cell><md>\int \frac{1}{|x|\sqrt{x^2-1}} dx = \sec^{-1} x</md></cell>
+        <cell><m>\frac{d}{dx} \sec^{-1} x = \frac{1}{|x|\sqrt{x^2-1}}</m></cell>
+        <cell><m>\displaystyle\int \frac{1}{|x|\sqrt{x^2-1}} dx = \sec^{-1} x</m></cell>
       </row>
       <row>
-        <cell><md>\frac{d}{dx} \csc^{-1} x = -\frac{1}{|x|\sqrt{x^2-1}}</md></cell>
-        <cell><md>\int \frac{-1}{|x|\sqrt{x^2-1}} dx = \csc^{-1} x</md></cell>
+        <cell><m>\frac{d}{dx} \csc^{-1} x = -\frac{1}{|x|\sqrt{x^2-1}}</m></cell>
+        <cell><m>\displaystyle\int \frac{-1}{|x|\sqrt{x^2-1}} dx = \csc^{-1} x</m></cell>
       </row>
       <row>
-        <cell><md>\frac{d}{dx} \cot^{-1} x = -\frac{1}{1+x^2}</md></cell>
-        <cell><md>\int -\frac{1}{1+x^2} dx = \cot^{-1} x</md></cell>
+        <cell><m>\frac{d}{dx} \cot^{-1} x = -\frac{1}{1+x^2}</m></cell>
+        <cell><m>\displaystyle\int -\frac{1}{1+x^2} dx = \cot^{-1} x</m></cell>
       </row>
     </tabular>
 
@@ -318,19 +346,19 @@
     </p>
     <example xml:id="ex-exp-1">
       <p> 
-        Evaluate <md>\int (3e^2x)^3 \, dx.</md>.
+        Evaluate <md>\int (3e^{2x})^3 \, dx.</md>.
       </p>
       <solution>
         <p> 
           As it stands, the integral is not in a form that we have discussed so far. However, we can use exponent rules to
           help us rewrite the integrand as
           <md>
-            (3e^2x)^3 = 3^3 \cdot e^{2x \cdot 3} = 27 e^{6x}.
+            (3e^{2x})^3 = 3^3 \cdot e^{2x \cdot 3} = 27 e^{6x}.
           </md>
           Now we can use linear scaling to evaluate the integral:
 
           <md>
-            <mrow>\int (3e^2x)^3 \, dx = \int 27 e^{6x} \, dx = \amp 27 \int e^{6x} \, dx </mrow>
+            <mrow>\int (3e^{2x})^3 \, dx = \int 27 e^{6x} \, dx = \amp 27 \int e^{6x} \, dx </mrow>
             <mrow>\amp = 27 \cdot \frac{1}{6} e^{6x} + C = \frac{9}{2} e^{6x} + C.</mrow>
           </md>
         </p>
