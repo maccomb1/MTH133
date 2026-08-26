@@ -152,8 +152,11 @@
 
     <definition xml:id="def-asymptotic-equiv">
       <statement>
-        <p> The sequences <m>a_n</m> and <m>b_n</m> are called <em>asymptotically equivalent</em>, denoted <m>a_n \sim b_n</m>, if <fn>It is equivalent to check that <m>\lim\limits_{n \to \infty} \frac{b_n}{a_n} = 1</m> instead.</fn>
+        <p> The sequences <m>a_n</m> and <m>b_n</m> are called <em>asymptotically equivalent</em>, denoted <m>a_n \sim b_n</m>, if
           <md>\lim\limits_{n \to \infty} \frac{a_n}{b_n} = 1.</md>
+          <remark>
+            <p>It is equivalent to check that <m>\lim\limits_{n \to \infty} \frac{b_n}{a_n} = 1</m> instead.</p>
+          </remark>
         </p>
       </statement>
     </definition>
@@ -183,19 +186,47 @@
 
     <example xml:id="ex-asymptotic-equiv">
       <p>
-        Are the sequences <m>a_n = n^2 + \sqrt{n}</m> and <m>b_n = n^2</m> asymptotically equivalent?
+        Determine if the following pairs of sequences are asymptotically equivalent:
+        <ol>
+          <li>
+            <p>
+              <m>a_n = n^2 + \sqrt{n}</m> and <m>b_n = n^2</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>a_n = 3n^3</m> and <m>b_n = n^3</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>a_n = 2^n</m> and <m>b_n = e^n</m>
+            </p>
+          </li>
+        </ol>
       </p>
       <solution>
+        <title>Q1 Solution</title>
         <p>
           We compute <m>\lim\limits_{n \to \infty} \frac{a_n}{b_n} = \lim\limits_{n \to \infty} \frac{n^2 + \sqrt{n}}{n^2} = \lim\limits_{n \to \infty} \left( 1 + \frac{\sqrt{n}}{n^2} \right) = \lim\limits_{n \to \infty} \left( 1 + \frac{1}{n\sqrt{n}} \right) = 1</m>. 
           Hence, by definition, <m>a_n</m> and <m>b_n</m> are asymptotically equivalent.
         </p>
       </solution>
+      <solution>
+        <title>Q2 Solution</title>
+        <p>
+          We compute <m>\lim\limits_{n \to \infty} \frac{a_n}{b_n} = \lim\limits_{n \to \infty} \frac{3n^3}{n^3} = \lim\limits_{n \to \infty} 3 = 3</m>. 
+          Since the limit is not equal to <m>1</m>, <m>a_n</m> and <m>b_n</m> are not asymptotically equivalent. In this case, this essentially tells us that <m>a_n</m> grows three times faster than <m>b_n</m>.
+        </p>
+      </solution>
+      <solution>
+        <title>Q3 Solution</title>
+        <p>
+          We compute <m>\lim\limits_{n \to \infty} \frac{a_n}{b_n} = \lim\limits_{n \to \infty} \frac{2^n}{e^n} = \lim\limits_{n \to \infty} \left( \frac{2}{e} \right)^n</m>. 
+          Since <m>\frac{2}{e} \lt 1</m>, the limit is <m>0</m>, and so <m>a_n</m> and <m>b_n</m> are not asymptotically equivalent. In this case, this essentially tells us that <m>b_n</m> grows so much faster than <m>a_n</m> that <m>a_n</m> is negligible in comparison.
+        </p>
+      </solution>
     </example>
-
-    <p>
-       These notions play nicely with each other. For instance
-    </p>
 
     <example xml:id="ex-asymptotic-equiv-2">
       <p>
@@ -301,8 +332,8 @@
     <definition xml:id="def-growth-rate">
       <statement>
         <p>
-          For a sequence <m>a_n</m> we define the <em>growth rate</em> of the sequence as 
-          <md>\lim\limits_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right|,</md> provided the limit exists.
+          For a sequence <m>a_n</m> we define the <em>growth rate</em> of the sequence, denoted <m>GR(a_n)</m>, as 
+          <md>GR(a_n) = \lim\limits_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right|,</md> provided the limit exists.
         </p>
       </statement>
     </definition>
@@ -355,45 +386,48 @@
     <proposition xml:id="prop-growth-hierarchy">
       <statement>
         <p>
-          In this course, sequences will typically be asymptotically equivalent to something these 5 categories:
+          In this course, sequences <m>a_n</m> will typically be asymptotically equivalent to something these 5 categories:
           <ol>
             <li>
               <p>
-                <em>Superexponential Growth</em> Growth Ratio = <m>\infty</m> (e.g. <m>n!,\, 2^{n^2}</m>)
+                <em>Superexponential Growth</em> <m>GR(a_n) = \infty</m> (e.g. <m>a_n \sim n!,\, a_n \sim 2^{n^2}</m>).
               </p>
             </li>
 
             <li>
               <p>
-                <em>Exponential Growth</em> Growth Ratio = <m>c</m> for some <m>c \in (1,\infty)</m> (e.g. <m>2^n,\, 5^n</m>)
+                <em>Exponential Growth</em> <m>GR(a_n) = c</m> for some <m>c \in (1,\infty)</m> (e.g. <m>a_n \sim 2^n,\, a_n \sim 5^n</m>)
               </p>
             </li>
 
             <li>
               <p>
-                <em>Polynomial Growth</em> <m>a_n \sim c\cdot n^p</m> with <m>p \gt 0</m> (e.g. <m>n^2,\, \sqrt{n}</m>)
+                <em>Polynomial Growth</em> <m>a_n \sim c\cdot n^p</m> with <m>p \gt 0</m> 
+                (e.g. <m>a_n \sim n^2,\, a_n \sim \sqrt{n}</m>). <m>GR(a_n) = 1.</m>
               </p>
             </li>
 
             <li>
               <p>
-                <em>Logarithmic Growth</em> <m>a_n \sim c\cdot \log n</m>
+                <em>Logarithmic Growth</em> <m>a_n \sim c\cdot \log n</m>. <m>GR(a_n) = 1</m>.
               </p>
             </li>
             <li>
               <p>
-                <em>Constant Sequences</em> <m>a_n \sim c</m> with <m>c \gt 0</m>
+                <em>Constant Sequences</em> <m>a_n \sim c</m> with <m>c \gt 0</m>. <m>GR(a_n) \leq 1</m>
               </p>
             </li>
           </ol>
-          Moreover, each category in the list asymptotically dominates the ones below it.
+
+          Further, each lower category is <em>negligible</em> compared to a higher category, in the sense that if <m>a_n</m> is in a higher category than <m>b_n</m>, 
+          then <m>\lim\limits_{n \to \infty} \frac{b_n}{a_n} = 0</m>.
         </p>
       </statement>
     </proposition>
 
     <remark xml:id="rmk-growth-hierarchy">
       <p>
-        In categories 3 and 4, the growth rate is <m>1</m>, and for the final category the growth rate is <m>\leq 1</m>. In fact, when the growth rate is <m>\lt 1</m>, the sequence decays to zero.
+        When <m>GR(a_n) \lt 1</m>, we can further say that <m>a_n \to 0</m>.
       </p>
     </remark>
 

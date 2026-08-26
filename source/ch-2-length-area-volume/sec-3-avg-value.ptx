@@ -59,7 +59,7 @@
     <caption>Placeholder for the average-value figure.</caption>
     <image width="50%">
       <shortdescription>Placeholder for 4-4-Average image.</shortdescription>
-      <latex-image>
+      <latex-image><![CDATA[
         \begin{tikzpicture}
           \draw[->] (0, 0) -- (4.1, 0) node[right] {$x$}; % x-axis
           \draw[->] (0, 0) -- (0, 2.1) node[above] {$y$}; % y-axis
@@ -68,7 +68,7 @@
           \draw[color=red, smooth, domain=0:4, samples=100,->] plot (\x, {sqrt(\x)});
           \draw[blue, dashed, domain=0:4, samples=100,->] plot (\x, \x/2);
           \draw (2,1.75) node {$y=\sqrt{x}$};
-        \end{tikzpicture}
+        \end{tikzpicture}]]>
       </latex-image>
     </image>
   </figure>

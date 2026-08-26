@@ -3,6 +3,172 @@
 <section xml:id="sec-7-overall-strategy-dominant-terms" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Overall Strategy - Dominant Terms</title>
 
-  <p> Text of section. </p>
+  <p> 
+    In the previous sections, we have learned many different tests for determining whether a series converges. But, if we are given a series at random, how do we know which test to use?
+    We will discuss some heuristics that can help us narrow down which tests are most likely to be effective, but one should still be willing to try out different strategies, as it is 
+    very difficult to <em>always</em> choose the right test initially. 
+  </p>
 
+  <p>
+    <em>Test for Divergence:</em> One should almost always try to spot-check whether the terms of the series tend to zero. This is because if they do not,
+    then our <xref ref="thm-nth-term-non-vanishing-test"> Nth Term Test</xref> applies, and no further analysis is needed. Learning to do this quickly can save you a lot of time and headaches.
+  </p>
+
+  <p>
+    <em>Series with Sign Changes:</em> If the series is alternating, i.e. of the form <m>\sum(-1)^n b_n</m> for some nonnegative sequence <m>b_n</m>, then the <xref ref="thm-alternating-series-test"> Alternating Series Test</xref> is often a good first choice
+    since all that has to be checked is that <m>\lim\limits_{n \to \infty} b_n = 0</m> and that <m>b_n</m> is decreasing. If the sign changes are more complicated, such as when the series has a <m>\sin(n)</m> term, then the <xref ref="thm-absolute-convergence"> Absolute Convergence Test</xref> will usually be the best choice.
+  </p>
+
+  <subsection xml:id="ssec-dominant-term-analysis">
+    <title>Dominant Term Analysis</title>
+    <p>
+      Knowing the <xref ref="prop-growth-hierarchy"> Growth Hierarchy</xref> is immensely helpful in determining which terms will be effective, as it will help us quickly simplify 
+      complicated expressions. The following types will be the building blocks of our analysis:
+
+      <ol>
+        <li>
+          <p>
+            <xref ref="ssec-p-series"><em><m>p</m>-series:</em> </xref> A series of the form <m>\sum\limits_n \frac{1}{n^p}</m>, where <m>p</m> is a positive real number. By the integral test, we saw that this series converges if <m>p \gt 1</m> and diverges if <m>p \leq 1</m>.
+          </p>
+        </li>
+        <li>
+          <p>
+            <xref ref="ssec-geometric-sequences-series"><em>Geometric Series:</em> </xref>A series of the form <m>\sum\limits_n a r^n</m> where <m>a</m> and <m>r</m> are real numbers. By the geometric series test, we saw that this converges if <m>|r| \lt 1</m> and diverges if <m>|r| \geq 1</m>. 
+            When it converges, we also know what it converges to, and we have <md> \sum\limits_{n=0}^{\infty} a r^n = \frac{a}{1 - r}. </md>
+          </p>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      By studying the dominant terms, we can often simplify a complicated sum into the sum of a simple expressions, 
+      which hopefully is close to one of the two types above. If the simplified expression is a <m>p</m>-series or geometric series, then we can 
+      use the <xref ref="thm-direct-comparison-test">Direct Comparison Test</xref> or the <xref ref="thm-limit-comparison-test-restated">Limit Comparison Test</xref> to determine convergence.
+      Often the latter is easier to use, especially if the original expression is complicated, since you don't have to think about inequalities as much.
+    </p>
+
+    <p>
+      The last main test that we have is the <xref ref="thm-ratio-test">Ratio Test</xref>. The ratio test is best at dealing with series that have exponential or super-exponential terms.
+      In fact, we saw that for a geometric serites, the ratio test is equivalent to the geometric series test. Is the series involves factorials, then the ratio test is often the only one that gives rise to nice cancellations.
+      One drawback of the ratio test is that it does not conclude anything for <m>p</m>-series (as the growth rate of a polynomial is <m>1</m>), so it does not apply universally. However, this drawback is also a great strength,
+      since it also shows us that when we have a series of the form <m>\sum \frac{\text{polynomial}}{\text{exponential}}</m>, the polynomial part will not affect the convergence, and hence is more powerful than the geometric series test.
+      It is also worth noting that the ratio test actually tells you that if <m>GR(a_n) \lt 1</m>, then series <m>\sum a_n</m> converges <em>absolutely</em>. Since absolute convergence is especially helpful for dealing with series that
+      have sign changes, the ratio test can be helpful in those cases as well.
+    </p>
+
+    <p>
+      Finally, the last test is the integral test<xref ref="thm-integral-test">Integral Test</xref>. This is often the most difficult to use, since it requires you to be able to compute an integral, and has the most conditions to check (positivity, decreasing, and continuous). 
+      However, if you can apply the test, it can be quicker to write out.
+    </p>
+  </subsection>
+
+  <subsection xml:id="ssec-examples">
+    <title>Examples</title>
+    <p>
+      In the following examples, remember the stategies outlined above, and try to determine which test(s) is most appropriate to determine if the series converges.
+    </p>
+    <example>
+      <statement>
+        <p>
+          <m>\sum\limits_{n=1}^{\infty} \frac{2n-1}{5n+1}</m>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          As suggested, we should first check if the terms tend to zero. Since the numerator and denominator are polynomials of the same degree, we see that 
+          <m>\lim\limits_{n \to \infty} \frac{2n-1}{5n+1} = \frac{2}{5} \ne 0</m>, so the series diverges by the <xref ref="thm-nth-term-non-vanishing-test">Nth Term Test</xref>.
+        </p>
+      </solution>
+    </example>
+
+    <example>
+      <statement>
+        <p>
+          <m>\sum\limits_{n=1}^{\infty} ne^{-n^2}</m>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Seeing the exponential term in the denominator, discussion on the ratio test suggests that it is a good candidate for this series. 
+          We compute the growth rate of the terms: 
+          <md>
+            GR = \lim\limits_{n \to \infty} \large|\frac{(n+1)e^{-(n+1)^2}}{n e^{-n^2}}\large| = \lim\limits_{n \to \infty} \frac{n+1}{n} \cdot e^{-2n-1} = \lim\limits_{n \to \infty} e^{-2n-1}= 0.
+          </md>
+          Since <m>GR = 0 \lt 1</m>, the series converges by the <xref ref="thm-ratio-test">Ratio Test</xref>.
+        </p>
+
+        <p>
+          However, this is not the only possible strategy. If you noticed that the integral of <m>xe^{-x^2}</m> can be done via a substitution, the <xref ref="thm-integral-test">Integral Test</xref> could be considered.
+          Indeed, one can check that <m>xe^{-x^2}</m> is positive, decreasing, and continuous for <m>x \geq 1</m>, and 
+          <md>\int_1^{\infty} x e^{-x^2} dx = \frac{-1}{2}e^{-x^2}\large|_1^{\infty} = \frac{1}{2}e^{-1},</md>
+          hence the integral converges, and so does the series by the Integral Test.
+        </p>
+      </solution>
+    </example>
+
+    <example>
+      <statement>
+        <p>
+          
+        </p>
+      </statement>
+      <solution>
+        <p>
+          
+        </p>
+      </solution>
+    </example>
+
+    <example>
+      <statement>
+        <p>
+          
+        </p>
+      </statement>
+      <solution>
+        <p>
+          
+        </p>
+      </solution>
+    </example>
+
+    <example>
+      <statement>
+        <p>
+          
+        </p>
+      </statement>
+      <solution>
+        <p>
+          
+        </p>
+      </solution>
+    </example>
+
+    <example>
+      <statement>
+        <p>
+          
+        </p>
+      </statement>
+      <solution>
+        <p>
+          
+        </p>
+      </solution>
+    </example>
+
+    <example>
+      <statement>
+        <p>
+          
+        </p>
+      </statement>
+      <solution>
+        <p>
+          
+        </p>
+      </solution>
+    </example>
+  </subsection>
 </section>

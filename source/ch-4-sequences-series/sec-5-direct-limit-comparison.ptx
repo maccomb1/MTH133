@@ -34,7 +34,7 @@
   <m>L=\lim\limits_{N\to \infty} s_N</m> exists.
   </fn></p>
 
-  <example>
+  <example xml:id="ex-sum-direct-comparison">
     <statement>
       <p>Determine convergence of:
       <m>\sum\limits_{n=1}^\infty a_n =\sum\limits_{n=1}^\infty \frac{n-1}{n^2\sqrt n \, +\,1}</m>.</p>
@@ -104,7 +104,7 @@
 
       <p><md>
         a_n=\frac{n+1}{n^3-20}\ \leq\ c_n=2\frac{n}{n^3} \qquad
-        	ext{for } n\text{ large enough.}
+        	\text{for } n\text{ large enough.}
       </md></p>
 
       <p>How large does <m>n</m> need to be to make this inequality valid?
@@ -124,7 +124,7 @@
 
       <p><md>
         a_n=\frac{n+1}{n^3-20}\ \leq\ c_n = \frac2{n^2} \qquad
-        	ext{for } n\geq 4,
+        	\text{for } n\geq 4,
       </md></p>
 
       <p>where <m>\sum_{n=1}^\infty\frac{2}{n^2} = 2\sum_{n=1}^\infty\frac{1}{n^2}</m> converges,
@@ -150,7 +150,11 @@
     </solution>
   </example>
 
-  <theorem xml:id="thm-limit-comparison-test">
+  <p>
+    Sometimes, a direct comparison is difficult to find, but the good news is that we can instead use our notion of <em>asymptotic equivalency</em> from <xref ref="sec-2-sequences-hierarchy-growth-ratio-v2">Section 2</xref> and all of our tools from that section determine convergence.
+  </p>
+
+  <theorem xml:id="thm-limit-comparison-test"> 
     <title>Limit Comparison Test</title>
     <statement>
       <p>Suppose <m>\lim_{n\to\infty} \frac{a_n}{b_n} = L</m> with <m>0&lt;L&lt;\infty</m>.</p>
@@ -177,14 +181,28 @@
     </p>
   </proof>
 
+  <p>
+    Recall we said that <m>a_n \sim b_n</m> means <m>\lim_{n\to\infty} \frac{a_n}{b_n} = 1</m>. This means we can restate the Limit Comparison Test (without losing any generality) as: 
+  </p>
+
+  <theorem xml:id="thm-limit-comparison-test-restated">
+    <title>Limit Comparison Test V2</title>
+    <statement>
+      <p>
+        If <m>a_n \sim b_n</m>, then <m>\sum a_n</m> converges if and only if <m>\sum b_n</m> converges.
+      </p>
+    </statement>
+  </theorem>
+
   <example>
     <statement>
-      <p>We redo
-      <m>\sum\limits_{n=1}^\infty \frac{n+1}{n^3 - 20}</m>.
-      Now we can immediately compare with <m>b_n =\dfrac{n}{n^3}</m>:</p>
+      <p>
+        Use the Limit Comparison Test on the series from <xref ref="ex-sum-direct-comparison"/>:<md>\sum\limits_{n=1}^\infty \frac{n+1}{n^3 - 20}.</md>
+      </p>
     </statement>
     <solution>
-      <p><md>
+      <p>Now we can immediately compare with <m>b_n =\dfrac{n}{n^3}</m>:
+      <md>
         \frac{a_n}{b_n}
         \ =\
         \frac{n+1}{n^3 - 20}\,\left/\frac{n}{n^3}\right.
@@ -192,7 +210,9 @@
         \frac{n+1}{n}\left/\frac{n^3-20}{n^3}\right.
         \ =\
         \frac{1+\frac1n}{1-\frac{20}{n^3}}\,.
-      </md></p>
+      </md>
+      </p>
+
       <p>Taking <m>n\to\infty</m> gives <m>L=1</m>.
       Since this satisfies <m>0&lt;L&lt;\infty</m>,
       and <m>\sum_{n=1}^\infty b_n=\sum_{n=1}^\infty \frac1{n^2}</m>

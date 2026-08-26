@@ -29,11 +29,11 @@
 
   <definition xml:id="def-power-series">
     <statement>
-      <p><term>Definition:</term> A <term>power series</term> is a function of <m>x</m> whose output
+      <p>A <term>power series</term> is a function of <m>x</m> whose output
       is the sum of an infinite series:</p>
       <p><md>
-        f(x) \ =\ \sum_{n=0}^\infty c_n(x{-}a)^n
-        \ =\ c_0 + c_1 (x{-}a) + c_2 (x{-}a)^2 + c_3 (x{-}a)^3 + \cdots
+        <mrow>f(x) \ \amp =\ \sum_{n=0}^\infty c_n(x{-}a)^n</mrow>
+        <mrow>\ \amp =\ c_0 + c_1 (x{-}a) + c_2 (x{-}a)^2 + c_3 (x{-}a)^3 + \cdots</mrow>
       </md></p>
       <p>Here the numbers <m>c_0,c_1,c_2,\ldots</m> are called the <term>coefficients</term>,
       and <m>a</m> is called the <term>center</term>.
@@ -61,13 +61,12 @@
   as a kind of infinite polynomial function:</p>
 
   <p><md>
-    f(x) \ =\ \frac{1}{1-x} \ =\ 1 + x+x^2 + x^3+\cdots
-    	ext{ for } x\in(-1,1).
+    f(x) \ =\ \frac{1}{1-x} \ =\ 1 + x+x^2 + x^3+\cdots \text{ for } x\in(-1,1).
   </md></p>
 
   <p>A general power series might not have a simple formula for the sum,
   but any standard function can be written as a power series, as we shall see
-  in §11.10.</p>
+  in <xref ref="sec-10-taylor-maclaurin-series"/></p>
 
   <p>Taking a finite partial sum like <m>1+x+x^2</m> gives an approximation
   to <m>f(x)=\frac{1}{1-x}</m> for each <m>x\in(-1,1)</m>, so their graphs are close to each other above this interval:</p>

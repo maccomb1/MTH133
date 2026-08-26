@@ -19,4 +19,31 @@
     </solution>
 </problem>
 
+<problem>
+    <title>Challenge Problem</title>
+    <statement>
+        <p>
+            Consider the solid of revolution around the <m>x</m>-axis of the curve <m>y=f(x)</m>
+            over the interval <m>x\in[a,b]</m>. Explain the following formula for the surface area of
+            this solid:
+            <m>S \ =\ \int_a^b 2\pi f(x)\sqrt{1{+}(f'(x))^2\,}\, dx\,.</m>
+            <hint>
+                <p>
+                    <m>
+                        \sqrt{(\Delta x)^2 + (\Delta y)^2\,}
+                        \ =\ \sqrt{1+(\frac{\Delta y}{\Delta x})^2\,}\ \Delta x
+                        \ \approx\ \sqrt{1+(\frac{dy}{dx})^2\, }\ \Delta x
+                    </m>.
+                </p>
+            </hint>
+        </p>
+
+    </statement>
+    <solution>
+        <p>
+            
+        </p>
+    </solution>
+</problem>
+
 </section>

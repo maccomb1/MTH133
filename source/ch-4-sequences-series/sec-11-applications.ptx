@@ -3,6 +3,241 @@
 <section xml:id="sec-11-applications" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Applications of Taylor and Maclaurin Series</title>
 
-  <p> Text of section. </p>
+  <subsection xml:id="ssec-taylor-series-error">
+    <title>Taylor Series Error</title>
+
+    <p>
+      So far, we have seen that Taylor series are useful for approximating functions. But in applications, we often need to ensure that our approximations
+      are good enough.
+    </p>
+
+    <theorem xml:id="thm-lagrange-remainder-formula">
+      <title>Lagrange Remainder Formula</title>
+
+      <statement>
+        <p>
+          For any Taylor polynomial approximation of a function <m>f(x) = T_N(x) + R_N(x)</m>, there there exists a number <m>c</m> between <m>a</m> and <m>x</m> such that 
+          <md>
+            R_N(x) = \frac{f^{(N+1)}(c)(x-a)^{N+1}}{(N+1)!}
+          </md>
+          
+        </p>
+      </statement>
+    </theorem>
+
+    <p>
+      The Lagrange Remainder Formula simplifies the analysis of the error term <m>R_N(x)</m> by reducing it down to one term. It also allows us to see that if we have some control
+      on the <m>(N+1)</m>th derivative of <m>f</m>, then we can bound the error term. This leads to the following important consequence, which is often used in applications.
+    </p>
+
+    <corollary xml:id="cor-taylor-series-error-bound">
+      <statement>
+        <p>
+          Suppose that on the interval <m>[a,x]</m>, we have that <m>|f^{(N+1)}(t)| \leq M</m> for some constant <m>M</m>. Then
+          <md>
+            |R_N(x)| \leq \frac{M}{(N+1)!}(x-a)^{N+1}.
+          </md>
+          
+        </p>
+      </statement>
+    </corollary>
+    
+    <p>
+      To see why this is so useful, let us work through an example.
+    </p>
+
+    <example>
+      <statement>
+        <p>
+          Use the Error Bound to determine which degree Taylor series for <m>e^x</m> suffices to approximate <m>e</m> to <m>3</m> decimal places?
+        </p>
+      </statement>
+      <answer>
+        <p>
+          First, let us restate the goal. To be accurate to 3 decimal places, we need to ensure that the error term is less than <m>0.0005</m>.
+          Since we know the Taylor Series for <m>e^x</m>, we will use that, which will mean that we will want to study approximations at <m>x=1</m>.
+          In other words, we need to find <m>N</m> such that <m>|R_N(1)| \lt 0.0005</m>. By <xref ref="cor-taylor-series-error-bound"/>, we know that 
+          <md>|R_N(1)| \leq \frac{M}{(N+1)!}(1-0)^{N+1} = \frac{M}{(N+1)!}.</md>
+          Therefore, if we can make sure that <m>\frac{M}{(N+1)!} \lt 0.0005</m>, then we will be guaranteed that the error term is less than <m>0.0005</m>.
+          To do this, we should first find a bound <m>M</m> for the <m>(N+1)</m>th derivative of <m>e^x</m>. Since all derivatives of <m>e^x</m> are <m>e^x</m>, we need to find a bound for <m>e^x</m> on the interval <m>[0,1]</m>. 
+          Since <m>e^x</m> is increasing, it's maximum will occur at <m>x=1</m>, and thus have a maximum value of <m>e</m>. This means that we can make <m>M=e</m>, or any larger value that we find convenient.
+          Thus, we will take <m>M=5</m> for convenience. Now, we need to find <m>N</m> such that <m>\frac{5}{(N+1)!} \lt 0.0005</m>, or equivalently, <m>(N+1)! \gt 10000</m>. Since <m>7!=5040</m> is too small, and we see that
+          <m>8!=40320</m> is large enough, we see that we need <m>N+1 \geq 8</m>, and thus <m>N=7</m> suffices. Therefore, using 7 terms of the Maclaurin series for <m>e^x</m> will approximate <m>e</m> to an accuracy of at least <m>3</m> decimal places.
+        </p>
+
+        <remark>
+          <p>
+            In fact, using the <m>7</m>-th degree Taylor polynomial for <m>e^x</m> at <m>x=1</m> gives us the approximation <m>e \approx 2.71825...</m>. In actuality, <m>e=2.71828...</m> so this approximation is accurate to <m>4</m> decimal places, which is better than what we were guaranteed.
+            This is often the case, as the error bound is often not optimal. It is also worth noting that even using the optimal bound for <m>M</m> would not have changed the result, as <m>\frac{e}{(6+1)!} \approx .000539 \gt .0005</m>, so we would still have needed <m>N=7</m>
+            using this method.
+          </p>
+        </remark>
+      </answer>
+    </example>
+  </subsection>
+
+  <subsection xml:id="ssec-irrationality-e">
+    <title>Extra Topic: Irrationality of <m>e</m></title>
+
+    <p><alert>Extra Topic: Irrationality of <m>e</m>.</alert> In §11.2,
+    we saw that repeating infinite decimals represent rational numbers (fractions),
+    and every fraction can be written by long division as a repeating decimal.
+    Any infinite decimal which does not repeat cannot be written as a fraction:
+    it is <term>irrational</term>. However, it is difficult to prove that any given interesting number
+    such as <m>\pi</m> or <m>\sqrt 2</m> is irrational.</p>
+
+    <p>We can use series to prove the irrationality of the constant
+    <m>e =2.7182818284590\cdots</m>.
+    To prove the negative proposition that <m>e</m> is not equal to any possible fraction <m>a/b</m>,
+    we use the <term>method of contradiction</term>:
+    that is, we assume that there <term>were</term> some fraction with <m>e=a/b</m>,
+    and use this to deduce an impossible conclusion, which will show
+    that the original assumption <m>e=a/b</m> was also impossible.</p>
+
+    <p>Thus, using the Taylor series definition for <m>e</m>, we assume the possibility,
+    for some whole numbers <m>a,b</m>, of the equation:</p>
+
+    <p><md>
+      1 + \frac{1}{1!} + \frac{1}{2!} +\frac{1}{3!}+ \cdots \ \stackrel{\text{def}}{=}\ e \ =\ \frac ab\,.
+    </md></p>
+
+    <p>It is easy to show <m>2&lt;e&lt;3</m>, so <m>e</m> is not a whole number, and would have denominator <m>b&gt;1</m>.
+    Consider the <m>b^{\mathrm{th}}</m> order Taylor approximation,
+    with error or remainder <m>R_b</m>:</p>
+
+    <p><md>
+      1 + \frac{1}{1!} + \frac{1}{2!} +\frac{1}{3!}+ \cdots + \frac{1}{b!}+ R_b \ = \ e,
+      \qquad
+      R_b= \sum_{n= b+1}^\infty \frac{1}{n!}.
+    </md></p>
+
+    <p>We multiply by <m>b!</m> to clear denominators up to the <m>\frac 1{b!}</m> term:</p>
+
+    <p><md>
+      b! + \frac{b!}{1!} + \frac{b!}{2!} + \cdots +\frac{b!}{b!}+b!R_b\ \ =\ b!\, e \ =\ b!\,\frac ab \ =\ (b{-}1)!\, a\,.
+    </md></p>
+
+    <p>The terms <m>b!\,, \frac{b!}{1!}, \frac{b!}{2!}, \ldots ,\frac{b!}{b!}</m> on the left
+    are whole numbers, and <m>(b{-}1)!\,a</m> on the right is a whole number,
+    so the remainder <m>b!R_b</m> must also be a whole number.
+    But it must also be very small,
+    as we can see from a simple geometric series comparison:<fn>
+    Here we do not need the powerful Lagrange remainder formula from §11.11.
+    </fn></p>
+
+    <p><md>
+      \begin{array}{rcl}
+      b!R_b
+      \ = \  \sum\limits_{n= b+1}^\infty \frac{b!}{n!}
+      &amp;=&amp;
+      \frac{1}{b{+}1} + \frac{1}{(b{+}1)(b{+}2)} + \frac{1}{(b{+}1)(b{+}2)(b{+}3)}+\cdots
+      \\[1em]
+      &amp;&lt;&amp;
+      \frac{1}{b+1} + \frac{1}{(b{+}1)^2} + \frac{1}{(b{+}1)^3}+\cdots
+      \\[1em]
+      &amp; = &amp; \frac{1}{b{+}1}\frac{1}{1 -(\frac1{b+1})}\ =\ \frac{1}{b{+}1}\frac{b+1}{b+1-1}
+      \ =\ \frac1b \ &lt; \ 1.
+      \end{array}
+    </md></p>
+
+    <p>Thus, we have constructed a positive number <m>b!R_b</m> which is both a whole number
+    and less than 1, which is impossible.
+    Therefore the original assumption <m>e=a/b</m> must also be impossible.</p>
+  </subsection>
+
+  <subsection xml:id="ssec-euler-basel-formula">
+    <title>Extra Topic: Euler's Basel Formula</title>
+    <p>
+
+    <md>\sum_{n=1}^\infty \frac1{n^2} \ =\  \frac{\pi^2}6.</md></p>
+
+    <p>To see this, we introduce <term>infinite products</term>, which represent a function <m>f(x)</m> by
+    factors of the form <m>(1-\frac xb)</m> where <m>x=b</m> is zero of <m>f(x)</m>, a value where <m>f(b) = 0</m>.
+    If <m>b_1, b_2,\ldots</m> is the sequence of all zeroes of <m>f(x)</m>, then we should have a
+    <term>Weierstrass product</term>:</p>
+
+    <p><md>
+      f(x) \ = \ c\,\prod_{n=1}^\infty \left(1-\frac x{\ b_n}\right),
+    </md></p>
+
+    <p>where <m>c=f(0)</m>, since both sides have the same zeroes and the same value at <m>x=0</m>.</p>
+
+    <p>Now apply this to the function <m>f(x) = \frac{\sin(\pi x)}{\pi x}</m>, which has Taylor series:</p>
+
+    <p><md>
+      <mrow>f(x) = \frac{\sin(\pi x)}{\pi x} \amp = \frac{1}{\pi x}\left(\pi x -\frac{(\pi x)^3}{3!} + \frac{(\pi x)^5}{5!}+ \ldots \right)</mrow>
+      <mrow>\amp = 1 -\frac{\pi^2}{3!} x^2 + \frac{\pi^4}{5!}x^4 + \cdots .</mrow>
+    </md></p>
+
+    <p>The zeroes are <m>n = \pm 1, \pm 2, \pm 3,\ldots</m>, and
+    <m>f(0) = \lim\limits_{x\to0}\frac{\sin(\pi x)}{\pi x}= 1</m>, so the product is:</p>
+
+    <p><md>
+      f(x)
+      \ = \
+      \prod_{n=1}^\infty \left(1-\frac x{n}\right)\left(1+\frac x{n}\right)
+      \ = \
+      \prod_{n=1}^\infty \left(1-\frac{x^2}{n^2}\right).
+    </md></p>
+
+    <p>Now multiply out the infinite product (taking the limit of the finite products):</p>
+
+    <p><md>
+      f(x) \ = \ 1 -\frac{x^2}{1^2} - \frac{x^2}{2^2} - \frac{x^2}{3^2} - \cdots
+      + \frac{x^4}{1^2 2^2} + \frac{x^4}{1^2 3^2} + \cdots
+    </md></p>
+
+    <p>Collecting terms and comparing with the Taylor series:</p>
+
+    <p><md>
+      <mrow>f(x) \amp = 1 - \left(\sum_{n=1}^\infty \frac1{n^2}\right)\!x^2 + \left(\sum_{n=1}^\infty \frac{d(n)}{n^2}\right)\!x^4 + \cdots </mrow>
+      <mrow> \amp = 1 -\frac{\pi^2}{3!} x^2 + \frac{\pi^4}{5!}x^4 + \cdots. </mrow>
+    </md></p>
+
+    <p>where <m>d(n)</m> is the number of factors of <m>n</m>.
+    Equating the <m>x^2</m> coefficients gives Euler's formula: <m>\sum_{i=1}^\infty \frac1{n^2} = \frac{\pi^2}6</m>.</p>
+  </subsection>
+
+  <subsection xml:id="ssec-sum-natural-numbers">
+    <title>Extra Topic: <m>1+2+3+...=-\frac{1}{12}</m>?</title>
+    <p>
+      In the introduction to this chapter, we mentioned the surprising formula 
+
+      <md>1+2+3+\cdots=-\frac{1}{12}.</md> 
+      
+      Now, the terms of this series do not tend to zero, so this equality is not true in the ways we have defined infinite sums. 
+      But, where does this claim come from? It comes from studying the function
+
+      <md>
+        \zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s} = \frac{1}{1^s} + \frac{1}{2^s} + \frac{1}{3^s} + \cdots.
+      </md>
+
+      Notice that by the p-series test, this series converges for real numbers <m>s\gt 1</m>. But mathematicians have actually found it fruitful to study functions like this, 
+      where we allow ourselves to input complex numbers <m>s</m>. The field of math that studies these types of functions is called <em>Complex analysis</em>, and is a very rich and deep field of study.
+      By extending definitions in the right way, the p-series test will effectively tell us that <m>\zeta(s)</m> makes sense when the real part of <m>s</m> is greater than 1, and and the function 
+      is analytic<fn>This has the same power series definition as <xref ref="ssec-series-representation-of-a-function"/>, but the inputs to that power series are allowed to be complex numbers.</fn> in the region. 
+      When one has an analytic function, one can sometimes perform a process called <em>analytic continuation</em>, which allows one to extend the the domain of definition, while agreeing with the original definition of the function.
+      Doing this, one can define <m>\zeta(s)</m> for all complex numbers except for <m>s=1</m>, where it has a singularity. Moreover, this function is so special, that it even satisfies the (somewhat complicated) functional equation:
+
+      <md>
+        \zeta(s) = 2^s \pi^{s-1} \sin\left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s).
+      </md>
+
+      In the above equation <m>\Gamma(s)</m> is a special function called the Gamma function, which is a generalization of the factorial function (when <m>n</m> is a natural number, <m>\Gamma(n+1)=n!</m>), and is defined for all complex numbers except for non-positive integers. 
+      Despite the how daunting the equation looks, it ultimately allows us to compute some values of <m>\zeta(s)</m>. In particular, we can use this equation to evaluate at <m>\zeta</m> at <m>s = -1</m>, where we find that
+      
+      <md>
+        <mrow> \zeta(-1) \amp = 2^{-1} \pi^{-2} \sin\left(\frac{-\pi}{2}\right) \Gamma(2) \zeta(2)</mrow>
+        <mrow> \amp = \frac{1}{2\pi^2} \cdot (-1) \cdot 1 \cdot \zeta(2) </mrow>
+        <mrow> \amp = \frac{-1}{2\pi^2}\cdot \frac{\pi^2}{6} = -\frac{1}{12}. </mrow>
+      </md>
+      
+      Here, we used that <m>\Gamma(2)=\Gamma(1+1)=1!=1</m> and <m>\zeta(2)=\sum\limits_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}</m>, which is Euler's Basel Formula!
+      Therefore, if you ignore the domain restrictions, one would get that
+      <md>1 + 2 + 3 + \cdots = \frac{1}{1^{-1}} + \frac{1}{2^{-1}} + \frac{1}{3^{-1}} + \cdots = \zeta(-1) = -\frac{1}{12}.</md>
+
+      So the claim, while not true as we have defined things, is related to a very rich area of mathematics, and isn't as meaningless as it might first appear. 
+    </p>
+  </subsection>
 
 </section>

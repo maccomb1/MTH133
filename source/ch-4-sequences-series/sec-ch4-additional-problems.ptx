@@ -9,12 +9,74 @@
 <problem>
     <statement>
         <p>
+            Evaluate the following series:
+            <md>
+                \sum\limits_{i=0}^{\infty} \frac{5^i-2\cdot(-3)^i}{4^{2i}}
+            </md>
         </p>
 
     </statement>
     <solution>
         <p>
+            We first recall from <xref ref="ssec-geometric-sequences-series"/> the formula<fn>Here we will reindex it start from <m>i=0</m>, which is more traditional and aligns with this problem.</fn> 
+            for the sum of a geometric series: <md>\sum\limits_{i=0}^{\infty}cr^i=\frac{c}{1-r}</md> which is valid for <m>|r|&lt;1</m>. We will rewrite our problem so we can apply this formula, possibly multiple times.
+            Using the properties of summations<fn>Technically, these are only valid when the infinite sums are defined, so one should be cautious if at least one of the sums diverges.</fn> we can rewrite the sum as follows:
+        </p>
+        <md>
+            \sum\limits_{i=0}^{\infty} \frac{5^i-2\cdot(-3)^i}{4^{2i}} = \sum\limits_{i=0}^{\infty} \left(\frac{5^i}{4^{2i}} - \frac{2\cdot (-3)^i}{4^{2i}}\right) = \sum\limits_{i=0}^{\infty} \left(\left(\frac{5}{16}\right)^i - 2 \cdot\left(\frac{-3}{16}\right)^i\right) = \sum\limits_{i=0}^{\infty} \left(\frac{5}{16}\right)^i - \sum\limits_{i=0}^{\infty} 2 \cdot \left(\frac{-3}{16}\right)^i
+        </md>
+        <p>
+            Since <m>\left|\frac{5}{16}\right|&lt;1</m> and <m>\left|\frac{-3}{16}\right|&lt;1</m>, the sums converge (which guarantees the validity of the final equality above), and we can apply the geometric series formula to each sum. This gives us that 
+        </p>
+
+        <md>
+            \sum\limits_{i=0}^{\infty} \frac{5^i-2\cdot(-3)^i}{4^{2i}} = \sum\limits_{i=0}^{\infty} \left(\frac{5}{16}\right)^i - \sum\limits_{i=0}^{\infty} 2 \cdot \left(\frac{-3}{16}\right)^i = \frac{1}{1-\frac{5}{16}} - 2 \cdot \frac{1}{1-\frac{-3}{16}} = \frac{16}{11}-2\cdot \frac{16}{19} = -\frac{48}{209}.
+        </md>
+        
+    </solution>
+</problem>
+
+<problem>
+    <title>A Challenging Puzzle</title>
+    <statement>
+        <p>
+            Imagine a game played out on an infinite checkerboard, as pictured below. The board starts with 3 checkers, one in the bottom left corner, one placed above, and one to the right. 
+            One can move checkers according to the following rule: If the squares to above and to the right of a checker are empty, then one can remove that checker and place two new checkers, one in the square above and one in the square to the right. 
+            Can one ever reach a state where there are no checkers on the original 3 squares? If so, how many moves does it take? If not, why?
+        </p>
+
+    </statement>
+    <solution>
+        <p>
+            We claim there is no way to do this in a finite number of moves. Since it is very hard to argue this directly, a common strategy for these types of problems is to find something that is invariant under the rules, and then show that something reaching that end state would violate that invariant.
+            Since the number of checkers grows with every move, and we can make complicated configurations with the checkers, we will have to introduce our own invariant. One idea is the following:
+            Imagine a checker had some money on it. One could imagine that when that checker makes a move, it can give half of the money to each of the new checkers, and keep the total amount constant. 
+            If we put the right monetary values on each square, then we can calculate the total amount of money on the board, and compare it to the total amount of the original configuration, and then see if there is enough money on the rest of the board to move out.
+            Let us suppose that we have <m>$1</m> on the bottom left square. To move that piece out and split the money, we will need to put <m>$\frac{1}{2}</m> on the square above and <m>$\frac{1}{2}</m> on the square to the right. To move those pieces out, we will need to put <m>$\frac{1}{4}</m> on the squares above and to the right of those pieces, and so on.
+            Doing this gives the following monetary values on the squares:
             
+            How much money is on the board? We will show two different methods:
+            <ol>
+                <li>
+                    <p>
+                        In the bottom row: the total amount of money is <md>1+\frac{1}{2}+\frac{1}{4}+\dots = \sum\limits_{i=0}^{\infty}\frac{1}{2^i} = \frac{1}{1-\frac{1}{2}}=2.</md>
+                        In the row above it, notice that each square has half the money of the square below it, so the total amount of money in that row is <md>\frac{1}{2}(\text{First row total}) = \frac{1}{2}\cdot 2 = 1.</md>
+                        This pattern continues, so the total value of the board is <md>2 + 1 + \frac{1}{2} + \frac{1}{4} + \dots = 2 + \sum\limits_{i=0}^{\infty}2\cdot\frac{1}{2^i} = \frac{2}{1-\frac{1}{2}} = 4</md>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Another way to calculate this is to look at the left to right diagonals. Then <m>n</m>-th diagonal has <m>n</m> terms, all of of them are <m>\frac{1}{2^{n-1}}</m>. 
+                        So the total amount of money on the board is <m>\sum\limits_{n=1}^{\infty} n \cdot \frac{1}{2^{n-1}}.</m> We <xref ref="ssec-derivatives-of-geometric-series">previously</xref> derived a formula for this exact scenario. Therefore, (noting that the <m>n=0</m> term in the formula is <m>0</m>) we have that
+                        <md>
+                            \sum\limits_{n=1}^{\infty} n \cdot \frac{1}{2^{n-1}} = \frac{1}{(1-\frac{1}{2})^2} = 4.
+                        </md>
+                    </p>
+                </li>
+            </ol>
+            
+            In any case, we learn that the total amount of money on the board is <m>$4</m>. However, the original 3 squares have a total of <m>$1 + $\frac{1}{2} + $\frac{1}{2} = $2</m> on them. Therefore, to move all pieces away from the home squares, 
+            literally every single space outside the original 3 squares would need to have a checker on it, which would require an infinite number of moves. Therefore, it is impossible to move all checkers away from the original 3 squares in a finite number of moves.
         </p>
     </solution>
 </problem>

@@ -12,8 +12,9 @@
   </p>
 
   <theorem xml:id="thm-ratio-test">
+    <title>Ratio Test</title>
     <statement>
-      <p><term>Ratio Test:</term> Suppose <m>\lim\limits_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|=L</m>.</p>
+      <p> Suppose <m>GR(a_n)=L</m>.</p>
       <p><ul>
         <li>If <m>L&lt;1</m>, then <m>\sum_{n=1}^\infty a_n</m> converges.</li>
         <li>If <m>L&gt;1</m>, then <m>\sum_{n=1}^\infty a_n</m> diverges.</li>
@@ -22,34 +23,37 @@
     </statement>
   </theorem>
 
-  <p><term>Proof:</term> Assuming <m>a_n&gt;0</m>, the limit <m>\lim\limits_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|=L</m> means that, for any small number <m>\epsilon&gt;0</m>,
-  we can take a starting point <m>N</m> so that for all <m>n\geq N</m>, we have:</p>
+  <proof>
+    <p>Assuming <m>a_n&gt;0</m>, the limit <m>GR(a_n)=\lim\limits_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|=L</m> means that, for any small number <m>\epsilon&gt;0</m>,
+    we can take a starting point <m>N</m> so that for all <m>n\geq N</m>, we have:</p>
 
-  <p><md>
-    \begin{array}{ccccc}
-    L{-}\epsilon &amp; \leq\ &amp; \dfrac{a_{n+1}}{a_n}&amp; \leq\ &amp;  L{+}\epsilon
-    \\[1em]
-    a_n(L{-}\epsilon) &amp; \leq\ &amp;  a_{n+1}&amp; \leq\ &amp;  a_n(L{+}\epsilon)\,.
-    \end{array}
-  </md></p>
+    <p><md>
+      \begin{array}{ccccc}
+      L{-}\epsilon &amp; \leq\ &amp; \dfrac{a_{n+1}}{a_n}&amp; \leq\ &amp;  L{+}\epsilon
+      \\[1em]
+      a_n(L{-}\epsilon) &amp; \leq\ &amp;  a_{n+1}&amp; \leq\ &amp;  a_n(L{+}\epsilon)\,.
+      \end{array}
+    </md></p>
 
-  <p>Iterating this inequality gives:
-  <m>c_1(L{-}\epsilon)^n  \leq  a_{n} \leq   c_2(L{+}\epsilon)^n</m>
-  for some constants <m>c_1,c_2</m>.<fn>
-  Specifically:
-  <m>a_{n}\leq a_{n-1}(L{+}\epsilon)\leq a_{n-2}(L{+}\epsilon)^2
-  \leq\cdots\leq a_N(L{+}\epsilon)^{n-N} = \frac{a_N}{(L{+}\epsilon)^{N}} (L{+}\epsilon)^n</m>.
-  </fn></p>
+    <p>Iterating this inequality gives:
+    <m>c_1(L{-}\epsilon)^n  \leq  a_{n} \leq   c_2(L{+}\epsilon)^n</m>
+    for some constants <m>c_1,c_2</m>.<fn>
+    Specifically:
+    <m>a_{n}\leq a_{n-1}(L{+}\epsilon)\leq a_{n-2}(L{+}\epsilon)^2
+    \leq\cdots\leq a_N(L{+}\epsilon)^{n-N} = \frac{a_N}{(L{+}\epsilon)^{N}} (L{+}\epsilon)^n</m>.
+    </fn></p>
 
-  <p>If <m>L&lt;1</m>, we take <m>\epsilon</m> small enough
-  that <m>L{+}\epsilon&lt;1</m>, and we compare <m>\sum a_n</m> to the convergent ceiling
-  series <m>\sum c_2(L{+}\epsilon)^n</m>.
-  If <m>L&gt;1</m>, we take <m>\epsilon</m> small enough
-  that <m>L{-}\epsilon&gt;1</m>, and we compare <m>\sum a_n</m> to the divergent floor
-  series <m>\sum c_2(L{-}\epsilon)^n</m>.
-  If <m>L=1</m>, adding any <m>\epsilon</m> produces a divergent ceiling, and subtracting any <m>\epsilon</m> produces a convergent floor, neither of which would constrain the original series.
-  Finally, for the general case where the <m>a_n</m>'s may be positive or negative,
-  the above argument shows <m>\sum |a_n|</m> converges, which implies <m>\sum a_n</m> converges by §11.6 Part II. Q.E.D.</p>
+    <p>If <m>L&lt;1</m>, we take <m>\epsilon</m> small enough
+    that <m>L{+}\epsilon&lt;1</m>, and we compare <m>\sum a_n</m> to the convergent ceiling
+    series <m>\sum c_2(L{+}\epsilon)^n</m>.
+    If <m>L&gt;1</m>, we take <m>\epsilon</m> small enough
+    that <m>L{-}\epsilon&gt;1</m>, and we compare <m>\sum a_n</m> to the divergent floor
+    series <m>\sum c_2(L{-}\epsilon)^n</m>.
+    If <m>L=1</m>, adding any <m>\epsilon</m> produces a divergent ceiling, and subtracting any <m>\epsilon</m> produces a convergent floor, neither of which would constrain the original series.
+    Finally, for the general case where the <m>a_n</m>'s may be positive or negative,
+    the above argument shows <m>\sum |a_n|</m> converges, which implies <m>\sum a_n</m> converges by <xref ref="thm-absolute-convergence"/>. Q.E.D.
+  </p>
+  </proof>
 
   <p>The Ratio Test is most useful when <m>a_n</m> is a product of a growing number of factors, which will mostly cancel out in <m>\frac{a_{n+1}}{a_n}</m>.</p>
 
@@ -124,50 +128,54 @@
 
   <p>We can picture the sequence <m>\{s_n\}_{n=1}^\infty</m> as a line graph connecting the points <m>(n,s_n)</m>:</p>
 
-  <figure xml:id="fig-11-6-pos-convergence-placeholder">
-    <caption>Positive-term series with convergent partial sums.</caption>
-    <image width="45%">
-      <shortdescription>Placeholder for 11-6-Pos-Convergence.</shortdescription>
-      <latex-image><![CDATA[
-\begin{tikzpicture}
-  \begin{scope}[x=0.8cm,y=0.8cm]
-    \draw[->] (0,0) -- (6.8,0) node[right] {$n$};
-    \draw[->] (0,0) -- (0,4.6) node[above] {$s_n$};
-    \draw[dashed] (0,4) -- (6.7,4);
-    \node[right] at (6.7,4) {$L$};
+  <sidebyside widths="45% 45%" valign="middle">
+    <figure xml:id="fig-11-6-pos-convergence-placeholder">
+      <caption>Positive-term series with convergent partial sums.</caption>
+        <shortdescription>Placeholder for 11-6-Pos-Convergence.</shortdescription>
+        <image>
+        <latex-image><![CDATA[
+  \begin{tikzpicture}
+    \begin{scope}[x=0.8cm,y=0.8cm]
+      \draw[->] (0,0) -- (6.8,0) node[right] {$n$};
+      \draw[->] (0,0) -- (0,4.6) node[above] {$s_n$};
+      \draw[dashed] (0,4) -- (6.7,4);
+      \node[right] at (6.7,4) {$L$};
 
-    \draw[thick,blue!70!black]
-      plot[smooth] coordinates {(0.7,1.0) (1.4,2.1) (2.1,2.8) (2.8,3.25) (3.5,3.55) (4.2,3.74) (4.9,3.86) (5.6,3.93) (6.3,3.97)};
-    \foreach \k/\v in {1/1.0,2/2.1,3/2.8,4/3.25,5/3.55,6/3.74} {
-      \fill (0.7*\k,\v) circle (1pt);
-    }
-  \end{scope}
-\end{tikzpicture}
-      ]]></latex-image>
-    </image>
-  </figure>
+      \draw[thick,blue!70!black]
+        plot[smooth] coordinates {(0.7,1.2) (1.4,2.1) (2.1,2.8) (2.8,3.25) (3.5,3.55) (4.2,3.74) (4.9,3.86) (5.6,3.93) (6.3,3.97)};
+      \foreach \k/\v/\a in {1/1.2/1.2, 2/2.1/.9, 3/2.8/.7, 4/3.25/.45, 5/3.55/.3, 6/3.74/.21} {
+        \fill (0.7*\k,\v) circle (1pt);
+        \fill (0.7*\k,\a) circle (1pt);
+      }
+    \end{scope}
+  \end{tikzpicture}
+        ]]></latex-image>
+      </image>
+    </figure>
+    
+    <figure xml:id="fig-11-6-pos-infinity-placeholder">
+      <caption>Positive-term series with partial sums diverging to infinity.</caption>
+        <shortdescription>Placeholder for 11-6-Pos-Infinity.</shortdescription>
+        <image>
+        <latex-image><![CDATA[
+  \begin{tikzpicture}
+    \begin{scope}[x=0.8cm,y=0.8cm]
+      \draw[->] (0,0) -- (6.8,0) node[right] {$n$};
+      \draw[->] (0,0) -- (0,4.8) node[above] {$s_n$};
 
-  <figure xml:id="fig-11-6-pos-infinity-placeholder">
-    <caption>Positive-term series with partial sums diverging to infinity.</caption>
-    <image width="45%">
-      <shortdescription>Placeholder for 11-6-Pos-Infinity.</shortdescription>
-      <latex-image><![CDATA[
-\begin{tikzpicture}
-  \begin{scope}[x=0.8cm,y=0.8cm]
-    \draw[->] (0,0) -- (6.8,0) node[right] {$n$};
-    \draw[->] (0,0) -- (0,4.8) node[above] {$s_n$};
-
-    \draw[thick,red!70!black]
-      plot[smooth] coordinates {(0.7,0.5) (1.4,1.0) (2.1,1.45) (2.8,2.0) (3.5,2.55) (4.2,3.1) (4.9,3.7) (5.6,4.2) (6.3,4.6)};
-    \foreach \k/\v in {1/0.5,2/1.0,3/1.45,4/2.0,5/2.55,6/3.1} {
-      \fill (0.7*\k,\v) circle (1pt);
-    }
-    \node[above right] at (6.15,4.45) {$\infty$};
-  \end{scope}
-\end{tikzpicture}
-      ]]></latex-image>
-    </image>
-  </figure>
+      \draw[thick,red!70!black]
+        plot[smooth] coordinates {(0.7,0.55) (1.4,1.0) (2.1,1.45) (2.8,2.0) (3.5,2.55) (4.2,3.1) (4.9,3.7) (5.6,4.2) (6.3,4.6)};
+      \foreach \k/\v/\b in {1/0.55/.55,2/1.0/.45,3/1.45/.45,4/2.0/.55,5/2.55/.55,6/3.1/.55,7/3.7/.6} {
+        \fill (0.7*\k,\v) circle (1pt);
+        \fill (0.7*\k,\b) circle (1pt);
+      }
+      \node[above right] at (6.15,4.45) {$\infty$};
+    \end{scope}
+  \end{tikzpicture}
+        ]]></latex-image>
+      </image>
+    </figure>
+  </sidebyside>
 
   <p><alert>Series with positive and negative terms.</alert>
   In the more general case where <m>a_n</m> can be positive or negative, the partial
@@ -183,50 +191,54 @@
     <li>Divergence (indecisive oscillation): partial sums do not consistently go up or down or approach a horizontal asymptote, so <m>\lim\limits_{N\to\infty} s_N =  \sum\limits_{n=1}^\infty a_n</m> does not exist at all.</li>
   </ul></p>
 
-  <figure xml:id="fig-11-6-osc-convergence-placeholder">
-    <caption>Oscillating partial sums that converge.</caption>
-    <image width="45%">
-      <shortdescription>Placeholder for 11-6-Osc-Convergence.</shortdescription>
-      <latex-image><![CDATA[
-\begin{tikzpicture}
-  \begin{scope}[x=0.8cm,y=0.8cm]
-    \draw[->] (0,0) -- (6.8,0) node[right] {$n$};
-    \draw[->] (0,0) -- (0,4.8) node[above] {$s_n$};
-    \draw[dashed] (0,2.6) -- (6.7,2.6);
-    \node[right] at (6.7,2.6) {$L$};
+  <sidebyside widths="45% 45%" valign="middle">
+    
+    <figure xml:id="fig-osc-converge">
+      <caption>Oscillating partial sums that converge.</caption>
+      <image>
+        <shortdescription>A graph of the partial sums of a converging oscillating series. There are ups and downs, but as you go further out in the series the total variation from the limit goes to zero.</shortdescription>
+        <latex-image><![CDATA[
+  \begin{tikzpicture}
+    \begin{scope}[x=0.8cm,y=0.8cm]
+      \draw[->] (0,0) -- (6.8,0) node[right] {$n$};
+      \draw[->] (0,0) -- (0,4.8) node[above] {$s_n$};
+      \draw[dashed] (0,2.6) -- (6.7,2.6);
+      \node[right] at (6.7,2.6) {$L$};
 
-    \draw[thick,blue!70!black]
-      plot[smooth] coordinates {(0.7,3.6) (1.4,1.9) (2.1,3.0) (2.8,2.2) (3.5,2.8) (4.2,2.35) (4.9,2.7) (5.6,2.45) (6.3,2.62)};
-    \foreach \k/\v in {1/3.6,2/1.9,3/3.0,4/2.2,5/2.8,6/2.35} {
-      \fill (0.7*\k,\v) circle (1pt);
-    }
-  \end{scope}
-\end{tikzpicture}
-      ]]></latex-image>
-    </image>
-  </figure>
+      \draw[thick,blue!70!black]
+        plot[smooth] coordinates {(0.7,3.6) (1.4,1.9) (2.1,3.0) (2.8,2.2) (3.5,2.8) (4.2,2.35) (4.9,2.7) (5.6,2.45) (6.3,2.62)};
+      \foreach \k/\v in {1/3.6,2/1.9,3/3.0,4/2.2,5/2.8,6/2.35} {
+        \fill (0.7*\k,\v) circle (1pt);
+      }
+    \end{scope}
+  \end{tikzpicture}
+        ]]></latex-image>
+      </image>
+    </figure>
 
-  <figure xml:id="fig-11-6-osc-infinity-placeholder">
-    <caption>Oscillating partial sums that diverge to infinity.</caption>
-    <image width="45%">
-      <shortdescription>Placeholder for 11-6-Osc-Infinity.</shortdescription>
-      <latex-image><![CDATA[
-\begin{tikzpicture}
-  \begin{scope}[x=0.8cm,y=0.8cm]
-    \draw[->] (0,0) -- (6.8,0) node[right] {$n$};
-    \draw[->] (0,0) -- (0,4.8) node[above] {$s_n$};
+    <figure xml:id="fig-osc-infinity">
+      <caption>Oscillating partial sums that diverge to infinity.</caption>
+      <image>
+        <shortdescription>A graph of the partial sums of an oscillating series that diverges to infinity. The positive terms are so much larger in magnitude than the negative terms that the overall trend is towards infinity.</shortdescription>
+        <latex-image><![CDATA[
+  \begin{tikzpicture}
+    \begin{scope}[x=0.8cm,y=0.8cm]
+      \draw[->] (0,0) -- (6.8,0) node[right] {$n$};
+      \draw[->] (0,0) -- (0,4.8) node[above] {$s_n$};
 
-    \draw[thick,red!70!black]
-      plot[smooth] coordinates {(0.7,1.3) (1.4,0.8) (2.1,1.9) (2.8,1.4) (3.5,2.6) (4.2,2.1) (4.9,3.4) (5.6,2.9) (6.3,4.2)};
-    \foreach \k/\v in {1/1.3,2/0.8,3/1.9,4/1.4,5/2.6,6/2.1} {
-      \fill (0.7*\k,\v) circle (1pt);
-    }
-    \node[above right] at (6.2,4.15) {$\infty$};
-  \end{scope}
-\end{tikzpicture}
-      ]]></latex-image>
-    </image>
-  </figure>
+      \draw[thick,red!70!black]
+        plot[smooth] coordinates {(0.7,1.3) (1.4,0.8) (2.1,1.9) (2.8,1.4) (3.5,2.6) (4.2,2.1) (4.9,3.4) (5.6,2.9) (6.3,4.2)};
+      \foreach \k/\v in {1/1.3,2/0.8,3/1.9,4/1.4,5/2.6,6/2.1} {
+        \fill (0.7*\k,\v) circle (1pt);
+      }
+      \node[above right] at (6.2,4.15) {$\infty$};
+    \end{scope}
+  \end{tikzpicture}
+        ]]></latex-image>
+      </image>
+    </figure>
+
+  </sidebyside>
 
   <p>An example of indecisive oscillation is <m>a_n=(-1)^n</m>, for which:</p>
 
@@ -272,7 +284,7 @@
     </image>
   </figure>
 
-  <proposition xml:id="prop-absolute-convergence-theorem">
+  <theorem xml:id="thm-absolute-convergence">
     <title>Absolute Convergence Theorem</title>
     <statement>
       <p>If a series is absolutely convergent with <m>\sum_{n=1}^\infty |a_n|=M</m>, then it is convergent with <m>\sum_{n=1}^\infty a_n=L</m>.</p>
@@ -305,7 +317,14 @@
       <p>Here the equality <m>(\ast)</m> follows from rearranging a finite sum of terms,
       and <m>(\ast\ast)</m> follows from the Limit Sum Law from Calculus I §1.6.</p>
     </proof>
-  </proposition>
+    <proof>
+      <title>Shorter Proof (Maybe Better?)</title>
+      <p>
+        Let <m>b_n = a_n + |a_n| \geq 0</m>. Then notice each term satisfies <m>0\leq b_n \leq 2|a_n|</m> because if <m>a_n\geq 0</m> then <m>b_n=2a_n\leq 2|a_n|</m>, and if <m>a_n&lt;0</m> then <m>b_n=0\leq 2|a_n|</m>. 
+        Since the series <m>\sum |a_n|</m> converges, <m>\sum 2|a_n| = 2 \sum |a_n|</m> also converges, and hence by the direct comparison test, <m>\sum b_n</m> converges. But then <m>\sum a_n = \sum b_n - \sum |a_n|</m> is the difference of two convergent series, and hence convergent.
+      </p>
+    </proof>
+  </theorem>
 
   <p><alert>Series with alternating signs.</alert> We say that a series is <term>alternating</term> when
   successive terms <m>a_n</m> are of opposite sign; i.e. <m>a_n = (-1)^n b_n</m> or <m>a_n = (-1)^{n-1} b_n</m> with <m>b_n\geq 0</m>.</p>
@@ -371,23 +390,19 @@
 
   <p>Absolutely convergent series have several nice properties which conditionally convergent series lack. For example, if we rearrange the order of terms in an absolutely convergent series, the limit does not change, but this is not true for a conditionally convergent series.</p>
 
-  <example>
-    <statement>
-      <p>Consider <m>\sum_{n=1}^\infty (-1)^{n-1} \frac1n = 1 -\frac12 + \frac13-\frac14+\cdots</m>, which is convergent by the Alternating Series Test.<fn>
-      In fact, we will see later that <m>1 -\frac12 + \frac13-\frac14+\cdots=\ln(2)</m>.
-      </fn></p>
-    </statement>
-    <solution>
-      <p>We easily see that the series of positive terms
-      <m>\sum_{n=1}^\infty \frac1{2n-1}=\infty</m> and the series of negative terms
-      <m>\sum_{n=1}^\infty (- \frac1{2n})=-\infty</m> are both divergent, so the conditionally convergent sum of the alternating series involves competing infinities. If we rearrange to give the positive terms a head start,
-      so that a large number of positive terms outrun each negative term,
-      then the positive infinity will win. In a sum like:</p>
-      <p><md>
-        1 + \tfrac13+\tfrac15 \mathbf{-\tfrac12} +\tfrac17+\tfrac19+\cdots+\tfrac1{21} \mathbf{-\tfrac14} +\tfrac1{23}+\tfrac1{25}+\cdots+\tfrac1{101} \mathbf{-\tfrac1{6}}+\cdots,
-      </md></p>
-      <p>all the terms <m>a_n=(-1)^{n-1}\frac1n</m> eventually appear, but the partial sums tend to <m>\infty</m>, not to the finite value of the original alternating series.</p>
-    </solution>
-  </example>
+  <p>
+    Consider <m>\sum_{n=1}^\infty (-1)^{n-1} \frac1n = 1 -\frac12 + \frac13-\frac14+\cdots</m>, which is convergent by the Alternating Series Test.<fn>In fact, we will see later that <m>1 -\frac12 + \frac13-\frac14+\cdots=\ln(2)</m>.</fn>
+  </p>
 
+  <p>
+    We easily see that the series of positive terms
+    <m>\sum_{n=1}^\infty \frac1{2n-1}=\infty</m> and the series of negative terms
+    <m>\sum_{n=1}^\infty (- \frac1{2n})=-\infty</m> are both divergent, so the conditionally convergent sum of the alternating series involves competing infinities. If we rearrange to give the positive terms a head start,
+    so that a large number of positive terms outrun each negative term,
+    then the positive infinity will win. In a sum like:
+    <md>
+      1 + \tfrac13+\tfrac15 \mathbf{-\tfrac12} +\tfrac17+\tfrac19+\cdots+\tfrac1{21} \mathbf{-\tfrac14} +\tfrac1{23}+\tfrac1{25}+\cdots+\tfrac1{101} \mathbf{-\tfrac1{6}}+\cdots,
+    </md>
+    all the terms <m>a_n=(-1)^{n-1}\frac1n</m> eventually appear, but the partial sums tend to <m>\infty</m>, not to the finite value of the original alternating series.
+  </p>
 </section>

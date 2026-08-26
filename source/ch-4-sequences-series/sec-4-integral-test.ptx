@@ -68,31 +68,30 @@
   of <m>\{a_n\}</m>, where we draw the bar at height <m>a_n</m>
   above the interval <m>x\in[n,n{+}1]</m>.</p>
 
-  <figure xml:id="fig-11-3-integral-divergence-placeholder">
-    <caption>Bar graph and curve comparison for the divergent harmonic series case.</caption>
+  <figure xml:id="fig-integral-test-divergence">
+    <caption>Bar graph and curve comparison for the harmonic series case.</caption>
     <image width="60%">
-      <shortdescription>Placeholder for 11-3-Integral-Divergence figure.</shortdescription>
+      <shortdescription>A bar plot of the harmonic series, with the curve lying inside the bars, illustrating how the area under the curve is smaller than the infinite sum.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
   \begin{scope}[x=0.95cm,y=2.0cm]
     \draw[->] (0,0) -- (8.8,0) node[right] {$x$};
-    \draw[->] (0,0) -- (0,1.2) node[above] {$y$};
+    \draw[->] (0,0) -- (0,2.2) node[above] {$y$};
 
     \fill[blue!10]
       (1,0)
-      -- plot[domain=1:8.2,samples=240,smooth] (\x,{1/\x})
+      -- plot[domain=1:8.2,samples=240,smooth] (\x,{2/\x})
       -- (8.2,0) -- cycle;
 
     \foreach \n in {1,2,3,4,5,6,7} {
-      \pgfmathsetmacro\h{1/\n}
+      \pgfmathsetmacro\h{2/\n}
       \fill[orange!20] (\n,0) rectangle ({\n+1},\h);
       \draw (\n,\h) -- ({\n+1},\h);
       \node[below] at (\n,0) {\n};
     }
 
-    \draw[thick,red!70!black,domain=1:8.2,samples=240,smooth] plot (\x,{1/\x});
-    \node[right,red!70!black] at (5.9,0.2) {$y=\tfrac1x$};
-    \node[above] at (4.8,1.02) {bars above curve};
+    \draw[thick,red!70!black,domain=1:8.2,samples=240,smooth] plot (\x,{2/\x});
+    \node[above,red!70!black] at (5.9,0.4) {$y=\tfrac1x$};
   \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
@@ -138,31 +137,30 @@
   the previous <m>a_n=\frac1n</m>, so it has a better
   chance of converging to a finite area.</p>
 
-  <figure xml:id="fig-11-3-integral-convergence-placeholder">
+  <figure xml:id="fig-integral-test-convergence">
     <caption>Bar graph and curve comparison for the convergent p-series case with <m>p=2</m>.</caption>
     <image width="60%">
-      <shortdescription>Placeholder for 11-3-Integral-Convergence figure.</shortdescription>
+      <shortdescription>A bar plot of the convergent p-series with p=2, with the curve lying above the bars, illustrating how the area under the curve is larger than the infinite sum.</shortdescription>
       <latex-image><![CDATA[
 \begin{tikzpicture}
   \begin{scope}[x=0.95cm,y=1.9cm]
     \draw[->] (0,0) -- (8.8,0) node[right] {$x$};
-    \draw[->] (0,0) -- (0,1.2) node[above] {$y$};
+    \draw[->] (0,0) -- (0,2.2) node[above] {$y$};
 
     \fill[blue!10]
       (1,0)
-      -- plot[domain=1:8.2,samples=240,smooth] (\x,{1/(\x*\x)})
+      -- plot[domain=1:8.2,samples=240,smooth] (\x,{2/(\x*\x)})
       -- (8.2,0) -- cycle;
 
     \foreach \n in {1,2,3,4,5,6,7} {
-      \pgfmathsetmacro\h{1/((\n+1)*(\n+1))}
+      \pgfmathsetmacro\h{2/((\n+1)*(\n+1))}
       \fill[green!18] (\n,0) rectangle ({\n+1},\h);
       \draw (\n,\h) -- ({\n+1},\h);
       \node[below] at (\n,0) {\n};
     }
 
-    \draw[thick,red!70!black,domain=1:8.2,samples=240,smooth] plot (\x,{1/(\x*\x)});
-    \node[right,red!70!black] at (5.8,0.08) {$y=\tfrac1{x^2}$};
-    \node[above] at (4.8,0.98) {bars under curve (from $n\ge2$)};
+    \draw[thick,red!70!black,domain=1:8.2,samples=240,smooth] plot (\x,{2/(\x*\x)});
+    \node[above,red!70!black] at (5.8,0.25) {$y=\tfrac1{x^2}$};
   \end{scope}
 \end{tikzpicture}
       ]]></latex-image>
@@ -187,65 +185,67 @@
 
   <p><alert>Examples.</alert></p>
 
-  <p><term>Standard p-series.</term>
-  The above reasoning is easily generalized to show:</p>
+  <subsection xml:id="ssec-p-series">
+    <title>Standard <m>p</m>-series.</title>
+    <p>The above reasoning is easily generalized to show:</p>
 
-  <p><md>
-    \boxed{
-    \sum_{n=1}^\infty \frac1{n^p}
-    \ \ \text{converges if } p&gt;1\text{, diverges if } p\leq1.
-    }
-  </md></p>
+    <p><md>
+      \boxed{
+      \sum_{n=1}^\infty \frac1{n^p}
+      \ \ \text{converges if } p&gt;1\text{, diverges if } p\leq1.
+      }
+    </md></p>
 
-  <p>Determine the convergence of:</p>
+    <p>Determine the convergence of:</p>
 
-  <p><md>
-    \sum\limits_{n=1}^\infty a_n \ =\ \sum\limits_{n=1}^\infty \frac1{(2n-5)(2n-7)}\,.
-  </md></p>
+    <p><md>
+      \sum\limits_{n=1}^\infty a_n \ =\ \sum\limits_{n=1}^\infty \frac1{(2n-5)(2n-7)}\,.
+    </md></p>
 
-  <p>In this case, the function <m>f(x)=\frac1{(2x-5)(2x-7)}</m>
-  has vertical asymptotes at <m>x=\frac52,\frac72</m>:
-  it is not continuous, or positive, or decreasing on <m>x\in[1,\infty)</m>,
-  so the Integral Test does not immediately apply.</p>
+    <p>In this case, the function <m>f(x)=\frac1{(2x-5)(2x-7)}</m>
+    has vertical asymptotes at <m>x=\frac52,\frac72</m>:
+    it is not continuous, or positive, or decreasing on <m>x\in[1,\infty)</m>,
+    so the Integral Test does not immediately apply.</p>
 
-  <p>However, to the right of the asympotes, for <m>x\in[4,\infty)</m>,
-  the function is continuous; it is positive,
-  since <m>2x-5&gt;0</m> and <m>2x-7&gt;0</m> for <m>x\geq 4</m>;
-  and it is decreasing, since the derivative
-  <m>f'(x) =  -\frac{8 (x-3)}{(5-2 x)^2 (7-2 x)^2} &lt; 0</m>
-  for <m>x\geq 4</m>. Further, we have:</p>
+    <p>However, to the right of the asympotes, for <m>x\in[4,\infty)</m>,
+    the function is continuous; it is positive,
+    since <m>2x-5&gt;0</m> and <m>2x-7&gt;0</m> for <m>x\geq 4</m>;
+    and it is decreasing, since the derivative
+    <m>f'(x) =  -\frac{8 (x-3)}{(5-2 x)^2 (7-2 x)^2} &lt; 0</m>
+    for <m>x\geq 4</m>. Further, we have:</p>
 
-  <p><md>
-    \begin{array}{rcl}
-    \int_4^\infty \frac1{(2x-5)(2x-7)}\, dx
-    &amp;=&amp;
-    \int_4^\infty\!\! -\frac{\frac12}{2 x-5} +  \frac{\frac12}{2 x-7}\  dx
-    \\[1em]
-    &amp;=&amp;
-    \lim_{n\to\infty}
-    \left.
-    	\frac14 \ln\!\left(\frac{2x{-}7}{2x{-}5}\right)
-    \right|_{x=4}^n
-    \ =\
-    0 - \ln(\frac13) \ &lt; \ \infty.
-    \end{array}
-  </md></p>
+    <p><md>
+      \begin{array}{rcl}
+      \int_4^\infty \frac1{(2x-5)(2x-7)}\, dx
+      &amp;=&amp;
+      \int_4^\infty\!\! -\frac{\frac12}{2 x-5} +  \frac{\frac12}{2 x-7}\  dx
+      \\[1em]
+      &amp;=&amp;
+      \lim_{n\to\infty}
+      \left.
+        \frac14 \ln\!\left(\frac{2x{-}7}{2x{-}5}\right)
+      \right|_{x=4}^n
+      \ =\
+      0 - \ln(\frac13) \ &lt; \ \infty.
+      \end{array}
+    </md></p>
 
-  <p>since <m>\lim_{n\to\infty} \ln\!\left(\frac{2n{-}7}{2n{-}5}\right)
-  =\ln(1)=0</m>.</p>
+    <p>since <m>\lim_{n\to\infty} \ln\!\left(\frac{2n{-}7}{2n{-}5}\right)
+    =\ln(1)=0</m>.</p>
 
-  <p>Slightly generalizing the reasoning of the convergent case of the Integral Test above,
-  we find that <m>\sum\limits_{n=5}^\infty a_n \leq \int_4^\infty f(x)\,dx</m>.
-  Thus, we have:</p>
+    <p>Slightly generalizing the reasoning of the convergent case of the Integral Test above,
+    we find that <m>\sum\limits_{n=5}^\infty a_n \leq \int_4^\infty f(x)\,dx</m>.
+    Thus, we have:</p>
 
-  <p><md>
-    \begin{array}{rcl}
-    \sum\limits_{n=1}^\infty a_n
-    &amp;=&amp;
-    a_1+a_2+a_3+a_4+ \sum\limits_{n=5}^\infty a_n
-    \\[1.5em]
-    &amp;&lt;&amp; a_1+a_2+a_3+a_4+ \int_4^\infty f(x)\,dx \ &lt;\ \infty.
-    \end{array}
-  </md></p>
+    <p><md>
+      \begin{array}{rcl}
+      \sum\limits_{n=1}^\infty a_n
+      &amp;=&amp;
+      a_1+a_2+a_3+a_4+ \sum\limits_{n=5}^\infty a_n
+      \\[1.5em]
+      &amp;&lt;&amp; a_1+a_2+a_3+a_4+ \int_4^\infty f(x)\,dx \ &lt;\ \infty.
+      \end{array}
+    </md></p>
+  </subsection>
 
 </section>
