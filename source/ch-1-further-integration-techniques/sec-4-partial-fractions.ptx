@@ -120,7 +120,27 @@
     </p>
 
     <p>
-      What happens if we cannot factor the denominator? 
+      What happens if we cannot factor the denominator? In this case, we use two key ideas:
+      <ol>
+        <li>
+          <p>
+            Every quadratic polynomial can be written in the form <m>a(x-h)^2+k</m> for appropriate <m>a</m>, <m>h</m>, and <m>k</m>, which is sometimes referred to as the point-vertex form. The reason for this is because one can immediately read off that
+            the polynomial has a vertex at <m>x=h</m>, which a maximum or minimum value <fn>the type of vertex depends on the sign of <m>a</m></fn> of <m>k</m>, but this is not relevant for the integration technique discussed here.
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>\displaystyle \int \frac{1}{x^2+1} \, dx = \arctan(x)</m>
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>\displaystyle \int \frac{2x}{x^2+1} \, dx = \ln|x^2+1|\</m>
+          </p>
+        </li>
+      </ol>
+
+      From these two facts, we will see that we if we have a quadratic polynomial that can not be factored, then we can rewrite the denominator in point-vertex form, and through enough substitutions use the basic integrals listed above to write the answer in terms of the arctangent and logarithms.
     </p>
   </subsection>
 

@@ -187,65 +187,74 @@ A
     A similar method allows us to compute volumes.
     We start with a solid of revolution
     which is formed by rotating a region in the plane around the <m>x</m>-axis, sweeping out a kind of barrel shape.</p>
+    <sidebyside>
+      
+      <figure xml:id="fig-5-2-region-placeholder">
+        <caption>Placeholder for 5-2-Region.</caption>
+        <image width="42%">
+          <shortdescription>Boilerplate TikZ placeholder for 5-2-Region.png.</shortdescription>
+          <latex-image><![CDATA[
+    \begin{tikzpicture}
+      \begin{scope}[x=1.35cm,y=1.15cm]
+        \def\a{0.8}
+        \def\b{3.7}
 
-    <figure xml:id="fig-5-2-region-placeholder">
-      <caption>Placeholder for 5-2-Region.</caption>
-      <image width="42%">
-        <shortdescription>Boilerplate TikZ placeholder for 5-2-Region.png.</shortdescription>
-        <latex-image><![CDATA[
-  \begin{tikzpicture}
-    \begin{scope}[x=1.35cm,y=1.15cm]
-      \def\a{0.8}
-      \def\b{3.7}
+        \draw[->] (0,0) -- (4.2,0) node[right] {$x$};
+        \draw[->] (0,0) -- (0,2.6) node[above] {$y$};
 
-      \draw[->] (0,0) -- (4.2,0) node[right] {$x$};
-      \draw[->] (0,0) -- (0,2.6) node[above] {$y$};
+        \fill[blue!12]
+          (\a,0)
+          -- plot[domain=\a:\b,samples=140,smooth] (\x,{1.9-0.27*(\x-2.2)*(\x-2.2)})
+          -- (\b,0) -- cycle;
 
-      \fill[blue!12]
-        (\a,0)
-        -- plot[domain=\a:\b,samples=140,smooth] (\x,{1.9-0.27*(\x-2.2)*(\x-2.2)})
-        -- (\b,0) -- cycle;
+        \draw[thick,domain=0.45:3.95,samples=140,smooth] plot (\x,{1.9-0.27*(\x-2.2)*(\x-2.2)});
+        \draw[dashed] (\a,0) -- (\a,{1.9-0.27*(\a-2.2)*(\a-2.2)});
+        \draw[dashed] (\b,0) -- (\b,{1.9-0.27*(\b-2.2)*(\b-2.2)});
+        \node[below] at (\a,0) {$a$};
+        \node[below] at (\b,0) {$b$};
+        \node[above right] at (2.55,1.95) {$y=f(x)$};
+      \end{scope}
+    \end{tikzpicture}
+          ]]></latex-image>
+        </image>
+      </figure>
 
-      \draw[thick,domain=0.45:3.95,samples=140,smooth] plot (\x,{1.9-0.27*(\x-2.2)*(\x-2.2)});
-      \draw[dashed] (\a,0) -- (\a,{1.9-0.27*(\a-2.2)*(\a-2.2)});
-      \draw[dashed] (\b,0) -- (\b,{1.9-0.27*(\b-2.2)*(\b-2.2)});
-      \node[below] at (\a,0) {$a$};
-      \node[below] at (\b,0) {$b$};
-      \node[above right] at (2.55,1.95) {$y=f(x)$};
-    \end{scope}
-  \end{tikzpicture}
-        ]]></latex-image>
-      </image>
-    </figure>
+      <figure xml:id="fig-5-2-rotated-region-placeholder">
+        <caption>Rotated Solid</caption>
+        <image width="42%">
+          <shortdescription>Boilerplate TikZ placeholder for 5-2-Rotated-Region.png.</shortdescription>
+          <latex-image><![CDATA[
+            \begin{tikzpicture}
+                \begin{scope}[x=1.2cm,y=.9cm]
+                  \draw[->] (0,0) -- (5.3,0) node[right] {$x$-axis};
+                  \draw[->] (0,-2.6) -- (0,2.6) node[above] {$y$};
 
-    <figure xml:id="fig-5-2-rotated-region-placeholder">
-      <caption>Placeholder for 5-2-Rotated-Region.</caption>
-      <image width="42%">
-        <shortdescription>Boilerplate TikZ placeholder for 5-2-Rotated-Region.png.</shortdescription>
-        <latex-image><![CDATA[
-  \begin{tikzpicture}
-    \begin{scope}[x=1.2cm,y=0.9cm]
-      \draw[->] (0.2,0) -- (5.3,0) node[right] {$x$-axis};
 
-      \draw[thick] (1.0,0) ellipse (0.35 and 0.12);
-      \draw[thick] (4.3,0) ellipse (0.35 and 0.12);
+                  \foreach \k in {.8, 1.525, 2.25, 2.975, 3.7} {
+                  \draw[color=gray,thick] (\k,{1.9-0.27*(\k-2.2)*(\k-2.2)}) arc[start angle=90,end angle=270,x radius=0.25,y radius={1.9-0.27*(\k-2.2)*(\k-2.2)}];
+                  \draw[thick] (\k,{1.9-0.27*(\k-2.2)*(\k-2.2)}) arc[start angle=90,end angle=-90,x radius=0.25,y radius={1.9-0.27*(\k-2.2)*(\k-2.2)}];
+                  }
+                  
+                  \draw[thick] (.8,{1.9-0.27*(.8-2.2)*(.8-2.2)}) arc[start angle=90,end angle=270,x radius=0.25,y radius={1.9-0.27*(.8-2.2)*(.8-2.2)}];
+                  
 
-      \draw[thick] plot[smooth] coordinates {(1.0,0.12) (1.8,0.8) (2.7,1.05) (3.6,0.78) (4.3,0.12)};
-      \draw[thick] plot[smooth] coordinates {(1.0,-0.12) (1.8,-0.8) (2.7,-1.05) (3.6,-0.78) (4.3,-0.12)};
+                  \draw[thick,domain=0.8:3.7,samples=140,smooth] plot (\x,{1.9-0.27*(\x-2.2)*(\x-2.2)});
+                  \draw[thick,domain=0.8:3.7,samples=140,smooth] plot (\x,{-1*(1.9-0.27*(\x-2.2)*(\x-2.2))});
 
-      \draw[dashed] (1.0,0.12) -- (1.0,-0.12);
-      \draw[dashed] (4.3,0.12) -- (4.3,-0.12);
-      \draw[dashed] (2.7,1.05) -- (2.7,-1.05);
-      \node[below] at (1.0,-0.18) {$a$};
-      \node[below] at (4.3,-0.18) {$b$};
+                  \node[below] at (.8,-0.18) {$a$};
+                  \draw[dashed] (.8,0.12) -- (.8,-0.12);
 
-      \draw[->,thick] (2.0,0.35) arc[start angle=40,end angle=330,x radius=0.6,y radius=0.25];
-      \node[right] at (2.55,0.62) {rotation};
-    \end{scope}
-  \end{tikzpicture}
-        ]]></latex-image>
-      </image>
-    </figure>
+                  \node[below] at (3.7,-0.18) {$b$};
+                  \draw[dashed] (3.7,0.12) -- (3.7,-0.12);
+
+                  \draw[->,thick] (4.8,.6) arc[start angle=100,end angle=440,x radius=0.25,y radius=0.6];
+                  \node[right] at (4.25,1) {rotation};
+                \end{scope}
+                \end{tikzpicture}
+          ]]></latex-image>
+        </image>
+      </figure>
+    </sidebyside>
 
     <p>The total volume is the sum of <m>n</m> disk slices (which is why the method is given its name) at sample points <m>x_1,\ldots,x_n</m> in <m>[a,b]</m>, each with radius <m>f(x_i)</m> and thickness <m>\Delta x=\frac{b-a}{n}</m>.</p>
 

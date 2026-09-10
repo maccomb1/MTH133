@@ -37,11 +37,137 @@
 </problem>
 
 <problem>
+    <statement>
+        <p>
+            Determine whether the following series converges or diverges:
+            <ol>
+                <li>
+                    <p>
+                        <m>\sum\limits_{i=1}^{\infty} \frac{1}{i^2+1}</m>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                       <m>\sum\limits_{n=1}^{\infty} n\cdot \pi^{-n}</m> 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <m>\sum\limits_{n=1}^{\infty} \frac{\sin(n^3)}{n^2}</m>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <m>\sum\limits_{n=1}^{\infty} \frac{n^2+1}{n^3+7}</m>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <m>\sum\limits_{n=1}^{\infty} (-1)^n \frac{3}{\ln (n+1)}</m>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <m>\sum\limits_{n=1}^{\infty} \frac{n!}{8128^n}</m>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <m>\sum\limits_{n=1}^{\infty} \frac{1}{\sqrt{n}+2^n}</m>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <m>\sum\limits_{n=1}^{\infty} (-1)^n \frac{2n-5}{3n+1}</m>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <m>\sum\limits_{j=1}^{\infty} \frac{\ln(j)}{j^2}</m>
+                    </p>
+                </li>
+            </ol>
+        </p>
+    </statement>
+    <solution>
+        <p>
+            
+        </p>
+    </solution>
+</problem>
+
+<problem>
     <title>A Challenging Puzzle</title>
     <statement>
         <p>
-            Imagine a game played out on an infinite checkerboard, as pictured below. The board starts with 3 checkers, one in the bottom left corner, one placed above, and one to the right. 
+            Imagine a game played out on an infinite checkerboard, as pictured below. 
+
+            <figure xml:id="ex-hard-checkerboard-puzzle">
+                <caption></caption>
+                <image>
+                    <shortdescription>Infinite checkerboard with initial checker positions. The initial squares containing the checkers are outlined in blue.</shortdescription>
+                    <latex-image><![CDATA[
+                    \begin{tikzpicture}
+                    \foreach \k in {0,1,2,3,4,5} {
+                        \draw[->] (0,\k) -- (5.2,\k);
+                        \draw[->] (\k,0) -- (\k,5.2);
+                    }
+                    \draw[fill=orange] (.5,.5) circle (0.2);
+                    \draw[fill=orange] (1.5,.5) circle (0.2);
+                    \draw[fill=orange] (.5,1.5) circle (0.2);
+                    \draw[color=blue] (0,0) -- (2,0) -- (2,1) -- (1,1) -- (1,2) -- (0,2) -- cycle;
+
+                    \end{tikzpicture}
+                ]]></latex-image>
+                </image>
+            </figure>
+            
+            The board starts with 3 checkers, one in the bottom left corner, one placed above, and one to the right. 
             One can move checkers according to the following rule: If the squares to above and to the right of a checker are empty, then one can remove that checker and place two new checkers, one in the square above and one in the square to the right. 
+
+            <sidebyside>
+                <figure xml:id="ex-checkerboard-initialization">
+                <caption></caption>
+                <image>
+                    <shortdescription>Infinite checkerboard with initial checker positions. The initial squares containing the checkers are outlined in blue.</shortdescription>
+                    <latex-image><![CDATA[
+                    \begin{tikzpicture}
+                    \foreach \k in {0,1,2,3,4,5} {
+                        \draw[->] (0,\k) -- (5.2,\k);
+                        \draw[->] (\k,0) -- (\k,5.2);
+                    }
+                    \draw[fill=orange] (.5,.5) circle (0.2);
+                    \draw[fill=orange] (1.5,.5) circle (0.2);
+                    \draw[fill=orange] (.5,1.5) circle (0.2);
+                    \draw[color=blue] (0,0) -- (2,0) -- (2,1) -- (1,1) -- (1,2) -- (0,2) -- cycle;
+
+                    \end{tikzpicture}
+                ]]></latex-image>
+                </image>
+            </figure>
+
+            <figure xml:id="ex-checkerboard-after-move">
+                <caption></caption>
+                <image>
+                    <shortdescription>Infinite checkerboard with one move made checker positions. The initial squares containing the checkers are outlined in blue. 
+                        The checker that was originally in the second to bottom row, and first column, is now nonexistent, and now there are two checkers, one in the third row from the bottom and leftmost column, and the other is in the second row from the bottom and second column from the left.</shortdescription>
+                    <latex-image><![CDATA[
+                    \begin{tikzpicture}
+                    \foreach \k in {0,1,2,3,4,5} {
+                        \draw[->] (0,\k) -- (5.2,\k);
+                        \draw[->] (\k,0) -- (\k,5.2);
+                    }
+                    \draw[fill=orange] (.5,.5) circle (0.2);
+                    \draw[fill=orange] (1.5,.5) circle (0.2);
+                    \draw[fill=orange] (.5,2.5) circle (0.2);
+                    \draw[fill=orange] (1.5,1.5) circle (0.2);
+                    \draw[color=blue] (0,0) -- (2,0) -- (2,1) -- (1,1) -- (1,2) -- (0,2) -- cycle;
+
+                    \end{tikzpicture}
+                ]]></latex-image>
+                </image>
+            </figure>
+            </sidebyside>
             Can one ever reach a state where there are no checkers on the original 3 squares? If so, how many moves does it take? If not, why?
         </p>
 
